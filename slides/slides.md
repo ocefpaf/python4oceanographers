@@ -1,5 +1,5 @@
-Aula experimental (Python + Hidrografia)
-========================================
+Python + Hidrografia
+====================
 
 .notes: Conversa utilizar python com uma linguagem "cola".
 
@@ -8,7 +8,7 @@ Aula experimental (Python + Hidrografia)
 - Introdução à linguagem de programação Python.
 - Exemplos do seu uso para análise exploratória de dados hidrográficos.
 
-*Objetivos específicos*
+**Objetivos específicos**
 
 - Manipular dados hidrográficos.
 - Criar gráficos/mapas.
@@ -32,6 +32,8 @@ Quebrar a ansiedade
     savefig('line.svg')
 
 ---
+Plot simples
+============
 
 ![Plot](line.svg)
 
@@ -96,10 +98,11 @@ utilizar.
     ax.plot(t, y, 'g')
     ax.set_ylabel("Seno")
     ax.set_xlabel("Series temporal")
-    ax.set_title("Dados")
-    fig.savefig("sine.svg")
+    fig.savefig("sine.svg", transparent=True)
 
 ---
+Ainda um plot simples
+=====================
 
 ![Sine curve](sine.svg)
 
@@ -117,8 +120,8 @@ Hidrografia
 
 ---
 
-Fazendo um mapa com as estações
-===============================
+Mapa com as estações
+====================
 .notes: Abrir alguns desses sites, mostrar NumPy4Matlab users.
 
 .notes: Comentar dos vídeos SciPy/PyCon.
@@ -147,8 +150,8 @@ Fazendo um mapa com as estações
 
 ---
 
-Como ler um arquivo de dados
-============================
+Lendo um arquivo de dados
+=========================
 .notes: Lembrar que formatos mais simples não precisam ser lidos na "unha".
 
     !python
@@ -168,8 +171,8 @@ Como ler um arquivo de dados
 
 ---
 
-Criando o "objeto" mapa.
-========================
+Criando o "objeto" mapa
+=======================
 .notes: Projeções, banco de dados de linha de costa, imagens, batimetria, etc.
 
     !python
@@ -187,8 +190,8 @@ Criando o "objeto" mapa.
 
 ---
 
-O famoso Bluemarble da NASA
-===========================
+Bluemarble da NASA
+==================
 
 ![blue](map.svg)
 
@@ -218,6 +221,8 @@ Lendo dados online de batimetria
     plt.savefig("topografia.png", dpi=75)
 
 ---
+Etopo 5
+=======
 
 ![topografia](topografia.png)
 
@@ -352,7 +357,7 @@ Como rodar um **script**?
     # e-mail:   ocefpaf@gmail
     # web:      http://ocefpaf.tiddlyspot.com/
     # created:  13-Nov-2012
-    # modified: Wed 14 Nov 2012 04:03:00 PM BRST
+    # modified: Wed 14 Nov 2012 06:55:23 PM BRST
     #
     # obs: Plot a map and a depth profile for the CTD transect.
     #
@@ -402,6 +407,9 @@ Como rodar um **script**?
             depth.append(d)
 
 
+    # Profile.
+    dist, phaseangle = sw.dist(lon, lat, units='km')
+    dist = np.r_[0, np.cumsum(dist)] * 1e3
     tangent = bathymetry_angle(0, 9)
     print("Shelf angle: %s" % tangent)
 
@@ -416,7 +424,7 @@ Como rodar um **script**?
                 llcrnrlat=llcrnrlat,
                 urcrnrlat=urcrnrlat,
                 lat_ts=20, resolution='h')
-    fig, ax = plt.subplots(figsize=(20, 20), facecolor='w')
+    fig, ax = plt.subplots(figsize=(7, 7))
     m.ax = ax
 
     url = 'http://ferret.pmel.noaa.gov/thredds/dodsC/data/PMEL/etopo5.nc'
@@ -434,12 +442,9 @@ Como rodar um **script**?
     m.drawparallels(parallels, labels=[1, 0, 0, 1], **kw)
     m.drawmeridians(meridians, labels=[1, 1, 0, 1], **kw)
 
+    fig.savefig("station_map.svg", transparent=True)
 
-    # Profile.
-    dist, phaseangle = sw.dist(lon, lat, units='km')
-    dist = np.r_[0, np.cumsum(dist)] * 1e3
-
-    fig, ax = plt.subplots(figsize=(12, 9), facecolor='w')
+    fig, ax = plt.subplots(figsize=(7, 4), facecolor='w')
     ax.fill_between(dist, max(depth), depth, color='0.75')
     ax.plot(dist, depth, color='k')
     ax.set_ylim(0, max(depth))
@@ -450,6 +455,8 @@ Como rodar um **script**?
     ax.plot(dist, len(dist) * [0], 'kv')
     ax.xaxis.tick_bottom()
 
+    fig.savefig("profile.svg", transparent=True)
+
     plt.show()
 
 ---
@@ -459,7 +466,7 @@ Mapa das estações
 ![station map](station_map.svg)
 
 ---
-Perfil de batimetria
+Perfil da batimetria
 ====================
 
 ![profile](profile.svg)
@@ -490,9 +497,18 @@ Lendo todos os dados
     !python
     import numpy as np
 
-    fname = '../data/estacao08.dat'
+    fname = '../data/estacao15.dat'
 
     P, T, S = np.loadtxt(fname, unpack=True, usecols=(0, 3, 4), skiprows=1)
+
+    print(np.c_[P, S, T])
+    [[   2.        36.8898    23.3286]
+    [    4.        37.0265    23.3233]
+    [    6.        37.0241    23.3245]
+    ...,
+    [ 1464.        34.6999     3.5635]
+    [ 1466.        34.7005     3.566 ]
+    [ 1468.        34.6991     3.5656]]
 
 ---
 
@@ -597,6 +613,17 @@ esse dados é com o módulo **pandas**
 
     print(df1.join(df2, how='right'))
 
+        01  02
+    1    1   1
+    2    2   2
+    3    3   3
+    4    4   4
+    5    5   5
+    6  NaN   6
+    7  NaN   7
+    8  NaN   8
+    9  NaN   9
+    10 NaN  10
 ---
 
 Programa completo
@@ -681,3 +708,195 @@ Diagrama TS espalhado
 =====================
 
 ![TS](TS_diagram.svg)
+
+---
+
+Sumário
+=======
+
+Conceitos utilizados:
+
+- *Imports* absolutos e relativos
+- Gráficos simples.
+- Gráficos de contorno.
+- Download de dados via opendap.
+- *Loops* em lista de arquivos.
+- Ler arquivo ASCII.
+- Ler arquivo binário (netCDF).
+
+---
+Python "containers"
+===================
+
+.notes: Agora que tiramos a ansiedade vamos entrar em alguns detalhes.
+
+Python possuí os seguintes *containers* básicos:
+
+- tuple () ou ,
+- list []
+- dict {}
+- set
+
+---
+
+*Tuples* e *lists*
+==================
+
+Tuples e lists são contêineres de dados que muito parecidos.  A principal
+diferença é que o tuple e imutáveis enquanto a lista e mutável.  Tuple
+também é usado para passar argumentos para expansão de texto.
+
+    !python
+    tupla = 1, 2.123, 300000
+    print("Tupla formatada: %s, %2.2f, %.4g" % tupla)
+    Tupla formatada: 1, 2.12, 3e+05
+
+    lista = [1, 2, 3]
+    lista.append(4)
+    print(lista)
+    [1, 2, 3, 4]
+
+    lista.pop(1)
+    print(lista)
+    [1, 3, 4]
+
+O que nos interesa?  Quem ambos podem ser transformados em NumPy
+Arrays!
+
+    !python
+    print(np.array(tupla, dtype=np.int_))
+    [     1      2 300000]
+
+    print(np.array(lista, dtype=np.float_))
+    [ 1.  3.  4.]
+
+---
+
+Dicionários e Sets
+==================
+
+Dicionários permitem são um excelente contêiner de dados de qualquer
+tipo.  O acesso aos dados é dado via uma "chave".
+
+    !python
+    dic = dict(a=[1, 2, 3], b=(4, 5, 6), c='Apples')
+    for k, v in dic.items():
+        print("Chave: %s" % k)
+        print("Dados: %s" % repr(v))
+
+    Chave: a
+    Dados: [1, 2, 3]
+    Chave: c
+    Dados: 'Apples'
+    Chave: b
+    Dados: (4, 5, 6)
+
+.notes: Observe o uso to **repr**.
+
+---
+
+Matlab vs Python
+================
+
+Dicionários como estruturas
+---------------------------
+
+    !python
+    class Dict2Struc(object):
+        def __init__(self, adict):
+            self.__dict__.update(adict)
+
+    dic = {'tmp': [12., 12.5, 11.2],
+           'sal': [32.1, 33., 30.5]}
+
+    dic = Dict2Struc(dic)
+
+    dic.<tab>
+    dic.sal  dic.tmp
+
+---
+
+Sets
+====
+
+Sets nos permite criar um conjunto de dados sem repetições.  Os principais
+métodos do set são *union*, *intersection*, e *difference*:
+
+    !python
+    a = set([1, 2, 2, 3, 3, 3])
+    print(a)
+    set([1, 2, 3])
+
+    b = set([1, 2, 4, 5])
+
+    print(b.union(a))
+    set([1, 2, 3, 4, 5])
+
+    print(b.intersection(a))
+    set([1, 2])
+
+    print(b.difference(a))
+    set([4, 5])
+
+---
+
+NumPy Arrays
+============
+
+NumPy arrays são o nosso pão com manteiga em computação cientifica.  Já
+utilizamos em diversos slides acima, mas agora vamos dedicar um espaço especial
+para elas.
+
+    !python
+    import numpy as np
+    import numpy.ma as ma
+
+    print(np.asanyarray([1, 2, 'nan', 4]))
+    ['1' '2' 'nan' '4']
+
+    print(np.asanyarray([1, 2, 'nan', 4], dtype=np.float_))
+    [  1.   2.  nan   4.]
+
+    print(ma.masked_invalid([1, 2, np.NaN, 4]))
+    masked_array(data = [1.0 2.0 -- 4.0],
+                mask = [False False  True False],
+        fill_value = 1e+20)
+
+---
+
+Matlab vs Python
+================
+
+Arrays e Matrizes
+-----------------
+
+    !matlab
+    [1, 2, 3] * [1; 2; 3]
+    14
+
+    !python
+    np.matrix(np.matrix([1, 2, 3]) * np.matrix([1, 2, 3]).T
+    matrix([[14]])
+
+    np.dot([1, 2, 3], [1, 2, 3])
+    14
+
+    np.array([1, 2, 3]) * np.array([1, 2, 3])
+    array([1, 4, 9])
+
+.notes: http://www.scipy.org/NumPy_for_Matlab_Users#head-e9a492daa18afcd86e84e07cd2824a9b1b651935.
+
+---
+
+Sumário
+=======
+
+- Tuplas: *tuple*
+- Listas: *list*
+- Dicionários: *dict*
+- Sets: *set*
+- NumPy arrays: *np.array*
+- NumPy masked arrays: *ma.array*
+- Matriz NumPy: *np.matrix*
+
+.notes: http://software-carpentry.org/
