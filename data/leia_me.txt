@@ -1,0 +1,24 @@
+FORMATO DOS DADOS 
+
+Os arquivos referentes as estacoes 01 a 15 contem:
+
+**********************************************************
+ Primeira linha:
+
+ coluna 4 - profundidade local (m)
+ 
+ coluna 5 - latitude Sul    (graus e decimos de grau)
+
+ coluna 6 - longitude Oeste (graus e decimos de grau)
+
+**********************************************************
+
+ Segunda linha:
+
+ coluna 1 - profundidade de amostragem - pressao (decibar - dbar)
+ 
+ coluna 4 - temperatura (graus Celsius)
+
+ coluna 5 - salinidade  (unidades praticas de salinidade - ups)
+
+ coluna 6 - sigma-t  (unidades de sigma-t)
