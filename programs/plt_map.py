@@ -21,7 +21,6 @@ import matplotlib.pyplot as plt
 from netCDF4 import Dataset
 from mpl_toolkits.basemap import Basemap, shiftgrid, cm
 
-
 def break_lines(line):
     return [float(num) for num in line.strip().split()]
 
@@ -57,14 +56,8 @@ for fname in lista:
         depth.append(d)
 
 
-# Profile.
-dist, phaseangle = sw.dist(lon, lat, units='km')
-dist = np.r_[0, np.cumsum(dist)] * 1e3
-tangent = bathymetry_angle(0, 9)
-print("Shelf angle: %s" % tangent)
-
 # Map.
-offset = 2.
+offset = 2.5
 llcrnrlon, urcrnrlon = min(lon) - offset, max(lon) + offset
 llcrnrlat, urcrnrlat = min(lat) - offset, max(lat) + offset
 
@@ -86,13 +79,19 @@ m.drawcountries()
 m.drawcoastlines()
 m.plot(lon, lat, 'r*', latlon=True)
 cb = m.colorbar(im, 'right', size='5%', pad='2%')
-meridians = np.arange(int(llcrnrlon), int(urcrnrlon), 1.)
+meridians = np.arange(int(llcrnrlon), int(urcrnrlon), 2.)
 parallels = np.arange(int(llcrnrlat), int(urcrnrlat), 1.)
 kw = dict(fontsize=20, fontweight='demibold')
 m.drawparallels(parallels, labels=[1, 0, 0, 1], **kw)
 m.drawmeridians(meridians, labels=[1, 1, 0, 1], **kw)
 
-fig.savefig("station_map.svg", transparent=True)
+fig.savefig("../slides/station_map.svg", transparent=True)
+
+# Profile.
+dist, phaseangle = sw.dist(lon, lat, units='km')
+dist = np.r_[0, np.cumsum(dist)] * 1e3
+shelf = bathymetry_angle(0, 9)
+slope = bathymetry_angle(9, 11)
 
 fig, ax = plt.subplots(figsize=(7, 4), facecolor='w')
 ax.fill_between(dist, max(depth), depth, color='0.75')
@@ -103,8 +102,10 @@ ax.invert_yaxis()
 ax.set_ylabel("Depth [db]")
 ax.set_xlabel("Distance [m]")
 ax.plot(dist, len(dist) * [0], 'kv')
+ax.text(50000, 500, 'Shelf angle:\n%2.2f degrees' % shelf)
+ax.text(200000, 500, 'Slope angle:\n%2.2f degrees' % slope)
 ax.xaxis.tick_bottom()
 
-fig.savefig("profile.svg", transparent=True)
+fig.savefig("../slides/profile.svg", transparent=True)
 
 plt.show()
