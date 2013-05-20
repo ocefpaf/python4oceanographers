@@ -1,4 +1,4 @@
 python4oceanographers
 =====================
 
-Python lectures with oceanography examples.
+Python lectures with **oceanographic** examples.
