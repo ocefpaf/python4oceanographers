@@ -11,7 +11,7 @@ sys.path.append(os.curdir)
 from pelicanconf import *
 
 # keep the .com address to properly find disqus comments
-SITEURL = 'http://ocefpaf.github.io'
+SITEURL = 'http://ocefpaf.github.io/python4oceanographers'
 
 FEED_ALL_ATOM = 'feeds/all.atom.xml'
 CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
