@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/hello-world.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-06T13:37:00-03:00</updated><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;An attempt to post Python lectures for oceanographers with oceanographic
-examples.&lt;/p&gt;
-&lt;p&gt;A full notebook:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/test-drive.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-06T13:37:00-03:00</updated><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;Python for the Oceanic Sciences and Data Analysis.&lt;/p&gt;
+&lt;p&gt;Testing a full notebook:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -721,7 +720,7 @@ AABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Just some cells:&lt;/p&gt;
+&lt;p&gt;Now just some cells (from the same notebook):&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -746,7 +745,7 @@ $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;And some code exaples:&lt;/p&gt;
+&lt;p&gt;Include code examples:&lt;/p&gt;
 &lt;figure class='code'&gt;
 &lt;figcaption&gt;&lt;span&gt;[Code test] hello_world.py&lt;/span&gt; &lt;a href='/static/code/hello_world.py'&gt;download&lt;/a&gt;&lt;/figcaption&gt;
 
@@ -768,4 +767,6 @@ $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;/figure&gt;</summary><category term="test"></category></entry></feed>
+&lt;/figure&gt;
+
+&lt;p&gt;Seems to work fine!&lt;/p&gt;</summary><category term="test"></category></entry></feed>
