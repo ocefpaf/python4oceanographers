@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-26T07:19:00-03:00</updated><entry><title>Removing spikes from CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/spikes/" rel="alternate"></link><updated>2013-05-26T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-26:blog/2013/05/26/spikes/</id><summary type="html">&lt;p&gt;Cell thermal mass, Align, real electrical spike.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/data/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).
-Some spikes are easy to spot with a simple histogram of the data:&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-26T07:19:00-03:00</updated><entry><title>Removing spikes from CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/hydrography/" rel="alternate"></link><updated>2013-05-26T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-26:blog/2013/05/26/hydrography/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:
+&lt;em&gt; Bad data from electrical failures.  Usually it manifest in all the measured
+  variables (Temperature, Conductivity, Oxygen, etc);
+&lt;/em&gt; Salinity spikes due to a wrong temperature value when computing it from
+  conductivity.  This effect may be due to a a bad Alignment of the temperature
+  and conductivity sensors or poor Cell thermal mass correction.
+  For more information check Lueck, R.G., 1990: Thermal Inertia of Conductivity
+  Cells: Theory., American Meteorological Society Oct 1990, 741-755.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/data/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
+spikes are easy to spot with a simple histogram of the data.  Let's take a look
+at a velocity time-series with some bad data.&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[24]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[31]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ncols&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sharex&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sharey&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;ax0&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;hist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;u&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
@@ -18,9 +26,9 @@ Some spikes are easy to spot with a simple histogram of the data:&lt;/p&gt;
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
 &lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[24]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[31]:&lt;/div&gt;
 &lt;div class="output_subarea output_pyout"&gt;
-&lt;pre class="ipynb"&gt;&amp;lt;matplotlib.text.Text at 0x5aea650&amp;gt;&lt;/pre&gt;
+&lt;pre class="ipynb"&gt;&amp;lt;matplotlib.text.Text at 0x8072550&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="hbox output_area"&gt;
@@ -156,19 +164,19 @@ rkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Usually a criteria of $3\times \sigma$ is used to catch these outliers.
-However, some spikes might be "hidden" within the data limits, or
-one can remove good data together with bad data if the data is highly
-variable (or episodic systems).  For a much better discussion of this
-check out Chapter 2 from Emery and Thomson -- Data Analysis Methods in Physical Oceanography.&lt;/p&gt;
+&lt;p&gt;Can you see the bins that separate themselves from the rest?  Those are
+probably spikes.  It is common practice to use a criteria of labeling the data
+$3\times \sigma$ larger than the mean as outliers.  However, some spikes might
+be "hidden" within the data limits, or one can remove good data together with
+bad data if the data is highly variable (or episodic systems).  For a better
+discussion on this topic check out Chapter 2 from Emery and Thomson -- Data
+Analysis Methods in Physical Oceanography.&lt;/p&gt;
 &lt;p&gt;One solution is a "two(or more)-pass" criteria.  Also, one might wish to
-evaluate small chunks of the data separately, so episodic events can be
-seen as good data where they happen and not as a spike.  Here is an
-example:&lt;/p&gt;
+evaluate small chunks of the data separately.  Here is an example:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;rolling_window&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;shape&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -176,8 +184,8 @@ example:&lt;/p&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lib&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stride_tricks&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;as_strided&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;strides&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;strides&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;despike&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;despike&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;copy&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
     &lt;span class="n"&gt;roll&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rolling_window&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;roll&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;masked_invalid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;roll&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;roll&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -188,8 +196,8 @@ example:&lt;/p&gt;
     &lt;span class="n"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filled&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fill_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
             &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filled&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fill_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
     &lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;
-    &lt;span class="c"&gt;# Pass two recompute the mean and std without the flagged values from pass&lt;/span&gt;
-    &lt;span class="c"&gt;# one and removed the flagged data.&lt;/span&gt;
+    &lt;span class="c"&gt;# Pass two: recompute the mean and std without the flagged values from pass&lt;/span&gt;
+    &lt;span class="c"&gt;# one now removing the flagged data.&lt;/span&gt;
     &lt;span class="n"&gt;roll&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;rolling_window&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;roll&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ma&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;masked_invalid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;roll&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="n"&gt;std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;roll&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -197,10 +205,10 @@ example:&lt;/p&gt;
     &lt;span class="c"&gt;# Use the last value to fill-up.&lt;/span&gt;
     &lt;span class="n"&gt;std&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;r_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
     &lt;span class="n"&gt;mean&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;r_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;tile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
-    &lt;span class="n"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filled&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fill_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="n"&gt;mask&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;abs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;arr&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filled&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fill_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
             &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filled&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fill_value&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-    &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;
+    &lt;span class="n"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;mask&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;NaN&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;arr&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
@@ -208,11 +216,15 @@ example:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;And the result,&lt;/p&gt;
+&lt;p&gt;The first compute the statistics of the data ($\mu$ and $\sigma$) and marks
+(but do not exclude yet) data that deviates more than $n1 \times \sigma$ from
+the mean.  The second pass recompute the data statistics but now removing the
+data that deviates more than $n2 \times \sigma$ from the mean.&lt;/p&gt;
+&lt;p&gt;The code above makes use of &lt;a href="http://stackoverflow.com/questions/4936620/using-strides-for-an-efficient-moving-average-filter" title="NumPy stride tricks"&gt;NumPy stride tricks&lt;/a&gt; to avoid loops while computing $\mu$ and $\sigma$ for each &lt;strong&gt;block&lt;/strong&gt;.&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[70]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[27]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ud&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;despike&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;u&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;u&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;vd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;despike&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;v&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;v&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;n1&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;n2&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;block&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -245,9 +257,9 @@ example:&lt;/p&gt;
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
 &lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[70]:&lt;/div&gt;
+&lt;div class="prompt output_prompt"&gt;Out[27]:&lt;/div&gt;
 &lt;div class="output_subarea output_pyout"&gt;
-&lt;pre class="ipynb"&gt;&amp;lt;matplotlib.text.Text at 0xc845cd0&amp;gt;&lt;/pre&gt;
+&lt;pre class="ipynb"&gt;&amp;lt;matplotlib.text.Text at 0x712b2d0&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="hbox output_area"&gt;
@@ -577,10 +589,13 @@ failed not only to identify all the spikes, but also removed good data from the
 time series.  On the other had, the $3\times \sigma$ criteria removed two bad
 values from &lt;em&gt;v&lt;/em&gt; while the two pass could one find one.  Still both methods left
 behind two small spikes on &lt;em&gt;v&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;The final message (directly from Emery and Thomson book):&lt;/p&gt;
-&lt;p&gt;To identify errors, it is necessary to examine all of the data in visual form
-and to get a "feel" for the data.&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-13:blog/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise plan over the latest Sea Surface Temperature can
-help a lot with the interpretation of the data you are visualizing.&lt;/p&gt;
+&lt;p&gt;There are probably better ways of doing this.  Also, there are methods that are
+more statistically robust and more efficient at catching bad values.  Still,
+the message of this post is not actually an algorithm to remove bad data, but:&lt;/p&gt;
+&lt;p&gt;"To identify errors, it is necessary to examine all of the data in visual form
+and to get a "feel" for the data."  -- directly from Emery and Thomson book.&lt;/p&gt;
+&lt;p&gt;In other words, there is no silver bullet!&lt;/p&gt;</summary><category term="plotting"></category><category term="data exploration"></category><category term="data clean-up"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-13:blog/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature can
+help a lot with the interpretation of the data.&lt;/p&gt;
 &lt;p&gt;So first lets define a handy function to generate the map:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 
@@ -626,9 +641,9 @@ help a lot with the interpretation of the data you are visualizing.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;Now just download your SST image. (If you are lucky enough to have internet
-  on your research vessel.)&lt;/li&gt;
-&lt;li&gt;and load your position data.&lt;/li&gt;
+&lt;li&gt;Now just download your SST image.&lt;/li&gt;
+&lt;li&gt;Crop the image at known lon/lat corners.&lt;/li&gt;
+&lt;li&gt;Plot your data!&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here is the result:
 &lt;div class="ipynb"&gt;
@@ -4684,7 +4699,8 @@ XkIJJZRQQgmvAygFegkllFBCCSW8DqAU6CWUUEIJJZTwOoD/D9rq/MUsEhEUAAAAAElFTkSuQmCC
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;Python for the Oceanic Sciences and Data Analysis.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;Python for the Oceanic Sciences and Data Analysis.  (This post is just
+a test.)&lt;/p&gt;
 &lt;p&gt;Testing a full notebook:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 
@@ -5454,4 +5470,4 @@ $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c
 
 &lt;/figure&gt;
 
-&lt;p&gt;Seems to work fine!&lt;/p&gt;</summary><category term="test"></category></entry></feed>
+&lt;p&gt;Seems to work fine!&lt;/p&gt;</summary><category term="test-drive"></category></entry></feed>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/test-drive.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-06T13:37:00-03:00</updated><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;Python for the Oceanic Sciences and Data Analysis.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-05-06T13:37:00-03:00</updated><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;Python for the Oceanic Sciences and Data Analysis.  (This post is just
+a test.)&lt;/p&gt;
 &lt;p&gt;Testing a full notebook:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 
@@ -769,4 +770,4 @@ $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c
 
 &lt;/figure&gt;
 
-&lt;p&gt;Seems to work fine!&lt;/p&gt;</summary><category term="test"></category></entry></feed>
+&lt;p&gt;Seems to work fine!&lt;/p&gt;</summary><category term="test-drive"></category></entry></feed>

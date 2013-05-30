@@ -1253,28 +1253,51 @@ init_mathjax();
   </ul></nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-    	  		<article>
-    		<header>
-          <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/">python4oceanographers</a>
-      </h1>
-          <p class="meta"><time datetime="2013-05-06T13:37:00" pubdate>May 06, 2013</time></p>
+      <div>
+  <article class="hentry" role="article">
+    <header>
+          <h1 class="entry-title">Removing spikes from CTD data</h1>
+          <p class="meta"><time datetime="2013-05-26T07:19:00" pubdate>May 26, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>First blog post</p></div>
-  <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  	  	<div class="pagination">
-  
-    <br />
-</div>  </div>
+  <div class="entry-content"><p>CTD data main contain, in general, two different types of spikes:
+<em> Bad data from electrical failures.  Usually it manifest in all the measured
+  variables (Temperature, Conductivity, Oxygen, etc);
+</em> Salinity spikes due to a wrong temperature value when computing it from
+  conductivity.  This effect may be due to a a bad Alignment of the temperature
+  and conductivity sensors or poor Cell thermal mass correction.
+  For more information check Lueck, R.G., 1990: Thermal Inertia of Conductivity
+  Cells: Theory., American Meteorological Society Oct 1990, 741-755.</p></div>
+    <footer>
+      <p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Filipe Fernandes</span>
+  </span>
+  <time datetime="2013-05-26T07:19:00" pubdate>May 26, 2013</time>    <span class="categories">
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>
+      </span>
+  </p>    </footer>
+  </article>
+
+    <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+  </div>
       <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+            <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/hydrography/">Removing spikes from CTD data</a>
+      </li>
+            <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/">Dealing with spiky data</a>
+      </li>
+            <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Using Basemap to plot points over a SST figure</a>
+      </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/">python4oceanographers</a>
       </li>
@@ -1284,15 +1307,17 @@ init_mathjax();
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/python.html">python</a></li>
-              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/test-drive.html">test-drive</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/data-analysis.html">Data Analysis</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/data-analysis.html">Data analysis</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/misc.html">Misc</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/plotting.html">Plotting</a></li>
           </ul>
   </section>
    
 
   <section>
   <h1>Tags</h1>
-      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>    </section>
+      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-exploration.html">data exploration</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-clean-up.html">data clean-up</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test-drive.html">test-drive</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>    </section>
 
   
                     
@@ -1340,6 +1365,9 @@ init_mathjax();
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
+	            var disqus_identifier = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/hydrography/';
+          var disqus_url = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/hydrography/';
+	  var disqus_title = 'Removing spikes from CTD data';
 	  	  var disqus_shortname = 'python4oceanographers';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

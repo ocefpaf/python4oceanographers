@@ -1260,12 +1260,13 @@ init_mathjax();
           <p class="meta"><time datetime="2013-05-20T22:58:00" pubdate>May 20, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>The first steps to clean a data-set is to remove outliers (or spikes).
-Some spikes are easy to spot with a simple histogram of the data:</p>
+  <div class="entry-content"><p>The first steps to clean a data-set is to remove outliers (or spikes).  Some
+spikes are easy to spot with a simple histogram of the data.  Let's take a look
+at a velocity time-series with some bad data.</p>
 <div class="ipynb">
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax0</span><span class="p">,</span> <span class="n">ax1</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sharex</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">ax0</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;u&#39;</span><span class="p">])</span>
@@ -1279,9 +1280,9 @@ Some spikes are easy to spot with a simple histogram of the data:</p>
 <div class="vbox output_wrapper">
 <div class="output vbox">
 <div class="hbox output_area">
-<div class="prompt output_prompt">Out[24]:</div>
+<div class="prompt output_prompt">Out[31]:</div>
 <div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.text.Text at 0x5aea650&gt;</pre>
+<pre class="ipynb">&lt;matplotlib.text.Text at 0x8072550&gt;</pre>
 </div>
 </div>
 <div class="hbox output_area">
@@ -1417,19 +1418,19 @@ rkJggg==
 </div>
 </div>
 
-<p>Usually a criteria of $3\times \sigma$ is used to catch these outliers.
-However, some spikes might be "hidden" within the data limits, or
-one can remove good data together with bad data if the data is highly
-variable (or episodic systems).  For a much better discussion of this
-check out Chapter 2 from Emery and Thomson -- Data Analysis Methods in Physical Oceanography.</p>
+<p>Can you see the bins that separate themselves from the rest?  Those are
+probably spikes.  It is common practice to use a criteria of labeling the data
+$3\times \sigma$ larger than the mean as outliers.  However, some spikes might
+be "hidden" within the data limits, or one can remove good data together with
+bad data if the data is highly variable (or episodic systems).  For a better
+discussion on this topic check out Chapter 2 from Emery and Thomson -- Data
+Analysis Methods in Physical Oceanography.</p>
 <p>One solution is a "two(or more)-pass" criteria.  Also, one might wish to
-evaluate small chunks of the data separately, so episodic events can be
-seen as good data where they happen and not as a spike.  Here is an
-example:</p>
+evaluate small chunks of the data separately.  Here is an example:</p>
 <div class="ipynb">
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="k">def</span> <span class="nf">rolling_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">block</span><span class="p">):</span>
     <span class="n">shape</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">block</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
@@ -1437,8 +1438,8 @@ example:</p>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">stride_tricks</span><span class="o">.</span><span class="n">as_strided</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="n">shape</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="n">strides</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">despike</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">despike</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">n1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
     <span class="n">roll</span> <span class="o">=</span> <span class="n">rolling_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
     <span class="n">roll</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
     <span class="n">std</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">*</span> <span class="n">roll</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1449,8 +1450,8 @@ example:</p>
     <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span> <span class="o">-</span> <span class="n">mean</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span> <span class="o">&gt;</span>
             <span class="n">std</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span>
     <span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span>
-    <span class="c"># Pass two recompute the mean and std without the flagged values from pass</span>
-    <span class="c"># one and removed the flagged data.</span>
+    <span class="c"># Pass two: recompute the mean and std without the flagged values from pass</span>
+    <span class="c"># one now removing the flagged data.</span>
     <span class="n">roll</span> <span class="o">=</span> <span class="n">rolling_window</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">block</span><span class="p">)</span>
     <span class="n">roll</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">roll</span><span class="p">)</span>
     <span class="n">std</span> <span class="o">=</span> <span class="n">n2</span> <span class="o">*</span> <span class="n">roll</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -1458,10 +1459,10 @@ example:</p>
     <span class="c"># Use the last value to fill-up.</span>
     <span class="n">std</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">std</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">std</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">block</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
     <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">r_</span><span class="p">[</span><span class="n">mean</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">mean</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">block</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
-    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">-</span> <span class="n">mean</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span> <span class="o">&gt;</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">arr</span> <span class="o">-</span> <span class="n">mean</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span> <span class="o">&gt;</span>
             <span class="n">std</span><span class="o">.</span><span class="n">filled</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">))</span>
-    <span class="bp">self</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span>
-    <span class="k">return</span> <span class="bp">self</span>
+    <span class="n">arr</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">NaN</span>
+    <span class="k">return</span> <span class="n">arr</span>
 </pre></div>
 
 </div>
@@ -1469,11 +1470,15 @@ example:</p>
 </div>
 </div>
 
-<p>And the result,</p>
+<p>The first compute the statistics of the data ($\mu$ and $\sigma$) and marks
+(but do not exclude yet) data that deviates more than $n1 \times \sigma$ from
+the mean.  The second pass recompute the data statistics but now removing the
+data that deviates more than $n2 \times \sigma$ from the mean.</p>
+<p>The code above makes use of <a href="http://stackoverflow.com/questions/4936620/using-strides-for-an-efficient-moving-average-filter" title="NumPy stride tricks">NumPy stride tricks</a> to avoid loops while computing $\mu$ and $\sigma$ for each <strong>block</strong>.</p>
 <div class="ipynb">
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="input_area box-flex1">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">df</span><span class="p">[</span><span class="s">&#39;ud&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">despike</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;u&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;u&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">n1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
 <span class="n">df</span><span class="p">[</span><span class="s">&#39;vd&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">despike</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s">&#39;v&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="s">&#39;v&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">n1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -1506,9 +1511,9 @@ example:</p>
 <div class="vbox output_wrapper">
 <div class="output vbox">
 <div class="hbox output_area">
-<div class="prompt output_prompt">Out[70]:</div>
+<div class="prompt output_prompt">Out[27]:</div>
 <div class="output_subarea output_pyout">
-<pre class="ipynb">&lt;matplotlib.text.Text at 0xc845cd0&gt;</pre>
+<pre class="ipynb">&lt;matplotlib.text.Text at 0x712b2d0&gt;</pre>
 </div>
 </div>
 <div class="hbox output_area">
@@ -1838,9 +1843,12 @@ failed not only to identify all the spikes, but also removed good data from the
 time series.  On the other had, the $3\times \sigma$ criteria removed two bad
 values from <em>v</em> while the two pass could one find one.  Still both methods left
 behind two small spikes on <em>v</em>.</p>
-<p>The final message (directly from Emery and Thomson book):</p>
-<p>To identify errors, it is necessary to examine all of the data in visual form
-and to get a "feel" for the data.</p></div>
+<p>There are probably better ways of doing this.  Also, there are methods that are
+more statistically robust and more efficient at catching bad values.  Still,
+the message of this post is not actually an algorithm to remove bad data, but:</p>
+<p>"To identify errors, it is necessary to examine all of the data in visual form
+and to get a "feel" for the data."  -- directly from Emery and Thomson book.</p>
+<p>In other words, there is no silver bullet!</p></div>
     <footer>
       <p class="meta">
   <span class="byline author vcard">
@@ -1848,7 +1856,8 @@ and to get a "feel" for the data.</p></div>
   </span>
   <time datetime="2013-05-20T22:58:00" pubdate>May 20, 2013</time>    <span class="categories">
         <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>
-        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/data-exploration.html">data exploration</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/data-clean-up.html">data clean-up</a>
       </span>
   </p>    </footer>
   </article>
@@ -1863,7 +1872,7 @@ and to get a "feel" for the data.</p></div>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
             <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/spikes/">Removing spikes from CTD data</a>
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/hydrography/">Removing spikes from CTD data</a>
       </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/">Dealing with spiky data</a>
@@ -1880,15 +1889,17 @@ and to get a "feel" for the data.</p></div>
       
     <h1>Categories</h1>
     <ul id="recent_posts">
-              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/python.html">python</a></li>
-              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/test-drive.html">test-drive</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/data-analysis.html">Data Analysis</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/data-analysis.html">Data analysis</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/misc.html">Misc</a></li>
+              <li><a href="http://ocefpaf.github.io/python4oceanographers/category/plotting.html">Plotting</a></li>
           </ul>
   </section>
    
 
   <section>
   <h1>Tags</h1>
-      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>    </section>
+      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-exploration.html">data exploration</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-clean-up.html">data clean-up</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test-drive.html">test-drive</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>    </section>
 
   
                     
