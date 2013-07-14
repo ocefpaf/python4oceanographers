@@ -57,7 +57,7 @@ DEFAULT_PAGINATION = 10
 # Theme and plugins
 # http://jakevdp.github.io/blog/2013/05/07/migrating-from-octopress-to-pelican/
 # https://github.com/jakevdp/pelican-plugins/tree/liquid_tags/liquid_tags
-PLUGIN_PATH = '/home/filipe/Dropbox/pymodules/Blog/pelican-plugins'
+PLUGIN_PATH = '/home/filipe/00-NOBKP/SOFTWARE-BUILD/version-controlled/GIT/pelican-plugins'
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'liquid_tags.literal']
@@ -73,7 +73,7 @@ EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 EXTRA_HEADER = open('_nb_header_mod.html').read().decode('utf-8')
 
 # https://github.com/duilio/pelican-octopress-theme
-THEME = "/home/filipe/Dropbox/pymodules/Blog/pelican-octopress-theme"
+THEME = "/home/filipe/00-NOBKP/SOFTWARE-BUILD/version-controlled/GIT/pelican-octopress-theme"
 
 # Sharing
 TWITTER_USER = 'ocefpaf'
