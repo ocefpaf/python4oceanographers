@@ -1255,46 +1255,93 @@ init_mathjax();
   </ul></nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-    	  		<article>
-    		<header>
-          <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Plotting AVISO track from their kmz file</a>
-      </h1>
-          <p class="meta"><time datetime="2013-06-24T15:15:00" pubdate>Jun 24, 2013</time></p>
+      <div>
+  <article class="hentry" role="article">
+    <header>
+          <h1 class="entry-title">CTD2DataFrame take 2</h1>
+          <p class="meta"><time datetime="2013-07-08T07:19:00" pubdate>Jul 08, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>Simple function to load data inside the AVISO kmz file and plot the</p></div>
-  <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  	  		<article>
-    		<header>
-          <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Using Basemap to plot points over a SST figure</a>
-      </h1>
-          <p class="meta"><time datetime="2013-05-13T22:58:00" pubdate>May 13, 2013</time></p>
-</header>
+  <div class="entry-content"><p>The easiest way to obtain the <strong>ctd.py</strong> module used in previous posts is to
+<a href="http://code.google.com/p/python-oceans/">download</a> the source code for
+the <strong>oceans</strong> python module and add the python-oceans/oceans directory to your
+PYTHONOATH similar to what we done for the python-gsw.</p>
+<p>To clone the repository using mercurial type:</p>
+<div class="highlight"><pre><span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">oceans</span><span class="o">/</span>
+</pre></div>
 
-  <div class="entry-content"><p>Quick way to plot geographical info over an image.</p></div>
-  <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  	  	<div class="pagination">
-  
-    <br />
-</div>  </div>
+
+<p>and to update:</p>
+<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span> <span class="p">;</span> <span class="n">hg</span> <span class="n">update</span>
+</pre></div>
+
+
+<p>Now you can import the pandas modified <strong>DataFrame</strong> and load CTD (SeaBird cnv
+and FSI formats) adn XBT (edf) files directly.
+    from oceans.ctd import DataFrame</p>
+<div class="highlight"><pre><span class="n">seabird_cast</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_cnv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+<span class="n">fsi_cast</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_fsi</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+<span class="n">xbt</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_edf</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+</pre></div>
+
+
+<p>The available methods are:</p>
+<ul>
+<li><em>split</em>: Separate upcast from downcast.</li>
+<li><em>plot_vars</em>: Plot two variables together (usually Salinity and Temperature).</li>
+<li><em>swap_index</em>: Change the index (usually from pressure to depth or scan count).</li>
+<li><em>press_check</em>: Check for pressure inversions.</li>
+<li><em>get_maxdepth</em>: Cast maximum depth.</li>
+<li><em>plot_section</em>:  If the DataFrame is a collection of CTD stations this plot
+    the section.</li>
+</ul>
+<p>There is also a modified pandas <strong>Series</strong> (1D DataFrames) with the following
+methods:</p>
+<ul>
+<li><em>plot</em>: Plot the CTD profile.</li>
+<li><em>smooth</em>: Smooth the profile.</li>
+<li><em>despike</em>: Remove spikes from the data.</li>
+<li><em>bindata</em>: Performs a bin average.</li>
+</ul></div>
+    <footer>
+      <p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Filipe Fernandes</span>
+  </span>
+  <time datetime="2013-07-08T07:19:00" pubdate>Jul 08, 2013</time>    <span class="categories">
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/pandas.html">pandas</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>
+        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>
+      </span>
+  </p>    </footer>
+  </article>
+
+    <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+  </div>
       <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
             <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/16/XKCTD/">XKCD plot fun</a>
+      </li>
+            <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/">CTD2DataFrame take 2</a>
+      </li>
+            <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/01/gsw/">python-gsw</a>
+      </li>
+            <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Plotting AVISO track from their kmz file</a>
       </li>
             <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Using Basemap to plot points over a SST figure</a>
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/">How to use Ipython notebook</a>
       </li>
           </ul>
   </section>
@@ -1360,6 +1407,9 @@ init_mathjax();
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
+	            var disqus_identifier = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/';
+          var disqus_url = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/';
+	  var disqus_title = 'CTD2DataFrame take 2';
 	  	  var disqus_shortname = 'python4oceanographers';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
