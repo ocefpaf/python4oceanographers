@@ -1,7 +1,7 @@
 title: python4oceanographers
 date: 2013-05-06 13:37
 category: Misc
-tags: test-drive
+tags: test
 slug: first-post
 author: Filipe Fernandes
 summary: Python for the Oceanic Sciences and Data Analysis.
