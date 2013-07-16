@@ -23,9 +23,12 @@ and to update:
 Now you can import the pandas modified **DataFrame** and load CTD (SeaBird cnv
 and FSI formats) adn XBT (edf) files directly.
     from oceans.ctd import DataFrame
-    DataFrame.from_cnv(fname)
-    DataFrame.from_fsi(fname)
-    DataFrame.from_edf(fname)
+
+    seabird_cast = DataFrame.from_cnv(fname)
+
+    fsi_cast = DataFrame.from_fsi(fname)
+
+    xbt = DataFrame.from_edf(fname)
 
 The available methods are:
 
