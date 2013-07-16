@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
         <meta charset="utf-8">
-        <title>A Pelican Blog - pandas</title>
+        <title>Pandas for CTD data</title>
         <link rel="stylesheet" href="http://ocefpaf.github.io/theme/css/main.css">
                 <link href="http://ocefpaf.github.io/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="A Pelican Blog Atom Feed" />
                 
@@ -15,18 +15,21 @@
         <header id="banner" class="body">
                 <h1><a href="http://ocefpaf.github.io/">A Pelican Blog </a></h1>
                 <nav><ul>
-                                                                                    <li ><a href="http://ocefpaf.github.io/category/data-analysis.html">Data analysis</a></li>
+                                                                                    <li class="active"><a href="http://ocefpaf.github.io/category/data-analysis.html">Data analysis</a></li>
                                     <li ><a href="http://ocefpaf.github.io/category/misc.html">Misc</a></li>
                                     <li ><a href="http://ocefpaf.github.io/category/plotting.html">Plotting</a></li>
                                                 </ul></nav>
         </header><!-- /#banner -->
-                
-            
+        <section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="http://ocefpaf.github.io/CTD.html" rel="bookmark"
+           title="Permalink to Pandas for CTD data">Pandas for CTD data</a></h1>
+          </header>
 
-                            <aside id="featured" class="body">
-                <article>
-                    <h1 class="entry-title"><a href="http://ocefpaf.github.io/CTD.html">Pandas for CTD data</a></h1> 
-                    <footer class="post-info">
+    <div class="entry-content">
+      <footer class="post-info">
         <abbr class="published" title="2013-05-26T07:19:00">
                 Sun 26 May 2013
         </abbr>
@@ -36,7 +39,7 @@
         </address>
         <p>In <a href="http://ocefpaf.github.io/category/data-analysis.html">Data analysis</a>. </p>
 <p>tags: <a href="http://ocefpaf.github.io/tag/ctd.html">CTD</a><a href="http://ocefpaf.github.io/tag/pandas.html">pandas</a></p>
-</footer><!-- /.post-info --><p><a href="http://pandas.pydata.org/">Pandas</a> is an amazing python module to deal with
+</footer><!-- /.post-info -->      <p><a href="http://pandas.pydata.org/">Pandas</a> is an amazing python module to deal with
 data.  It has tons of features worthwhile learning, but the best of all is how
 quick one can explore a data with just a few code lines once you learn the
 basics.</p>
@@ -59,11 +62,25 @@ SBE Software:</p>
 <p>This also allows for a more customize "derived" step:</p>
 <p>{% notebook CTD2DataFrame.ipynb cells[11:12] %}</p>
 <p>Last but not least a handy way for plotting the data:</p>
-<p>{% notebook CTD2DataFrame.ipynb cells[12:15] %}</p><p>There are <a href="http://ocefpaf.github.io/CTD.html#disqus_thread">comments</a>.</p>                </article>
-                                                                </aside><!-- /#featured -->
-                                                </ol><!-- /#posts-list -->
-                        </section><!-- /#content -->
-                    <section id="extras" class="body">
+<p>{% notebook CTD2DataFrame.ipynb cells[12:15] %}</p>
+    </div><!-- /.entry-content -->
+        <div class="comments">
+      <h2>Comments !</h2>
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_identifier = "CTD.html";
+        var disqus_url = "http://ocefpaf.github.io/CTD.html";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://python4oceanographers.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+    </div>
+    
+  </article>
+</section>
+        <section id="extras" class="body">
                                 <div class="social">
                         <h2>social</h2>
                         <ul>
