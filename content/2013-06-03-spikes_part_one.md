@@ -1,8 +1,8 @@
 title: Removing spikes from CTD data -- Part 1
 date:  2013-06-03 04:03
 category: Data analysis
-tags: CTD, hydrography
-slug: spikes_1
+tags: CTD, hydrography, data analysis
+slug: ctd_spikes_1
 author: Filipe Fernandes
 summary: Spikes in CTD data.
 

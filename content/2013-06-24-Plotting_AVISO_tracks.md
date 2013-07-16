@@ -1,5 +1,5 @@
 title: Plotting AVISO track from their kmz file
-date:  2013-07-14 15:15
+date:  2013-06-24 15:15
 category: Plotting
 tags: AVISO, plotting, SSH
 slug: plotting
