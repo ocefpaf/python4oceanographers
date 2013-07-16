@@ -1,6 +1,6 @@
 title: How to use Ipython notebook
 date:  2013-06-17 13:28
-category: teaching
+category: Teaching
 tags: CTD, plotting, teaching
 slug: teaching
 author: Filipe Fernandes
