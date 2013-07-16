@@ -4,7 +4,7 @@ category: Data analysis
 tags: CTD, pandas, data analysis, plotting
 slug: CTD2DataFrame_2
 author: Filipe Fernandes
-summary: More on Pandas for CTD data.
+summary: More on how to use Pandas with CTD data.
 
 
 The easiest way to obtain the **ctd.py** module used in previous posts is to

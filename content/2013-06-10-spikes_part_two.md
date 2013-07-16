@@ -4,7 +4,7 @@ category: Data analysis
 tags: CTD, hydrography, data analysis
 slug: ctd_spikes_2
 author: Filipe Fernandes
-summary: Spikes in CTD data.
+summary: Spikes in CTD data part 2.
 
 CTD data main contain, in general, two different types of spikes:
 

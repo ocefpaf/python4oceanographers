@@ -4,8 +4,7 @@ category: Plotting
 tags: AVISO, plotting, SSH
 slug: plotting
 author: Filipe Fernandes
-summary: Simple function to load data inside the AVISO kmz file and plot the
-satellite tracks.
+summary: Simple function to load data inside the AVISO kmz file and plot the satellite tracks.
 
 
 AVISO [Altimetry](http://www.aviso.oceanobs.com/en/altimetry.html) data is
