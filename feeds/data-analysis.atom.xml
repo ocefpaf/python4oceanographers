@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/" rel="alternate"></link><link href="/feeds/data-analysis.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/</id><updated>2013-07-03T04:03:00-03:00</updated><entry><title>Removing spikes from CTD data -- Part 2</title><link href="http://ocefpaf.github.io/blog/2013/07/03/spikes_2/" rel="alternate"></link><updated>2013-07-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-03:blog/2013/07/03/spikes_2/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/data-analysis.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-03T04:03:00-03:00</updated><entry><title>Removing spikes from CTD data -- Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/03/spikes_2/" rel="alternate"></link><updated>2013-07-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-03:blog/2013/07/03/spikes_2/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:
 &lt;em&gt; Bad data from electrical failures.  Usually it manifest in all the measured
   variables (Temperature, Conductivity, Oxygen, etc);
 &lt;/em&gt; Salinity spikes due to a wrong temperature value when computing it from
   conductivity.  This effect may be due to a a bad Alignment of the temperature
   and conductivity sensors or poor Cell thermal mass correction.
   For more information check Lueck, R.G., 1990: Thermal Inertia of Conductivity
-  Cells: Theory., American Meteorological Society Oct 1990, 741-755.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Removing spikes from CTD data -- Part 1</title><link href="http://ocefpaf.github.io/blog/2013/06/03/spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-03:blog/2013/06/03/spikes_1/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:
+  Cells: Theory., American Meteorological Society Oct 1990, 741-755.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Removing spikes from CTD data -- Part 1</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/03/spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-03:blog/2013/06/03/spikes_1/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:
 &lt;em&gt; Bad data from electrical failures.  Usually it manifest in all the measured
   variables (Temperature, Conductivity, Oxygen, etc);
 &lt;/em&gt; Salinity spikes due to a wrong temperature value when computing it from
   conductivity.  This effect may be due to a a bad Alignment of the temperature
   and conductivity sensors or poor Cell thermal mass correction.
   For more information check Lueck, R.G., 1990: Thermal Inertia of Conductivity
-  Cells: Theory., American Meteorological Society Oct 1990, 741-755.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/blog/2013/05/26/CTD/" rel="alternate"></link><updated>2013-05-26T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-26:blog/2013/05/26/CTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
+  Cells: Theory., American Meteorological Society Oct 1990, 741-755.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/26/CTD/" rel="alternate"></link><updated>2013-05-26T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-26:blog/2013/05/26/CTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
 data.  It has tons of features worthwhile learning, but the best of all is how
 quick one can explore a data with just a few code lines once you learn the
 basics.&lt;/p&gt;
@@ -1968,7 +1968,7 @@ yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;</summary><category term="CTD"></category><category term="pandas"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/blog/2013/05/20/data/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-20:blog/2013/05/20/data/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
+&lt;/div&gt;</summary><category term="CTD"></category><category term="pandas"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/data/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
 spikes are easy to spot with a simple histogram of the data.  Let's take a look
 at a velocity time-series with some bad data.&lt;/p&gt;
 &lt;div class="ipynb"&gt;
