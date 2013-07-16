@@ -1,8 +1,8 @@
 title: Pandas for CTD data
-date:  2013-05-26 07:19
+date:  2013-05-27 07:19
 category: Data analysis
-tags: CTD, pandas
-slug: CTD
+tags: CTD, pandas, data analysis, plotting
+slug: CTD2DataFrame
 author: Filipe Fernandes
 summary: Reading SeaBird CNV format directly into a pandas DataFrame.
 
