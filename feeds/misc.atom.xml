@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-16T13:43:00-03:00</updated><entry><title>XKCD plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/16/XKCTD/" rel="alternate"></link><updated>2013-07-16T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-16:blog/2013/07/16/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; made into the core of matplotlib 1.4.x.  Now it is was easy to produce plot with the XKCD style
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-15T13:43:00-03:00</updated><entry><title>XKCTD plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-15:blog/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; made into the core of matplotlib 1.4.x.  Now it is was easy to produce plot with the XKCD style
 with just the following:&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -29,7 +29,7 @@ with just the following:&lt;/p&gt;
 openSUSE 12.3 just add my &lt;a href="http://download.opensuse.org/repositories/home:/ocefpaf/openSUSE_12.3/"&gt;custom repository&lt;/a&gt;, here
 is a &lt;a href="http://download.opensuse.org/repositories/home:/ocefpaf/openSUSE_12.3/"&gt;list&lt;/a&gt; of the
 packages available).&lt;/p&gt;
-&lt;p&gt;And here is my XKCD_T profile ;-)&lt;/p&gt;
+&lt;p&gt;And here is my XKCTD profile ;-)&lt;/p&gt;
 &lt;div class="ipynb"&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;

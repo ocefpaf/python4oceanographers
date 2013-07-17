@@ -1255,97 +1255,30 @@ init_mathjax();
   </ul></nav>
   <div id="main">
     <div id="content">
-      <div>
-  <article class="hentry" role="article">
-    <header>
-          <h1 class="entry-title">python-gsw</h1>
-          <p class="meta"><time datetime="2013-07-01T13:42:00" pubdate>Jul 01, 2013</time></p>
+      <div class="blog-index">
+    	  		<article>
+    		<header>
+          <h1 class="entry-title">
+        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
+      </h1>
+          <p class="meta"><time datetime="2013-07-22T13:43:00" pubdate>Jul 22, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>The <a href="http://code.google.com/p/python-gsw/">python-gsw</a> module, used in some of
-my previous posts, is an incomplete and unstable version for the
-<a href="http://www.teos-10.org/software.htm#1">Matlab gibbs toolbox</a>.  Because it is
-in constant development the best way to obtain it is to go straight to the
-<a href="http://code.google.com/p/python-gsw/source/browse/">source code</a>.</p>
-<p>The TEOS-10 <a href="http://www.teos-10.org/pubs/TEOS-10_Primer.pdf">primer</a> is an
-excellent place to start before using this toolbox.  It supersedes the now
-obsolete <a href="http://code.google.com/p/python-seawater/">EOS-80</a> seawater module.</p>
-<p>To obtain the latest version of this module you must install <a href="http://mercurial.selenic.com/">mercurial</a> first, then you'll be able to clone the
-repository:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">gsw</span><span class="o">/</span>
-</pre></div>
-
-
-<p>Then just add the <strong>python-gsw/gsw</strong> directory into your <strong>PYTHONPATH</strong> so you
-can import it from anywhere.  To update just go into that directory and type:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span> <span class="p">;</span> <span class="n">hg</span> <span class="n">update</span>
-</pre></div>
-
-
-<p>My work-flow is to download all modules that are in development phase into a
-"pymodules" directory and then create a symlink inside a local folder that is
-added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
-<p>Here is a small example of some functions present in the module:</p>
-<div class="ipynb">
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Derive.</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gsw</span><span class="o">.</span><span class="n">z_from_p</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="c"># ctm [mS/cm] = ctm [S/m] * 10</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0s/m&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090c&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SA_from_SP</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090c&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sigma0_CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sigma0_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sound_speed_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="c"># Does&#39;t fit the DataFrame because the index in at the middle (p_mid) point of the original data.</span>
-<span class="n">N2</span><span class="p">,</span> <span class="n">p_mid</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">Nsquared</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0mm/kg&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-</div></div>
-    <footer>
-      <p class="meta">
-  <span class="byline author vcard">
-    Posted by <span class="fn">Filipe Fernandes</span>
-  </span>
-  <time datetime="2013-07-01T13:42:00" pubdate>Jul 01, 2013</time>    <span class="categories">
-        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>
-        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>
-        <a class="category" href="http://ocefpaf.github.io/python4oceanographers/tag/seawater.html">seawater</a>
-      </span>
-  </p>    </footer>
-  </article>
-
-    <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
-  </section>
-  </div>
+  <div class="entry-content"><p>How to use inset_axes and Basemap to show a map inset.</p></div>
+  <footer>
+    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  	  	<div class="pagination">
+  
+    <br />
+</div>  </div>
       <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKCTD plot fun</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/">CTD2DataFrame take 2</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/01/gsw/">python-gsw</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Plotting AVISO track from their kmz file</a>
       </li>
           </ul>
   </section>
@@ -1411,9 +1344,6 @@ added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
 	    } catch(err) {}
 	</script>
 	<script type="text/javascript">
-	            var disqus_identifier = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/07/01/gsw/';
-          var disqus_url = 'http://ocefpaf.github.io/python4oceanographers/blog/2013/07/01/gsw/';
-	  var disqus_title = 'python-gsw';
 	  	  var disqus_shortname = 'python4oceanographers';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
