@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/teaching.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-06-17T13:28:00-03:00</updated><entry><title>How to use Ipython notebook</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/" rel="alternate"></link><updated>2013-06-17T13:28:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-17:blog/2013/06/17/teaching/</id><summary type="html">&lt;p&gt;This is just an Ipython notebook with exercises and examples.&lt;/p&gt;
-&lt;div class="ipynb"&gt;
-
+&lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 class="ipynb"&gt;Exercício 01&lt;/h1&gt;
+&lt;h1 id="exercício-01"&gt;Exercício 01&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Noções básicas de como mexer no notebook:&lt;/p&gt;
-&lt;pre class="ipynb"&gt;&lt;code&gt;* Cada célula representa uma "etapa" do seu cógido executada separadamente.
+&lt;pre&gt;&lt;code&gt;* Cada célula representa uma &amp;quot;etapa&amp;quot; do seu cógido executada separadamente.
 * Para executar a célula digite o código e aperte shitf + enter quando terminar.
-* Para cancelar/sair de uma célular apert "ESC".
-* Para acessar um menu de "help" aperte "CTRL+m" e depois "h".
-&lt;/code&gt;&lt;/pre&gt;
+* Para cancelar/sair de uma célular apert &amp;quot;ESC&amp;quot;.
+* Para acessar um menu de &amp;quot;help&amp;quot; aperte &amp;quot;CTRL+m&amp;quot; e depois &amp;quot;h&amp;quot;.&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt; &lt;span class="c"&gt;# Ativa o modo &amp;quot;pylab&amp;quot;.&lt;/span&gt;
 &lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;pylab&lt;/span&gt;
@@ -30,11 +28,11 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Digite "comando"? e aperte "shift+enter" para acessar o help daquele comando.  Exemplo:&lt;/p&gt;
+&lt;p&gt;Digite &amp;quot;comando&amp;quot;? e aperte &amp;quot;shift+enter&amp;quot; para acessar o help daquele comando. Exemplo:&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="err"&gt;?&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
@@ -47,7 +45,7 @@
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[&amp;nbsp;]:&lt;/div&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[]:&lt;/div&gt;
 &lt;div class="input_area box-flex1"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;ro&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;a, b, c&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -60,12 +58,12 @@
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 class="ipynb"&gt;Exercício 02&lt;/h1&gt;
+&lt;h1 id="exercício-02"&gt;Exercício 02&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;O script abaixo plota o mapa com as estações e um perfil da batimetria.&lt;/p&gt;
-&lt;p&gt;Apesar de ser um pouco mais complicado que o nosso primeiro exemplo tente "personalizar" os seus gráficos.&lt;/p&gt;
-&lt;p&gt;(Dica: comece mudando o "&lt;em&gt;colormap&lt;/em&gt;" da batimetria)&lt;/p&gt;
+&lt;p&gt;Apesar de ser um pouco mais complicado que o nosso primeiro exemplo tente &amp;quot;personalizar&amp;quot; os seus gráficos.&lt;/p&gt;
+&lt;p&gt;(Dica: comece mudando o &amp;quot;&lt;em&gt;colormap&lt;/em&gt;&amp;quot; da batimetria)&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -147,18 +145,21 @@
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout"&gt;
-&lt;pre class="ipynb"&gt;Shelf angle: -67.9015
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;Shelf angle: -67.9015
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAcAAAAEPCAYAAADVmxQSAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XtclHWiBvDn5SIXQUUuA86YYwICioAwr6Wp+EnQLE1z
 IzEVFVdXbdWjmbXH9mhbStvVMjctO15OlmYl5l1cMXVd8IJmcdYoJWFEMkUEQS7De/5wmSPKgMrM
@@ -370,9 +371,10 @@ aIOtKhtb2nN1dcXGjRvxxz/+EZWVlfD09ERGRgamTJmC/Px89O7dG4qiICAgAF9//XWz70WSJHh6
 emLbtm1ISEiAl5dXg/dwe47b7yOydTwfIBEhPz8fw4cPx+nTp832mosWLYK3tzfmzZtnttckMieu
 AiUiuLi4oLS01LgjfEvNnz8fn376KfcFJJvGJUAiInJIXAIkIiKHxAIkIiKHxAIkIiKHxAIkIiKH
 xAIkIiKH9H+xwxk34afjkAAAAABJRU5ErkJggg==
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -411,12 +413,16 @@ xAIkIiKH9H+xwxk34afjkAAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[17]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
-&lt;pre class="ipynb"&gt;{-48.0: ([&amp;lt;matplotlib.lines.Line2D at 0x4732fd0&amp;gt;],
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[17]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
+&lt;pre&gt;{-48.0: ([&amp;lt;matplotlib.lines.Line2D at 0x4732fd0&amp;gt;],
   [&amp;lt;matplotlib.text.Text at 0x46fc950&amp;gt;]),
  -47.0: ([&amp;lt;matplotlib.lines.Line2D at 0x4721cd0&amp;gt;],
   [&amp;lt;matplotlib.text.Text at 0x46fce10&amp;gt;]),
@@ -430,9 +436,10 @@ xAIkIiKH9H+xwxk34afjkAAAAABJRU5ErkJggg==
   [&amp;lt;matplotlib.text.Text at 0x4729f50&amp;gt;])}&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAdoAAAGlCAYAAABdkDe7AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXl8E9X6xr+TpHspXSgtpRS6Qdn35RYQvCyiF1QEWUVF
 UVwQAXG5/LxXvS6g14VFQJBVRBGRTUCURdDCLQpIoeyUtaUUWujepk0zvz+yNGmTNGmTNqHzfD6H
@@ -2234,22 +2241,23 @@ YWJiAl/72tfw4IMP4vTTT8eWLVvw4Q9/eGheC6neQL69s9Asw6wv9Lp/4AMfwJNPPom7774bDz30
 EM4++2zcd999uOKKK4bmtdDq3kks3aICnXTSSSeddHIQpQvB2EknnXTSSScHUTqg7aSTTjrppJOD
 KB3QdtJJJ5100slBlA5oO+mkk0466eQgSge0nXTSSSeddHIQpQPaTjrppJNOOjmI0gFtJ5100kkn
 nRxE6YC2k0466aSTTg6idEDbSSeddNJJJwdR/j+QvmN62+uKiAAAAABJRU5ErkJggg==
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Encontre no script a linha que calcula a distância usando a latitude e a longitude.&lt;/p&gt;
-&lt;p&gt;Observe as estações estão dispostas numa linha perpendicular à costa.  Para obtermos velocidades "ao longo" e "cruzando" a secção precisamos saber o ângulo dessa seção com o norte verdadeiro.&lt;/p&gt;
+&lt;p&gt;Observe as estações estão dispostas numa linha perpendicular à costa. Para obtermos velocidades &amp;quot;ao longo&amp;quot; e &amp;quot;cruzando&amp;quot; a secção precisamos saber o ângulo dessa seção com o norte verdadeiro.&lt;/p&gt;
 &lt;p&gt;Isso é muito útil para comparar dados perfiladores contínuos como ADCP (que nos fornece dados em coordenadas geográficas) com as velocidades calculadas por método dinâmico.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 class="ipynb"&gt;Exercício 03&lt;/h1&gt;
+&lt;h1 id="exercício-03"&gt;Exercício 03&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;O &lt;em&gt;script&lt;/em&gt; abaixo lê os dados hidrográficos e plota um pefil de salinidade e temperatura.  Note que ele é uma função, logo, precisamos chamar ela para executá-la.&lt;/p&gt;
+&lt;p&gt;O &lt;em&gt;script&lt;/em&gt; abaixo lê os dados hidrográficos e plota um pefil de salinidade e temperatura. Note que ele é uma função, logo, precisamos chamar ela para executá-la.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -2319,11 +2327,14 @@ nRxE6YC2k0466aSTTg6idEDbSSeddNJJJwdR/j+QvmN62+uKiAAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUIAAAGvCAYAAAAud9zAAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVNX7wPHPDCAqghsCCioFuOBulmm5lKFZai65UYpl
 u5mamaU/U8uCbFPra1lpmlqaZmpuWbmnaS65Ye4iAoKiIIpsM+f3xxUUFxhxhjszPO/Xa173zsyd
@@ -2745,9 +2756,10 @@ MvuL2VZTbArbJm7jy7wvCV8dTszaGBbvWkywf3CT8wvugyy6INwRTJdNjNw6khOzTzhbyk3ZY9rD
 im9XWIfPNJeApQEyjrCFIDVC4Y7hLh0Mft5+nLxwkqf+8VSz8p8pOUPcuji6+ne9w8oEZyE1QkEQ
 PB6pEQqC4PGIEQqC4PGIEQqC4PGIEQqC4PGIEQqC4PGIEQqC4PH8P6nDF5RwjQhAAAAAAElFTkSu
 QmCC
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2756,11 +2768,10 @@ QmCC
 &lt;p&gt;Crie um loop para plotar todas as estações.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 class="ipynb"&gt;Exercício 04&lt;/h1&gt;
+&lt;h1 id="exercício-04"&gt;Exercício 04&lt;/h1&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Esse &lt;em&gt;script&lt;/em&gt; produz um diagrama TS espalhado com os mesmos dados do
-transect oceanografico anterior.&lt;/p&gt;
+&lt;p&gt;Esse &lt;em&gt;script&lt;/em&gt; produz um diagrama TS espalhado com os mesmos dados do transect oceanografico anterior.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
@@ -2823,11 +2834,14 @@ transect oceanografico anterior.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXsAAAGDCAYAAADK/7B/AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsnXdUFOf3xu/usixl6QhooiKhiagoKiL2lmhswRKMIqhg
 iY1orJFgiUFiRQVEjaJJ7A01MZbYG7ZYidHYsGBBlKIisPP8/vC38wWEZSuzC/M5Z87R3ZndZ4fd
@@ -3479,15 +3493,14 @@ OvLy8uDi4oINGzbAzs5OrterzHNLNGnSBImJiahVq5ZCz2O0B2vZM4yS6enpISsrC+3atZOOtZ8w
 YQJu3bqFgoICjBkzRqFiXZnnFhQUoGPHjiguLoaODuu1rcpYy55hGKYKYG/1DMMwVQAr9gzDMFUA
 K/YMwzBVACv2DMMwVQAr9gzDMFUAK/YMwzBVACv2DMMwVQAr9gzDMFUAK/YMwzBVwP8BUFzn9gkV
 ngsAAAAASUVORK5CYII=
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Note um "braço" de baixa salinidade.  Discuta o que isso significa.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Exercício&lt;/strong&gt;.
-Produz um diagrama TS &lt;strong&gt;médio&lt;/strong&gt; removendo os dados acima de 10 metros de profundidade.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry></feed>
+&lt;p&gt;Note um &amp;quot;braço&amp;quot; de baixa salinidade. Discuta o que isso significa.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Exercício&lt;/strong&gt;. Produz um diagrama TS &lt;strong&gt;médio&lt;/strong&gt; removendo os dados acima de 10 metros de profundidade.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry></feed>

@@ -65,7 +65,7 @@ can import it from anywhere.  To update just go into that directory and type:&lt
 "pymodules" directory and then create a symlink inside a local folder that is
 added to the &lt;strong&gt;PYTHONPATH&lt;/strong&gt; in my .bashrc.&lt;/p&gt;
 &lt;p&gt;Here is a small example of some functions present in the module:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
@@ -87,8 +87,7 @@ added to the &lt;strong&gt;PYTHONPATH&lt;/strong&gt; in my .bashrc.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-10:blog/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-10:blog/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;CTD data main contain, in general, two different types of spikes:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Bad data from electrical failures.  Usually it manifest in all the
     measured variables (Temperature, Conductivity, Oxygen, etc);&lt;/li&gt;
@@ -102,7 +101,7 @@ data.  This kind of spike is a product of bad pre-processing parameters (either
 Align and/or Cell Thermal Mass).  For more information on this check the SBE
 Software documentation and the Go-SHIP
 &lt;a href="http://www.go-ship.org/Manual/McTaggart_et_al_CTD.pdf"&gt;manual&lt;/a&gt;&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
@@ -137,16 +136,14 @@ Software documentation and the Go-SHIP
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The file &lt;strong&gt;CTD-before.cnv.gz&lt;/strong&gt; is just the raw data acquired be the CTD, while
 on the file &lt;strong&gt;CTD-after.cnv.gz&lt;/strong&gt; both the &lt;strong&gt;Align&lt;/strong&gt; (-0.01 s and 0.07 s for the
 primary and secondary conductivity sensors respectively as provided by the
 calibration lab) and the &lt;strong&gt;Cell Thermal Mass&lt;/strong&gt; corrections ($\alpha = 0.03$ for
 thermal anomaly amplitude and  $\tau = 7$ s for the time constant).&lt;/p&gt;
 &lt;p&gt;Here is the result of such "corrections":&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
@@ -163,11 +160,14 @@ thermal anomaly amplitude and  $\tau = 7$ s for the time constant).&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZgAAAH5CAYAAAC8kyiqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlYVPXiBvB3ZthhBAZZRDQXxAXFDTMltzQzrbRMumql
 ZGZZlnTLyl+37r3WTb25kLllWdZNcyczb2mGy9VUXIhEcUlNAQGBAYZthll+f5Ajh3WAmXOY4f08
@@ -580,14 +580,13 @@ Z9L3WGvWrEFZWRnc3NywYsWKLucgdz96G0OIgcjlchw6dAhBQUFaiwsA7Ny5U+lniUQCFxcXPPDA
 Azhx4gQqKirg6+urV47uOhYVFdJZVGAIMYCmpibMnz8fjo6OWL58eaf3v3r1KjZt2oTm5mY4OTnh
 jTfe0Ol7O4Y+FiGdQVNkhBBCDIKuIiOEEGIQVGAIIYQYBBUYQgghBkEFhhBCiEFQgSGEEGIQVGAI
 IYQYBBUYQgghBvE/u92dx0+bVjQAAAAASUVORK5CYII=
-"&gt;&lt;/img&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Unfortunately most people apply those corrections using the defaults on the SBE
 Software and then "correct" the bad corrections with averaging, smoothing, and
 despiking techniques.  A much better solution is to estimate these parameters
@@ -608,7 +607,7 @@ criteria.&lt;/p&gt;
 software calls it &lt;strong&gt;Wild Edit&lt;/strong&gt; and performs a very similar technique to the
 two-pass criteria from the &lt;a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/"&gt;previous post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Here is a typical spike in the salinity data:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[45]:&lt;/div&gt;
@@ -625,11 +624,14 @@ two-pass criteria from the &lt;a href="http://ocefpaf.github.io/python4oceanogra
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZgAAAH5CAYAAAC8kyiqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPXBxfHvzGRfSEggBAh7AkKQNWyigKKtilW0lbZS
 SyNVcUFBW6tUrVZ8W20BkaJSccFaF1yguFRxAYSwBQGRsO8ECCH7nklm5v3jxmAKwmSZuZnJ+TxP
@@ -1045,16 +1047,15 @@ TEwMrl+/DkdHR7z//vuDjoM8+ehrDCEaIpVKkZ6ejoCAgAEHFwA4fPiwzOOysjLY2dlh+PDhuHDh
 AqqqquDh4aFWHI+rLxpUiKpogCFEA9rb2/Hmm2/C2toamzZtUrl9TU0Ndu3ahYcPH8LGxgaRkZFK
 /W5H030RogqaIiOEEKIRdBcZIYQQjaABhhBCiEbQAEMIIUQjaIAhhBCiETTAEEII0QgaYAghhGgE
 DTCEEEI04v8AXhBeoAhvYPMAAAAASUVORK5CYII=
-"&gt;&lt;/img&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The despiking parameter where:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[35]:&lt;/div&gt;
@@ -1065,9 +1066,7 @@ DTCEEEI04v8AXhBeoAhvYPMAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The first pass just flag the data that is more than 2 standard deviations from
 the mean and hide them from the second pass.  The second pass then flags the
 remaining data points that are more than 20 standard deviations from the mean.&lt;/p&gt;
@@ -1080,7 +1079,7 @@ basics.&lt;/p&gt;
 &lt;p&gt;I wrote a small &lt;a href="http://code.google.com/p/python-oceans/source/browse/oceans/ctd/ctd.py#619"&gt;module&lt;/a&gt;
 to read CTD (also XBT's EDF and FSI's CTD format) data directly as a pandas
 DataFrame.  Here is an example how to use it:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
@@ -1090,13 +1089,11 @@ DataFrame.  Here is an example how to use it:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;That's it the compressed &lt;a href="http://www.seabird.com/software/SBEDataProcforWindows.htm"&gt;SeaBird&lt;/a&gt; cnv file is loaded
 into memory.&lt;/p&gt;
 &lt;p&gt;If you have the Rossete file you can load and make a simple bottle summary with just two lines:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
@@ -1108,11 +1105,15 @@ into memory.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout output_html rendered_html"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[3]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+&lt;div class="output_html rendered_html"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
   &lt;thead&gt;
@@ -1306,12 +1307,12 @@ into memory.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Metadata and data flags are easily accessed.&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
@@ -1330,18 +1331,22 @@ into memory.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout"&gt;
-&lt;pre class="ipynb"&gt;Cast duration was: 3.91 hours.
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;Cast duration was: 3.91 hours.
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[4]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout output_html rendered_html"&gt;
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[4]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+&lt;div class="output_html rendered_html"&gt;
 &lt;div style="max-height:1000px;max-width:1500px;overflow:auto;"&gt;
 &lt;table border="1" class="dataframe"&gt;
   &lt;thead&gt;
@@ -1416,13 +1421,13 @@ into memory.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Cleaning the DataFrame and manipulating the variables inside it is straight
 forward:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
@@ -1437,12 +1442,10 @@ forward:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;There are some rudimentary CTD processing steps similar to those found in the
 SBE Software:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
@@ -1508,11 +1511,9 @@ SBE Software:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;This also allows for a more customize "derived" step:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
@@ -1534,11 +1535,9 @@ SBE Software:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Last but not least a handy way for plotting the data:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[20]:&lt;/div&gt;
@@ -1556,11 +1555,14 @@ SBE Software:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZIAAAHxCAYAAABH4joOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt0nOVh7/vv+85Nt9FlZMmyfAEbmYtlbMvYJI6pYQPl
 JIG0ZO8oLWQVokLa+GS3qddZO2npWin7UHZWVzYmJlGTLmjOKefsk812G9y0e5U2OzHg2CEREHOx
@@ -1989,9 +1991,10 @@ Rz333HN8+OGHLFy4kIqKCu666y4effRR5di6dxiTJ08mJSWFxMREunfvzoMPPsi//vUvZXt8fDwb
 Nmzggw8+4LHHHmP8+PEkJSWxdu1aTCYTEydOvKW5rG4aTcUkhK1k9F8h2sBnn33Gvn37eO211+wd
 ihDtTpq2hBBCtIpUJEK0EUeb41uIm6RpSwghRKvIHYkQQohWkYpECCFEq0hFIoQQolWkIhFCCNEq
 UpEIIYRolf8P8B5Zp5zmhkwAAAAASUVORK5CYII=
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2012,11 +2015,14 @@ UpEIIYRolf8P8B5Zp5zmhkwAAAAASUVORK5CYII=
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZYAAAHyCAYAAADInejaAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl0FNedL/Bv9aqW1OpWtza0gCSEAElmFTgsBo/tceJg
 T4hjJWNnYqzYjsPLZGHmjJOQl4n9PD6ZLEBwRnFy7CQnvDfjx5AXk8WJs9gYY8C2MGBAYpEQWBtC
@@ -2501,9 +2507,10 @@ T2fnzp0UFxfj4OBAcHAwU6ZM4cqVK6xZs4aoqCg6dOjA0KFD+fLLLxusq6Hex+3OtbW1ZcKECbz4
 4otUVVXxv//7v/j4+ODu7k737t3JycmhT58+d/0+hTAWWTZfCDO2du1aXF1defTRR1s6FCFUMhQm
 hJnKzc0lMTGRiIiIlg5FCB0yFCaEGfr888/58ssvGT9+PO3bt2/pcITQIUNhQgghjEqGwoQQQhiV
 JBYhhBBGJYlFCCGEUUliEUIIYVSSWIQQQhjV/wNIQC4eggNkhgAAAABJRU5ErkJggg==
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -2525,11 +2532,14 @@ JBYhhBBGJYlFCCGEUUliEUIIYVSSWIQQQhjV/wNIQC4eggNkhgAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZcAAAH4CAYAAACGxKCCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VOXZwOHf7Jkkk22SkASICgGEoCyyCFhQsW7QFlFq
 rQumKoq4oS0qtnXB3Q8QMaIFl9JaiiiC1dYNQRFUQGSNQFgUEEK2yZ7JrN8fE2YSA2SSzJlMTp77
@@ -3022,16 +3032,16 @@ fUWjr+bMmcO4ceO49dZb2xBtYLz88ssUFhaSnp7Oiy++aHU4YiNKLiIB4PV6WblyJTU1NTz55JMB
 fe8DBw7Qo0cP4uPj2bx5MytWrGDZsmV+D+5F7EbdYiJtVFNTw7Rp00hJSWHu3LkBf/+ioiKWLFlC
 bW0t3bp1Y9asWUosYnuqXEREJOA0WkxERAJOyUVERAJOyUVERAJOyUVERAJOyUVERAJOyUVERAJO
 yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
 spikes are easy to spot with a simple histogram of the data.  Let's take a look
 at a velocity time-series with some bad data.&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[110]:&lt;/div&gt;
@@ -3046,11 +3056,14 @@ at a velocity time-series with some bad data.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXsAAAEKCAYAAADzQPVvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAHZZJREFUeJzt3X1QW3W6B/BvaFIttBb1ttQmOAhJS7CWoiDOXh3jamVh
 16gVV2ytqHQnlztcivdOtzM74xZ2p6WM43irWV1wdul0do3Mzr6AbohKNVPfAuuI7l3h1rAFTVKg
@@ -3186,14 +3199,13 @@ ddcFfyDiuYZerxfXXnutWLNmjVizZo2ora2N+xrfstvtYsWKFSIvL0/s2LEj5vMJIcQ777wjVCqV
 KCwsDF5Dd3e3OHr0qLjzzjuFwWAQa9euFceOHYvLek6nM/iKhUSs8fHHH4vi4mKxevVqcf/99wu/
 35+wa5lOsudaCM72TDjbofimKiIiCfDPEhIRSYBhT0QkAYY9EZEEGPZERBJg2BMRSYBhT0QkAYY9
 EZEEGPZERBL4P09SY7u2BoIOAAAAAElFTkSuQmCC
-"&gt;&lt;/img&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Can you see the bins that separate themselves from the rest?  Those are
 probably spikes.  It is common practice to use a criteria of labeling the data
 $3\times \sigma$ larger than the mean as outliers.  However, some spikes might
@@ -3203,7 +3215,7 @@ discussion on this topic check out Chapter 2 from Emery and Thomson -- Data
 Analysis Methods in Physical Oceanography.&lt;/p&gt;
 &lt;p&gt;One solution is a "two(or more)-pass" criteria.  Also, one might wish to
 evaluate small chunks of the data separately.  Here is an example:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[73]:&lt;/div&gt;
@@ -3245,16 +3257,14 @@ evaluate small chunks of the data separately.  Here is an example:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The first compute the statistics of the data ($\mu$ and $\sigma$) and marks
 (but do not exclude yet) data that deviates more than $n1 \times \sigma$ from
 the mean.  The second pass recompute the data statistics but now removing the
 data that deviates more than $n2 \times \sigma$ from the mean.&lt;/p&gt;
 &lt;p&gt;The code above makes use of &lt;a href="http://stackoverflow.com/questions/4936620/using-strides-for-an-efficient-moving-average-filter" title="NumPy stride tricks"&gt;NumPy stride tricks&lt;/a&gt;
 to avoid loops while computing $\mu$ and $\sigma$ for each &lt;strong&gt;block&lt;/strong&gt;.&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[109]:&lt;/div&gt;
@@ -3288,11 +3298,14 @@ to avoid loops while computing $\mu$ and $\sigma$ for each &lt;strong&gt;block&l
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeMAAAEACAYAAACApx4UAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlcVPX6B/APmzsqLkAxJiYiIgimomYJhmB208iF0lLc
 8pZtlpVL5VIZlHktLSu7ZaSZ+tNS6qKJC6i3q1iaimRoggLCoCKrKDDz/P54YpBVmIUzMz7v12te
@@ -3604,14 +3617,13 @@ AERHRyMsLEyR+ISZUrAg0OQOHDhANjY25OfnR/7+/uTv70+xsbE0duxY8vHxIT8/PxozZoxitc66
 r1h8J06coL59+5Kfnx/5+vrS+++/T0REV65coeDgYOrRoweFhISYzdgKYR5k0g8hhBBCYbdVM7UQ
 QghhjiQZCyGEEAqTZCyEEEIoTJKxEEIIoTBJxkIIIYTCJBkLIYQQCpNkLIQQQihMkrEQQgihsP8H
 5ausNLzTIKMAAAAASUVORK5CYII=
-"&gt;&lt;/img&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;The "two-pass" method did well for &lt;em&gt;u&lt;/em&gt; while the $3\times \sigma$ criteria
 failed not only to identify all the spikes, but also removed good data from the
 time series.  On the other had, the $3\times \sigma$ criteria removed two bad

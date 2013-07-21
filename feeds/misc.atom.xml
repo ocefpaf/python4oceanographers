@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/misc.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-15T13:43:00-03:00</updated><entry><title>XKCTD plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-15:blog/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; made into the core of matplotlib 1.4.x.  Now it is was easy to produce plot with the XKCD style
 with just the following:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
@@ -12,25 +12,28 @@ with just the following:&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
-&lt;pre class="ipynb"&gt;&amp;lt;matplotlib.rc_context at 0x4550750&amp;gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[3]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
+&lt;pre&gt;&amp;lt;matplotlib.rc_context at 0x4550750&amp;gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;You will need the latest development version of matplotlib.  (If you use
 openSUSE 12.3 just add my &lt;a href="http://download.opensuse.org/repositories/home:/ocefpaf/openSUSE_12.3/"&gt;custom repository&lt;/a&gt;, here
 is a &lt;a href="http://download.opensuse.org/repositories/home:/ocefpaf/openSUSE_12.3/"&gt;list&lt;/a&gt; of the
 packages available).&lt;/p&gt;
 &lt;p&gt;And here is my XKCTD profile ;-)&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
@@ -44,11 +47,14 @@ packages available).&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZgAAAH6CAYAAAA6B1oEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4U2X7B/Bv2jRtks50QKlAWbI3ypAt4IuABaHK8CeK
 IgKiAqI4KQ6crzJl+jpQpoooG0GWoGxZsmTTvduk2c/vj6fnQG3pyGl7kpz7c129TpqkOXdDue88
@@ -622,19 +628,18 @@ ac6cOeLvDoeDRo0aRQqFgn777TfyeDy0detWn9OAjFUFD9fPbknnzp3Dv//9b8yaNatGt+t2uzF6
 9Gh88sknAZmEasWKFXj44Yeh0+lw6tQptGrVyq/tlZSUYM6cOdi4cSPatm2Lt956Cy1atKjSa9PT
 09GzZ89bdopgFnhcYBhjjAUE94NhjDEWEFxgGGOMBQQXGMYYYwHBBYYxxlhAcIFhjDEWEFxgGGOM
 BcT/B5CBN0AG6vZTAAAAAElFTkSuQmCC
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
 explore data in oceans sciences.&lt;/p&gt;
 &lt;p&gt;Mostly this is a "notebook" for a future Data Analysis course.&lt;/p&gt;
 &lt;p&gt;&lt;font color="red"&gt;This post is just a test!&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;Testing a full notebook:&lt;/p&gt;
-&lt;div class="ipynb"&gt;
-
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
@@ -658,16 +663,19 @@ explore data in oceans sciences.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout"&gt;
-&lt;pre class="ipynb"&gt;SymPy version: 0.7.2-git
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;SymPy version: 0.7.2-git
 NumPy version: 1.8.0.dev-Unknown
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -716,14 +724,19 @@ NumPy version: 1.8.0.dev-Unknown
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[5]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
 $$\left[\begin{smallmatrix}- c + \frac{1}{2 k} &amp; - \frac{e^{- \frac{1}{2} k}}{k} &amp; \frac{e^{- k}}{2 k}\\\frac{e^{- \frac{1}{2} k}}{2 k} &amp; - c + 0.5 - \frac{1}{k} &amp; \frac{e^{- \frac{1}{2} k}}{2 k}\\\frac{e^{- k}}{2 k} &amp; - \frac{e^{- \frac{1}{2} k}}{k} &amp; - c + \frac{1}{2 k}\end{smallmatrix}\right]$$
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -737,14 +750,19 @@ $$\left[\begin{smallmatrix}- c + \frac{1}{2 k} &amp; - \frac{e^{- \frac{1}{2} k}
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[6]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
 $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c e^{- k}}{k^{2}} + 0.25 \frac{c e^{- 2 k}}{k^{2}} + 0.125 \frac{1}{k^{2}} - 0.125 \frac{e^{- 2 k}}{k^{2}} - 0.25 \frac{1}{k^{3}} + 0.5 \frac{e^{- k}}{k^{3}} - 0.25 \frac{e^{- 2 k}}{k^{3}}$$
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -758,14 +776,19 @@ $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[7]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[7]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
 $$\begin{bmatrix}0.25 \frac{\left(k^{2} e^{k} - k e^{k} + k - \sqrt{k^{4} e^{2.0 k} - 2.0 k^{3} \left(e^{2.0 k}\right)^{0.5} - 6.0 k^{3} e^{2.0 k} - 10.0 k^{2} \left(e^{2.0 k}\right)^{0.5} + 9.0 k^{2} e^{2.0 k} + k^{2}}\right) e^{- k}}{k^{2}}, &amp; 0.25 \frac{\left(k^{2} e^{k} - k e^{k} + k + \sqrt{k^{4} e^{2.0 k} - 2.0 k^{3} \left(e^{2.0 k}\right)^{0.5} - 6.0 k^{3} e^{2.0 k} - 10.0 k^{2} \left(e^{2.0 k}\right)^{0.5} + 9.0 k^{2} e^{2.0 k} + k^{2}}\right) e^{- k}}{k^{2}}, &amp; 0.5 \frac{\left(e^{k} -1.0\right) e^{- k}}{k}\end{bmatrix}$$
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -799,17 +822,20 @@ $$\begin{bmatrix}0.25 \frac{\left(k^{2} e^{k} - k e^{k} + k - \sqrt{k^{4} e^{2.0
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout"&gt;
-&lt;pre class="ipynb"&gt;NaNs in C1: False
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;NaNs in C1: False
 NaNs in C2: False
 NaNs in C3: False
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -824,17 +850,20 @@ NaNs in C3: False
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout"&gt;
-&lt;pre class="ipynb"&gt;Complex in C1: True
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;Complex in C1: True
 Complex in C2: True
 Complex in C3: False
 &lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -863,11 +892,14 @@ Complex in C3: False
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXsAAAD9CAYAAABdoNd6AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl4XOV9//33WWbVjJbRaDSSRrtkyZZ3CxtjDMFgAmSD
 ps4vpNnqq0/b9KHwwC/0KklISxMnIQQoTRtSWp44fdqrbcgVeuWXhMUEgw0GvMqLZNmWV8myrH2f
@@ -1082,9 +1114,10 @@ RmZmZoKrSpxUui4Mw+CnP/0pPp+PT3ziE5c9JlWuj2tpi4lcG7JcwgzYt2/fmKmX9913H1u2bAFg
 q6vDarXyta99jbKyskSWPK2u1h6pcl0ANDY28jd/8zcUFRWhKAoA999//8hfxal0fVxLW0zk2pCw
 F0KIFCDDOEIIkQIk7IUQIgVI2AshRAqQsBdCiBQgYS+EEClAwl4IIVLA/w+jLit15sG6NAAAAABJ
 RU5ErkJggg==
-"&gt;&lt;/img&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -1103,11 +1136,14 @@ RU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_display_data"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYIAAAD9CAYAAACx+XApAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3Xl8XNV99/HPXWaTZkaj0S5LlvdN2GzGgccFBwenLA1x
 mscp0FBSt0lKGiDJA2mAOCQlDhBiCFkwIbj4aZqVPoGmCUucsgYDtrEFtuRNlndblrVvs9/z/DGy
@@ -1344,16 +1380,15 @@ W7cOgCVLlvDiiy+ybt06dF3H4XDwd3/3d8yYMSPJtR57jz32GHV1dXR2duLz+Vi2bBmxWAyItwPA
 mjVrqKmpwel0cuuttzJlypRkVvmcOVNbZMs2AbBjxw7uu+8+Jk6c2D8p0Y033th/JJ1t28bZtMdw
 tw8JAiGEyHLSNSSEEFlOgkAIIbKcBIEQQmQ5CQIhhMhyEgRCCJHlJAiEECLL/X+vjIvoIEBPUgAA
 AABJRU5ErkJggg==
-"&gt;&lt;/img&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
+"&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Now just some cells (from the same notebook):&lt;/p&gt;
-&lt;div class="ipynb"&gt;
+&lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
 &lt;div class="input hbox"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
@@ -1364,19 +1399,22 @@ AABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
+
 &lt;div class="vbox output_wrapper"&gt;
 &lt;div class="output vbox"&gt;
-&lt;div class="hbox output_area"&gt;
-&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
-&lt;div class="output_subarea output_pyout"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+Out[6]:&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_pyout"&gt;
+
 $$- 1.0 c^{3} + 0.5 c^{2} - 0.5 \frac{c}{k} + 0.75 \frac{c}{k^{2}} - 1.0 \frac{c e^{- k}}{k^{2}} + 0.25 \frac{c e^{- 2 k}}{k^{2}} + 0.125 \frac{1}{k^{2}} - 0.125 \frac{e^{- 2 k}}{k^{2}} - 0.25 \frac{1}{k^{3}} + 0.5 \frac{e^{- k}}{k^{3}} - 0.25 \frac{e^{- 2 k}}{k^{3}}$$
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;Include code examples:&lt;/p&gt;
 &lt;figure class='code'&gt;
 &lt;figcaption&gt;&lt;span&gt;[Code test] hello_world.py&lt;/span&gt; &lt;a href='/downloads/code/hello_world.py'&gt;download&lt;/a&gt;&lt;/figcaption&gt;

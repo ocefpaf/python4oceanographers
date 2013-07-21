@@ -1269,7 +1269,7 @@ basics.</p>
 <p>I wrote a small <a href="http://code.google.com/p/python-oceans/source/browse/oceans/ctd/ctd.py#619">module</a>
 to read CTD (also XBT's EDF and FSI's CTD format) data directly as a pandas
 DataFrame.  Here is an example how to use it:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
@@ -1279,13 +1279,11 @@ DataFrame.  Here is an example how to use it:</p>
 
 </div>
 </div>
-</div>
-</div>
-
+</div></p>
 <p>That's it the compressed <a href="http://www.seabird.com/software/SBEDataProcforWindows.htm">SeaBird</a> cnv file is loaded
 into memory.</p>
 <p>If you have the Rossete file you can load and make a simple bottle summary with just two lines:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
@@ -1297,11 +1295,15 @@ into memory.</p>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[3]:</div>
-<div class="output_subarea output_pyout output_html rendered_html">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+Out[3]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+<div class="output_html rendered_html">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
   <thead>
@@ -1495,12 +1497,12 @@ into memory.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div></p>
 <p>Metadata and data flags are easily accessed.</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
@@ -1519,18 +1521,22 @@ into memory.</p>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_stream output_stdout">
-<pre class="ipynb">Cast duration was: 3.91 hours.
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>Cast duration was: 3.91 hours.
 </pre>
 </div>
 </div>
-<div class="hbox output_area">
-<div class="prompt output_prompt">Out[4]:</div>
-<div class="output_subarea output_pyout output_html rendered_html">
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+Out[4]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+<div class="output_html rendered_html">
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
   <thead>
@@ -1605,13 +1611,13 @@ into memory.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-</div>
 
+</div>
+</div>
+</div></p>
 <p>Cleaning the DataFrame and manipulating the variables inside it is straight
 forward:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
@@ -1626,12 +1632,10 @@ forward:</p>
 
 </div>
 </div>
-</div>
-</div>
-
+</div></p>
 <p>There are some rudimentary CTD processing steps similar to those found in the
 SBE Software:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
@@ -1697,11 +1701,9 @@ SBE Software:</p>
 
 </div>
 </div>
-</div>
-</div>
-
+</div></p>
 <p>This also allows for a more customize "derived" step:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
@@ -1723,11 +1725,9 @@ SBE Software:</p>
 
 </div>
 </div>
-</div>
-</div>
-
+</div></p>
 <p>Last but not least a handy way for plotting the data:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[20]:</div>
@@ -1745,11 +1745,14 @@ SBE Software:</p>
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZIAAAHxCAYAAABH4joOAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xt0nOVh7/vv+85Nt9FlZMmyfAEbmYtlbMvYJI6pYQPl
 JIG0ZO8oLWQVokLa+GS3qddZO2npWin7UHZWVzYmJlGTLmjOKefsk812G9y0e5U2OzHg2CEREHOx
@@ -2178,9 +2181,10 @@ Rz333HN8+OGHLFy4kIqKCu666y4effRR5di6dxiTJ08mJSWFxMREunfvzoMPPsi//vUvZXt8fDwb
 Nmzggw8+4LHHHmP8+PEkJSWxdu1aTCYTEydOvKW5rG4aTcUkhK1k9F8h2sBnn33Gvn37eO211+wd
 ihDtTpq2hBBCtIpUJEK0EUeb41uIm6RpSwghRKvIHYkQQohWkYpECCFEq0hFIoQQolWkIhFCCNEq
 UpEIIYRolf8P8B5Zp5zmhkwAAAAASUVORK5CYII=
-"></img>
+">
 </div>
 </div>
+
 </div>
 </div>
 </div>
@@ -2201,11 +2205,14 @@ UpEIIYRolf8P8B5Zp5zmhkwAAAAASUVORK5CYII=
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZYAAAHyCAYAAADInejaAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl0FNedL/Bv9aqW1OpWtza0gCSEAElmFTgsBo/tceJg
 T4hjJWNnYqzYjsPLZGHmjJOQl4n9PD6ZLEBwRnFy7CQnvDfjx5AXk8WJs9gYY8C2MGBAYpEQWBtC
@@ -2690,9 +2697,10 @@ T2fnzp0UFxfj4OBAcHAwU6ZM4cqVK6xZs4aoqCg6dOjA0KFD+fLLLxusq6Hex+3OtbW1ZcKECbz4
 4otUVVXxv//7v/j4+ODu7k737t3JycmhT58+d/0+hTAWWTZfCDO2du1aXF1defTRR1s6FCFUMhQm
 hJnKzc0lMTGRiIiIlg5FCB0yFCaEGfr888/58ssvGT9+PO3bt2/pcITQIUNhQgghjEqGwoQQQhiV
 JBYhhBBGJYlFCCGEUUliEUIIYVSSWIQQQhjV/wNIQC4eggNkhgAAAABJRU5ErkJggg==
-"></img>
+">
 </div>
 </div>
+
 </div>
 </div>
 </div>
@@ -2714,11 +2722,14 @@ JBYhhBBGJYlFCCGEUUliEUIIYVSSWIQQQhjV/wNIQC4eggNkhgAAAABJRU5ErkJggg==
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZcAAAH4CAYAAACGxKCCAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VOXZwOHf7Jkkk22SkASICgGEoCyyCFhQsW7QFlFq
 rQumKoq4oS0qtnXB3Q8QMaIFl9JaiiiC1dYNQRFUQGSNQFgUEEK2yZ7JrN8fE2YSA2SSzJlMTp77
@@ -3211,13 +3222,13 @@ fUWjr+bMmcO4ceO49dZb2xBtYLz88ssUFhaSnp7Oiy++aHU4YiNKLiIB4PV6WblyJTU1NTz55JMB
 fe8DBw7Qo0cP4uPj2bx5MytWrGDZsmV+D+5F7EbdYiJtVFNTw7Rp00hJSWHu3LkBf/+ioiKWLFlC
 bW0t3bp1Y9asWUosYnuqXEREJOA0WkxERAJOyUVERAJOyUVERAJOyUVERAJOyUVERAJOyUVERAJO
 yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
-"></img>
+">
 </div>
 </div>
+
 </div>
 </div>
-</div>
-</div></div>
+</div></p></div>
     <footer>
       <p class="meta">
   <span class="byline author vcard">
@@ -3242,6 +3253,9 @@ yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
             <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
+      </li>
+            <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKCTD plot fun</a>
       </li>
             <li class="post">
@@ -3252,9 +3266,6 @@ yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
       </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Plotting AVISO track from their kmz file</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/">How to use Ipython notebook</a>
       </li>
           </ul>
   </section>
@@ -3272,7 +3283,7 @@ yUVERAJOyUVERAJOyUVERALu/wHCRzt+TN6CXQAAAABJRU5ErkJggg==
 
   <section>
   <h1>Tags</h1>
-      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/seawater.html">seawater</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/spikes.html">spikes</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ssh.html">SSH</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/teaching.html">teaching</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/aviso.html">AVISO</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/pandas.html">pandas</a>    </section>
+      <a href="http://ocefpaf.github.io/python4oceanographers/tag/map.html">map</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/inset.html">inset</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/seawater.html">seawater</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/spikes.html">spikes</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ssh.html">SSH</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/teaching.html">teaching</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/aviso.html">AVISO</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/pandas.html">pandas</a>    </section>
 
   
                     

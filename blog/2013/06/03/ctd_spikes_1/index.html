@@ -1279,7 +1279,7 @@ criteria.</p>
 software calls it <strong>Wild Edit</strong> and performs a very similar technique to the
 two-pass criteria from the <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/data/">previous post</a>.</p>
 <p>Here is a typical spike in the salinity data:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[45]:</div>
@@ -1296,11 +1296,14 @@ two-pass criteria from the <a href="http://ocefpaf.github.io/python4oceanographe
 
 </div>
 </div>
+
 <div class="vbox output_wrapper">
 <div class="output vbox">
-<div class="hbox output_area">
-<div class="prompt output_prompt"></div>
-<div class="output_subarea output_display_data">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_display_data">
+
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZgAAAH5CAYAAAC8kyiqAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xl4VPXBxfHvzGRfSEggBAh7AkKQNWyigKKtilW0lbZS
 SyNVcUFBW6tUrVZ8W20BkaJSccFaF1yguFRxAYSwBQGRsO8ECCH7nklm5v3jxmAKwmSZuZnJ+TxP
@@ -1716,16 +1719,15 @@ TEwMrl+/DkdHR7z//vuDjoM8+ehrDCEaIpVKkZ6ejoCAgAEHFwA4fPiwzOOysjLY2dlh+PDhuHDh
 AqqqquDh4aFWHI+rLxpUiKpogCFEA9rb2/Hmm2/C2toamzZtUrl9TU0Ndu3ahYcPH8LGxgaRkZFK
 /W5H030RogqaIiOEEKIRdBcZIYQQjaABhhBCiEbQAEMIIUQjaIAhhBCiETTAEEII0QgaYAghhGgE
 DTCEEEI04v8AXhBeoAhvYPMAAAAASUVORK5CYII=
-"></img>
-</div>
-</div>
-</div>
-</div>
+">
 </div>
 </div>
 
+</div>
+</div>
+</div></p>
 <p>The despiking parameter where:</p>
-<div class="ipynb">
+<p>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[35]:</div>
@@ -1736,9 +1738,7 @@ DTCEEEI04v8AXhBeoAhvYPMAAAAASUVORK5CYII=
 
 </div>
 </div>
-</div>
-</div>
-
+</div></p>
 <p>The first pass just flag the data that is more than 2 standard deviations from
 the mean and hide them from the second pass.  The second pass then flags the
 remaining data points that are more than 20 standard deviations from the mean.</p>
@@ -1768,6 +1768,9 @@ data.</p></div>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
             <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
+      </li>
+            <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKCTD plot fun</a>
       </li>
             <li class="post">
@@ -1778,9 +1781,6 @@ data.</p></div>
       </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/">Plotting AVISO track from their kmz file</a>
-      </li>
-            <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/">How to use Ipython notebook</a>
       </li>
           </ul>
   </section>
@@ -1798,7 +1798,7 @@ data.</p></div>
 
   <section>
   <h1>Tags</h1>
-      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/seawater.html">seawater</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/spikes.html">spikes</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ssh.html">SSH</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/teaching.html">teaching</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/aviso.html">AVISO</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/pandas.html">pandas</a>    </section>
+      <a href="http://ocefpaf.github.io/python4oceanographers/tag/map.html">map</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/data-analysis.html">data analysis</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/hydrography.html">hydrography</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/georeference.html">georeference</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/inset.html">inset</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/plotting.html">plotting</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ctd.html">CTD</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/seawater.html">seawater</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/spikes.html">spikes</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/ssh.html">SSH</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/teaching.html">teaching</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/test.html">test</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/aviso.html">AVISO</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/basemap.html">basemap</a>,      <a href="http://ocefpaf.github.io/python4oceanographers/tag/pandas.html">pandas</a>    </section>
 
   
                     
