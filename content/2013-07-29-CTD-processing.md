@@ -1,0 +1,55 @@
+title: CTD-processing
+date:  2013-07-29 03:43
+category: Data analysis
+tags: plotting, data analysis, python-ctd
+slug: python-ctd
+author: Filipe Fernandes
+summary: This post is a quick update on how to use the `python-ctd` module (formerly a sub-module of `python-oceans`).
+
+
+I'm re-factoring the [python-oceans](http://code.google.com/p/python-oceans/source/checkout/)
+module.  The first step was to create another module just for the CTD tools
+([python-ctd](https://github.com/ocefpaf/python-ctd))
+
+The new module is already at PyPI and the API will remain the same as before.
+To install it type:
+
+~~~~~~~~~~~~~~~ {.bash}
+pip install ctd
+~~~~~~~~~~~~~~~
+
+Now we can import the modules:
+{% notebook ctd_proc_example.py.ipynb cells[1:2] %}
+
+Let's define a handy function to streamline the processing.
+{% notebook ctd_proc_example.py.ipynb cells[3:4] %}
+
+And finally we can process all the files in a single loop.
+{% notebook ctd_proc_example.py.ipynb cells[6:7] %}
+
+The warning is due to an issue with the data files, where some numbers were
+"glued" and the parser ended-up loading then as `object` instead of `floats`.
+That is not a big deal, usually those values are already flagged as bad data
+in the Data Conversion step and will be removed once we apply the flag.
+
+Note that, using the pandas `Panel.fromDict` and `OrderedDict`, we created
+a `hydrographic section` where the stations are the `items` while the `minor`
+and `major` axes represent the data and the pressure (or depth) respectively.
+
+To plot a temperature section (for example) all we needed is to create a
+`cross section` in our `Panel`.  Unfortunately, pandas loses the object
+meta-data when performing slicing operations.  This issue is being addressed,
+but for now way we need to re-attach the longitude and latitude information
+before plotting.
+
+{% notebook ctd_proc_example.py.ipynb cells[8:9] %}
+
+`CT` can be thought as a 2-D matrix with the pressure information as its index.
+It is also possible to create a single cast plot, just plot one column using
+either the station name or python indexing syntax:
+
+{% notebook ctd_proc_example.py.ipynb cells[9:10] %}
+
+You'll find the whole notebook here:
+
+[http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb](http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb)
