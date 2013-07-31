@@ -1,4 +1,4 @@
 python4oceanographers
 =====================
 
-Learning python with examples for oceanographers.
+Learn python with examples applied to oceanography.
