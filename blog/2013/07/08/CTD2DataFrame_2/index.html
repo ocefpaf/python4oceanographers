@@ -4,10 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>python4oceanographers</title>
+  <title>CTD2DataFrame take 2</title>
   <meta name="author" content="Filipe Fernandes">
 
-    <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    <link href="http://ocefpaf.github.io/python4oceanographers/atom.xml" type="application/atom+xml" rel="alternate"
         title="python4oceanographers Atom Feed" />
     
       <style type="text/css">
@@ -1235,7 +1235,7 @@ init_mathjax();
       <h2>python4oceanographers</h2>
   </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss">RSS</a></li>
+  <li><a href="http://ocefpaf.github.io/python4oceanographers/atom.xml" rel="subscribe-rss">RSS</a></li>
   </ul>
 
 <!-- TODO: add search here
@@ -1265,45 +1265,44 @@ init_mathjax();
   <div class="entry-content"><p>The easiest way to obtain the <strong>ctd.py</strong> module used in previous posts is to
 <a href="http://code.google.com/p/python-oceans/">download</a> the source code for
 the <strong>oceans</strong> python module and add the python-oceans/oceans directory to your
-PYTHONOATH similar to what we done for the python-gsw.</p>
+PYTHONPATH similar to what we done for the python-gsw.</p>
 <p>To clone the repository using mercurial type:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">oceans</span><span class="o">/</span>
+<div class="highlight"><pre>hg clone https://code.google.com/p/python-oceans/
 </pre></div>
 
 
 <p>and to update:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span> <span class="p">;</span> <span class="n">hg</span> <span class="n">update</span>
+<div class="highlight"><pre>hg pull
+hg update
 </pre></div>
 
 
-<p>Now you can import the pandas modified <strong>DataFrame</strong> and load CTD (SeaBird cnv
-and FSI formats) adn XBT (edf) files directly.
-    from oceans.ctd import DataFrame</p>
-<div class="highlight"><pre><span class="n">seabird_cast</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_cnv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-
-<span class="n">fsi_cast</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_fsi</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-
-<span class="n">xbt</span> <span class="p">=</span> <span class="n">DataFrame</span><span class="p">.</span><span class="n">from_edf</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<p>Now you can import the pandas modified <strong>DataFrame</strong> and load CTD (SeaBird
+<code>CNV</code> and FSI <code>ASCII</code> formats) and XBT (<code>EDF</code>) files directly.</p>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oceans.ctd</span> <span class="kn">import</span> <span class="n">DataFrame</span>
+<span class="n">seabird_cast</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_cnv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">fsi_cast</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_fsi</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">xbt</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_edf</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 </pre></div>
 
 
 <p>The available methods are:</p>
 <ul>
-<li><em>split</em>: Separate upcast from downcast.</li>
-<li><em>plot_vars</em>: Plot two variables together (usually Salinity and Temperature).</li>
-<li><em>swap_index</em>: Change the index (usually from pressure to depth or scan count).</li>
-<li><em>press_check</em>: Check for pressure inversions.</li>
-<li><em>get_maxdepth</em>: Cast maximum depth.</li>
-<li><em>plot_section</em>:  If the DataFrame is a collection of CTD stations this plot
+<li><code>split</code>: Separate upcast from downcast.</li>
+<li><code>plot_vars</code>: Plot two variables together (usually Salinity and Temperature).</li>
+<li><code>swap_index</code>: Change the index (usually from pressure to depth or scan count).</li>
+<li><code>press_check</code>: Check for pressure inversions.</li>
+<li><code>get_maxdepth</code>: Cast maximum depth.</li>
+<li><code>plot_section</code>:  If the DataFrame is a collection of CTD stations this plot
     the section.</li>
 </ul>
 <p>There is also a modified pandas <strong>Series</strong> (1D DataFrames) with the following
 methods:</p>
 <ul>
-<li><em>plot</em>: Plot the CTD profile.</li>
-<li><em>smooth</em>: Smooth the profile.</li>
-<li><em>despike</em>: Remove spikes from the data.</li>
-<li><em>bindata</em>: Performs a bin average.</li>
+<li><code>plot</code>: Plot the CTD profile.</li>
+<li><code>smooth</code>: Smooth the profile.</li>
+<li><code>despike</code>: Remove spikes from the data.</li>
+<li><code>bindata</code>: Performs a bin average.</li>
 </ul></div>
     <footer>
       <p class="meta">
@@ -1335,7 +1334,7 @@ methods:</p>
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
       </li>
             <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKCTD plot fun</a>
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKC(T)D plot fun</a>
       </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/">CTD2DataFrame take 2</a>

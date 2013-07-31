@@ -4,10 +4,10 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>python4oceanographers</title>
+  <title>python-gsw</title>
   <meta name="author" content="Filipe Fernandes">
 
-    <link href="/atom.xml" type="application/atom+xml" rel="alternate"
+    <link href="http://ocefpaf.github.io/python4oceanographers/atom.xml" type="application/atom+xml" rel="alternate"
         title="python4oceanographers Atom Feed" />
     
       <style type="text/css">
@@ -1235,7 +1235,7 @@ init_mathjax();
       <h2>python4oceanographers</h2>
   </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss">RSS</a></li>
+  <li><a href="http://ocefpaf.github.io/python4oceanographers/atom.xml" rel="subscribe-rss">RSS</a></li>
   </ul>
 
 <!-- TODO: add search here
@@ -1272,17 +1272,18 @@ excellent place to start before using this toolbox.  It supersedes the now
 obsolete <a href="http://code.google.com/p/python-seawater/">EOS-80</a> seawater module.</p>
 <p>To obtain the latest version of this module you must install <a href="http://mercurial.selenic.com/">mercurial</a> first, then you'll be able to clone the
 repository:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">code</span><span class="p">.</span><span class="n">google</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">p</span><span class="o">/</span><span class="n">python</span><span class="o">-</span><span class="n">gsw</span><span class="o">/</span>
+<div class="highlight"><pre>hg clone https://code.google.com/p/python-gsw/
 </pre></div>
 
 
 <p>Then just add the <strong>python-gsw/gsw</strong> directory into your <strong>PYTHONPATH</strong> so you
 can import it from anywhere.  To update just go into that directory and type:</p>
-<div class="highlight"><pre><span class="n">hg</span> <span class="n">pull</span> <span class="p">;</span> <span class="n">hg</span> <span class="n">update</span>
+<div class="highlight"><pre>hg pull
+hg update
 </pre></div>
 
 
-<p>My work-flow is to download all modules that are in development phase into a
+<p>My work-flow is to download all modules that are in a development phase into a
 "pymodules" directory and then create a symlink inside a local folder that is
 added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
 <p>Here is a small example of some functions present in the module:</p>
@@ -1295,15 +1296,15 @@ added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
 <span class="n">p</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gsw</span><span class="o">.</span><span class="n">z_from_p</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="c"># ctm [mS/cm] = ctm [S/m] * 10</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0s/m&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090c&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0S/m&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SA_from_SP</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090c&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sigma0_CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sigma0_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sound_speed_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="c"># Does&#39;t fit the DataFrame because the index in at the middle (p_mid) point of the original data.</span>
 <span class="n">N2</span><span class="p">,</span> <span class="n">p_mid</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">Nsquared</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0mm/kg&#39;</span><span class="p">]</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -1338,7 +1339,7 @@ added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/">Basemap inset</a>
       </li>
             <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKCTD plot fun</a>
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/">XKC(T)D plot fun</a>
       </li>
             <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/">CTD2DataFrame take 2</a>
