@@ -8,4 +8,4 @@ summary:  This Ipython notebook has some exercises and examples to make the stud
 
 This is just an Ipython notebook with exercises and examples.
 
-{% notebook python4oceanographers_01.ipynb %}
+{% notebook python4oceanographers_01.ipynb cells[1:] %}

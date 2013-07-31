@@ -9,8 +9,6 @@ summary: Python for the Oceanic Sciences and Data Analysis.
 I'll <s>try</s> to write here some code snippets to help analyze, visualize and
 explore data in oceans sciences.
 
-Mostly this is a "notebook" for a future Data Analysis course.
-
 <font color="red">This post is just a test!</font>
 
 Testing a full notebook:
