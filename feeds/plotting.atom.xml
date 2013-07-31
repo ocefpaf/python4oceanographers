@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers/feeds/plotting.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-22T13:43:00-03:00</updated><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-22:blog/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/" rel="alternate"></link><link href="/feeds/plotting.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/</id><updated>2013-07-22T13:43:00-03:00</updated><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-22:python4oceanographers/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
 &lt;p&gt;We need to import &lt;code&gt;Basemap&lt;/code&gt;, &lt;code&gt;Polygon&lt;/code&gt; and &lt;code&gt;inset_axes&lt;/code&gt;:
 
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -1130,7 +1130,7 @@ AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-24:blog/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-24:python4oceanographers/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
 available in two formats, gridded and along-track data.  Sometimes the
 along-track data is desirable, instead of the gridded data, to augment
 hydrographic data.  The along-track has a higher spatial and avoids the several
@@ -2259,7 +2259,7 @@ RU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-13:blog/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
+&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-13:python4oceanographers/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
 available can help a lot with the planning and/or interpretation of the cruise
 data.&lt;/p&gt;
 &lt;p&gt;So first lets define a handy function to generate the such a map:&lt;/p&gt;

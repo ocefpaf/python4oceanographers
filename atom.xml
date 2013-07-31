@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers/atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-29T03:43:00-03:00</updated><entry><title>CTD-processing</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/" rel="alternate"></link><updated>2013-07-29T03:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-29:blog/2013/07/29/python-ctd/</id><summary type="html">&lt;p&gt;I'm re-factoring the &lt;a href="http://code.google.com/p/python-oceans/source/checkout/"&gt;python-oceans&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/" rel="alternate"></link><link href="/atom.xml" rel="self"></link><id>http://ocefpaf.github.io/</id><updated>2013-07-29T03:43:00-03:00</updated><entry><title>CTD-processing</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/29/python-ctd/" rel="alternate"></link><updated>2013-07-29T03:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-29:python4oceanographers/2013/07/29/python-ctd/</id><summary type="html">&lt;p&gt;I'm re-factoring the &lt;a href="http://code.google.com/p/python-oceans/source/checkout/"&gt;python-oceans&lt;/a&gt;
 module.  The first step was to create another module just for the CTD tools
 (&lt;a href="https://github.com/ocefpaf/python-ctd"&gt;python-ctd&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;The new module is already at PyPI and the API will remain the same as before.
@@ -1036,7 +1036,7 @@ WCwW2tra9BvS/4xXXl6O0WjEarViMpmoqKj46Wm69fX1vH37luTkZEwmE2VlZfrQmhCzJQvviZDj
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;You'll find the whole notebook here:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb"&gt;http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb&lt;/a&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category><category term="python-ctd"></category></entry><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-22:blog/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb"&gt;http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb&lt;/a&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category><category term="python-ctd"></category></entry><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-22:python4oceanographers/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
 &lt;p&gt;We need to import &lt;code&gt;Basemap&lt;/code&gt;, &lt;code&gt;Polygon&lt;/code&gt; and &lt;code&gt;inset_axes&lt;/code&gt;:
 
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -2167,7 +2167,7 @@ AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>XKC(T)D plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-15:blog/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; got into the core of matplotlib 1.4.x.  Now it is easy to produce plots with the XKCD style
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>XKC(T)D plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-15:python4oceanographers/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; got into the core of matplotlib 1.4.x.  Now it is easy to produce plots with the XKCD style
 with just the following:&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -2807,7 +2807,7 @@ H0lEQVSMMcb8ggsMY4wxv+ACwxhjzC+4wDDGGPOL/w+SPw7Sm3B7+AAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>CTD2DataFrame take 2</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/08/CTD2DataFrame_2/" rel="alternate"></link><updated>2013-07-08T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-08:blog/2013/07/08/CTD2DataFrame_2/</id><summary type="html">&lt;p&gt;The easiest way to obtain the &lt;strong&gt;ctd.py&lt;/strong&gt; module used in previous posts is to
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>CTD2DataFrame take 2</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/08/CTD2DataFrame_2/" rel="alternate"></link><updated>2013-07-08T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-08:python4oceanographers/2013/07/08/CTD2DataFrame_2/</id><summary type="html">&lt;p&gt;The easiest way to obtain the &lt;strong&gt;ctd.py&lt;/strong&gt; module used in previous posts is to
 &lt;a href="http://code.google.com/p/python-oceans/"&gt;download&lt;/a&gt; the source code for
 the &lt;strong&gt;oceans&lt;/strong&gt; python module and add the python-oceans/oceans directory to your
 PYTHONPATH similar to what we done for the python-gsw.&lt;/p&gt;
@@ -2848,7 +2848,7 @@ methods:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;smooth&lt;/code&gt;: Smooth the profile.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;despike&lt;/code&gt;: Remove spikes from the data.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bindata&lt;/code&gt;: Performs a bin average.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>python-gsw</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/01/gsw/" rel="alternate"></link><updated>2013-07-01T13:42:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-01:blog/2013/07/01/gsw/</id><summary type="html">&lt;p&gt;The &lt;a href="http://code.google.com/p/python-gsw/"&gt;python-gsw&lt;/a&gt; module, used in some of
+&lt;/ul&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>python-gsw</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/07/01/gsw/" rel="alternate"></link><updated>2013-07-01T13:42:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-01:python4oceanographers/2013/07/01/gsw/</id><summary type="html">&lt;p&gt;The &lt;a href="http://code.google.com/p/python-gsw/"&gt;python-gsw&lt;/a&gt; module, used in some of
 my previous posts, is an incomplete and unstable version for the
 &lt;a href="http://www.teos-10.org/software.htm#1"&gt;Matlab gibbs toolbox&lt;/a&gt;.  Because it is
 in constant development the best way to obtain it is to go straight to the
@@ -2895,7 +2895,7 @@ added to the &lt;strong&gt;PYTHONPATH&lt;/strong&gt; in my .bashrc.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-24:blog/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
+&lt;/div&gt;&lt;/p&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-24:python4oceanographers/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
 available in two formats, gridded and along-track data.  Sometimes the
 along-track data is desirable, instead of the gridded data, to augment
 hydrographic data.  The along-track has a higher spatial and avoids the several
@@ -4024,7 +4024,7 @@ RU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>How to use Ipython notebook</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/" rel="alternate"></link><updated>2013-06-17T13:28:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-17:blog/2013/06/17/teaching/</id><summary type="html">&lt;p&gt;This is just an Ipython notebook with exercises and examples.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>How to use Ipython notebook</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/06/17/teaching/" rel="alternate"></link><updated>2013-06-17T13:28:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-17:python4oceanographers/2013/06/17/teaching/</id><summary type="html">&lt;p&gt;This is just an Ipython notebook with exercises and examples.&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="exercício-01"&gt;Exercício 01&lt;/h1&gt;
@@ -7859,7 +7859,7 @@ RU5ErkJggg==
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Note um &amp;quot;braço&amp;quot; de baixa salinidade. Discuta o que isso significa.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Exercício&lt;/strong&gt;. Produz um diagrama TS &lt;strong&gt;médio&lt;/strong&gt; removendo os dados acima de 10 metros de profundidade.&lt;/p&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-10:blog/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-10:python4oceanographers/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Bad data from electrical failures.  Usually it manifest in all the
     measured variables (Temperature, Conductivity, Oxygen, etc);&lt;/li&gt;
@@ -8363,7 +8363,7 @@ QpjU/wO/fJdChtQ/8QAAAABJRU5ErkJggg==
 &lt;p&gt;Unfortunately most people apply those corrections using the defaults on the SBE
 Software and then "correct" the bad corrections with averaging, smoothing, and
 despiking techniques.  A much better solution is to estimate these parameters
-for your CTD system and avoid them altogether.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Removing spikes from CTD data — Part 1</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/06/03/ctd_spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-03:blog/2013/06/03/ctd_spikes_1/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
+for your CTD system and avoid them altogether.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Removing spikes from CTD data — Part 1</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/06/03/ctd_spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-03:python4oceanographers/2013/06/03/ctd_spikes_1/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Bad data from electrical failures.  Usually it manifest in all the measured
     variables (Temperature, Conductivity, Oxygen, etc);&lt;/li&gt;
@@ -8843,7 +8843,7 @@ the mean and hide them from the second pass.  The second pass then flags the
 remaining data points that are more than 20 standard deviations from the mean.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2&lt;/strong&gt;, &lt;strong&gt;20&lt;/strong&gt; , &lt;strong&gt;500&lt;/strong&gt; are not magical numbers!  They are the same values
 suggested in the SBE Software defaults, probably tested to exhaustion for CTD
-data.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/27/CTD2DataFrame/" rel="alternate"></link><updated>2013-05-27T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-27:blog/2013/05/27/CTD2DataFrame/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
+data.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/05/27/CTD2DataFrame/" rel="alternate"></link><updated>2013-05-27T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-27:python4oceanographers/2013/05/27/CTD2DataFrame/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
 data.  It has tons of features worthwhile learning, but the best of all is how
 quick one can explore a data with just a few code lines once you learn the
 basics.&lt;/p&gt;
@@ -10810,7 +10810,7 @@ iEjIKVxERCTkFC4iIhJyChcREQk5hYuIiITc/wcM4PgEO8DBPQAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:blog/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-20:python4oceanographers/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
 spikes are easy to spot with a simple histogram of the data.  Let's take a look
 at a velocity time-series with some bad data.&lt;/p&gt;
 &lt;p&gt;
@@ -11405,7 +11405,7 @@ the message of this post is not actually an algorithm to remove bad data, but:&l
 &lt;p&gt;"To identify errors, it is necessary to examine all of the data in visual form
 and to get a "feel" for the data."  -- directly from Emery and Thomson book.&lt;/p&gt;
 &lt;p&gt;In other words, there is no silver bullet!&lt;/p&gt;
-&lt;p&gt;http://www.johndcook.com/blog/2013/05/30/there-are-no-outliers/&lt;/p&gt;</summary><category term="plotting"></category><category term="spikes"></category><category term="data analysis"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-13:blog/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
+&lt;p&gt;http://www.johndcook.com/blog/2013/05/30/there-are-no-outliers/&lt;/p&gt;</summary><category term="plotting"></category><category term="spikes"></category><category term="data analysis"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-13:python4oceanographers/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
 available can help a lot with the planning and/or interpretation of the cruise
 data.&lt;/p&gt;
 &lt;p&gt;So first lets define a handy function to generate the such a map:&lt;/p&gt;
@@ -15943,7 +15943,7 @@ gg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-06:python4oceanographers/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
 explore data in oceans sciences.&lt;/p&gt;
 &lt;p&gt;&lt;font color="red"&gt;This post is just a test!&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;Testing a full notebook:&lt;/p&gt;
