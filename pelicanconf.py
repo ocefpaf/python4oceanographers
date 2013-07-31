@@ -5,7 +5,8 @@ from __future__ import unicode_literals
 AUTHOR = u'Filipe Fernandes'
 SITENAME = u'python4oceanographers'
 SITESUBTITLE = u'python4oceanographers'
-SITEURL = ''  # change in publishconf.py
+# Change in publishconf.py.
+SITEURL = 'http://ocefpaf.github.io/python4oceanographers'
 
 # Times and dates
 DEFAULT_DATE_FORMAT = '%b %d, %Y'
