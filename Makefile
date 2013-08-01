@@ -86,4 +86,18 @@ github: publish
 	ghp-import $(OUTPUTDIR)
 	git push origin gh-pages
 
+deploy: publish
+	if test -d _build; \
+	then echo " (_build directory exists)"; \
+	else mkdir _build; \
+	fi
+	if test -d _build/$(DEPLOYREPOSITORY); \
+	then echo "  (repository directory exists)"; \
+	else cd _build && git clone git@github.com:ocefpaf/$(DEPLOYREPOSITORY).git; \
+	fi
+	cd _build/$(DEPLOYREPOSITORY) && git pull
+	rsync -r $(OUTPUTDIR)/* _build/$(DEPLOYREPOSITORY)/
+	cd _build/$(DEPLOYREPOSITORY) && git add . && git commit -m "make deploy"
+	cd _build/$(DEPLOYREPOSITORY) && git push origin master
+
 .PHONY: html help clean regenerate serve devserver publish ssh_upload rsync_upload dropbox_upload ftp_upload s3_upload github
