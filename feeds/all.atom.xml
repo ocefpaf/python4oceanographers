@@ -1,5 +1,890 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/python4oceanographers/</id><updated>2013-07-29T03:43:00-03:00</updated><entry><title>CTD-processing</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/07/29/python-ctd/" rel="alternate"></link><updated>2013-07-29T03:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-29:python4oceanographers/2013/07/29/python-ctd/</id><summary type="html">&lt;p&gt;I'm re-factoring the &lt;a href="http://code.google.com/p/python-oceans/source/checkout/"&gt;python-oceans&lt;/a&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="http://ocefpaf.github.io/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>http://ocefpaf.github.io/</id><updated>2013-08-05T08:00:00-03:00</updated><entry><title>Reading custom binaries</title><link href="http://ocefpaf.github.io/blog/2013/08/05/custom-binaries/" rel="alternate"></link><updated>2013-08-05T08:00:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-08-05:blog/2013/08/05/custom-binaries/</id><summary type="html">&lt;p&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;My former advisor had all his data stored in a custom binary format he called &amp;quot;OASP&amp;quot; (instead of using the wonderful, machine independent, feature rich &lt;a href="http://cf-pcmdi.llnl.gov/"&gt;netcdf&lt;/a&gt; with climate and forecast metadata that we all should be using!).&lt;/p&gt;
+&lt;p&gt;His programs to read such data were not working anymore due to &lt;a href="http://en.wikipedia.org/wiki/Endianness"&gt;endianness&lt;/a&gt; issues. Therefore, to read that data (and hopefully graduate one day) I had workaround these issues relying heavily on numpy &lt;a href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.fromfile.html"&gt;fromfile&lt;/a&gt; function.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[1]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let's define two quick functions to deal with the time standard used in the binary files...&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[2]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;netCDF4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;netcdftime&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;datetime&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;jhour2datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Convert OASP Julian hours to datetime object.&lt;/span&gt;
+&lt;span class="sd"&gt;    Uses netcdftime.DateFromJulianDay&lt;/span&gt;
+&lt;span class="sd"&gt;                        jhours-12&lt;/span&gt;
+&lt;span class="sd"&gt;    datetime_object =  ----------- + offset&lt;/span&gt;
+&lt;span class="sd"&gt;                           24.0&lt;/span&gt;
+
+&lt;span class="sd"&gt;    OASP is offsetted by 241502 days to match netcdftime.DateFromJulianDay,&lt;/span&gt;
+&lt;span class="sd"&gt;    and 12 hours are added to make it start at midnight instead of noon.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Example&lt;/span&gt;
+&lt;span class="sd"&gt;    --------&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;gt;&amp;gt;&amp;gt; oaspy.jhour2datetime([859296, 859928])&lt;/span&gt;
+&lt;span class="sd"&gt;    [datetime.datetime(1998, 1, 11, 0, 0), datetime.datetime(1998, 2, 6, 8, 0)]&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;offset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2415021&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;24.&lt;/span&gt;
+        &lt;span class="n"&gt;jdate&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;netcdftime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateFromJulianDay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt;
+                   &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;))])&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="mf"&gt;24.&lt;/span&gt;
+        &lt;span class="n"&gt;jdate&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;netcdftime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DateFromJulianDay&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="n"&gt;offset&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jdate&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;datetime2jhour&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dtimeobj&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Convert datetime object to OASP Julian hours using.&lt;/span&gt;
+&lt;span class="sd"&gt;    Uses netcdftime.JulianDayFromDate.&lt;/span&gt;
+&lt;span class="sd"&gt;    See jhour2datetime for details.&lt;/span&gt;
+
+&lt;span class="sd"&gt;    Example&lt;/span&gt;
+&lt;span class="sd"&gt;    -------&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;gt;&amp;gt;&amp;gt; oaspy.datetime2jhour([datetime.datetime(1998, 1, 11, 0, 0), datetime.datetime(1998, 2, 6, 8, 0)])&lt;/span&gt;
+&lt;span class="sd"&gt;    array([ 859296.,  859928.])&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="n"&gt;offset&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2415021&lt;/span&gt;
+
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dtimeobj&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;netcdftime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;JulianDayFromDate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dtimeobj&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;offset&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt;
+                   &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dtimeobj&lt;/span&gt;&lt;span class="p"&gt;))])&lt;/span&gt;
+    &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;netcdftime&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;JulianDayFromDate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;dtimeobj&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;offset&lt;/span&gt;
+
+    &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mf"&gt;24.&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;jhours&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;... and create a class akin to &lt;code&gt;netCDF4&lt;/code&gt; Dataset to read the binary file.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;object&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Read OASP binary format and store in a object with:&lt;/span&gt;
+&lt;span class="sd"&gt;        filename&lt;/span&gt;
+&lt;span class="sd"&gt;        header&lt;/span&gt;
+&lt;span class="sd"&gt;        data&lt;/span&gt;
+&lt;span class="sd"&gt;        dates&lt;/span&gt;
+&lt;span class="sd"&gt;        stats&lt;/span&gt;
+&lt;span class="sd"&gt;        parameter file&lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;endianess&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;big&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Read a OASP binary file&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;gt; means Big-endian&lt;/span&gt;
+&lt;span class="sd"&gt;        c  -&amp;gt; character&lt;/span&gt;
+&lt;span class="sd"&gt;        f8 -&amp;gt; float64 (double precision)&lt;/span&gt;
+&lt;span class="sd"&gt;        i4 -&amp;gt; interger32&lt;/span&gt;
+&lt;span class="sd"&gt;        f4 -&amp;gt; float32&lt;/span&gt;
+&lt;span class="sd"&gt;        &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;endianess&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;big&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;gt;&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;endianess&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;little&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="n"&gt;en&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;lt;&amp;#39;&lt;/span&gt;
+        &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="k"&gt;raise&lt;/span&gt; &lt;span class="ne"&gt;ValueError&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Cannot determine endianess. Try &amp;#39;big&amp;#39; or &amp;#39;little&amp;#39;.&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="k"&gt;with&lt;/span&gt; &lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;rb&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="c"&gt;# 38 characters for header.&lt;/span&gt;
+            &lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;c&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;38&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="c"&gt;# date[1] and date[3] start/end in oasp julian hours.&lt;/span&gt;
+            &lt;span class="n"&gt;jhours&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;f8&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="c"&gt;# rec[2] -&amp;gt; record length.&lt;/span&gt;
+            &lt;span class="n"&gt;rec&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;i4&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="c"&gt;# inc[1] -&amp;gt; record time increment in hours.&lt;/span&gt;
+            &lt;span class="n"&gt;inc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;f8&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jhour2datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;jhour2datetime&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="c"&gt;# From start date to record number using increment.&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asanyarray&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;start&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;timedelta&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hours&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt;
+                                        &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rec&lt;/span&gt;&lt;span class="p"&gt;)])&lt;/span&gt;
+            &lt;span class="c"&gt;# Remove newline and file creation dates.&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;filename:      &lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;creation date: &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;13&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;
+                            &lt;span class="s"&gt;&amp;quot;   &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;start date:    &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;end date:      &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;increment:     &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;record length  &amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;rec&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="c"&gt;# Data eliminating Fortran &amp;quot;record&amp;quot;.&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fromfile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;f4&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="n"&gt;en&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;count&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;rec&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+            &lt;span class="c"&gt;# Basic stats.&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%.2f&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Max&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%.2f&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Min&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;  &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%.2f&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Mean&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%.2f&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Median&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;median&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="si"&gt;%s&lt;/span&gt;&lt;span class="s"&gt;: &lt;/span&gt;&lt;span class="si"&gt;%.2f&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;%&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;Std&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+            &lt;span class="c"&gt;# Parameter file.&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;y&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;.asc&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;1&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;3&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;jhours&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;inc&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;1,&amp;quot;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;0&amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;$$&amp;quot;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;wbsst&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;./data/wbsst.bin&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Let's checkout the file header:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wbsst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;filename:      WBsst.bin 
+creation date: 04/12/**   10:02:13
+start date:    1998-01-10 22:00:00
+end date:      1998-02-06 08:00:00
+increment:     0.5
+record length  1269
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Some information regarding the data:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wbsst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stats&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;Max: 6.66
+Min: 4.52
+Mean: 5.74
+Median: 5.67
+Std: 0.67
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;And finally let's see the data!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mpltools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;
+&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;use&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;ggplot&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;12&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wbsst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dates&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;wbsst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;_&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;r&amp;quot;Air Temperature [$^\circ$C]&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+
+&lt;img src="data:image/png;base64,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
+8Ic/6C+//DJ8f+nSpVprrXfu3KkvvfTSLn++aD09X1pr/cQTT+iHHnpIP/7443HPl/lqzeVy6Qsv
+vFB7vd5Wr/W3+VqzZk14Hl5//XX94IMPaq3NHF122WXa7XZrt9sdvt+SzJeZL7/fr/1+v9Za66am
+Jn3ppZfqysrKVufLfD0Yfu2WW27Rq1ev1lpr7fF45O+jbnu+Pv30U71w4UIdCAS0x+PR8+fP142N
+ja3O31/mK5m5avlZ4tm5c6e+9tprtd/v1/v27dOXXXaZtm1ba631xo0bdU1NTbvvWVdXpzdt2qSf
+e+45/fLLL4ef3759u7766qu11+vVgUBA33bbbfqbb77RWms9f/58vW7dOq211m+99ZZ+/vnntdZa
+v/322+H/b16vV1966aW6oqIi4c8bT2/MVyAQCL++YsUK/dBDD+lrrrkm7vmpPl/dqVfb9Hk8Hu69
+917cbjeBQICf/OQnzJgxg/LychYtWsT48ePZsGEDxcXFXHfddWRkZMScH8pQWFbrypbJkyfH7OgY
+z9ChQ+M+v3v37nBzcKfTSW5ubnhzm8GDB5Ofnw/AlClTWLFiBZMnT6aoqIjGxkbAZIKLi4uTmInE
+9OR8bdmyhbq6OqZPn86WLVvivr/MV2srVqzg0EMPbXUu9L/5im6oP2bMGN577z0AVq1axdSpU8Ob
+Pk2ZMoVVq1ZxzDHHxJwv82XmKy0t8s+wz+fD4XCQmZnZ6v1lvsx87dq1C9u2mTJlCkDcuQKZr+j5
+mjBhQnhPiREjRrBq1SqOPvromPP3t/mKtmXLFp566ik8Hg/5+fnMmzePwsJCAJYtW8ajjz5KIBBg
+7ty5jB49OubcTz75hGOOOYa0tDQGDBjAoEGD2LhxI2PHjm11bDxOpxOn08lnn30W8/yePXsYM2ZM
++P/TxIkT+fjjjznttNP45ptvmDBhAmDm7c477+THP/4xhYWFeL1ebNvG4/GQlpZGdnZ2d0xRjO6e
+r02bNjF27Fg8Hg+vvPIKl1xyCQ8++GDc994f56uzerUGOyMjg2uvvZa7776bm2++OeYrl71793Ly
+ySdz//33k5OTw0cffdRr4xoxYgQrV67Etm3Ky8vZsmUL1dXVDB48mD179lBRUUEgEODjjz+mqqoK
+gNNPP513332XuXPnsmjRorglFl3VU/Nl2zZPP/005513XqfG1d/mK9ry5ctbBYod6Q/z9dZbb4W/
+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
+"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The class also create the original parameter file used in the create of the binary.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell vbox"&gt;
+&lt;div class="input hbox"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="input_area box-flex1"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;wbsst&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;par&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="vbox output_wrapper"&gt;
+&lt;div class="output vbox"&gt;
+
+
+&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;pre&gt;y
+./data/wbsst.bin.asc
+1
+1
+3
+0
+859294.0
+0.5
+1,./data/wbsst.bin
+0
+$$
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;em&gt;This post was written entirely as an IPython notebook. The full notebook can be downloaded&lt;/em&gt; &lt;a href="http://ocefpaf.github.io/downloads/notebooks/custom-binaries.ipynb"&gt;&lt;em&gt;here&lt;/em&gt;&lt;/a&gt;, &lt;em&gt;or viewed statically on&lt;/em&gt; &lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.io/downloads/notebooks/custom-binaries.ipynb"&gt;&lt;em&gt;nbviewer&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category><category term="python-ctd"></category></entry><entry><title>CTD-processing</title><link href="http://ocefpaf.github.io/blog/2013/07/29/python-ctd/" rel="alternate"></link><updated>2013-07-29T03:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-29:blog/2013/07/29/python-ctd/</id><summary type="html">&lt;p&gt;I'm re-factoring the &lt;a href="http://code.google.com/p/python-oceans/source/checkout/"&gt;python-oceans&lt;/a&gt;
 module.  The first step was to create another module just for the CTD tools
 (&lt;a href="https://github.com/ocefpaf/python-ctd"&gt;python-ctd&lt;/a&gt;)&lt;/p&gt;
 &lt;p&gt;The new module is already at PyPI and the API will remain the same as before.
@@ -1036,7 +1921,7 @@ WCwW2tra9BvS/4xXXl6O0WjEarViMpmoqKj46Wm69fX1vH37luTkZEwmE2VlZfrQmhCzJQvviZDj
 &lt;/div&gt;
 &lt;/div&gt;&lt;/p&gt;
 &lt;p&gt;You'll find the whole notebook here:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb"&gt;http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb&lt;/a&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category><category term="python-ctd"></category></entry><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-22:python4oceanographers/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb"&gt;http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb&lt;/a&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="data analysis"></category><category term="python-ctd"></category></entry><entry><title>Basemap inset</title><link href="http://ocefpaf.github.io/blog/2013/07/22/inset/" rel="alternate"></link><updated>2013-07-22T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-22:blog/2013/07/22/inset/</id><summary type="html">&lt;p&gt;This example is a modified version of the inset example from the &lt;a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/"&gt;geophysique&lt;/a&gt; blog.&lt;/p&gt;
 &lt;p&gt;We need to import &lt;code&gt;Basemap&lt;/code&gt;, &lt;code&gt;Polygon&lt;/code&gt; and &lt;code&gt;inset_axes&lt;/code&gt;:
 
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -2167,7 +3052,7 @@ AAAAAElFTkSuQmCC
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>XKC(T)D plot fun</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-15:python4oceanographers/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; got into the core of matplotlib 1.4.x.  Now it is easy to produce plots with the XKCD style
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="map"></category><category term="inset"></category></entry><entry><title>XKC(T)D plot fun</title><link href="http://ocefpaf.github.io/blog/2013/07/15/XKCTD/" rel="alternate"></link><updated>2013-07-15T13:43:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-15:blog/2013/07/15/XKCTD/</id><summary type="html">&lt;p&gt;&lt;a href="http://jakevdp.github.io/"&gt;Jakecob Vanderplas&lt;/a&gt; &lt;a href="https://github.com/matplotlib/matplotlib/pull/1329"&gt;Sketch Path Filter&lt;/a&gt; got into the core of matplotlib 1.4.x.  Now it is easy to produce plots with the XKCD style
 with just the following:&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="cell border-box-sizing code_cell vbox"&gt;
@@ -2807,7 +3692,7 @@ H0lEQVSMMcb8ggsMY4wxv+ACwxhjzC+4wDDGGPOL/w+SPw7Sm3B7+AAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>CTD2DataFrame take 2</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/07/08/CTD2DataFrame_2/" rel="alternate"></link><updated>2013-07-08T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-08:python4oceanographers/2013/07/08/CTD2DataFrame_2/</id><summary type="html">&lt;p&gt;The easiest way to obtain the &lt;strong&gt;ctd.py&lt;/strong&gt; module used in previous posts is to
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="CTD"></category></entry><entry><title>CTD2DataFrame take 2</title><link href="http://ocefpaf.github.io/blog/2013/07/08/CTD2DataFrame_2/" rel="alternate"></link><updated>2013-07-08T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-08:blog/2013/07/08/CTD2DataFrame_2/</id><summary type="html">&lt;p&gt;The easiest way to obtain the &lt;strong&gt;ctd.py&lt;/strong&gt; module used in previous posts is to
 &lt;a href="http://code.google.com/p/python-oceans/"&gt;download&lt;/a&gt; the source code for
 the &lt;strong&gt;oceans&lt;/strong&gt; python module and add the python-oceans/oceans directory to your
 PYTHONPATH similar to what we done for the python-gsw.&lt;/p&gt;
@@ -2848,7 +3733,7 @@ methods:&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;smooth&lt;/code&gt;: Smooth the profile.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;despike&lt;/code&gt;: Remove spikes from the data.&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;bindata&lt;/code&gt;: Performs a bin average.&lt;/li&gt;
-&lt;/ul&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>python-gsw</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/07/01/gsw/" rel="alternate"></link><updated>2013-07-01T13:42:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-07-01:python4oceanographers/2013/07/01/gsw/</id><summary type="html">&lt;p&gt;The &lt;a href="http://code.google.com/p/python-gsw/"&gt;python-gsw&lt;/a&gt; module, used in some of
+&lt;/ul&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>python-gsw</title><link href="http://ocefpaf.github.io/blog/2013/07/01/gsw/" rel="alternate"></link><updated>2013-07-01T13:42:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-07-01:blog/2013/07/01/gsw/</id><summary type="html">&lt;p&gt;The &lt;a href="http://code.google.com/p/python-gsw/"&gt;python-gsw&lt;/a&gt; module, used in some of
 my previous posts, is an incomplete and unstable version for the
 &lt;a href="http://www.teos-10.org/software.htm#1"&gt;Matlab gibbs toolbox&lt;/a&gt;.  Because it is
 in constant development the best way to obtain it is to go straight to the
@@ -2895,7 +3780,7 @@ added to the &lt;strong&gt;PYTHONPATH&lt;/strong&gt; in my .bashrc.&lt;/p&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-24:python4oceanographers/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
+&lt;/div&gt;&lt;/p&gt;</summary><category term="data analysis"></category><category term="hydrography"></category><category term="seawater"></category></entry><entry><title>Plotting AVISO track using a kmz file</title><link href="http://ocefpaf.github.io/blog/2013/06/24/plotting/" rel="alternate"></link><updated>2013-06-24T15:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-24:blog/2013/06/24/plotting/</id><summary type="html">&lt;p&gt;AVISO &lt;a href="http://www.aviso.oceanobs.com/en/altimetry.html"&gt;Altimetry&lt;/a&gt; data is
 available in two formats, gridded and along-track data.  Sometimes the
 along-track data is desirable, instead of the gridded data, to augment
 hydrographic data.  The along-track has a higher spatial and avoids the several
@@ -4024,7 +4909,7 @@ RU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>How to use Ipython notebook</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/06/17/teaching/" rel="alternate"></link><updated>2013-06-17T13:28:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-17:python4oceanographers/2013/06/17/teaching/</id><summary type="html">&lt;p&gt;This is just an Ipython notebook with exercises and examples.&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="AVISO"></category><category term="plotting"></category><category term="SSH"></category></entry><entry><title>How to use Ipython notebook</title><link href="http://ocefpaf.github.io/blog/2013/06/17/teaching/" rel="alternate"></link><updated>2013-06-17T13:28:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-17:blog/2013/06/17/teaching/</id><summary type="html">&lt;p&gt;This is just an Ipython notebook with exercises and examples.&lt;/p&gt;
 &lt;p&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h1 id="exercício-01"&gt;Exercício 01&lt;/h1&gt;
@@ -7859,7 +8744,7 @@ RU5ErkJggg==
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Note um &amp;quot;braço&amp;quot; de baixa salinidade. Discuta o que isso significa.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Exercício&lt;/strong&gt;. Produz um diagrama TS &lt;strong&gt;médio&lt;/strong&gt; removendo os dados acima de 10 metros de profundidade.&lt;/p&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-10:python4oceanographers/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="plotting"></category><category term="teaching"></category></entry><entry><title>Removing spikes from CTD data — Part 2</title><link href="http://ocefpaf.github.io/blog/2013/06/10/ctd_spikes_2/" rel="alternate"></link><updated>2013-06-10T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-10:blog/2013/06/10/ctd_spikes_2/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Bad data from electrical failures.  Usually it manifest in all the
     measured variables (Temperature, Conductivity, Oxygen, etc);&lt;/li&gt;
@@ -8363,7 +9248,7 @@ QpjU/wO/fJdChtQ/8QAAAABJRU5ErkJggg==
 &lt;p&gt;Unfortunately most people apply those corrections using the defaults on the SBE
 Software and then "correct" the bad corrections with averaging, smoothing, and
 despiking techniques.  A much better solution is to estimate these parameters
-for your CTD system and avoid them altogether.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Removing spikes from CTD data — Part 1</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/06/03/ctd_spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-06-03:python4oceanographers/2013/06/03/ctd_spikes_1/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
+for your CTD system and avoid them altogether.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Removing spikes from CTD data — Part 1</title><link href="http://ocefpaf.github.io/blog/2013/06/03/ctd_spikes_1/" rel="alternate"></link><updated>2013-06-03T04:03:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-06-03:blog/2013/06/03/ctd_spikes_1/</id><summary type="html">&lt;p&gt;There are two different types of spikes that may happen in CTD data:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;Bad data from electrical failures.  Usually it manifest in all the measured
     variables (Temperature, Conductivity, Oxygen, etc);&lt;/li&gt;
@@ -8843,7 +9728,7 @@ the mean and hide them from the second pass.  The second pass then flags the
 remaining data points that are more than 20 standard deviations from the mean.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;2&lt;/strong&gt;, &lt;strong&gt;20&lt;/strong&gt; , &lt;strong&gt;500&lt;/strong&gt; are not magical numbers!  They are the same values
 suggested in the SBE Software defaults, probably tested to exhaustion for CTD
-data.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/05/27/CTD2DataFrame/" rel="alternate"></link><updated>2013-05-27T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-27:python4oceanographers/2013/05/27/CTD2DataFrame/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
+data.&lt;/p&gt;</summary><category term="CTD"></category><category term="hydrography"></category><category term="data analysis"></category></entry><entry><title>Pandas for CTD data</title><link href="http://ocefpaf.github.io/blog/2013/05/27/CTD2DataFrame/" rel="alternate"></link><updated>2013-05-27T07:19:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-27:blog/2013/05/27/CTD2DataFrame/</id><summary type="html">&lt;p&gt;&lt;a href="http://pandas.pydata.org/"&gt;Pandas&lt;/a&gt; is an amazing python module to deal with
 data.  It has tons of features worthwhile learning, but the best of all is how
 quick one can explore a data with just a few code lines once you learn the
 basics.&lt;/p&gt;
@@ -10810,7 +11695,7 @@ iEjIKVxERCTkFC4iIhJyChcREQk5hYuIiITc/wcM4PgEO8DBPQAAAABJRU5ErkJggg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-20:python4oceanographers/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
+&lt;/div&gt;&lt;/p&gt;</summary><category term="CTD"></category><category term="pandas"></category><category term="data analysis"></category><category term="plotting"></category></entry><entry><title>Dealing with spiky data</title><link href="http://ocefpaf.github.io/blog/2013/05/20/spikes/" rel="alternate"></link><updated>2013-05-20T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-20:blog/2013/05/20/spikes/</id><summary type="html">&lt;p&gt;The first steps to clean a data-set is to remove outliers (or spikes).  Some
 spikes are easy to spot with a simple histogram of the data.  Let's take a look
 at a velocity time-series with some bad data.&lt;/p&gt;
 &lt;p&gt;
@@ -11405,7 +12290,7 @@ the message of this post is not actually an algorithm to remove bad data, but:&l
 &lt;p&gt;"To identify errors, it is necessary to examine all of the data in visual form
 and to get a "feel" for the data."  -- directly from Emery and Thomson book.&lt;/p&gt;
 &lt;p&gt;In other words, there is no silver bullet!&lt;/p&gt;
-&lt;p&gt;http://www.johndcook.com/blog/2013/05/30/there-are-no-outliers/&lt;/p&gt;</summary><category term="plotting"></category><category term="spikes"></category><category term="data analysis"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-13:python4oceanographers/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
+&lt;p&gt;http://www.johndcook.com/blog/2013/05/30/there-are-no-outliers/&lt;/p&gt;</summary><category term="plotting"></category><category term="spikes"></category><category term="data analysis"></category></entry><entry><title>Using Basemap to plot points over a SST figure</title><link href="http://ocefpaf.github.io/blog/2013/05/13/mapping/" rel="alternate"></link><updated>2013-05-13T22:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-13:blog/2013/05/13/mapping/</id><summary type="html">&lt;p&gt;Plotting a hydrographic cruise over the latest Sea Surface Temperature image
 available can help a lot with the planning and/or interpretation of the cruise
 data.&lt;/p&gt;
 &lt;p&gt;So first lets define a handy function to generate the such a map:&lt;/p&gt;
@@ -15943,7 +16828,7 @@ gg==
 
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/python4oceanographers/python4oceanographers/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io/python4oceanographers,2013-05-06:python4oceanographers/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
+&lt;/div&gt;&lt;/p&gt;</summary><category term="plotting"></category><category term="basemap"></category><category term="georeference"></category></entry><entry><title>python4oceanographers</title><link href="http://ocefpaf.github.io/blog/2013/05/06/first-post/" rel="alternate"></link><updated>2013-05-06T13:37:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:ocefpaf.github.io,2013-05-06:blog/2013/05/06/first-post/</id><summary type="html">&lt;p&gt;I'll &lt;s&gt;try&lt;/s&gt; to write here some code snippets to help analyze, visualize and
 explore data in oceans sciences.&lt;/p&gt;
 &lt;p&gt;&lt;font color="red"&gt;This post is just a test!&lt;/font&gt;&lt;/p&gt;
 &lt;p&gt;Testing a full notebook:&lt;/p&gt;
