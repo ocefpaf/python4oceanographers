@@ -12,15 +12,12 @@ from pelicanconf import *
 
 SITEURL = 'http://ocefpaf.github.io'
 
-FEED_ALL_ATOM = 'feeds/all.atom.xml'
-CATEGORY_FEED_ATOM = 'feeds/%s.atom.xml'
-
 DELETE_OUTPUT_DIRECTORY = True
 
-# Following items are often useful when publishing
+# Following items are often useful when publishing.
 
 # Uncomment following line for absolute URLs in production:
-RELATIVE_URLS = False
+#RELATIVE_URLS = False
 
 GOOGLE_ANALYTICS = 'UA-9133259-2'
 DISQUS_SITENAME = 'python4oceanographers'
