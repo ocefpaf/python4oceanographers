@@ -7,7 +7,7 @@ INPUTDIR=$(BASEDIR)/content
 OUTPUTDIR=$(BASEDIR)/output
 CONFFILE=$(BASEDIR)/pelicanconf.py
 PUBLISHCONF=$(BASEDIR)/publishconf.py
-DEPLOYREPOSITORY=ocefpaf.github.io/python4oceanographers
+DEPLOYREPOSITORY=ocefpaf.github.io
 
 FTP_HOST=localhost
 FTP_USER=anonymous
