@@ -48,9 +48,11 @@ CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Theme and plugins.
-# Theme requires http://github.com/duilio/pelican-octopress-theme/
-# Plugins require http://github.com/getpelican/pelican-plugins/
-path = '/home/filipe/00-NOBKP/SOFTWARE-BUILD/version-controlled/GIT'
+# http://github.com/duilio/pelican-octopress-theme/ (orignal)
+# https://github.com/jakevdp/pelican-octopress-theme.git (dev branch)
+# http://github.com/getpelican/pelican-plugins/ (original)
+# https://github.com/jakevdp/pelican-plugins.git (liquid_tags branch)
+path = '/home/filipe/Dropbox/Blog/blog-virtual-env'
 THEME = '%s/pelican-octopress-theme' % path
 PLUGIN_PATH = '%s/pelican-plugins' % path
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
