@@ -49,6 +49,4 @@ or python indexing syntax:
 
 {% notebook ctd_proc_example.ipynb cells[10:11] %}
 
-You'll find the whole notebook here:
-
-[http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.py.ipynb](http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.ipynb)
+You'll find the whole notebook [here.](http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.ipynb)
