@@ -19,13 +19,13 @@ pip install ctd
 ~~~~~~~~~~~~~~~
 
 Now we can import the module:
-{% notebook ctd_proc_example.py.ipynb cells[2:3] %}
+{% notebook ctd_proc_example.ipynb cells[2:3] %}
 
 Let's define a function to streamline the CTD data processing.
-{% notebook ctd_proc_example.py.ipynb cells[4:5] %}
+{% notebook ctd_proc_example.ipynb cells[4:5] %}
 
 And finally we can process all the files in a single loop.
-{% notebook ctd_proc_example.py.ipynb cells[7:8] %}
+{% notebook ctd_proc_example.ipynb cells[7:8] %}
 
 The warning is due to an issue with the data files, where some numbers were
 "glued" and the parser ended-up loading then as `objects` instead of `floats`.
@@ -41,13 +41,13 @@ To plot a temperature section we needed is to create a `cross section` in our
 slicing operations.  That is why we need to re-attach the longitude and
 latitude information before plotting.
 
-{% notebook ctd_proc_example.py.ipynb cells[9:10] %}
+{% notebook ctd_proc_example.ipynb cells[9:10] %}
 
 `CT` can be thought as a 2-D matrix with the pressure information as its index.
 To create a single cast plot just plot one column using either the station name
 or python indexing syntax:
 
-{% notebook ctd_proc_example.py.ipynb cells[10:11] %}
+{% notebook ctd_proc_example.ipynb cells[10:11] %}
 
 You'll find the whole notebook here:
 
