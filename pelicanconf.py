@@ -5,9 +5,10 @@ from __future__ import unicode_literals
 AUTHOR = u'Filipe Fernandes'
 SITENAME = u'python4oceanographers'
 SITESUBTITLE = u'Learn python with examples applied to marine sciences.'
-SITEURL = ''  # Change in publishconf.py.
+# Change in publishconf.py and ignore the WARNING.
+SITEURL = ''
 
-# Times and dates
+# Times and dates.
 DEFAULT_DATE_FORMAT = '%b %d, %Y'
 TIMEZONE = 'America/Sao_Paulo'
 DEFAULT_LANG = u'en'
@@ -46,8 +47,7 @@ FILES_TO_COPY = [('favicon.png', 'favicon.png')]
 CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
-# Theme and plugins
-# Theme and plugins
+# Theme and plugins.
 # Theme requires http://github.com/duilio/pelican-octopress-theme/
 # Plugins require http://github.com/getpelican/pelican-plugins/
 path = '/home/filipe/00-NOBKP/SOFTWARE-BUILD/version-controlled/GIT'
