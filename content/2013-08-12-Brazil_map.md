@@ -5,4 +5,4 @@ tags: plotting, teaching
 slug: brazil-states-map
 author: Filipe Fernandes
 
-{% notebook brazil_states_map.ipynb cells[4:] %}
+{% notebook brazil_states_map.ipynb cells[3:] %}
