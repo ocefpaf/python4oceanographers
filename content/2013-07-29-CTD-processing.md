@@ -11,7 +11,7 @@ I'm re-factoring the [python-oceans](http://code.google.com/p/python-oceans/sour
 module.  The first step was to create another module just for the CTD tools
 ([python-ctd](https://github.com/ocefpaf/python-ctd))
 
-The new module is already at PyPI and the API will remain the same as before.
+The new module is already at `PyPI` and the API will remain the same as before.
 To install it type:
 
 ~~~~~~~~~~~~~~~ {.bash}
@@ -48,5 +48,3 @@ To create a single cast plot just plot one column using either the station name
 or python indexing syntax:
 
 {% notebook ctd_proc_example.ipynb cells[10:11] %}
-
-You'll find the whole notebook [here.](http://nbviewer.ipython.org/urls/raw.github.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/ctd_proc_example.ipynb)

@@ -4,7 +4,7 @@ category: Plotting
 tags: AVISO, plotting, SSH
 slug: plotting
 author: Filipe Fernandes
-summary: Simple function to load data inside the AVISO kmz file and plot the satellite tracks.
+summary: Simple example to load the data inside the AVISO `KMZ` file and plot the satellite tracks.
 
 
 AVISO [Altimetry](http://www.aviso.oceanobs.com/en/altimetry.html) data is
@@ -18,8 +18,8 @@ group provide a nice kmz [compilation](http://www.aviso.oceanobs.com/en/data/too
 
 The [kmz](http://en.wikipedia.org/wiki/Keyhole_Markup_Language) format is just
 a compressed kml.  So it is straight forward to unzip it and read its information
-with a simple python script.  First we will need to import zipfile and a kml
-parser
+with a simple python script.  First we will need to `import zipfile` and a
+`KML` parser,
 
 {% notebook AVISO_tracks.ipynb cells[1:2] %}
 

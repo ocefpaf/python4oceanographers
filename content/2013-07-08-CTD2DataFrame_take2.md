@@ -10,7 +10,7 @@ summary: More on how to use Pandas with CTD data.
 The easiest way to obtain the **ctd.py** module used in previous posts is to
 [download](http://code.google.com/p/python-oceans/) the source code for
 the **oceans** python module and add the python-oceans/oceans directory to your
-PYTHONPATH similar to what we done for the python-gsw.
+`PYTHONPATH` similar to what we done for the python-gsw.
 
 To clone the repository using mercurial type:
 
