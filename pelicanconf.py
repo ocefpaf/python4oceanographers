@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
+import os
+
 AUTHOR = u'Filipe Fernandes'
 SITENAME = u'python4oceanographers'
 SITESUBTITLE = u'Learn python with examples applied to marine sciences.'
@@ -29,10 +31,10 @@ GITHUB_SKIP_FORK = True
 GITHUB_SHOW_USER_LINK = True
 
 # Blogroll.
-#LINKS =  (('Pelican', 'http://getpelican.com/'),
-          #('Python.org', 'http://python.org/'),
-          #('Jinja2', 'http://jinja.pocoo.org/'),
-          #('You can modify those links in your config file', '#'),)
+LINKS =  (('PyAOS', 'http://pyaos.johnny-lin.com/'),
+          ('drclimate', 'http://drclimate.wordpress.com/'),
+          ('Software Carpentry',
+           'http://software-carpentry.org/blog/index.html'),)
 
 # Social widget.
 #SOCIAL = (('You can add links in your config file', '#'),
@@ -47,13 +49,13 @@ FILES_TO_COPY = [('favicon.png', 'favicon.png')]
 CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
-# Theme and plugins.
-# http://github.com/duilio/pelican-octopress-theme/ (orignal)
-# https://github.com/jakevdp/pelican-octopress-theme.git (dev branch)
+# Theme and plug-ins.
+# http://github.com/duilio/pelican-octopress-theme/
 # http://github.com/getpelican/pelican-plugins/ (original)
 # https://github.com/jakevdp/pelican-plugins.git (liquid_tags branch)
 path = '/home/filipe/Dropbox/Blog/blog-virtual-env'
-THEME = '%s/pelican-octopress-theme' % path
+THEME = os.path.join(os.path.abspath(os.path.dirname(__file__)),
+                     'octopress-theme')
 PLUGIN_PATH = '%s/pelican-plugins' % path
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
@@ -72,7 +74,7 @@ TWITTER_USER = 'ocefpaf'
 GOOGLE_PLUS_USER = '116220614704100857098'
 GOOGLE_PLUS_ONE = True
 GOOGLE_PLUS_HIDDEN = False
-FACEBOOK_LIKE = False
+FACEBOOK_LIKE = True
 TWITTER_TWEET_BUTTON = True
 TWITTER_LATEST_TWEETS = True
 TWITTER_FOLLOW_BUTTON = True
