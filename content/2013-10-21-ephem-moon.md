@@ -1,8 +1,8 @@
 title: Playing with pyephem
 date:  2013-10-21 06:47
 category: plotting
-tags: data visualization
+tags: data visualization ephem
 slug: ephem
 author: Filipe Fernandes
 
-{% notebook moon-ephem.ipynb cells[1:] %}
+{% notebook ephem-moon.ipynb cells[1:] %}
