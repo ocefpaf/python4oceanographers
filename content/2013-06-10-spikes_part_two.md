@@ -1,10 +1,7 @@
-title: Removing spikes from CTD data &mdash; Part 2
+Title: Removing spikes from CTD data &mdash; Part 2
 date:  2013-06-10 04:03
-category: Data analysis
-tags: CTD, hydrography, data analysis
+comments: true
 slug: ctd_spikes_2
-author: Filipe Fernandes
-summary: Spikes in CTD data part 2.
 
 There are two different types of spikes that may happen in CTD data:
 

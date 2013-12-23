@@ -1,9 +1,7 @@
-title: Creating a correct map of Brazilian states with basemap Part 2
+Title: Creating a correct map of Brazilian states with basemap Part 2
 date:  2013-08-20 23:45
-category: Plotting
-tags: plotting, teaching
+comments: true
 slug: brazil-states-map2
-author: Filipe Fernandes
 
 Several people brought to my attention that the current `shapefiles` hosted at
 [GADM](http://www.gadm.org/) are not up-to-date as the one I plotted.  Well,

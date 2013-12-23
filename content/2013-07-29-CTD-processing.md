@@ -1,10 +1,7 @@
-title: CTD-processing
+Title: CTD-processing
 date:  2013-07-29 03:43
-category: Data analysis
-tags: plotting, data analysis, python-ctd
+comments: true
 slug: python-ctd
-author: Filipe Fernandes
-summary: This post is a quick update on how to use the `python-ctd` module (formerly a sub-module of `python-oceans`).
 
 
 I'm re-factoring the [python-oceans](http://code.google.com/p/python-oceans/source/checkout/)

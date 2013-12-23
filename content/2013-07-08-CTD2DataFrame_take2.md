@@ -1,10 +1,7 @@
-title: CTD2DataFrame take 2
+Title: CTD2DataFrame take 2
 date:  2013-07-08 07:19
-category: Data analysis
-tags: CTD, pandas, data analysis, plotting
+comments: true
 slug: CTD2DataFrame_2
-author: Filipe Fernandes
-summary: More on how to use Pandas with CTD data.
 
 
 The easiest way to obtain the **ctd.py** module used in previous posts is to

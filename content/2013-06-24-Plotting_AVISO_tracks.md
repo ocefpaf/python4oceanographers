@@ -1,10 +1,7 @@
-title: Plotting AVISO track using a kmz file
+Title: Plotting AVISO track using a kmz file
 date:  2013-06-24 15:15
-category: Plotting
-tags: AVISO, plotting, SSH
+comments: true
 slug: plotting
-author: Filipe Fernandes
-summary: Simple example to load the data inside the AVISO `KMZ` file and plot the satellite tracks.
 
 
 AVISO [Altimetry](http://www.aviso.oceanobs.com/en/altimetry.html) data is
