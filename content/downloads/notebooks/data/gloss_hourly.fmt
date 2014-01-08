@@ -1,0 +1,159 @@
+        UH SEA LEVEL CENTER/JOINT ARCHIVE FOR SEA LEVEL
+                       'ARCHIVING' FORMAT
+               FOR HOURLY SEA LEVEL DATA
+
+          The hourly data consist of files grouped by year that
+     have been "zipped" into a single file per time series.
+     The Info-Zip web site is at: http://www.cdrom.com/pub/infozip
+     and the software can be directly downloaded from
+     ftp://ftp.cdrom.com/pub/infozip/.  This freeware zip
+     utility is compatible to most platforms and operating
+     systems.  For MS-DOS systems, use the -aa option
+     during unzipping.  This will add the Carriage Return-
+     Line Feed end-of-record sequence.
+
+
+FILE NAME CONVENTION:
+
+          Each file is given a name hsssv.dat where sss denotes the
+     the UHSLC/JASL inhouse station number and v denotes the version.
+     For example, h003b.dat is the 1987 observed daily data file in
+     the permanent archive for Baltra-B.  Baltra is a station with
+     more than one independent series due to a station replacement
+     that is not linked to the bench marks of the original station.
+
+
+FORMAT DESCRIPTION:
+          A file exists for all years with data and every hourly value
+     in the year contains either data or a missing data flag (9999).
+     If complete years are missing between data values, then all
+     records for those years are filled with missing data flags, as well.
+     One header exists at the start of each year. All records are fixed-length,
+     80-byte.
+
+
+          The unique header for each file is coded as:
+
+
+          field          bytes   length             comment
+     -----------------  -------  ------  ------------------------------------
+     station number        1-3     3     exactly 3 digits
+     station version         4     1     letter from A to Z
+     station name         6-23    18     Abbreviated if necessary
+     region/country      25-43    19     Abbreviated if necessary
+     year                45-48     4
+     latitude            50-55     6     degrees, minutes, tenths
+                                         (implied decimal), and hemisphere
+     longitude           57-63     7     degrees, minutes, tenths
+                                         (implied decimal), and hemisphere
+     GMT offset          65-68     4     time data are related to in terms
+                                         of difference from GMT in hours
+                     and tenths (implied decimal) with
+                     East latitudes positive*
+     decimation method      70     1     Coded as 1 : filtered
+                                                  2 : simple average of all
+                              samples
+                          3 : spot readings
+                          4 : other
+     reference offset    72-76     5     constant offset to be added to each
+                                         each data value for data to be
+                     relative to tide staff zero or primary
+                     datum in same units as data
+     reference code         77     1     R = data referenced to datum
+                                         X = data not referenced to datum
+     units               79-80     2     always millimeters, MM
+
+     * Data always are in GMT (offset=0000) unless data are relative to a local
+       time zone that is not an increment of one hour from GMT.  For example,
+       Colombo, Sri Lanka has a GMT offset = 0055 which is 5.5 hours ahead
+       of GMT.
+
+          The data records are coded as:
+
+          field          bytes   length             comment
+     -----------------  -------  ------  ------------------------------------
+     station number        1-3     3     exactly 3 digits
+     station version         4     1     letter from A to Z
+     station name          6-9     4     Abbreviated if necessary
+     year                12-15     4
+     month               16-17     2     numerical value
+     day                 18-19     2
+     day record count       20     1     either 1 or 2
+     sea level data      21-80    60     12 sea level values,
+                                         hours 00-11 (1); hours 12-23 (2)
+
+     For example:
+
+029A Kapingamarangi     Fd St Micronesia    1987 01059N 154466E 0000 1 00000R MM
+029A Kapi  1987 1 11 1768 1661 1476 1267 1078  956  914  975 1067 1189 1280 1311
+029A Kapi  1987 1 12 1250 1097  975  792  671  610  732  884 1006 1341 1585 1737
+029A Kapi  1987 1 21 1829 1768 1692 1494 1219 1036  945  914 1006 1097 1158 1280
+029A Kapi  1987 1 22 1341 1219 1097  945  792  701  671  762  884 1067 1341 1554
+029A Kapi  1987 1 31 1737 1829 1768 1615 1433 1219 1036  945  914 1006 1036 1189
+029A Kapi  1987 1 32 1280 1311 1219 1067 1006  823  732  701  792  884 1097 1372
+
+The following FORTRAN source code can be utilized to convert to a two-column
+output (year.fraction data).  The code may need minor modifications, depending
+on the compiler.
+
+c... rqdshr.f
+c..  read in Quality Controlled "Archiving" Format  hourly data,
+c..  create 2 column output
+c..  t (time year,hour0:00 of the first day=0.0) and height (in millimeter)
+c..  input (infile) : input file name      (e.g. h001a.dat)
+c..  output(outfile): internally created   (e.g. h001a.out)
+c...
+      integer      day,year
+      character*80 input, infile, outfile
+      character*5  fname
+      real*8       tt, d1
+      dimension nmon(12), nday(12), ihr(24)
+      data nmon/31,28,31,30,31,30,31,31,30,31,30,31/
+
+c*** if command line input is not allowed change replace by next 2 statements
+      write(6,*) ' put the input file name e.g. h001a.dat '
+      read(5,'(a80)') infile
+
+c      iarg=1
+c      call getarg(iarg,infile)
+
+      open(unit=15,file=infile)
+      read(infile, '( a5) ') fname
+      write(outfile,8000) fname
+ 8000 format(a5,'.out')
+      open(unit=20, file=outfile)
+
+ 0001 read(15,'( a80) ',end=9000) input
+      icount=0
+      write(6,'(a80) ' ) input
+      read(15, ' (11x,i4,i2) ') iyear, month
+      if(mod(iyear,4).eq.0) nmon(2)=29
+      nday(1)=0
+      do 10 lp=2,12
+         nday(lp)=nday(lp-1)+nmon(lp-1)
+ 0010 continue
+
+
+      back space 15
+      do 20 m=month,12
+         lim=nmon(m)
+         do 30 lp=1,lim
+            read(15,7000,end=9000) year,mo,day,ic,ihr
+ 7000       format(11x,i4,i2,i2,i1,12i5/20x,12i5)
+            icount=icount+1
+            dd=nday(mo)+day-1.
+            do 40 i=1,24
+               d1=dd+(i-1.)/24.
+               if(mod(year,4).eq.0) then
+                  tt=dble(year) + d1/366.
+               else
+                  tt=dble(year) + d1/365.
+               end if
+               write(20,*) tt, ihr(i)
+ 0040       continue
+ 0030    continue
+ 0020 continue
+      nmon(2)=28
+      go to 0001
+ 9000 stop
+      end
