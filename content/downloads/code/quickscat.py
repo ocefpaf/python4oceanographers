@@ -68,7 +68,6 @@ class Dataset(object):
             pass
         if not self.missing:
             data[bad] = acopy[bad]
-            print('Missing is None')
         else:
             data[bad] = self.missing
         return data
