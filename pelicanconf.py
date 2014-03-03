@@ -51,10 +51,10 @@ CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Theme and plug-ins.
-path = os.path.join(os.environ.get('HOME'), 'Dropbox/Blog/blog-virtual-env')
-THEME = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                     'octopress-theme')
-PLUGIN_PATH = '%s/pelican-plugins' % path
+PLUGIN_PATH = os.path.join(os.environ.get('HOME'),
+                           'Dropbox/Blog/blog-virtual-env/pelican-plugins')
+THEME = os.path.join(os.environ.get('HOME'),
+                     'Dropbox/Blog/blog-virtual-env/octopress-theme')
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'liquid_tags.literal']
