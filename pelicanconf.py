@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
-from __future__ import unicode_literals
 
 import os
 
@@ -21,18 +20,20 @@ ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options.
 MENUITEMS = [('Archives', '/archives.html'),
-             ('Home Page', 'http://ocefpaf.tiddlyspot.com/')]
-NEWEST_FIRST_ARCHIVES = False
+             ('Home Page', 'http://bit.ly/ocefpafCV')]
+NEWEST_FIRST_ARCHIVES = True
 
 # Github include settings.
-GITHUB_USER = 'ocefpaf'
-GITHUB_REPO_COUNT = 5
-GITHUB_SKIP_FORK = True
-GITHUB_SHOW_USER_LINK = True
+#GITHUB_USER = 'ocefpaf'
+#GITHUB_REPO_COUNT = 0
+#GITHUB_SKIP_FORK = True
+#GITHUB_SHOW_USER_LINK = True
 
 # Blogroll.
 LINKS =  (('PyAOS', 'http://pyaos.johnny-lin.com/'),
           ('EarthPy', 'http://earthpy.org/'),
+          ("Rich Signell's Notebook Blog",
+              'http://rsignell-usgs.github.io/blog/'),
           ('drclimate', 'http://drclimate.wordpress.com/'),
           ('Software Carpentry',
            'http://software-carpentry.org/blog/index.html'),)
@@ -44,20 +45,18 @@ LINKS =  (('PyAOS', 'http://pyaos.johnny-lin.com/'),
 DEFAULT_PAGINATION = 10
 
 # STATIC_OUT_DIR requires pelican 3.3+.
-#STATIC_OUT_DIR = ''
-#FILES_TO_COPY = [('favicon.png', 'favicon.png')]
 STATIC_PATHS = ['images', 'figures', 'downloads', 'favicon.png']
 CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Theme and plug-ins.
-PLUGIN_PATH = os.path.join(os.environ.get('HOME'),
-                           'Dropbox/Blog/blog-virtual-env/pelican-plugins')
-THEME = os.path.join(os.environ.get('HOME'),
-                     'Dropbox/Blog/blog-virtual-env/octopress-theme')
+THEME = 'pelican-octopress-theme/'
+PLUGIN_PATH = 'pelican-plugins/'
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'liquid_tags.literal']
+
+categories = False
 
 # The theme file should be updated so that the base header contains the line:
 # {% if EXTRA_HEADER %}
@@ -70,7 +69,7 @@ if not os.path.exists('_nb_header.html'):
     warnings.warn("_nb_header.html not found.  "
                   "Rerun make html to finalize build.")
 else:
-    EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
+    EXTRA_HEADER = open('_nb_header.html').read()
 
 # Sharing
 TWITTER_USER = 'ocefpaf'
