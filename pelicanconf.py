@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
+from __future__ import unicode_literals
 
 import os
 
@@ -7,7 +8,9 @@ AUTHOR = u'Filipe Fernandes'
 
 SITENAME = u'python4oceanographers'
 SITESUBTITLE = u'Learn python with examples applied to marine sciences.'
-SITEURL = ''  # Change in publishconf.py and ignore the WARNING.
+# Change in publishconf.py and ignore the WARNING.  This is needed so you
+# can inspect the site using a web-server at locahost.
+SITEURL = ''
 
 # Times and dates.
 DEFAULT_DATE_FORMAT = '%b %d, %Y'
@@ -19,8 +22,9 @@ ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options.
-MENUITEMS = [('Archives', '/archives.html'),
-             ('Home Page', 'http://bit.ly/ocefpafCV')]
+MENUITEMS = [('Archives',
+              'http://ocefpaf.github.io/python4oceanographers/archives.html'),
+             ('Home Page', 'http://ocefpaf.github.io/homepage'),]
 NEWEST_FIRST_ARCHIVES = True
 
 # Github include settings.
@@ -50,13 +54,13 @@ CODE_DIR = 'downloads/code'
 NOTEBOOK_DIR = 'downloads/notebooks'
 
 # Theme and plug-ins.
-THEME = 'pelican-octopress-theme/'
-PLUGIN_PATH = 'pelican-plugins/'
+THEME = 'pelican-octopress-theme'
+PLUGIN_PATH = 'pelican-plugins'
 PLUGINS = ['summary', 'liquid_tags.img', 'liquid_tags.video',
            'liquid_tags.include_code', 'liquid_tags.notebook',
            'liquid_tags.literal']
 
-categories = False
+DISPLAY_CATEGORIES_ON_MENU = False
 
 # The theme file should be updated so that the base header contains the line:
 # {% if EXTRA_HEADER %}
@@ -69,7 +73,7 @@ if not os.path.exists('_nb_header.html'):
     warnings.warn("_nb_header.html not found.  "
                   "Rerun make html to finalize build.")
 else:
-    EXTRA_HEADER = open('_nb_header.html').read()
+    EXTRA_HEADER = open('_nb_header.html').read().decode('utf-8')
 
 # Sharing
 TWITTER_USER = 'ocefpaf'
