@@ -22,9 +22,11 @@ ARTICLE_URL = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/'
 ARTICLE_SAVE_AS = 'blog/{date:%Y}/{date:%m}/{date:%d}/{slug}/index.html'
 
 # Title menu options.
-MENUITEMS = [('Archives',
-              'http://ocefpaf.github.io/python4oceanographers/archives.html'),
-             ('Home Page', 'http://ocefpaf.github.io/homepage'),]
+uri = 'http://ocefpaf.github.io'
+MENUITEMS = [('Blog', '%s/python4oceanographers' % uri),
+             ('Archives', '%s/python4oceanographers/archives.html' % uri),
+             ('About', '%s/homepage' % uri),
+             ]
 NEWEST_FIRST_ARCHIVES = True
 
 # Github include settings.
