@@ -1871,8 +1871,25 @@ and basemap.  Unfortunately I ...</p></div>
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>My former advisor had all his data stored in a custom binary format he called <code>OASP</code> (instead of using the wonderful, machine independent, feature-rich <a href="http://cf-pcmdi.llnl.gov/">netcdf</a> with climate and forecast metadata that we all should be using!).</p>
-<p>His programs to read such data were not working anymore due to <a href="http://en.wikipedia.org/wiki/Endianness">endianness</a> issues ...</p></div></p></div>
+<p>Let's define two quick functions to deal with the time standard used in the binary files.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">netcdftime</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
+
+<span class="k">def</span> <span class="nf">jhour2datetime</span><span class="p">(</span><span class="n">jhours</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Convert OASP Julian hours to datetime object.</span>
+<span class="sd">    Uses netcdftime.DateFromJulianDay</span>
+<span class="sd">                        jhours-12</span>
+<span class="sd">    datetime_object =  ----------- + offset</span>
+<span class="sd">                           24.0</span>
+
+<span class="sd">    OASP is offsetted by 241502 ...</span></pre></div></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/08/05/custom-binaries/">Read On &crarr;</a>
   </footer>
