@@ -1,7 +1,7 @@
-Title: Spectral Solution for the Ekman Layer
-date:  2014-04-21 17:29
+Title: Rossby wave source term with windspharm
+date:  2014-04-28 19:23
 comments: true
-slug: spectral_ekman
+slug: windspharm
 
 
-{% notebook chap8_ekman.ipynb cells[1:] %}
+{% notebook windspharm.ipynb cells[1:] %}
