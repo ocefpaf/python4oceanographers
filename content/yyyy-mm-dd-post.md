@@ -1,6 +1,6 @@
 title: Awesome Title
-date:  yyyy-mm-dd hh:mm
+date:  2012-02-29 00:00
 comments: true
 slug: url_end
 
-{% notebook notebook.ipynb cells[1:] %}
+{% notebook blank.ipynb cells[1:] %}
