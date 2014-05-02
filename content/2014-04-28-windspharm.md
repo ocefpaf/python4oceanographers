@@ -4,4 +4,4 @@ comments: true
 slug: windspharm
 
 
-{% notebook windspharm.ipynb cells[1:] %}
+{% notebook 2014-04-28-windspharm.ipynb cells[1:] %}

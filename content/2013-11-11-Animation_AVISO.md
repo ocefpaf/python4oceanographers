@@ -3,4 +3,4 @@ date:  2013-11-11 10:05
 comments: true
 slug: animation
 
-{% notebook AVISO_animation.ipynb cells[1:] %}
+{% notebook 2013-11-11-Animation_AVISO.ipynb cells[1:] %}

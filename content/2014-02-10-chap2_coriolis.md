@@ -3,4 +3,4 @@ date:  2014-02-10 14:13
 comments: true
 slug: chap2_coriolis
 
-{% notebook chap2_coriolis.ipynb cells[1:] %}
+{% notebook 2014-02-10-chap2_coriolis.ipynb cells[1:] %}

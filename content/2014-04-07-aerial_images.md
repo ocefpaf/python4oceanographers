@@ -4,4 +4,4 @@ comments: true
 slug: aerial_images
 
 
-{% notebook aerial_images.ipynb cells[1:] %}
+{% notebook 2014-04-07-aerial_images.ipynb cells[1:] %}

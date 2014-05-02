@@ -3,5 +3,4 @@ date:  2014-03-10 14:52
 comments: true
 slug: gearth
 
-{% notebook simplekml.ipynb cells[1:] %}
-
+{% notebook 2014-03-10-google-earth.ipynb cells[1:] %}

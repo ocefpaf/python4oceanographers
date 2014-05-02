@@ -3,6 +3,7 @@ date:  2013-06-17 13:28
 comments: true
 slug: teaching
 
-This is just an IPython notebook with exercises and examples.
+(Updating my exercises and examples for IPython Notebook class.  This
+post was written in Portuguese.)
 
-{% notebook python4oceanographers_01.ipynb cells[1:] %}
+{% notebook 2013-06-17-getting_started_with_ipynb.ipynb cells[1:] %}

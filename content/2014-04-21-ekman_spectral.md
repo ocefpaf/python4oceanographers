@@ -4,4 +4,4 @@ comments: true
 slug: spectral_ekman
 
 
-{% notebook chap8_ekman.ipynb cells[1:] %}
+{% notebook 2014-04-21-ekman_spectral.ipynb cells[1:] %}

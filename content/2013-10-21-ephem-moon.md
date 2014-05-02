@@ -1,6 +1,6 @@
 Title: Playing with pyephem
 date:  2013-10-21 06:47
 comments: true
-slug: ephem
+slug: moon_ephem
 
-{% notebook ephem-moon.ipynb cells[1:] %}
+{% notebook 2013-10-21-ephem-moon.ipynb cells[1:] %}

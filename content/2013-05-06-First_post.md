@@ -10,11 +10,11 @@ explore data in oceans sciences.
 
 Testing a full notebook:
 
-{% notebook SymPy.ipynb %}
+{% notebook 2013-05-06-First_post.ipynb %}
 
 Now just some cells (from the same notebook):
 
-{% notebook SymPy.ipynb cells[5:6] %}
+{% notebook 2013-05-06-First_post.ipynb cells[5:6] %}
 
 Include code examples:
 

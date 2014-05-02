@@ -3,4 +3,4 @@ date:  2013-12-09 13:07
 comments: true
 slug: zoom
 
-{% notebook matplotlib_zoom.ipynb cells[1:] %}
+{% notebook 2013-12-09-zoomed_axis_xbt.ipynb cells[1:] %}
