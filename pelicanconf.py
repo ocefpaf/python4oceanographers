@@ -7,7 +7,7 @@ import os
 AUTHOR = u'Filipe Fernandes'
 
 SITENAME = u'python4oceanographers'
-SITESUBTITLE = u'Learn python with examples applied to marine sciences.'
+SITESUBTITLE = u'Turning ripples into waves'
 # Change in publishconf.py and ignore the WARNING.  This is needed so you
 # can inspect the site using a web-server at locahost.
 SITEURL = ''
