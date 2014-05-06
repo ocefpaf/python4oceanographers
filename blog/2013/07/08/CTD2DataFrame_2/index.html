@@ -1745,7 +1745,7 @@ init_mathjax();
 <body>
   <header role="banner"><hgroup>
   <h1><a href="http://ocefpaf.github.io/python4oceanographers/">python4oceanographers</a></h1>
-    <h2>Learn python with examples applied to marine sciences.</h2>
+    <h2>Turning ripples into waves</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="subscribe-atom">Atom</a></li>
@@ -1773,30 +1773,19 @@ init_mathjax();
       <p class="meta"><time datetime="2013-07-08T07:19:00" pubdate>Jul 08, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>The easiest way to obtain the <strong>ctd.py</strong> module used in previous posts is to
-<a href="http://code.google.com/p/python-oceans/">download</a> the source code for
-the <strong>oceans</strong> python module and add the python-oceans/oceans directory to your
-<code>PYTHONPATH</code> similar to what we done for the python-gsw.</p>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The easiest way to obtain the <strong>ctd.py</strong> module used in previous posts is to <a href="http://code.google.com/p/python-oceans/">download</a> the source code for the <strong>oceans</strong> python module and add the python-oceans/oceans directory to your <code>PYTHONPATH</code> similar to what we done for the python-gsw.</p>
 <p>To clone the repository using mercurial type:</p>
-<div class="highlight"><pre>hg clone https://code.google.com/p/python-oceans/
-</pre></div>
-
-
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">hg</span> clone https://code.google.com/p/python-oceans/</code></pre>
 <p>and to update:</p>
-<div class="highlight"><pre>hg pull
-hg update
-</pre></div>
-
-
-<p>Now you can import the pandas modified <strong>DataFrame</strong> and load CTD (SeaBird
-<code>CNV</code> and FSI <code>ASCII</code> formats) and XBT (<code>EDF</code>) files directly.</p>
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">oceans.ctd</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-<span class="n">seabird_cast</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_cnv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">fsi_cast</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_fsi</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">xbt</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_edf</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-</pre></div>
-
-
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">hg</span> pull
+<span class="kw">hg</span> update</code></pre>
+<p>Now you can import the pandas modified <strong>DataFrame</strong> and load CTD (SeaBird <code>CNV</code> and FSI <code>ASCII</code> formats) and XBT (<code>EDF</code>) files directly.</p>
+<pre class="sourceCode python"><code class="sourceCode python"><span class="ch">from</span> oceans.ctd <span class="ch">import</span> DataFrame
+seabird_cast = DataFrame.from_cnv(fname)
+fsi_cast = DataFrame.from_fsi(fname)
+xbt = DataFrame.from_edf(fname)</code></pre>
 <p>The available methods are:</p>
 <ul>
 <li><code>split</code>: Separate upcast from downcast.</li>
@@ -1804,17 +1793,67 @@ hg update
 <li><code>swap_index</code>: Change the index (usually from pressure to depth or scan count).</li>
 <li><code>press_check</code>: Check for pressure inversions.</li>
 <li><code>get_maxdepth</code>: Cast maximum depth.</li>
-<li><code>plot_section</code>:  If the DataFrame is a collection of CTD stations this plot
-    the section.</li>
+<li><code>plot_section</code>: If the DataFrame is a collection of CTD stations this plot the section.</li>
 </ul>
-<p>There is also a modified pandas <strong>Series</strong> (1D DataFrames) with the following
-methods:</p>
+<p>There is also a modified pandas <strong>Series</strong> (1D DataFrames) with the following methods:</p>
 <ul>
 <li><code>plot</code>: Plot the CTD profile.</li>
 <li><code>smooth</code>: Smooth the profile.</li>
 <li><code>despike</code>: Remove spikes from the data.</li>
 <li><code>bindata</code>: Performs a bin average.</li>
-</ul></div>
+</ul>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[2]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+
+<small>
+<p> This post was written as an IPython notebook.  It is available for
+<a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2013-07-08-CTD2DataFrame_take2.md.ipynb">download</a> or as a static
+<a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2013-07-08-CTD2DataFrame_take2.md.ipynb">html</a>.</p>
+<p></p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title">python4oceanographers</span> by <a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL">Filipe Fernandes</a> is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source">http://ocefpaf.github.io/</a>.
+ 
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -1837,6 +1876,9 @@ methods:</p>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/05/folium/">Easy interactive maps with folium</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/28/windspharm/">Rossby wave source term with windspharm</a>
       </li>
       <li class="post">
@@ -1848,14 +1890,10 @@ methods:</p>
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/07/aerial_images/">Update on last post</a>
       </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/03/31/itaguare/">Simple drifter experiment with "kitchen tools"</a>
-      </li>
     </ul>
   </section>
   <section>
-      
- 
+
 
   <section>
   </section>
@@ -1875,6 +1913,8 @@ methods:</p>
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
+<script data-gittip-username="ocefpaf"
+        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>

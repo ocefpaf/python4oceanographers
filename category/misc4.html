@@ -1745,7 +1745,7 @@ init_mathjax();
 <body>
   <header role="banner"><hgroup>
   <h1><a href="http://ocefpaf.github.io/python4oceanographers/">python4oceanographers</a></h1>
-    <h2>Learn python with examples applied to marine sciences.</h2>
+    <h2>Turning ripples into waves</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="subscribe-atom">Atom</a></li>
@@ -1770,6 +1770,22 @@ init_mathjax();
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/10/07/brewer2mpl/">Better colormaps with brewer2mpl</a>
+      </h1>
+      <p class="meta"><time datetime="2013-10-07T01:15:00" pubdate>Oct 07, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We already used the <a href="https://github.com/jiffyclub/brewer2mpl">brewer2mpl</a> module in previous posts. However, we did not showed it in detail. This post is just to draw attention to this interesting module that can access the <a href="http://colorbrewer2.org/">Colorbrewer2.0</a> website and convert <code>colormaps</code> directly to matplotlib format.</p>
+<p>Let's start importing by <code>cartopy</code>, <code>iris</code>, <code>pyplot ...</code></p></div></p></div>
+  <footer>
+    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/10/07/brewer2mpl/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/30/natural_earth/">Cartopy and the Natural Earth Dataset</a>
       </h1>
       <p class="meta"><time datetime="2013-09-30T01:15:00" pubdate>Sep 30, 2013</time></p>
@@ -1777,8 +1793,9 @@ init_mathjax();
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Alternative dataset to plot the Brazilian political boundaries.</p>
 <p>We already saw some of the advantages of cartopy over other mapping tools. However, as a Brazilian, I really miss a more up-to-date political boundary than those present in tools like <code>GMT</code>, <code>m_map</code>, and <code>basemap</code>.</p>
-<p>Luckily cartopy can <a href="http://scitools.org.uk/cartopy/docs/latest/developer_interfaces.html#cartopy.io.Downloader">talk</a> easily with the <a href="http://www.naturalearthdata.com/">Natural Earth</a> dataset. Natural Earth has tons of ...</p></div></p></div>
+<p>Luckily cartopy can <a href="http://scitools.org.uk/cartopy/docs/latest/developer_interfaces.html#cart%20opy.io.Downloader">talk</a> easily with the ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/30/natural_earth/">Read On &crarr;</a>
   </footer>
@@ -1809,6 +1826,7 @@ init_mathjax();
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>Learning how to use iris cubes and cartopy plotting.</p>
 <p>I'm experimenting with <a href="http://scitools.org.uk/iris/">iris</a> cubes and <a href="http://scitools.org.uk/cartopy/">cartopy</a> plotting. Both libraries are part of the SciTools package developed by the UK Met Office:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
@@ -1843,7 +1861,7 @@ In&nbsp;[2]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>They are great for loading, exploring, analyzing and visualizing gridded data ...</p></div></p></div>
+<p>They are ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/16/iris/">Read On &crarr;</a>
   </footer>
@@ -1851,19 +1869,17 @@ In&nbsp;[2]:
   		<article>
 <header>
       <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/09/hdf/">Downloading several hdf files from a server</a>
+        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/09/download_hdf/">Downloading several hdf files from a server</a>
       </h1>
       <p class="meta"><time datetime="2013-09-09T13:18:00" pubdate>Sep 09, 2013</time></p>
 </header>
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Manually downloading several <code>hdf</code> files is, most of the time, impractical. Some time ago I helped a friend with a similar problem with a simple python script. This post is just a review of that script so others can modify/re-use it for similar cases.</p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>All we need is a ...</p></div></p></div>
+<p>This post is a quick example on how to use download several <a href="http://oceandata.sci.gsfc.nasa.gov/CZCS/Mapped/Monthly/4km/chlor/">hdf 4 files</a> by &quot;scrapping&quot; NASA's server.</p>
+<p>Manually downloading several <code>hdf</code> files is, most of the time, impractical. Some time ago I helped a friend with a similar problem with a simple python script. This post is ...</p></div></p></div>
   <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/09/hdf/">Read On &crarr;</a>
+    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/09/download_hdf/">Read On &crarr;</a>
   </footer>
   		</article>
   		<article>
@@ -1876,20 +1892,9 @@ In&nbsp;[2]:
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>This post is a quick example on how to use the <a href="http://www.nodc.noaa.gov/OC5/WOA09/pr_woa09.html">World Ocean Atlas</a> database.</p>
 <p>Continuing the plots from the previous post we will produce a figure to show the surface salinity. We will use the same annual climatology from before.</p>
-<p>(BTW: Check the images produced by the <a href="http://aquarius.nasa.gov/">Aquarius</a> satellite.)</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">os</span>
-
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="kn">as</span> <span class="nn">ma</span>
-<span class="kn">import</span> <span class="nn">matplotlib ...</span></pre></div></div></div></div></p></div>
+<p>(BTW: Check the images produced by the <a href="http://aquarius.nasa.gov/">Aquarius</a> satellite ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/09/02/woa09_horizontal/">Read On &crarr;</a>
   </footer>
@@ -1904,7 +1909,8 @@ In&nbsp;[2]:
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Recently I found myself re-creating several of the figures I use in my slides for the <strong>Introduction to Physical Oceanography</strong> course. My final goal is to create a repository with all the slides for the course using a Creative Commons License, so I need all the figures to be either ...</p></div></p></div>
+<p>This post is a quick example on how to use the <a href="http://www.nodc.noaa.gov/OC5/WOA09/pr_woa09.html">World Ocean Atlas</a> database.</p>
+<p>Recently I found myself re-creating several of the figures I use in my slides for the <strong>Introduction to Physical Oceanography</strong> course. My final goal is to create a repository with all the slides for the ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/08/26/woa09_vertical/">Read On &crarr;</a>
   </footer>
@@ -1917,11 +1923,10 @@ In&nbsp;[2]:
       <p class="meta"><time datetime="2013-08-20T23:45:00" pubdate>Aug 20, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>Several people brought to my attention that the current <code>shapefiles</code> hosted at
-<a href="http://www.gadm.org/">GADM</a> are not up-to-date as the one I plotted.  Well,
-they where in the past (just look at their front figure).</p>
-<p>Apparently they updated to the same bad boundaries that are present in GMT
-and basemap.  Unfortunately I ...</p></div>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several people brought to my attention that the current <code>shapefiles</code> hosted at <a href="http://www.gadm.org/">GADM</a> are not up-to-date as the one I plotted. Well, they where in the past (just look at their front figure).</p>
+<p>Apparently they updated to the same bad boundaries that are present in GMT and basemap. Unfortunately I ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/08/20/brazil-states-map2/">Read On &crarr;</a>
   </footer>
@@ -1934,10 +1939,8 @@ and basemap.  Unfortunately I ...</p></div>
       <p class="meta"><time datetime="2013-08-12T12:45:00" pubdate>Aug 12, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The political boundaries data shipped with basemap is OK for North America and Europe, but it is outdated by several <a href="http://pt.wikipedia.org/wiki/Hist%C3%B3ria_de_Mato_Grosso#Divis.C3.A3o_do_estado">years</a> for South America. In order to draw a more accurate map we need to use custom data from more up-to-date sources.</p>
-<p>One source of data are the <code>shapefiles</code> from ...</p></div></p></div>
+  <div class="entry-content">
+<p><a href="http://matplotlib.org/basemap/">basemap</a> is an excellent tool, but its database lacks up-to-date information regarding the modern states boundaries in Brazil. This post is to show how to overcome that with an custom <code>shapefile</code>. </div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/08/12/brazil-states-map/">Read On &crarr;</a>
   </footer>
@@ -1952,54 +1955,10 @@ and basemap.  Unfortunately I ...</p></div>
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's define two quick functions to deal with the time standard used in the binary files.</p>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">netcdftime</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">timedelta</span>
-
-<span class="k">def</span> <span class="nf">jhour2datetime</span><span class="p">(</span><span class="n">jhours</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Convert OASP Julian hours to datetime object.</span>
-<span class="sd">    Uses netcdftime.DateFromJulianDay</span>
-<span class="sd">                        jhours-12</span>
-<span class="sd">    datetime_object =  ----------- + offset</span>
-<span class="sd">                           24.0</span>
-
-<span class="sd">    OASP is offsetted by 241502 ...</span></pre></div></div></div></div></p></div>
+<p>Every now and then we stumble upon some weird custom binary file containing that precious piece of data. This post show how to read the weirdest one I have see so far.</p>
+<p>My former advisor had all his data stored in a custom binary format he called <code>OASP</code> (instead of ...</p></div></p></div>
   <footer>
     <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/08/05/custom-binaries/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">CTD-processing</a>
-      </h1>
-      <p class="meta"><time datetime="2013-07-29T03:43:00" pubdate>Jul 29, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>I'm re-factoring the <a href="http://code.google.com/p/python-oceans/source/checkout/">python-oceans</a>
-module.  The first step was to create another module just for the CTD tools
-(<a href="https://github.com/ocefpaf/python-ctd">python-ctd</a>)</p>
-<p>The new module is already at <code>PyPI</code> and the API will remain the same as before.
-To install it type:</p>
-<div class="highlight"><pre>pip install ctd
-</pre></div>
-
-
-<p>Now we can import the module:
-
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In ...</div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">Read On &crarr;</a>
   </footer>
   		</article>
 <div class="pagination">
@@ -2013,6 +1972,9 @@ In ...</div></div></div></p></div>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/05/folium/">Easy interactive maps with folium</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/28/windspharm/">Rossby wave source term with windspharm</a>
       </li>
       <li class="post">
@@ -2024,14 +1986,10 @@ In ...</div></div></div></p></div>
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/07/aerial_images/">Update on last post</a>
       </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/03/31/itaguare/">Simple drifter experiment with "kitchen tools"</a>
-      </li>
     </ul>
   </section>
   <section>
-      
- 
+
 
   <section>
   </section>
@@ -2051,6 +2009,8 @@ In ...</div></div></div></p></div>
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
+<script data-gittip-username="ocefpaf"
+        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>

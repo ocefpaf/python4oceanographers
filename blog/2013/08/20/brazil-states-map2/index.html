@@ -1745,7 +1745,7 @@ init_mathjax();
 <body>
   <header role="banner"><hgroup>
   <h1><a href="http://ocefpaf.github.io/python4oceanographers/">python4oceanographers</a></h1>
-    <h2>Learn python with examples applied to marine sciences.</h2>
+    <h2>Turning ripples into waves</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="subscribe-atom">Atom</a></li>
@@ -1773,18 +1773,64 @@ init_mathjax();
       <p class="meta"><time datetime="2013-08-20T23:45:00" pubdate>Aug 20, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>Several people brought to my attention that the current <code>shapefiles</code> hosted at
-<a href="http://www.gadm.org/">GADM</a> are not up-to-date as the one I plotted.  Well,
-they where in the past (just look at their front figure).</p>
-<p>Apparently they updated to the same bad boundaries that are present in GMT
-and basemap.  Unfortunately I cannot host the good old ones, because their
-license do do allow re-distribution of their data.  That policy is kind of
-against their logo "Boundaries without limits", maybe "Boundaries with some
-limits would be more appropriated".</p>
-<p>Unfortunately, I'm searching without success for a substitute.  The Brazilian
-<a href="http://www.ibge.gov.br/english/">IBGE</a> provide only <code>KML</code> and <code>KMZ</code> files that,
-when converted, are not readable by basemap.</p>
-<p>As soon as I find an alternative source I'll update the post.</p></div>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several people brought to my attention that the current <code>shapefiles</code> hosted at <a href="http://www.gadm.org/">GADM</a> are not up-to-date as the one I plotted. Well, they where in the past (just look at their front figure).</p>
+<p>Apparently they updated to the same bad boundaries that are present in GMT and basemap. Unfortunately I cannot host the good old ones, because their license do do allow re-distribution of their data. That policy is kind of against their logo &quot;Boundaries without limits&quot;, maybe &quot;Boundaries with some limits would be more appropriated&quot;.</p>
+<p>Unfortunately, I'm searching without success for a substitute. The Brazilian <a href="http://www.ibge.gov.br/english/">IBGE</a> provide only <code>KML</code> and <code>KMZ</code> files that, when converted, are not readable by basemap.</p>
+<p>As soon as I find an alternative source I'll update the post.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[2]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+
+<small>
+<p> This post was written as an IPython notebook.  It is available for
+<a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2013-08-19-Brazil_map-take_2.ipynb">download</a> or as a static
+<a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2013-08-19-Brazil_map-take_2.ipynb">html</a>.</p>
+<p></p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title">python4oceanographers</span> by <a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL">Filipe Fernandes</a> is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source">http://ocefpaf.github.io/</a>.
+ 
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div></p></div>
     <footer>
 <p class="meta">
   <span class="byline author vcard">
@@ -1807,6 +1853,9 @@ when converted, are not readable by basemap.</p>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/05/folium/">Easy interactive maps with folium</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/28/windspharm/">Rossby wave source term with windspharm</a>
       </li>
       <li class="post">
@@ -1818,14 +1867,10 @@ when converted, are not readable by basemap.</p>
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/07/aerial_images/">Update on last post</a>
       </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/03/31/itaguare/">Simple drifter experiment with "kitchen tools"</a>
-      </li>
     </ul>
   </section>
   <section>
-      
- 
+
 
   <section>
   </section>
@@ -1845,6 +1890,8 @@ when converted, are not readable by basemap.</p>
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
+<script data-gittip-username="ocefpaf"
+        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>

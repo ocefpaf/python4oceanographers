@@ -1745,7 +1745,7 @@ init_mathjax();
 <body>
   <header role="banner"><hgroup>
   <h1><a href="http://ocefpaf.github.io/python4oceanographers/">python4oceanographers</a></h1>
-    <h2>Learn python with examples applied to marine sciences.</h2>
+    <h2>Turning ripples into waves</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="subscribe-atom">Atom</a></li>
@@ -1770,16 +1770,15 @@ init_mathjax();
   		<article>
 <header>
       <h1 class="entry-title">
-        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Using Basemap to plot points over a SST figure</a>
+        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/">Dealing with spiky data</a>
       </h1>
-      <p class="meta"><time datetime="2013-05-13T22:58:00" pubdate>May 13, 2013</time></p>
+      <p class="meta"><time datetime="2013-05-20T22:58:00" pubdate>May 20, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>Plotting a hydrographic cruise over the latest Sea Surface Temperature image
-available can help a lot with the planning and/or interpretation of the cruise
-data.</p>
-<p>So first lets define a handy function to generate the such a map:</p>
-<p>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The first steps to clean a data-set is to remove outliers (or spikes). Some spikes are easy to spot with a simple histogram of the data. Let's take a look at a velocity time-series with some bad data.</p>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
@@ -1789,7 +1788,32 @@ In&nbsp;[2]:
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt ...</span></pre></div></div></div></div></p></div>
   <footer>
-    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/mapping/">Read On &crarr;</a>
+    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
+        <a href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/plot_over_sst/">Using Basemap to plot points over a SST figure</a>
+      </h1>
+      <p class="meta"><time datetime="2013-05-13T22:58:00" pubdate>May 13, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Plotting a hydrographic cruise over the latest Sea Surface Temperature image available can help a lot with the planning and/or interpretation of the cruise data.</p>
+<p>So first lets define a handy function to generate the such a map:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt ...</span></pre></div></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="http://ocefpaf.github.io/python4oceanographers/blog/2013/05/13/plot_over_sst/">Read On &crarr;</a>
   </footer>
   		</article>
   		<article>
@@ -1831,6 +1855,9 @@ In&nbsp;[1]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/05/folium/">Easy interactive maps with folium</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/28/windspharm/">Rossby wave source term with windspharm</a>
       </li>
       <li class="post">
@@ -1842,14 +1869,10 @@ In&nbsp;[1]:
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/07/aerial_images/">Update on last post</a>
       </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/03/31/itaguare/">Simple drifter experiment with "kitchen tools"</a>
-      </li>
     </ul>
   </section>
   <section>
-      
- 
+
 
   <section>
   </section>
@@ -1869,6 +1892,8 @@ In&nbsp;[1]:
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
+<script data-gittip-username="ocefpaf"
+        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>

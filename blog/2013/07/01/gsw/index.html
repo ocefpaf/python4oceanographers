@@ -1745,7 +1745,7 @@ init_mathjax();
 <body>
   <header role="banner"><hgroup>
   <h1><a href="http://ocefpaf.github.io/python4oceanographers/">python4oceanographers</a></h1>
-    <h2>Learn python with examples applied to marine sciences.</h2>
+    <h2>Turning ripples into waves</h2>
 </hgroup></header>
   <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="subscribe-atom">Atom</a></li>
@@ -1773,52 +1773,154 @@ init_mathjax();
       <p class="meta"><time datetime="2013-07-01T13:42:00" pubdate>Jul 01, 2013</time></p>
 </header>
 
-  <div class="entry-content"><p>The <a href="http://code.google.com/p/python-gsw/">python-gsw</a> module, used in some of
-my previous posts, is an incomplete and unstable version for the
-<a href="http://www.teos-10.org/software.htm#1">Matlab gibbs toolbox</a>.  Because it is
-in constant development the best way to obtain it is to go straight to the
-<a href="http://code.google.com/p/python-gsw/source/browse/">source code</a>.</p>
-<p>The TEOS-10 <a href="http://www.teos-10.org/pubs/TEOS-10_Primer.pdf">primer</a> is an
-excellent place to start before using this toolbox.  It supersedes the now
-obsolete <a href="http://code.google.com/p/python-seawater/">EOS-80</a> seawater module.</p>
-<p>To obtain the latest version of this module you must install <a href="http://mercurial.selenic.com/">mercurial</a> first, then you'll be able to clone the
-repository:</p>
-<div class="highlight"><pre>hg clone https://code.google.com/p/python-gsw/
-</pre></div>
-
-
-<p>Then just add the <strong>python-gsw/gsw</strong> directory into your <strong>PYTHONPATH</strong> so you
-can import it from anywhere.  To update just go into that directory and type:</p>
-<div class="highlight"><pre>hg pull
-hg update
-</pre></div>
-
-
-<p>My work-flow is to download all modules that are in a development phase into a
-"pymodules" directory and then create a <code>symlink</code> inside a local folder that is
-added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <a href="http://code.google.com/p/python-gsw/">python-gsw</a> module, used in some of my previous posts, is an incomplete and unstable version for the <a href="http://www.teos-10.org/software.htm#1">Matlab gibbs toolbox</a>. Because it is in constant development the best way to obtain it is to go straight to the <a href="http://code.google.com/p/python-gsw/source/browse/">source code</a>.</p>
+<p>The TEOS-10 <a href="http://www.teos-10.org/pubs/TEOS-10_Primer.pdf">primer</a> is an excellent place to start before using this toolbox. It supersedes the now obsolete <a href="http://code.google.com/p/python-seawater/">EOS-80</a> seawater module.</p>
+<p>To obtain the latest version of this module you must install <a href="http://mercurial.selenic.com/">mercurial</a> first, then you'll be able to clone the repository:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">hg</span> clone https://code.google.com/p/python-gsw/</code></pre>
+<p>Then just add the <strong>python-gsw/gsw</strong> directory into your <strong>PYTHONPATH</strong> so you can import it from anywhere. To update just go into that directory and type:</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">hg</span> pull
+<span class="kw">hg</span> update</code></pre>
+<p>My work-flow is to download all modules that are in a development phase into a &quot;pymodules&quot; directory and then create a <code>symlink</code> inside a local folder that is added to the <strong>PYTHONPATH</strong> in my .bashrc.</p>
 <p>Here is a small example of some functions present in the module:</p>
-<p>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="c"># Derive.</span>
-<span class="n">p</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">gsw</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">oceans.sw_extras</span> <span class="kn">import</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">,</span> <span class="n">o2sat</span>
+<span class="kn">from</span> <span class="nn">ctd</span> <span class="kn">import</span> <span class="n">DataFrame</span><span class="p">,</span> <span class="n">Series</span><span class="p">,</span> <span class="n">movingaverage</span><span class="p">,</span> <span class="n">rosette_summary</span><span class="p">,</span> <span class="n">lp_filter</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">cast</span> <span class="o">=</span> <span class="n">DataFrame</span><span class="o">.</span><span class="n">from_cnv</span><span class="p">(</span><span class="s">&#39;./data/CTD_001.cnv.gz&#39;</span><span class="p">,</span> <span class="n">compression</span><span class="o">=</span><span class="s">&#39;gzip&#39;</span><span class="p">)</span>
+
+<span class="n">hours</span> <span class="o">=</span> <span class="n">cast</span><span class="p">[</span><span class="s">&#39;timeS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="mf">60.</span> <span class="o">/</span> <span class="mf">60.</span>  <span class="c"># Read metadata.</span>
+<span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">cast</span><span class="o">.</span><span class="n">longitude</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">cast</span><span class="o">.</span><span class="n">latitude</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c"># Apply &#39;bad pump&#39; and &#39;flag&#39;.</span>
+<span class="n">cast</span> <span class="o">=</span> <span class="n">cast</span><span class="p">[</span><span class="n">cast</span><span class="p">[</span><span class="s">&#39;pumps&#39;</span><span class="p">]]</span>  <span class="c"># True for good values.</span>
+<span class="n">cast</span> <span class="o">=</span> <span class="n">cast</span><span class="p">[</span><span class="o">~</span><span class="n">cast</span><span class="p">[</span><span class="s">&#39;flag&#39;</span><span class="p">]]</span>  <span class="c"># True for bad values blame SBE!</span>
+
+<span class="n">keep</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="s">&#39;t090C&#39;</span><span class="p">,</span> <span class="s">&#39;c0S/m&#39;</span><span class="p">,</span> <span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">,</span> <span class="s">&#39;dz/dtM&#39;</span><span class="p">])</span>
+<span class="n">cast</span> <span class="o">=</span> <span class="n">cast</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">keep</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">cast</span><span class="o">.</span><span class="n">columns</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">cast</span><span class="p">[</span><span class="s">&#39;dz/dtM&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movingaverage</span><span class="p">(</span><span class="n">cast</span><span class="p">[</span><span class="s">&#39;dz/dtM&#39;</span><span class="p">],</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+<span class="n">cast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">movingaverage</span><span class="p">(</span><span class="n">cast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">],</span> <span class="n">window_size</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+
+<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">sample_rate</span><span class="o">=</span><span class="mf">24.0</span><span class="p">,</span> <span class="n">time_constant</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+<span class="n">cast</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">lp_filter</span><span class="p">(</span><span class="n">cast</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="n">downcast</span><span class="p">,</span> <span class="n">upcast</span> <span class="o">=</span> <span class="n">cast</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">press_check</span><span class="p">()</span>  <span class="c"># Remove pressure reversals.</span>
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="p">[</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;dz/dtM&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.25</span><span class="p">]</span>  <span class="c"># Threshold velocity.</span>
+
+<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n1</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">n2</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="mi">150</span><span class="p">)</span>
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="o">.</span><span class="n">despike</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="o">.</span><span class="n">bindata</span><span class="p">,</span> <span class="o">**</span><span class="nb">dict</span><span class="p">(</span><span class="n">delta</span><span class="o">=</span><span class="mf">1.</span><span class="p">))</span>
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="o">.</span><span class="n">interpolate</span><span class="p">)</span>
+
+<span class="n">pmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">cast</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">pmax</span> <span class="o">&gt;=</span> <span class="mi">500</span><span class="p">:</span>
+    <span class="n">window_len</span> <span class="o">=</span> <span class="mi">21</span>
+<span class="k">elif</span> <span class="n">pmax</span> <span class="o">&gt;=</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="n">window_len</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">window_len</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">window_len</span><span class="o">=</span><span class="n">window_len</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="s">&#39;hanning&#39;</span><span class="p">)</span>
+<span class="n">downcast</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">Series</span><span class="o">.</span><span class="n">smooth</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">p</span> <span class="o">=</span> <span class="n">downcast</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
 <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;depth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">gsw</span><span class="o">.</span><span class="n">z_from_p</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="c"># ctm [mS/cm] = ctm [S/m] * 10</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0S/m&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SA_from_SP</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sigma0_CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sigma0_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sound_speed_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SP_from_C</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;c0S/m&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">SA_from_SP</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SP&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">CT_from_t</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;t090C&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sigma0_CT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sigma0_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sound&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">sound_speed_CT_exact</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;gamma&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gamma_GP_from_SP_pt</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
 <span class="c"># Does&#39;t fit the DataFrame because the index in at the middle (p_mid) point of the original data.</span>
-<span class="n">N2</span><span class="p">,</span> <span class="n">p_mid</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">Nsquared</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">],</span> <span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
-<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">],</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">])</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">]</span>
+<span class="n">N2</span><span class="p">,</span> <span class="n">p_mid</span> <span class="o">=</span> <span class="n">gsw</span><span class="o">.</span><span class="n">Nsquared</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">lat</span><span class="o">=</span><span class="n">lat</span><span class="p">)</span>
+<span class="n">downcast</span><span class="p">[</span><span class="s">&#39;aou&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">o2sat</span><span class="p">(</span><span class="n">downcast</span><span class="p">[</span><span class="s">&#39;SA&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;CT&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="n">downcast</span><span class="p">[</span><span class="s">&#39;sbeox0Mm/Kg&#39;</span><span class="p">]</span>
 </pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[5]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+<div class="output_html rendered_html">
+
+<small>
+<p> This post was written as an IPython notebook.  It is available for
+<a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2013-07-01-gibbs.ipynb">download</a> or as a static
+<a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2013-07-01-gibbs.ipynb">html</a>.</p>
+<p></p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title">python4oceanographers</span> by <a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL">Filipe Fernandes</a> is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source">http://ocefpaf.github.io/</a>.
+ 
+</div>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -1846,6 +1948,9 @@ In&nbsp;[12]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/05/folium/">Easy interactive maps with folium</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/28/windspharm/">Rossby wave source term with windspharm</a>
       </li>
       <li class="post">
@@ -1857,14 +1962,10 @@ In&nbsp;[12]:
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/04/07/aerial_images/">Update on last post</a>
       </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/03/31/itaguare/">Simple drifter experiment with "kitchen tools"</a>
-      </li>
     </ul>
   </section>
   <section>
-      
- 
+
 
   <section>
   </section>
@@ -1884,6 +1985,8 @@ In&nbsp;[12]:
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
+<script data-gittip-username="ocefpaf"
+        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
