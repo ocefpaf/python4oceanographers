@@ -25,13 +25,13 @@
 
 <body>
 
-   <div class="folium-map" id="folium_15fe9c5010f843579706d6e015534676" style="width: 960px; height: 500px"></div>
+   <div class="folium-map" id="folium_281c269cd9fc4b1b9e62b6ba9ab58efd" style="width: 960px; height: 500px"></div>
 
    <script>
 
       
 
-      var map = L.map('folium_15fe9c5010f843579706d6e015534676').setView([40, -122], 5);
+      var map = L.map('folium_281c269cd9fc4b1b9e62b6ba9ab58efd').setView([40, -122], 5);
 
       L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 18,
