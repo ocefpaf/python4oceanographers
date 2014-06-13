@@ -1,4 +1,4 @@
-Title: A fix for the Water-mass mixing percentage in the South Atlantic post
+Title: Water-mass mixing percentage in the South Atlantic correction
 date:  2014-06-02 17:35
 comments: true
 slug: watermass_fix
