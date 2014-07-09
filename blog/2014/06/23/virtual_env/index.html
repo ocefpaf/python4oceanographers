@@ -1786,7 +1786,7 @@ init_mathjax();
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">chmod</span> +x miniconda.sh
 <span class="kw">./miniconda.sh</span> -b</code></pre></li>
 <li><p>Add <code>Miniconda</code> binaries to our path</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PATH=</span>/<span class="ot">$HOME</span>/anaconda/bin:<span class="ot">$PATH</span></code></pre></li>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PATH=</span>/<span class="ot">$HOME</span>/miniconda/bin:<span class="ot">$PATH</span></code></pre></li>
 </ul>
 <p>(If this is going to become your main python you should add that line to your <code>.bashrc</code>. I do not use it as my main python distribution, so I use a shell script to add it to my path, call my virtual environment, and call ipython.)</p>
 <ul>
@@ -1808,7 +1808,7 @@ init_mathjax();
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">conda</span> create --yes -n other_virtual_env_name python=3.4</code></pre></li>
 </ul>
 <p>I do not use <code>conda</code> as my system python, so I do not add its path to my <code>bashrc</code>. I wrote a small script that calls,</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PATH=</span>/<span class="ot">$HOME</span>/anaconda/bin:<span class="ot">$PATH</span> <span class="kw">&amp;&amp;</span> <span class="kw">source</span> activate virtual_env_name <span class="kw">&amp;&amp;</span> <span class="kw">ipython</span></code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">export</span> <span class="ot">PATH=</span>/<span class="ot">$HOME</span>/miniconda/bin:<span class="ot">$PATH</span> <span class="kw">&amp;&amp;</span> <span class="kw">source</span> activate virtual_env_name <span class="kw">&amp;&amp;</span> <span class="kw">ipython</span></code></pre>
 <p>If you need to install modules to your environment remove the <code>ipython</code> call in the end. If you want to add packages to your main conda environment remove the <code>source activate</code> call.</p>
 <p>If you want to switch between virtual environments just type <code>source deactivate</code> to exit the current env and <code>source activate other_virtual_env_name</code> to enter the new env.</p>
 </div>
@@ -1885,6 +1885,9 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/06/30/shaded_relief/">Plotting shaded relief</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/06/23/virtual_env/">Virtual environment with conda</a>
       </li>
       <li class="post">
@@ -1895,9 +1898,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
       </li>
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/06/02/watermass_fix/">Water-mass mixing percentage in the South Atlantic correction</a>
-      </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/05/26/sensors/">Monitoring your computer temperature</a>
       </li>
     </ul>
   </section>
