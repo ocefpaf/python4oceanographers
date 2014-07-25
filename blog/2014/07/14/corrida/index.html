@@ -1775,11 +1775,12 @@ init_mathjax();
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>I added together two of my hobbies, running and python, into one python package ;). <a href="https://github.com/ocefpaf/python-corrida">python-corrida</a> is a small module based on a Fortran program originally designed by <a href="http://www.io.usp.br/Paulo+S.+Polito">Paulo Polito</a>. this module computes a training spreadsheet for your training. It was based on a paper that, unfortunately, no one seems to find it anymore... Still, it <a href="https://github.com/ocefpaf/python-corrida/blob/master/test/corrida_original.csv">works</a>!</p>
-<p>In addition to the training spreadsheet the module can convert GPX data from a hand-held or phone GPS to a GeoJSON that is rendered automagically by github.</p>
-<p>For the <code>GPX</code> to <code>GeoJSON</code>conversion all you need is <a href="https://pypi.python.org/pypi/GDAL/">GDAL</a>. If you want to use the command line interface the command is:</p>
+<p>I added together two of my hobbies (running and python) into one python package: <a href="https://github.com/ocefpaf/python-corrida">python-corrida</a> is a small module based on a Fortran program originally designed by <a href="http://www.io.usp.br/Paulo+S.+Polito">Paulo Polito</a>. The module computes a spreadsheet for your training. It was based on a paper that, unfortunately, no one seems to find it anymore... Still, it <a href="https://github.com/ocefpaf/python-corrida/blob/master/test/corrida_original.csv">works</a>!</p>
+<p>In addition to the training spreadsheet the module can convert <code>GPX</code> data from hand-held or phone GPS to a GeoJSON that is rendered automagically by github.</p>
+<p>For the <code>GPX</code> to <code>GeoJSON</code> conversion all you need is <a href="https://pypi.python.org/pypi/GDAL/">GDAL</a>. If you want to use the command line interface the command is:</p>
 <p><code>ogr2ogr -f &quot;GeoJSON&quot; Running.json Running.gpx tracks</code></p>
-<p>If you want a the python interface, here is a small script I wrote to do the same as above. It extract only 1 track and the geometry for that track. Most <code>GPX</code> from phone apps are in that format. By extracting just the geometry the <code>GeoJSON</code> will be ready to be rendered by <a href="https://github.com/ocefpaf/python-corrida/blob/master/plotting/GeoJSON/2013-02-03-Running.geojson">github</a>. And <a href="https://github.com/ocefpaf/python-corrida/blob/master/plotting/gpx_to_json.py">here</a> the script that performs the conversion. If you wish to plot it locally just use <a href="https://github.com/jwass/mplleaflet">mplleaflet</a>.</p>
+<p>If you want a the python interface, here is a small script I wrote to do the same as above. It extract only 1 track and the geometry for that track. Most <code>GPX</code> from phone apps are in that format, so no harm there. By extracting just the geometry the <code>GeoJSON</code> will be ready to be rendered by <a href="https://github.com/ocefpaf/python-corrida/blob/master/plotting/GeoJSON/2013-02-03-Running.geojson">github</a>. And <a href="https://github.com/ocefpaf/python-corrida/blob/master/plotting/gpx_to_json.py">here</a> the script that performs the conversion.</p>
+<p>If you wish to plot it locally just use <a href="https://github.com/jwass/mplleaflet">mplleaflet</a> like in the example below.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1938,6 +1939,9 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/07/21/cf-profile/">CF-standards for oceanographic profile data</a>
+      </li>
+      <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/07/14/corrida/">Running</a>
       </li>
       <li class="post">
@@ -1948,9 +1952,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
       </li>
       <li class="post">
           <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/06/23/virtual_env/">Virtual environment with conda</a>
-      </li>
-      <li class="post">
-          <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/06/16/seaborn/">Exploratory analysis using seaborn</a>
       </li>
     </ul>
   </section>
