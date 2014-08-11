@@ -1,4 +1,4 @@
-Title: Building site with Jekyll
+Title: Building sites with Jekyll
 date:  2014-07-28 10:50
 comments: true
 slug: secoora_website
