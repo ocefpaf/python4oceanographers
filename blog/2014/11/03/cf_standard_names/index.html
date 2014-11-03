@@ -4,7 +4,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>python4oceanographers</title>
+  <title>Finding CF-standard Names</title>
   <meta name="author" content="Filipe Fernandes">
 
   <link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" type="application/atom+xml" rel="alternate"
@@ -1791,191 +1791,251 @@ jQuery(document).ready(function($) {
 </ul></nav>
   <div id="main">
     <div id="content">
-<div class="blog-index">
-  		<article>
+<div>
+  <article class="hentry" role="article">
 <header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/03/cf_standard_names/">Finding CF-standard Names</a>
-      </h1>
+      <h1 class="entry-title">Finding CF-standard Names</h1>
       <p class="meta"><time datetime="2014-11-03T22:27:00" pubdate>Nov 03, 2014</time></p>
 </header>
 
   <div class="entry-content"><p>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <a href="http://cfconventions.org/">CF conventions</a> uses standard names for any variable stored using the CF-rules. I often find myself looking for possible names for a specific variable (e.g.: currents or temperature). Sadly, the answer is not that easy. Take a look at the CF Standard Names <a href="http://cfconventions.org/Data/cf-standard-names/27/build/cf-standard-name-table.html">table</a> and check confusion you ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/03/cf_standard_names/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/27/OI/">Gridding data part 1</a>
-      </h1>
-      <p class="meta"><time datetime="2014-10-27T21:34:00" pubdate>Oct 27, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In the last post we filled gaps in a gridded data. However, a more common problem is quite the opposite: to grid scattered (observed) data.</p>
-<p>There are several <a href="http://glossary.ametsoc.org/wiki/Optimum_interpolation">optimum interpolation</a> schemes to grid observed data, two examples are <a href="http://en.wikipedia.org/wiki/Barnes_interpolation">Objective Analysis</a> and <a href="http://en.wikipedia.org/wiki/Local_regression#Advantages_of_LOESS">LOWESS</a>.</p>
-<p>In this post I implemented a simple function ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/27/OI/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/20/gridfill/">Filling gaps in gridded data</a>
-      </h1>
-      <p class="meta"><time datetime="2014-10-20T19:23:00" pubdate>Oct 20, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://ajdawson.github.io/">Andrew Dawson</a> created a neat python module called <a href="https://github.com/ajdawson/gridfill">gridfill</a>. <code>gridfill</code> wraps a FORTRAN90 program that fills missing values in a grid by solving Poisson's equation using an iterative relaxation scheme. It is very similar o NCL's <a href="http://www.ncl.ucar.edu/Document/Functions/Built-in/poisson_grid_fill.shtml">poisson_grid_fill</a>.</p>
-<p>Here is an example on how to use module.</p>
+<p>The <a href="http://cfconventions.org/">CF conventions</a> uses standard names for any variable stored using the CF-rules. I often find myself looking for possible names for a specific variable (e.g.: currents or temperature). Sadly, the answer is not that easy. Take a look at the CF Standard Names <a href="http://cfconventions.org/Data/cf-standard-names/27/build/cf-standard-name-table.html">table</a> and check confusion you get when searching for velocity.</p>
+<p>This post is a quick hack in the <code>xml</code> standard names table to quickly find the proper names. Finding the names is useful when trying to query data that uses CF-rules.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[3 ...</div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/20/gridfill/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/13/r_oce/">R package: oce</a>
-      </h1>
-      <p class="meta"><time datetime="2014-10-13T14:04:00" pubdate>Oct 13, 2014</time></p>
-</header>
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
 
-  <div class="entry-content"><p>
+
+<span class="k">def</span> <span class="nf">remove_name</span><span class="p">(</span><span class="n">exclude</span><span class="p">,</span> <span class="n">standard_name</span><span class="p">):</span>
+    <span class="n">excluded</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">standard_name</span><span class="p">:</span>
+            <span class="n">excluded</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="k">return</span> <span class="n">excluded</span>
+
+
+<span class="k">def</span> <span class="nf">get_standard_names</span><span class="p">(</span><span class="n">hints</span><span class="p">,</span> <span class="n">units</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="sd">&quot;&quot;&quot;If `hints` and `units` are True return `standard_name` in the list.</span>
+<span class="sd">    Searches for `hints` in the description+standard_name, searches and units</span>
+<span class="sd">    in the canonical_units field.&quot;&quot;&quot;</span>
+
+    <span class="n">standard_names</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&#39;./data/cf-standard-name-table.xml&#39;</span><span class="p">)</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">getroot</span><span class="p">()</span>
+    <span class="n">entries</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&#39;entry&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">entries</span><span class="p">:</span>
+        <span class="n">standard_name</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;id&#39;</span><span class="p">)</span>
+        <span class="n">canonical_units</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;canonical_units&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;description&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+        <span class="k">if</span> <span class="n">description</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s">&#39;{} {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">description</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">standard_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">description</span> <span class="o">=</span> <span class="s">&#39;{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">standard_name</span><span class="p">)</span>
+        <span class="n">description</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">description</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>
+
+        <span class="k">if</span> <span class="n">strict</span><span class="p">:</span>
+            <span class="n">remove</span> <span class="o">=</span> <span class="n">remove_name</span><span class="p">(</span><span class="n">exclude</span><span class="p">,</span> <span class="n">standard_name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">hints</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">description</span> <span class="ow">and</span> <span class="n">units</span> <span class="o">==</span> <span class="n">canonical_units</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">remove</span><span class="p">):</span>
+                <span class="n">standard_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">standard_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">hint</span> <span class="ow">in</span> <span class="n">hints</span><span class="p">:</span>
+                <span class="n">remove</span> <span class="o">=</span> <span class="n">remove_name</span><span class="p">(</span><span class="n">exclude</span><span class="p">,</span> <span class="n">standard_name</span><span class="p">)</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">hint</span> <span class="ow">in</span> <span class="n">description</span> <span class="ow">and</span> <span class="n">units</span> <span class="o">==</span> <span class="n">canonical_units</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">remove</span><span class="p">):</span>
+                    <span class="n">standard_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">standard_name</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">standard_names</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">hints</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;temperature&#39;</span><span class="p">,</span> <span class="s">&#39;sea&#39;</span><span class="p">]</span>
+<span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;air&#39;</span><span class="p">]</span>
+<span class="n">units</span> <span class="o">=</span> <span class="s">&#39;K&#39;</span>
+<span class="n">CF_names</span> <span class="o">=</span> <span class="n">get_standard_names</span><span class="p">(</span><span class="n">hints</span><span class="o">=</span><span class="n">hints</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CF_names</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+change_over_time_in_sea_water_conservative_temperature
+change_over_time_in_sea_water_potential_temperature
+change_over_time_in_sea_water_temperature
+equivalent_potential_temperature
+pseudo_equivalent_potential_temperature
+sea_ice_surface_temperature
+sea_surface_foundation_temperature
+sea_surface_skin_temperature
+sea_surface_subskin_temperature
+sea_surface_temperature
+sea_water_conservative_temperature
+sea_water_potential_temperature
+sea_water_temperature
+temperature_of_sensor_for_oxygen_in_sea_water
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[4]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">hints</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;velocity&#39;</span><span class="p">]</span>
+<span class="n">exclude</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ice&#39;</span><span class="p">,</span> <span class="s">&#39;land&#39;</span><span class="p">,</span> <span class="s">&#39;wind&#39;</span><span class="p">,</span> <span class="s">&#39;air&#39;</span><span class="p">]</span>
+<span class="n">units</span> <span class="o">=</span> <span class="s">&#39;m s-1&#39;</span>
+<span class="n">CF_names</span> <span class="o">=</span> <span class="n">get_standard_names</span><span class="p">(</span><span class="n">hints</span><span class="o">=</span><span class="n">hints</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="n">units</span><span class="p">,</span> <span class="n">exclude</span><span class="o">=</span><span class="n">exclude</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">CF_names</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+baroclinic_eastward_sea_water_velocity
+baroclinic_northward_sea_water_velocity
+barotropic_eastward_sea_water_velocity
+barotropic_northward_sea_water_velocity
+barotropic_sea_water_x_velocity
+barotropic_sea_water_y_velocity
+bolus_eastward_sea_water_velocity
+bolus_northward_sea_water_velocity
+bolus_sea_water_x_velocity
+bolus_sea_water_y_velocity
+bolus_upward_sea_water_velocity
+eastward_sea_water_velocity
+eastward_sea_water_velocity_assuming_no_tide
+northward_sea_water_velocity
+northward_sea_water_velocity_assuming_no_tide
+product_of_eastward_sea_water_velocity_and_salinity
+product_of_northward_sea_water_velocity_and_salinity
+radial_sea_water_velocity_away_from_instrument
+radial_velocity_of_scatterers_away_from_instrument
+sea_water_x_velocity
+sea_water_y_velocity
+surface_eastward_sea_water_velocity
+surface_geostrophic_eastward_sea_water_velocity
+surface_geostrophic_eastward_sea_water_velocity_assuming_sea_level_for_geoid
+surface_geostrophic_northward_sea_water_velocity
+surface_geostrophic_northward_sea_water_velocity_assuming_sea_level_for_geoid
+surface_geostrophic_sea_water_x_velocity
+surface_geostrophic_sea_water_x_velocity_assuming_sea_level_for_geoid
+surface_geostrophic_sea_water_y_velocity
+surface_geostrophic_sea_water_y_velocity_assuming_sea_level_for_geoid
+surface_northward_sea_water_velocity
+upward_sea_water_velocity
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://dankelley.github.io/blog/">Dan Kelley</a> is one of those heroes that creates and maintain software libraries for oceanographers. His language of choice is <a href="http://www.r-project.org/">R</a>, I particularly do not like R syntax. I use it only when I have really have to.</p>
-<p>However, R does have some amazing libraries, like Dan's <a href="http://dankelley.github.io/oce/examples.html">oce</a> package ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/13/r_oce/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/06/world_bank_data/">World Bank Data</a>
-      </h1>
-      <p class="meta"><time datetime="2014-10-06T16:14:00" pubdate>Oct 06, 2014</time></p>
-</header>
+<p>Simple and efficient! (At least I like to think so ;-)</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[5]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+</pre></div>
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>(Warning this post is written in Brazilian Portuguese and it is heavily laced with the political option of the author!)</p>
-<p>Não tenho TV e por isso tem sido <del>difícil</del> fácil sobreviver esse período eleitoral no Brasil. Mesmo assim sou bombardeado com &quot;notícias&quot;, afinal a internet está recheada com opiniões, análises ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/06/world_bank_data/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/29/exploring_new_cartopy/">Exploring what's new in Cartopy</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-29T19:43:00" pubdate>Sep 29, 2014</time></p>
-</header>
+</div>
+</div>
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I was exploring <a href="http://scitools.org.uk/cartopy/docs/latest/whats_new.html">what's new</a> in the latest release of cartopy, one of the new features I found out is that cartopy can plot from both Web Map Service <a href="http://en.wikipedia.org/wiki/Web_Map_Service">(WMS)</a> and Web Map Tile Service <a href="http://en.wikipedia.org/wiki/Web_Map_Tile_Service">(WMTS)</a>.</p>
-<p>This post is just to show a few examples. As usual lets start ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/29/exploring_new_cartopy/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/22/edge_detection/">Finding oceanic fronts with edge detection techniques</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-22T13:43:00" pubdate>Sep 22, 2014</time></p>
-</header>
+<div class="vbox output_wrapper">
+<div class="output vbox">
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>After a friend pointed me to this nice <a href="http://opencvpython.blogspot.com.br/2012/06/image-derivatives-sobel-and-scharr.html">blog post</a> about images derivatives with <a href="http://opencv.org/">openCV</a> I had to try it with an Sea Surface Temperature (SST) to see if we can obtain something useful.</p>
-<p>First lets download some data. In the first cell I use <code>iris</code> to load the SST ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/22/edge_detection/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Stick Plots with matplotlib</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-15T13:51:00" pubdate>Sep 15, 2014</time></p>
-</header>
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This short post consists of some notes on how to plot a stick plot with matplotlib. The function I used below is mostly based on <a href="https://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg18051.html">this</a> message from the mailing list.</p>
-<p>The main differences are:</p>
-<ul>
-<li><p>Plot customization via <code>**kw</code>.</p></li>
-<li><p>Ensure that the user does not change the <code>angles</code> option to ...</p></li></ul></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/08/srtm/">Using SRTM data to correct GPS altimetry</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-08T18:22:00" pubdate>Sep 08, 2014</time></p>
-</header>
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[5]:</div>
+<div class="box-flex1 output_subarea output_pyout">
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I used <a href="https://github.com/tkrajina/gpxpy">gpxpy</a> in a previous <a href="http://ocefpaf.github.io/python4oceanographers/blog/2014/08/18/gpx/">post</a> to read and plot GPX files from smart-phones. Here I will show another module from the same author, <a href="https://github.com/tkrajina">Tomo Krajina</a>, named <a href="https://github.com/tkrajina/srtm.py">srtm.py</a>. This module reads <a href="http://www2.jpl.nasa.gov/srtm/">SRTM</a> files and extract the elevation data at the positions recorded in a GPX file. That is ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/08/srtm/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/01/ipython_kernel/">Jupyter/IPython kernels for venvs</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-01T15:37:00" pubdate>Sep 01, 2014</time></p>
-</header>
+<div class="output_html rendered_html">
 
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a short but very useful post.</p>
-<p>The new Jupyter/IPython architecture accepts multiples kernels, one can run <code>R</code>, <code>Julia</code>, <code>Haskell</code> and many other languages. Here is list of kernels that are available for installation:</p>
-<ul>
-<li><a href="https://github.com/JuliaLang/IJulia.jl">Julia</a></li>
-<li><a href="https://github.com/takluyver/IRkernel">R</a></li>
-<li><a href="https://github.com/minrk/iruby">Ruby</a></li>
-<li><a href="https://github.com/gibiansky/IHaskell">Haskell</a></li>
-<li><a href="https://github.com/Bridgewater/scala-notebook">Scala</a></li>
-<li><a href="https://gist.github.com/Carreau/4279371">node.js</a></li>
-<li><a href="https://github.com/takluyver/igo">Go</a></li>
-<li><a href="https://github.com/takluyver/bash_kernel">Bash</a></li>
-<li><a href="https://pypi.python.org/pypi/chatbot_kernel/0.1">Chatbot</a></li>
-</ul>
-<p>It is possible to ...</p></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/01/ipython_kernel/">Read On &crarr;</a>
-  </footer>
-  		</article>
-<div class="pagination">
-    <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index2.html">&larr; Older</a>
+<small>
+<p> This post was written as an IPython notebook.
+ It is available for <a href='http://ocefpaf.github.com/python4oceanographers/downloads/notebooks/2014-11-03-cf_standard_names.ipynb'>download</a>
+ or as a static <a href='http://nbviewer.ipython.org/url/ocefpaf.github.com/python4oceanographers/downloads/notebooks/2014-11-03-cf_standard_names.ipynb'>html</a>.</p>
+<p></p>
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br /><span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title">python4oceanographers</span> by <a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL">Filipe Fernandes</a> is
+licensed under a <a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.<br />Based on a work at <a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source">http://ocefpaf.github.io/</a>.
 
-  <br />
-</div></div>
+</div>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div></p></div>
+    <footer>
+<p class="meta">
+  <span class="byline author vcard">
+    Posted by <span class="fn">Filipe Fernandes</span>
+  </span>
+<time datetime="2014-11-03T22:27:00" pubdate>Nov 03, 2014</time></p><div class="sharing">
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/03/cf_standard_names/" data-via="ocefpaf" data-counturl="ocefpaf.github.io/python4oceanographers/blog/2014/11/03/cf_standard_names/" >Tweet</a>
+  <div class="g-plusone" data-size="medium"></div>
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+</div>    </footer>
+  </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div>
+  </section>
+</div>
 <aside class="sidebar">
   <section>
     <h1>Recent Posts</h1>
@@ -2046,6 +2106,9 @@ In&nbsp;[3 ...</div></div></div></p></div>
 </script>
 	<script type="text/javascript">
 	  var disqus_shortname = 'python4oceanographers';
+          var disqus_identifier = '/blog/2014/11/03/cf_standard_names/';
+          var disqus_url = 'https://ocefpaf.github.io/python4oceanographers/blog/2014/11/03/cf_standard_names/';
+          var disqus_title = 'Finding CF-standard Names';
 	  (function() {
 	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
 	    dsq.src = "//" + disqus_shortname + '.disqus.com/embed.js';
