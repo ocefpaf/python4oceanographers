@@ -3,8 +3,8 @@
 % Optimally interpolate the data set x,y,data using the chosen covariance
 % function form
 
-%% Take a chunk of the data out to ilustrate what happens to the expected
-%  error when the sampling is sparse  
+%% Take a chunk of the data out to illustrate what happens to the expected
+%  error when the sampling is sparse
 if demo_gap
   clip = find(xx>-70&xx<-68);
   xkm(clip) = [];
@@ -15,7 +15,7 @@ if demo_gap
 end
 
 %% Coordinate matrices
-% Build matrices that repeat columns of x and rows of y. Then X-X' and Y-Y' 
+% Build matrices that repeat columns of x and rows of y. Then X-X' and Y-Y'
 % will be all possible distance combinations between pairs of points
 X = repmat(xkm,[1 length(ykm)]);
 Y = repmat(ykm',[length(xkm) 1]);
@@ -32,10 +32,10 @@ Rdd = sqrt((X-X').^2+(Y-Y').^2);
 % cancels out in product of Cmd*inv(Cdd)
 
 b(2) = 50;  % or 300 <---- see what happens with sub-optimal scale
-disp(['optimal length scale was ' num2str(b(2))]) 
+disp(['optimal length scale was ' num2str(b(2))])
 switch best_method
   case 'Markov'
-    Cdd0 = (1+Rdd/b(2)).*exp(-Rdd/(b(2))); 
+    Cdd0 = (1+Rdd/b(2)).*exp(-Rdd/(b(2)));
   case 'Gaussian'
     error([mfilename 'code is set up for Markov function case only'])
 end
@@ -69,23 +69,23 @@ Cmd = (1+Rmd/b(2)).*exp(-Rmd/b(2));
 
 %% Do the optimal interpolation ------------------------------------------
 
-timer=cputime; 
+timer=cputime;
 D = mean(data) + Cmd*inv(Cdd)*(data-mean(data));
 disp(['OI by inv(Cdd) took ' num2str(cputime-timer) ' seconds'])
 
-timer=cputime; 
+timer=cputime;
 D = mean(data) + Cmd*(Cdd\(data-mean(data)));
 disp(['OI by mldivide took ' num2str(cputime-timer) ' seconds'])
 if pauseit; disp('paused...');pause; end
 
 % Reshape to matrix so we can plot with pcolor
-D = reshape(D,size(xg)); 
+D = reshape(D,size(xg));
 
-%% Map to original data locations so we can examine the residuals of the 
-% optimal interpolation fit. This is done by simply using Cdd0 as the 
-% Cmd matrix (i.e.the 'model' grid points are now just the data points). 
-% Note that we don't use Cdd because Cdd has the error variance added to 
-% the diagonal. We must use Cdd0, which was saved prior to adding the 
+%% Map to original data locations so we can examine the residuals of the
+% optimal interpolation fit. This is done by simply using Cdd0 as the
+% Cmd matrix (i.e.the 'model' grid points are now just the data points).
+% Note that we don't use Cdd because Cdd has the error variance added to
+% the diagonal. We must use Cdd0, which was saved prior to adding the
 % error variance, for this to work.
 D0 = mean(data) + Cdd0*inv(Cdd)*(data-mean(data));
 

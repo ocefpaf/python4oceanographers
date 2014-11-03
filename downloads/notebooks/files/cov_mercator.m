@@ -12,7 +12,7 @@ e = 0.75;
 [xg,yg] = meshgrid(-78:(1/3):-61,31:(1/3):42);
 
 if exist('temp','var')~=1
-  load mercator_temperature
+  load ../data/mercator_temperature.mat
 end
 [xx,yy] = meshgrid(x,y);
 k = 10; % depth index into Mercator data
