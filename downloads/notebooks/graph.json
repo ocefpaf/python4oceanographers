@@ -1,0 +1,633 @@
+{
+    "directed": true, 
+    "graph": [], 
+    "nodes": [
+        {
+            "name": "mplleaflet", 
+            "id": "mplleaflet"
+        }, 
+        {
+            "name": "numexpr", 
+            "id": "numexpr"
+        }, 
+        {
+            "name": "affine", 
+            "id": "affine"
+        }, 
+        {
+            "name": "netcdf4", 
+            "id": "netcdf4"
+        }, 
+        {
+            "name": "pymc", 
+            "id": "pymc"
+        }, 
+        {
+            "name": "pyoos", 
+            "id": "pyoos"
+        }, 
+        {
+            "name": "python-dateutil", 
+            "id": "python-dateutil"
+        }, 
+        {
+            "name": "isodate", 
+            "id": "isodate"
+        }, 
+        {
+            "name": "suds", 
+            "id": "suds"
+        }, 
+        {
+            "name": "fiona", 
+            "id": "fiona"
+        }, 
+        {
+            "name": "pyparsing", 
+            "id": "pyparsing"
+        }, 
+        {
+            "name": "biggus", 
+            "id": "biggus"
+        }, 
+        {
+            "name": "folium", 
+            "id": "folium"
+        }, 
+        {
+            "name": "html5lib", 
+            "id": "html5lib"
+        }, 
+        {
+            "name": "appdirs", 
+            "id": "appdirs"
+        }, 
+        {
+            "name": "shapely", 
+            "id": "shapely"
+        }, 
+        {
+            "name": "octant", 
+            "id": "octant"
+        }, 
+        {
+            "name": "pyugrid", 
+            "id": "pyugrid"
+        }, 
+        {
+            "name": "paegan", 
+            "id": "paegan"
+        }, 
+        {
+            "name": "lxml", 
+            "id": "lxml"
+        }, 
+        {
+            "name": "geos", 
+            "id": "geos"
+        }, 
+        {
+            "name": "six", 
+            "id": "six"
+        }, 
+        {
+            "name": "click", 
+            "id": "click"
+        }, 
+        {
+            "name": "rdflib", 
+            "id": "rdflib"
+        }, 
+        {
+            "name": "thredds_crawler", 
+            "id": "thredds_crawler"
+        }, 
+        {
+            "name": "wicken", 
+            "id": "wicken"
+        }, 
+        {
+            "name": "ulmo", 
+            "id": "ulmo"
+        }, 
+        {
+            "name": "udunitspy", 
+            "id": "udunitspy"
+        }, 
+        {
+            "name": "rasterio", 
+            "id": "rasterio"
+        }, 
+        {
+            "name": "numpy", 
+            "id": "numpy"
+        }, 
+        {
+            "name": "pandas", 
+            "id": "pandas"
+        }, 
+        {
+            "name": "mock", 
+            "id": "mock"
+        }, 
+        {
+            "name": "compliance-checker", 
+            "id": "compliance-checker"
+        }, 
+        {
+            "name": "openpyxl", 
+            "id": "openpyxl"
+        }, 
+        {
+            "name": "oceans", 
+            "id": "oceans"
+        }, 
+        {
+            "name": "sparqlwrapper", 
+            "id": "sparqlwrapper"
+        }, 
+        {
+            "name": "matplotlib", 
+            "id": "matplotlib"
+        }, 
+        {
+            "name": "udunits2", 
+            "id": "udunits2"
+        }, 
+        {
+            "name": "pytz", 
+            "id": "pytz"
+        }, 
+        {
+            "name": "jinja2", 
+            "id": "jinja2"
+        }, 
+        {
+            "name": "pyreadline", 
+            "id": "pyreadline"
+        }, 
+        {
+            "name": "cartopy", 
+            "id": "cartopy"
+        }, 
+        {
+            "name": "ipython", 
+            "id": "ipython"
+        }, 
+        {
+            "name": "beautifulsoup4", 
+            "id": "beautifulsoup4"
+        }, 
+        {
+            "name": "petulant-bear", 
+            "id": "petulant-bear"
+        }, 
+        {
+            "name": "gensim", 
+            "id": "gensim"
+        }, 
+        {
+            "name": "gdal", 
+            "id": "gdal"
+        }, 
+        {
+            "name": "prettyplotlib", 
+            "id": "prettyplotlib"
+        }, 
+        {
+            "name": "iris", 
+            "id": "iris"
+        }, 
+        {
+            "name": "gsw", 
+            "id": "gsw"
+        }, 
+        {
+            "name": "pytables", 
+            "id": "pytables"
+        }, 
+        {
+            "name": "pyke", 
+            "id": "pyke"
+        }, 
+        {
+            "name": "enum34", 
+            "id": "enum34"
+        }, 
+        {
+            "name": "airsea", 
+            "id": "airsea"
+        }, 
+        {
+            "name": "owslib", 
+            "id": "owslib"
+        }, 
+        {
+            "name": "seawater", 
+            "id": "seawater"
+        }, 
+        {
+            "name": "ctd", 
+            "id": "ctd"
+        }, 
+        {
+            "name": "scipy", 
+            "id": "scipy"
+        }, 
+        {
+            "name": "mplexporter", 
+            "id": "mplexporter"
+        }, 
+        {
+            "name": "brewer2mpl", 
+            "id": "brewer2mpl"
+        }, 
+        {
+            "name": "requests", 
+            "id": "requests"
+        }, 
+        {
+            "name": "basemap", 
+            "id": "basemap"
+        }, 
+        {
+            "name": "tappy", 
+            "id": "tappy"
+        }, 
+        {
+            "name": "udunits", 
+            "id": "udunits"
+        }
+    ], 
+    "links": [
+        {
+            "source": 0, 
+            "target": 39
+        }, 
+        {
+            "source": 0, 
+            "target": 58
+        }, 
+        {
+            "source": 4, 
+            "target": 57
+        }, 
+        {
+            "source": 4, 
+            "target": 29
+        }, 
+        {
+            "source": 5, 
+            "target": 18
+        }, 
+        {
+            "source": 5, 
+            "target": 19
+        }, 
+        {
+            "source": 5, 
+            "target": 54
+        }, 
+        {
+            "source": 5, 
+            "target": 9
+        }, 
+        {
+            "source": 5, 
+            "target": 60
+        }, 
+        {
+            "source": 5, 
+            "target": 29
+        }, 
+        {
+            "source": 5, 
+            "target": 43
+        }, 
+        {
+            "source": 9, 
+            "target": 21
+        }, 
+        {
+            "source": 9, 
+            "target": 46
+        }, 
+        {
+            "source": 12, 
+            "target": 29
+        }, 
+        {
+            "source": 12, 
+            "target": 39
+        }, 
+        {
+            "source": 12, 
+            "target": 33
+        }, 
+        {
+            "source": 12, 
+            "target": 30
+        }, 
+        {
+            "source": 15, 
+            "target": 20
+        }, 
+        {
+            "source": 16, 
+            "target": 61
+        }, 
+        {
+            "source": 16, 
+            "target": 29
+        }, 
+        {
+            "source": 16, 
+            "target": 3
+        }, 
+        {
+            "source": 16, 
+            "target": 36
+        }, 
+        {
+            "source": 17, 
+            "target": 29
+        }, 
+        {
+            "source": 17, 
+            "target": 3
+        }, 
+        {
+            "source": 18, 
+            "target": 3
+        }, 
+        {
+            "source": 18, 
+            "target": 57
+        }, 
+        {
+            "source": 18, 
+            "target": 38
+        }, 
+        {
+            "source": 18, 
+            "target": 6
+        }, 
+        {
+            "source": 18, 
+            "target": 29
+        }, 
+        {
+            "source": 18, 
+            "target": 15
+        }, 
+        {
+            "source": 23, 
+            "target": 10
+        }, 
+        {
+            "source": 23, 
+            "target": 7
+        }, 
+        {
+            "source": 23, 
+            "target": 13
+        }, 
+        {
+            "source": 24, 
+            "target": 60
+        }, 
+        {
+            "source": 24, 
+            "target": 19
+        }, 
+        {
+            "source": 25, 
+            "target": 44
+        }, 
+        {
+            "source": 25, 
+            "target": 19
+        }, 
+        {
+            "source": 26, 
+            "target": 19
+        }, 
+        {
+            "source": 26, 
+            "target": 50
+        }, 
+        {
+            "source": 26, 
+            "target": 7
+        }, 
+        {
+            "source": 26, 
+            "target": 14
+        }, 
+        {
+            "source": 26, 
+            "target": 8
+        }, 
+        {
+            "source": 26, 
+            "target": 60
+        }, 
+        {
+            "source": 26, 
+            "target": 43
+        }, 
+        {
+            "source": 26, 
+            "target": 29
+        }, 
+        {
+            "source": 26, 
+            "target": 30
+        }, 
+        {
+            "source": 26, 
+            "target": 31
+        }, 
+        {
+            "source": 27, 
+            "target": 37
+        }, 
+        {
+            "source": 27, 
+            "target": 1
+        }, 
+        {
+            "source": 28, 
+            "target": 52
+        }, 
+        {
+            "source": 28, 
+            "target": 2
+        }, 
+        {
+            "source": 28, 
+            "target": 22
+        }, 
+        {
+            "source": 28, 
+            "target": 46
+        }, 
+        {
+            "source": 32, 
+            "target": 19
+        }, 
+        {
+            "source": 32, 
+            "target": 54
+        }, 
+        {
+            "source": 32, 
+            "target": 6
+        }, 
+        {
+            "source": 32, 
+            "target": 25
+        }, 
+        {
+            "source": 32, 
+            "target": 27
+        }, 
+        {
+            "source": 32, 
+            "target": 60
+        }, 
+        {
+            "source": 34, 
+            "target": 3
+        }, 
+        {
+            "source": 34, 
+            "target": 49
+        }, 
+        {
+            "source": 34, 
+            "target": 36
+        }, 
+        {
+            "source": 34, 
+            "target": 56
+        }, 
+        {
+            "source": 34, 
+            "target": 55
+        }, 
+        {
+            "source": 34, 
+            "target": 57
+        }, 
+        {
+            "source": 34, 
+            "target": 29
+        }, 
+        {
+            "source": 34, 
+            "target": 30
+        }, 
+        {
+            "source": 34, 
+            "target": 15
+        }, 
+        {
+            "source": 35, 
+            "target": 23
+        }, 
+        {
+            "source": 42, 
+            "target": 40
+        }, 
+        {
+            "source": 44, 
+            "target": 19
+        }, 
+        {
+            "source": 44, 
+            "target": 29
+        }, 
+        {
+            "source": 44, 
+            "target": 3
+        }, 
+        {
+            "source": 45, 
+            "target": 57
+        }, 
+        {
+            "source": 45, 
+            "target": 21
+        }, 
+        {
+            "source": 47, 
+            "target": 59
+        }, 
+        {
+            "source": 47, 
+            "target": 36
+        }, 
+        {
+            "source": 48, 
+            "target": 3
+        }, 
+        {
+            "source": 48, 
+            "target": 20
+        }, 
+        {
+            "source": 48, 
+            "target": 36
+        }, 
+        {
+            "source": 48, 
+            "target": 11
+        }, 
+        {
+            "source": 48, 
+            "target": 51
+        }, 
+        {
+            "source": 48, 
+            "target": 57
+        }, 
+        {
+            "source": 48, 
+            "target": 15
+        }, 
+        {
+            "source": 48, 
+            "target": 41
+        }, 
+        {
+            "source": 48, 
+            "target": 29
+        }, 
+        {
+            "source": 48, 
+            "target": 63
+        }, 
+        {
+            "source": 53, 
+            "target": 29
+        }, 
+        {
+            "source": 55, 
+            "target": 29
+        }, 
+        {
+            "source": 58, 
+            "target": 36
+        }, 
+        {
+            "source": 62, 
+            "target": 57
+        }, 
+        {
+            "source": 62, 
+            "target": 29
+        }
+    ], 
+    "multigraph": false
+}
