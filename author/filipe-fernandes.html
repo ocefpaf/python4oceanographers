@@ -1795,6 +1795,33 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Filtering out tides with pandas, iris and numpy</a>
+      </h1>
+      <p class="meta"><time datetime="2014-11-24T16:23:00" pubdate>Nov 24, 2014</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a short post on how to filter out tides from a time-series using <code>pandas</code>, <code>iris</code>, and <code>numpy.convolve</code>.</p>
+<p>Our data consists of hourly measurements of currents, temperature and salinity as follows:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_table</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://raw.githubusercontent.com/ocefpaf/python4oceanographers ...</span></pre></div></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/17/networkX/">Analyzing software dependencies with networkX</a>
       </h1>
       <p class="meta"><time datetime="2014-11-17T18:54:00" pubdate>Nov 17, 2014</time></p>
@@ -1941,25 +1968,6 @@ In&nbsp;[3 ...</div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/22/edge_detection/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Stick Plots with matplotlib</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-15T13:51:00" pubdate>Sep 15, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This short post consists of some notes on how to plot a stick plot with matplotlib. The function I used below is mostly based on <a href="https://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg18051.html">this</a> message from the mailing list.</p>
-<p>The main differences are:</p>
-<ul>
-<li><p>Plot customization via <code>**kw</code>.</p></li>
-<li><p>Ensure that the user does not change the <code>angles</code> option to ...</p></li></ul></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/author/filipe-fernandes2.html">&larr; Older</a>
 
@@ -1969,6 +1977,9 @@ In&nbsp;[3 ...</div></div></div></p></div>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Filtering out tides with pandas, iris and numpy</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/17/networkX/">Analyzing software dependencies with networkX</a>
       </li>
@@ -1980,9 +1991,6 @@ In&nbsp;[3 ...</div></div></div></p></div>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/27/OI/">Gridding data part 1</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/10/20/gridfill/">Filling gaps in gridded data</a>
       </li>
     </ul>
   </section>
