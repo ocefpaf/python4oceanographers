@@ -92,8 +92,9 @@ TWITTER_SHOW_REPLIES = 'false'
 TWITTER_SHOW_FOLLOWER_COUNT = 'true'
 
 # RSS/Atom feeds
-FEED_DOMAIN = 'http://ocefpaf.github.io/python4oceanographers/'
 FEED_ATOM = 'atom.xml'
+FEED_DOMAIN = 'http://ocefpaf.github.io/python4oceanographers/'
+FEED_MAX_ITEMS = 5
 
 # Search
 SEARCH_BOX = True
