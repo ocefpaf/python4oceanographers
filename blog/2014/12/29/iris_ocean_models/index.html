@@ -3238,7 +3238,7 @@ v shape (80, 128)
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>All shapes are consistent now! But the process to get here was quite cumbersome, and the velocities (<span class="math">\(u\)</span>, <span class="math">\(v\)</span>) are no longer cubes, just plain ndarrays. To use iris high level stuff we would have to reconstruct the cube.</p>
 <p>Iris developers are aware of the <a href="https://github.com/SciTools/iris/issues/1164">issue</a>, and some actions have already been taken to allow users to load the data and take advantage of the cube object.</p>
-<p>Iris <code>cube.regrid()</code> could save us from all that, but regridding does not work with 2D coordinates :(</p>
+<p>Iris <code>cube.regrid()</code> could save us from all that, but regridding does not work with 2D coordinates :-(</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="rotated-grids">Rotated grids</h3>
@@ -4474,7 +4474,7 @@ vXUAAAAASUVORK5CYII=
 <p>The last topic on this post: iris Ocean Dimensionless Vertical Coordinates (ODVC) factories. <del>Right now iris implements only <strong>Ocean Sigma over Z</strong></del>. <strong>Ocean Sigma over Z</strong> is rarely used, I have no idea why iris developers chose it to start! For a list of more common ones see <a href="https://github.com/SciTools/iris/issues/762">here</a>. (Those are already available via <a href="https://github.com/SciTools/iris/pull/1304">#1304</a>)</p>
 <p>Note that the current version of iris will raise an <code>Exception</code> when trying to create the derived coordinate with insufficient formula terms. But staggered grids do not have the formula terms defined in all grids. So... Congratulations! Two issues in one!!.</p>
 <p>PR <a href="https://github.com/SciTools/iris/pull/1485">#1485</a> <del>will change</del> changed the <code>Exception</code> into a <code>warning</code>. So iris loads the data failing only to construct the vertical coordinate for variables that do not have the formula terms properly specified.</p>
-<p>Take a look at <a href="http://nbviewer.ipython.org/urls/gist.githubusercontent.com/ocefpaf/18e8fe29005c148fe0e3/raw/03fc4213c76d4210f010256b35b0f2632455ef17/ocean_DVC.ipynb">this</a> notebook to see side-by-side Matlab/Python examples for <strong>ocean sigma coordinate</strong>, <strong>ocean s-coordinate</strong>, <strong>ocean sigma over z coordinate</strong> (all CF-1.6). The notebook also includes examples for <strong>ocean s coordinate g1</strong> (sg1) and <strong>ocean s coordinate g2</strong> (sg2), that will be included in <a href="https://cf-pcmdi.llnl.gov/trac/ticket/93">CF-1.7</a>.</p>
+<p>Take a look at <a href="http://nbviewer.ipython.org/urls/gist.githubusercontent.com/ocefpaf/18e8fe29005c148fe0e3/raw/03fc4213c76d4210f010256b35b0f2632455ef17/ocean_DVC.ipynb">this</a> notebook to see side-by-side Matlab/Python examples for <strong>ocean sigma coordinate</strong>, <strong>ocean s-coordinate</strong>, <strong>ocean sigma over z coordinate</strong> (all CF-1.6). The notebook also includes examples for <strong>ocean s coordinate g1</strong> (sg1) and <strong>ocean s coordinate g2</strong> (sg2), that will be included in <a href="http://cf-trac.llnl.gov/trac/ticket/93">CF-1.7</a>.</p>
 <p>Before someone asks why implement sg1 and sg2, that are not in the current CF conventions yet, and why leave <strong>ocean double sigma coordinate</strong> out, well... I could not find a single dataset with <strong>ocean double sigma coordinate</strong>, but every modern ROMS output is either sg1 or sg2.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -5151,7 +5151,8 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     </ul>
   </section>
   <section>
-
+      
+ 
 
   <section>
   </section>
@@ -5171,8 +5172,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
 <section>
     <a href="http://twitter.com/ocefpaf" class="twitter-follow-button" data-show-count="true">Follow @ocefpaf</a>
 </section>
-<script data-gittip-username="ocefpaf"
-        src="//gttp.co/v1.js"></script>
 </aside>    </div>
   </div>
   <footer role="contentinfo"><p>
