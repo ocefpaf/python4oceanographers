@@ -30,23 +30,22 @@ MENUITEMS = [('Blog', '%s/python4oceanographers' % uri),
 NEWEST_FIRST_ARCHIVES = True
 
 # Github include settings.
-#GITHUB_USER = 'ocefpaf'
-#GITHUB_REPO_COUNT = 0
-#GITHUB_SKIP_FORK = True
-#GITHUB_SHOW_USER_LINK = True
+# GITHUB_USER = 'ocefpaf'
+# GITHUB_REPO_COUNT = 0
+# GITHUB_SKIP_FORK = True
+# GITHUB_SHOW_USER_LINK = True
 
 # Blogroll.
-LINKS =  (('PyAOS', 'http://pyaos.johnny-lin.com/'),
-          ('EarthPy', 'http://earthpy.org/'),
-          ("Rich Signell's Notebook Blog",
-              'http://rsignell-usgs.github.io/blog/'),
-          ('drclimate', 'http://drclimate.wordpress.com/'),
-          ('Software Carpentry',
-           'http://software-carpentry.org/blog/index.html'),)
+LINKS = (('PyAOS', 'http://pyaos.johnny-lin.com/'),
+         ('EarthPy', 'http://earthpy.org/'),
+         ('PyHOGs', 'http://pyhogs.github.io/'),
+         ('drclimate', 'http://drclimate.wordpress.com/'),
+         ('Software Carpentry',
+          'http://software-carpentry.org/blog/index.html'),)
 
 # Social widget.
-#SOCIAL = (('You can add links in your config file', '#'),
-          #('Another social link', '#'),)
+# SOCIAL = (('You can add links in your config file', '#'),
+#           ('Another social link', '#'),)
 
 DEFAULT_PAGINATION = 10
 
