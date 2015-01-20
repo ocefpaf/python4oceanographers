@@ -1,15 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/misc.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-01-05T22:51:00-02:00</updated><entry><title>To Pcolor or not to Pcolor</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/05/pcolor/" rel="alternate"></link><updated>2015-01-05T22:51:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-01-05:blog/2015/01/05/pcolor/</id><summary type="html">&lt;p&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Matplotlib's pcolor is not like MatlabTM pcolor, and that leads to some confusion. In fact, matplotlib's pcolor is an improved way to &amp;quot;pcolor&amp;quot; things.&lt;/p&gt;
-&lt;p&gt;Here are some plots to illustrate what I mean. First, some fake data&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/misc.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-01-12T12:30:00-02:00</updated><entry><title>SEAPY is dead, long live SEAPY!</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/12/SEAPY/" rel="alternate"></link><updated>2015-01-12T12:30:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-01-12:blog/2015/01/12/SEAPY/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Some time ago I started a website called
+&lt;a href="https://code.google.com/p/sea-py/wiki/SEAPY"&gt;SEAPY&lt;/a&gt; &lt;del&gt;shameless copied from&lt;/del&gt;
+based on WHOI&amp;#39;s &lt;a href="http://woodshole.er.usgs.gov/operations/sea-mat"&gt;SEAMAT&lt;/a&gt;.
+However, as any site that contains list of links, it suffered (and badly) from
+&lt;a href="http://en.wikipedia.org/wiki/Link_rot"&gt;link rot&lt;/a&gt;.  So here it is, SEAPY is
+dead, long live SEAPY.  I am closing the old google code site and re-opening it
+on GitHub.&lt;/p&gt;
+&lt;p&gt;Why GitHub?  Well, GitHub is a social network for open source
+programmers and GitHub lowers the barriers to collaboration.  People that are
+familiar with GitHub can send PRs and those who are unfamiliar can open issues.
+All you need is a free GitHub account.&lt;/p&gt;
+&lt;p&gt;Here is the new site link:&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://ocefpaf.github.io/seapy/"&gt;http://ocefpaf.github.io/seapy/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The site can be forked from &lt;a href="https://github.com/ocefpaf/seapy"&gt;here&lt;/a&gt; and if you
+are:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;the author of a library in the list and want a better description&lt;/li&gt;
+&lt;li&gt;user of a library that is not in the list&lt;/li&gt;
+&lt;li&gt;someone passing by that just found a broken link&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I want to hear from you!  Go &lt;a href="https://github.com/ocefpaf/seapy/issues"&gt;here&lt;/a&gt;
+and open issues asking/fixing/commenting.&lt;/p&gt;
+&lt;p&gt;PS: We need a logo!!!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[2]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[2]:&lt;/div&gt;
+
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
+
+&lt;small&gt;
+&lt;p&gt; This post was written as an IPython notebook.  It is available for
+&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2015-01-12-SEAPY.ipynb"&gt;download&lt;/a&gt; or as a static
+&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2015-01-12-SEAPY.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
+licensed under a &lt;a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
+Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
+ 
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>To Pcolor or not to Pcolor</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/05/pcolor/" rel="alternate"></link><updated>2015-01-05T22:51:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-01-05:blog/2015/01/05/pcolor/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Matplotlib&amp;#39;s pcolor is not like MatlabTM pcolor, and that leads to some
+confusion.  In fact, matplotlib&amp;#39;s pcolor is an improved way to &amp;quot;pcolor&amp;quot; things.&lt;/p&gt;
+&lt;p&gt;Here are some plots to illustrate what I mean.  First, some fake data&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[2]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 
 &lt;span class="n"&gt;data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;array&lt;/span&gt;&lt;span class="p"&gt;([[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;]])&lt;/span&gt;
@@ -19,17 +109,25 @@ In&amp;nbsp;[2]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;now lets plot the data passing the &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; coordinates to pcolor:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[3]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 
 &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -38,15 +136,16 @@ In&amp;nbsp;[3]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAEACAYAAACnJV25AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAADL9JREFUeJzt3X+o3fddx/Hnq01ES53dCLS2SUh0nSjSNf5o6zptggpZ
 YXPIEOuq2K0oQm3xH5EiS0VUhAllICGWNhQL7R/tqBVjZWgWs9EGNvOrTSatSyCdNliXlXXdHy17
@@ -106,39 +205,49 @@ JZ6fqzDpeHqOrl5VvQr8E/BzSzat6ty80GF/CvgdgHEPM2myJFcmyej9DSz86urS+3IaGR2rB4ET
 VXX/Css8P6c0zfH0HJ1Okg1Jrhi9/yHgV4HDS5at6twc9FaMDzMNZ9KxBD4B/EGSN4HXgd9cq1kv
 EjcDtwPHkrz1f5p7gc3g+TmDiccTz9Fp/SjwcJJLWLjY/vuq+tckvw+znZs+oCRJzfifxpOkZgy7
 JDVj2CWpGcMuSc0YdklqxrBLUjOGXZKaMeyS1Mz/Aw1H+CQqPSwIAAAAAElFTkSuQmCC
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;OK, that is identical to Matlab's pcolor. But wait, what if we omit the coordinates?&lt;/p&gt;
+&lt;p&gt;OK, that is identical to Matlab&amp;#39;s pcolor.  But wait, what if we omit the
+coordinates?&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[4]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;cs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pcolor&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAEACAYAAABI5zaHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAADD5JREFUeJzt3V+oXeWdh/Hnq4nMqDAilszUnBJBBb1qhkwqdgZPYQY0
 MPZGqEIpeNNWCC1zVaYIplfD3BWn1qSgxZmCXrTgBCYiw2DEuWioY2JtjcWAQnRosOMfrLlR+puL
@@ -196,38 +305,51 @@ rjNkqfdwaH0d9rCq3gP+A9gz9tam927WcT//0FOSyzj30NPhsTGHga/B+Sdg133o6VNocG1JdiTJ
 2zLV+KGnSdYG3AXcl+Qj4Cxw98ImvElJHgduA65Jchp4gHO/FbTU+/axofWxxHs38kXgq8Avk3wc
 hu8Cn4MWezi4PpZ3D/8CeCzJJZy74P63qvqvrXbTh5gkqSH/N3uS1JBxl6SGjLskNWTcJakh4y5J
 DRl3SWrIuEtSQ8Zdkhr6f6ujJCWXKO1zAAAAAElFTkSuQmCC
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Aha! That is more like it!&lt;/p&gt;
-&lt;p&gt;The secret is hidden in plain site in the &lt;a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.pcolor"&gt;docstring&lt;/a&gt;,&lt;/p&gt;
-&lt;pre class="sourceCode python"&gt;&lt;code class="sourceCode python"&gt;&lt;span class="co"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="co"&gt;X and Y, if given, specify the (x, y) coordinates of the colored quadrilaterals; the quadrilateral for C[i,j] has corners at:&lt;/span&gt;
+&lt;p&gt;Aha!  That is more like it!&lt;/p&gt;
+&lt;p&gt;The secret is hidden in plain site in the
+&lt;a href="http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.pcolor"&gt;docstring&lt;/a&gt;,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python"&gt;&lt;span class="string"&gt;"""
+X and Y, if given, specify the (x, y) coordinates of the colored quadrilaterals; the quadrilateral for C[i,j] has corners at:
 
-&lt;span class="co"&gt;(X[i,   j],   Y[i,   j]),&lt;/span&gt;
-&lt;span class="co"&gt;(X[i,   j+1], Y[i,   j+1]),&lt;/span&gt;
-&lt;span class="co"&gt;(X[i+1, j],   Y[i+1, j]),&lt;/span&gt;
-&lt;span class="co"&gt;(X[i+1, j+1], Y[i+1, j+1]).&lt;/span&gt;
+(X[i,   j],   Y[i,   j]),
+(X[i,   j+1], Y[i,   j+1]),
+(X[i+1, j],   Y[i+1, j]),
+(X[i+1, j+1], Y[i+1, j+1]).
 
-&lt;span class="co"&gt;Ideally the dimensions of X and Y should be one greater than those of C; if the dimensions are the same, then the last row and column of C will be ignored.&lt;/span&gt;
-&lt;span class="co"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That means you can say goodbye to hacked versions of MatlabTM pcolor like &lt;a href="https://www.myroms.org/svn/om/matlab/roms_wilkin/pcolorjw.m"&gt;pcolorjw.m&lt;/a&gt; and variants.&lt;/p&gt;
-&lt;p&gt;If we pass &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; with dimensions greater than &lt;code&gt;C&lt;/code&gt;, like the docstring says, we can get a proper plot as expected:&lt;/p&gt;
+Ideally the dimensions of X and Y should be one greater than those of C; if the dimensions are the same, then the last row and column of C will be ignored.
+"""&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That means you can say goodbye to hacked versions of MatlabTM pcolor like
+&lt;a href="https://www.myroms.org/svn/om/matlab/roms_wilkin/pcolorjw.m"&gt;pcolorjw.m&lt;/a&gt; and
+variants.&lt;/p&gt;
+&lt;p&gt;If we pass &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; with dimensions greater than &lt;code&gt;C&lt;/code&gt;, like the docstring
+says, we can get a proper plot as expected:&lt;/p&gt;
 &lt;p&gt;(Note that something like this in Matlab would result in an error ;-)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[5]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 
 &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -236,15 +358,16 @@ In&amp;nbsp;[5]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAEACAYAAABI5zaHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAADHBJREFUeJzt3V+o3PWZx/H3R5PSqhcilmw1kQhasLCsKWdVtFuPC4Vt
 2M2VFy6I4E1bQZQu7I0IxqterlisybK22HbRCwtuuo0XpZtIvWhYa+K/pIuCghbM2rWKGhYqPnuR
@@ -303,24 +426,33 @@ LfT5nbHW/hb4/K4H9iR5DXgM+MskPxxas+GzO9txPwDcBrDeB54WVZJtSTJ4fA2nv9V0tfcF/+gM
 Nnx20/iE6ie6f+Bp1P6Am4E7knwEnOL0QS2KG4BbgReSnPlNcw9wGbQ4v5H7Y7HP7wvAo0nO4fRN
 24+q6hdJvgktzm/k/ljs81upADZ7dn6ISZIa8n+zJ0kNGXdJasi4S1JDxl2SGjLuktSQcZekhoy7
 JDVk3CWpof8Blo1aNVrPmu0AAAAASUVORK5CYII=
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;If your data is an iris cube you will get proper pcolor rendering for free plus the right coordinate ticklabels, if the coordinate bounds are defined.&lt;/p&gt;
+&lt;p&gt;If your data is an iris cube you will get proper pcolor rendering for free plus
+the right coordinate ticklabels, if the coordinate bounds are defined.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[6]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;iris.cube&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Cube&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;iris.coords&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;DimCoord&lt;/span&gt;
@@ -343,14 +475,16 @@ In&amp;nbsp;[6]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[7]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;X&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;guess_bounds&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;x&lt;/span&gt;
@@ -358,35 +492,37 @@ In&amp;nbsp;[7]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[7]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 DimCoord(array([1, 2, 3]), bounds=array([[ 0.5,  1.5],
        [ 1.5,  2.5],
        [ 2.5,  3.5]]), standard_name=&amp;apos;longitude&amp;apos;, units=Unit(&amp;apos;degrees&amp;apos;))
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[8]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;guess_bounds&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;y&lt;/span&gt;
@@ -394,37 +530,45 @@ In&amp;nbsp;[8]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[8]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 DimCoord(array([1, 2]), bounds=array([[ 0.5,  1.5],
        [ 1.5,  2.5]]), standard_name=&amp;apos;latitude&amp;apos;, units=Unit(&amp;apos;degrees&amp;apos;))
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;That works with plain iris,&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[9]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;iris.quickplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;qplt&lt;/span&gt;
 
 &lt;span class="n"&gt;cs&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;qplt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;pcolormesh&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -432,15 +576,16 @@ In&amp;nbsp;[9]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWsAAAD5CAYAAADhnxSEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAADDNJREFUeJzt3X2MZXddx/H3Z3cGoRRbVpJKH8SaiNY/tK0KWChdDGrE
 2r80VWMIYtQQHwOaGEKkokb/0gaDkaAI4gZIqhBK2/iAVaukD9iWYlsbMFS6aFegpYIlZmf26x/3
@@ -498,24 +643,32 @@ SR4B3gisD8O8tapuTvKKJJ9g8jL/J/b+25pv3hzADwGvSbIBPMnkCXuqvRj4ceC+JFtReD3wdVtz
 jLQec+dg+evxXOCdSQ4w+YL/rqr6UJKf2ZphhLWYOwPjPC9mFcDIazF3BsZZi/OA9w0dXAOOVNVf
 jbwWc2dgvOfFzwNHkjwN+Dfg1SezFv6/QSSpAf8FoyQ1YKwlqQFjLUkNGGtJasBYS1IDxlqSGjDW
 ktTA/wEjtK4WXrv9pQAAAABJRU5ErkJggg==
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;or cartopy with cartopy:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[10]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cartopy.crs&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ccrs&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;cartopy.mpl.ticker&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LongitudeFormatter&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;LatitudeFormatter&lt;/span&gt;
 
@@ -531,15 +684,16 @@ In&amp;nbsp;[10]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAWsAAAD5CAYAAADhnxSEAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAEDhJREFUeJzt3X2MZXV9x/H3Z3eWKqwFqQQFUaApLW3aAl0fKqJDq621
 lvaPGqoSozRtJVqfsEljTB1sjU1qKKHSaq34BKIJKhHB2BZZiyWwIKwii0YbqKztUp7rsqYyw7d/
@@ -615,24 +769,34 @@ CDwlyZ3AO4FNXTEfqKork7w0yXfo3ea/dvUf1nDD6gB+HzgryTywh94Fu9ZOBs4Avp5kMRTeDjxj
 sY4J9WNoHYy/H08DPppkA70v+B+vqquS/MliDRPoxdAamMx1MagAJtyLoTUwmV4cDny2y8EZ4OKq
 +ucJ92JoDUzuuvhT4OIkBwD/AZy5L73w/waRpAb4LxglqQGGtSQ1wLCWpAYY1pLUAMNakhpgWEtS
 AwxrSWrA/wPHxinH6JWrcwAAAABJRU5ErkJggg==
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Note that when we added the extra point in &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; previously we changed the center of the quadrilateral. The correct &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; coordinates in that example should be something like the guessed bounds from iris:&lt;/p&gt;
+&lt;p&gt;Note that when we added the extra point in &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; previously we changed
+the center of the quadrilateral.  The correct &lt;code&gt;x&lt;/code&gt; and &lt;code&gt;y&lt;/code&gt; coordinates in that
+example should be something like the guessed bounds from iris:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[11]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;xx&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bounds&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;yy&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;unique&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;bounds&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -642,15 +806,16 @@ In&amp;nbsp;[11]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXYAAAEACAYAAACnJV25AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAADDxJREFUeJzt3V+o3HV6x/H3x02WVoVKcUmriURYBYXCpqauaItnLwoa
 qL0RqiDC3mxXEGWvSkUwC4XSO7GVNQVdbBfshQs2bbMsS0nEvdhQ1yT+S4tChGgx6zYq1dwo+/Qi
@@ -708,36 +873,38 @@ jjScZT+70exPAq9X1aPrLFvaM5xmf8t6hkkuT3LZ6PZvAn8MHBtbtsxnN3F/s57dYJdiqvmHmZI8
 A9wKXJ7kNPAI53/6h6o6UFWHkuxL8ibwMfDNxU07u0n7Y4nPbuQW4B7g5SSf/UPzEHAVtDjDiftj
 ec/wd4Gnk1zE+Tej/1hV/766LUt+dhP3x4xn5weUJKkZ/9d4ktSMYZekZgy7JDVj2CWpGcMuSc0Y
 dklqxrBLUjOGXZKa+T/MzUDYv3hrnwAAAABJRU5ErkJggg==
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[12]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[12]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
-&lt;div class="output_html rendered_html"&gt;
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
 
 &lt;small&gt;
 &lt;p&gt; This post was written as an IPython notebook.  It is available for
@@ -762,26 +929,39 @@ rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>How well does iris "speak" Ocean Models?</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/29/iris_ocean_models/" rel="alternate"></link><updated>2014-12-29T20:21:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2014-12-29:blog/2014/12/29/iris_ocean_models/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h2 id="the-problem"&gt;The problem&lt;/h2&gt;
-&lt;p&gt;Iris works great when loading 1D coordinates &lt;code&gt;cube&lt;/code&gt; datasets mapped to a &amp;quot;regular&amp;quot; rectangular grid. But modern ocean models rarely falls into that description, they usually have 2D coordinates mapped to curvilinear staggered grids.&lt;/p&gt;
-&lt;p&gt;So how well does iris perform with modern numerical ocean models? How about the grids types? Does iris load staggered, unstructured and/or rotated grids? And the dimensionless vertical coordinates? Are they recognized and build automatically?&lt;/p&gt;
+&lt;p&gt;Iris works great when loading 1D coordinates &lt;code&gt;cube&lt;/code&gt; datasets mapped
+to a &amp;quot;regular&amp;quot; rectangular grid.  But modern ocean models rarely falls into
+that description, they usually have 2D coordinates mapped to curvilinear
+staggered grids.&lt;/p&gt;
+&lt;p&gt;So how well does iris perform with modern numerical ocean models?  How about
+the grids types?  Does iris load staggered, unstructured and/or rotated grids?
+And the dimensionless vertical coordinates?  Are they recognized and build
+automatically?&lt;/p&gt;
 &lt;p&gt;This post tries to provide a few answers (and some workarounds) to the questions above.&lt;/p&gt;
-&lt;h3 id="d-coordinates"&gt;2D coordinates&lt;/h3&gt;
-&lt;p&gt;To my disappointment 2D coordinates are a second class citizen in iris. The dataset can be loaded, but virtually all methods will fail.&lt;/p&gt;
+&lt;h3 id="2d-coordinates"&gt;2D coordinates&lt;/h3&gt;
+&lt;p&gt;To my disappointment 2D coordinates are a second class citizen in iris.
+The dataset can be loaded, but virtually all methods will fail.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[2]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;iris&lt;/span&gt;
 &lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;FUTURE&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;netcdf_promote&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;
 
@@ -793,27 +973,30 @@ In&amp;nbsp;[2]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[3]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;X and Y dimensions are: {!r}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;X&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ndim&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                                             &lt;span class="n"&gt;cube&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ndim&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 X and Y dimensions are: 2
 
@@ -825,15 +1008,25 @@ X and Y dimensions are: 2
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;(Note the &lt;code&gt;iris.FUTURE.netcdf_promote = True&lt;/code&gt; that promotes netCDF formula terms, like sea surface height, to cubes. This behavior will be default in future versions of iris. For more information on this see &lt;a href="https://github.com/SciTools/iris/pull/1159"&gt;PR 1159&lt;/a&gt;.)&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;(Note the &lt;code&gt;iris.FUTURE.netcdf_promote = True&lt;/code&gt; that promotes netCDF formula
+ terms, like sea surface height, to cubes.  This behavior will be default in future versions of iris.
+ For more information on this see
+ &lt;a href="https://github.com/SciTools/iris/pull/1159"&gt;PR 1159&lt;/a&gt;.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[4]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;iris&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Constraint&lt;/span&gt;
 
 
@@ -849,13 +1042,14 @@ In&amp;nbsp;[4]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 Cannot apply constraints to multidimensional coordinates
 
@@ -867,15 +1061,22 @@ Cannot apply constraints to multidimensional coordinates
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;There is a work around, that I found in the mailing &lt;a href="https://groups.google.com/forum/#!forum/scitools-iris"&gt;list&lt;/a&gt;, to extract a 2D coords subregion with iris:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[5]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;oceans&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;wrap_lon180&lt;/span&gt;
 
@@ -911,13 +1112,14 @@ In&amp;nbsp;[5]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 Original (320, 440) and new (293, 265) horizontal shapes
 
@@ -929,20 +1131,41 @@ Original (320, 440) and new (293, 265) horizontal shapes
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Almost all of iris methods, that have something to do with the horizontal coordinates, will fail and a similar workaround will be necessary. &lt;a href="https://github.com/ioos/secoora/blob/master/notebooks/utilities.py#L463"&gt;Here&lt;/a&gt; is another example to use a KDTree to search for nearest points on 2D coords.&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Almost all of iris methods, that have something to do with the horizontal
+coordinates, will fail and a similar workaround will be necessary.
+&lt;a href="https://github.com/ioos/secoora/blob/master/notebooks/utilities.py#L463"&gt;Here&lt;/a&gt;
+is another example to use a KDTree to search for nearest points on 2D coords.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="unstructured-grids"&gt;Unstructured grids&lt;/h3&gt;
-&lt;p&gt;Full support for unstructured grids will soon be available via &lt;a href="https://github.com/pyugrid/pyugrid"&gt;pyugrid&lt;/a&gt;. See PRs &lt;a href="https://github.com/SciTools/iris/pull/1359"&gt;#1359&lt;/a&gt; and &lt;a href="https://github.com/SciTools/iris/pull/1235"&gt;#1235&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Bare in mind that pyugrid is not needed to load, subset, search for points and etc. Most of the cube high level stuff already works with unstructured grids. You will need to pay special attention when interpolating and plotting though.&lt;/p&gt;
+&lt;p&gt;Full support for unstructured grids will soon be available via
+&lt;a href="https://github.com/pyugrid/pyugrid"&gt;pyugrid&lt;/a&gt;. See PRs
+&lt;a href="https://github.com/SciTools/iris/pull/1359"&gt;#1359&lt;/a&gt; and
+&lt;a href="https://github.com/SciTools/iris/pull/1235"&gt;#1235&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Bare in mind that pyugrid is not needed to load, subset, search for points and
+etc.  Most of the cube high level stuff already works with unstructured grids.
+You will need to pay special attention when interpolating and plotting though.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[6]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;http://crow.marine.usf.edu:8080/thredds/dodsC/FVCOM-Nowcast-Agg.nc&amp;#39;&lt;/span&gt;
 
 &lt;span class="n"&gt;cube&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;iris&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;load_cube&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;sea_water_temperature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -952,14 +1175,16 @@ In&amp;nbsp;[6]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[7]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy.ma&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ma&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.tri&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;tri&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
@@ -996,15 +1221,16 @@ In&amp;nbsp;[7]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAboAAAFrCAYAAACnlUwPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd4VFX+x/H3pHcCgYSEEvoB6R3pRZCmAqKAggjY9WdZ
 y+7qrrquuura1sXVXRsuuBYQLPTeq4ReDiUQIAQIkN4zM78/ZhJDTM+EOzP5vp6Hx7l3bvleJHw4
@@ -1471,32 +1697,56 @@ ngJmK4qyC3NHgZfqOlAIcQJoD6yutnkD5p5UDa8qaXu17qvyjwrM38/VO/2Nk93X/wH/BPyBLxVF
 2VLZe60WB76vul6DjwJ/URRlN+bEV+cM0w58T1W6ACeqPZ4LrFAUZSvwEObmv1qc8L5+jfO/Z7gV
 OQWYJEmS5NLcraKTJEmS3IxMdJIkSZJLk4lOkiRJcmky0UmSJEkuTSY6SZIkyaXJRCdJkiS5NJno
 JEmSJJcmE50kSZLk0v4fH4dH8EpAk5EAAAAASUVORK5CYII=
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;These three lines&lt;/p&gt;
-&lt;pre class="sourceCode python"&gt;&lt;code class="sourceCode python"&gt;lon = cube.coord(axis=&lt;span class="st"&gt;&amp;#39;X&amp;#39;&lt;/span&gt;).points
-lat = cube.coord(axis=&lt;span class="st"&gt;&amp;#39;Y&amp;#39;&lt;/span&gt;).points
-nv = Delaunay(np.c_[lon, lat]).vertices&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;re-construct the grid connectivity information that was already in the file/url. Iris does not know about it and therefore does not load nor preserve it automatically during operations. Pyugrid, on the other hand, does know what to do with that information. Hopefully unstructured grids with iris will get a lot easier in the &lt;a href="https://github.com/SciTools/iris/blob/bc6e97de25db0bf3ab53256b18756b0e5637e097/lib/iris/experimental/ugrid.py"&gt;near future&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python"&gt;lon = cube.coord(axis=&lt;span class="string"&gt;'X'&lt;/span&gt;).points
+lat = cube.coord(axis=&lt;span class="string"&gt;'Y'&lt;/span&gt;).points
+nv = Delaunay(np.c_[lon, lat]).vertices
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;re-construct the grid connectivity information that was already in the file/url.
+Iris does not know about it and therefore does not load nor preserve it
+automatically during operations.  Pyugrid, on the other hand, does know what to
+do with that information.  Hopefully unstructured grids with iris will get a
+lot easier in the
+&lt;a href="https://github.com/SciTools/iris/blob/bc6e97de25db0bf3ab53256b18756b0e5637e097/lib/iris/experimental/ugrid.py"&gt;near future&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="staggered-grids"&gt;Staggered grids&lt;/h3&gt;
-&lt;p&gt;Staggered grid models, like &lt;a href="https://www.myroms.org/"&gt;ROMS&lt;/a&gt;, can be very challenging to load when using high level tools like iris. In fact, it is less awkward doing everything at a low level or &amp;quot;manually&amp;quot; with the raw netCDF4 interface.&lt;/p&gt;
+&lt;p&gt;Staggered grid models, like
+&lt;a href="https://www.myroms.org/"&gt;ROMS&lt;/a&gt;,
+can be very challenging to load when using high level tools like iris.
+In fact, it is less awkward doing everything at a low level or &amp;quot;manually&amp;quot; with
+the raw netCDF4 interface.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[8]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/&amp;#39;&lt;/span&gt;
        &lt;span class="s"&gt;&amp;#39;his_Best/ESPRESSO_Real-Time_v2_History_Best_Available_best.ncd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -1514,27 +1764,30 @@ In&amp;nbsp;[8]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[9]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="p"&gt;]:&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;{} shape {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 eastward_sea_water_velocity shape (82, 129)
 northward_sea_water_velocity shape (81, 130)
@@ -1550,15 +1803,25 @@ angle between XI-axis and EAST shape (82, 130)
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Note that the shapes do not match. To explain that I could send you to the ROMS documentation &lt;a href="https://www.myroms.org/wiki/index.php/Numerical_Solution_Technique#Horizontal_Discretization"&gt;page&lt;/a&gt;, or I could show off my tikz skills ;-)&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Note that the shapes do not match.  To explain that I could send you to the ROMS
+documentation
+&lt;a href="https://www.myroms.org/wiki/index.php/Numerical_Solution_Technique#Horizontal_Discretization"&gt;page&lt;/a&gt;,
+or I could show off my tikz skills ;-)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[10]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;tikz&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;200&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;200&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sc&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;svg&lt;/span&gt;
 \&lt;span class="n"&gt;draw&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;2.5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
@@ -1577,14 +1840,15 @@ In&amp;nbsp;[10]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 
+&lt;div class="output_svg output_subarea "&gt;
 &lt;svg height="200px" version="1.1" viewBox="0 0 146.236 102.246" width="200px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
 &lt;defs&gt;
 &lt;g&gt;
@@ -1740,23 +2004,34 @@ In&amp;nbsp;[10]:
 &lt;/g&gt;
 &lt;/g&gt;
 &lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The velocities &lt;span class="math"&gt;\(u\)&lt;/span&gt; and &lt;span class="math"&gt;\(v\)&lt;/span&gt; are defined on different grids. We have to interpolate/average them to either the &lt;span class="math"&gt;\(\rho\)&lt;/span&gt; points (where salinity and temperature are defined) or the &lt;span class="math"&gt;\(\psi\)&lt;/span&gt; (in &lt;a href="https://www.myroms.org/forum/viewtopic.php?f=3&amp;amp;t=295"&gt;theory&lt;/a&gt; the proper grid for vector quantities). Here is a full grid scheme.&lt;/p&gt;
+&lt;p&gt;The velocities $u$ and $v$ are defined on different grids.  We have to
+interpolate/average them to either the $\rho$ points (where salinity and
+temperature are defined) or the $\psi$ (in
+&lt;a href="https://www.myroms.org/forum/viewtopic.php?f=3&amp;amp;t=295"&gt;theory&lt;/a&gt;
+the proper grid for vector quantities).  Here is a full grid scheme.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[11]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;%%&lt;/span&gt;&lt;span class="k"&gt;tikz&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="mi"&gt;400&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="mi"&gt;400&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;sc&lt;/span&gt; &lt;span class="mf"&gt;1.2&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;f&lt;/span&gt; &lt;span class="n"&gt;svg&lt;/span&gt;
 \&lt;span class="n"&gt;draw&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;help&lt;/span&gt; &lt;span class="n"&gt;lines&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;step&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;6.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="mf"&gt;6.5&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
@@ -1848,14 +2123,15 @@ In&amp;nbsp;[11]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
 
+&lt;div class="output_svg output_subarea "&gt;
 &lt;svg height="400px" version="1.1" viewBox="0 0 313.508 261.941" width="400px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"&gt;
 &lt;defs&gt;
 &lt;g&gt;
@@ -2096,23 +2372,38 @@ In&amp;nbsp;[11]:
 &lt;path d="M 207.498688 204.095719 C 207.498688 205.974625 205.97525 207.498062 204.096344 207.498062 C 202.217438 207.498062 200.694 205.974625 200.694 204.095719 C 200.694 202.216812 202.217438 200.693375 204.096344 200.693375 C 205.97525 200.693375 207.498688 202.216812 207.498688 204.095719 Z " style="fill-rule:nonzero;fill:rgb(50%,50%,50%);fill-opacity:1;stroke-width:0.3985;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(50%,50%,50%);stroke-opacity:1;stroke-miterlimit:10;" transform="matrix(1,0,0,-1,92.306,244.834)"/&gt;
 &lt;/g&gt;
 &lt;/svg&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I am not sure what is the best approach to get a shape consistent dataset. And there is nothing on CF convention about staggered grids (&lt;a href="https://github.com/axiomalaska/usgs-cmg-portal/issues/25"&gt;yet&lt;/a&gt;) to help. I will use the &lt;a href="https://github.com/hetland/octant/blob/b1163e5f462bf954088056aca009fd3f7cb51e86/octant/tools.py#L38"&gt;shrink&lt;/a&gt;, function from &lt;a href="https://github.com/hetland/octant"&gt;octant&lt;/a&gt;, to create variables with matching shapes. Why shrink? Because it is written in python ;-)&lt;/p&gt;
+&lt;p&gt;I am not sure what is the best approach to get a shape consistent dataset.
+And there is nothing on CF convention about staggered grids
+(&lt;a href="https://github.com/axiomalaska/usgs-cmg-portal/issues/25"&gt;yet&lt;/a&gt;) to help.
+I will use the
+&lt;a href="https://github.com/hetland/octant/blob/b1163e5f462bf954088056aca009fd3f7cb51e86/octant/tools.py#L38"&gt;shrink&lt;/a&gt;,
+function from
+&lt;a href="https://github.com/hetland/octant"&gt;octant&lt;/a&gt;,
+to create variables with matching shapes.  Why shrink?  Because it is written
+in python ;-)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[12]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;shrink&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Return array shrunk to fit a specified shape by trimming or averaging.&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="nb"&gt;isinstance&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ndarray&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
@@ -2148,14 +2439,16 @@ In&amp;nbsp;[12]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[13]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="c"&gt;# Remove the grid borders.&lt;/span&gt;
 &lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;lon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -2168,27 +2461,30 @@ In&amp;nbsp;[13]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[14]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;items&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;{} shape {}&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;key&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;shape&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 lat shape (80, 128)
 angle shape (80, 128)
@@ -2204,28 +2500,51 @@ v shape (80, 128)
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;All shapes are consistent now! But the process to get here was quite cumbersome, and the velocities (&lt;span class="math"&gt;\(u\)&lt;/span&gt;, &lt;span class="math"&gt;\(v\)&lt;/span&gt;) are no longer cubes, just plain ndarrays. To use iris high level stuff we would have to reconstruct the cube.&lt;/p&gt;
-&lt;p&gt;Iris developers are aware of the &lt;a href="https://github.com/SciTools/iris/issues/1164"&gt;issue&lt;/a&gt;, and some actions have already been taken to allow users to load the data and take advantage of the cube object.&lt;/p&gt;
-&lt;p&gt;Iris &lt;code&gt;cube.regrid()&lt;/code&gt; could save us from all that, but regridding does not work with 2D coordinates :-(&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;All shapes are consistent now!  But the process to get here was quite
+cumbersome, and the velocities ($u$, $v$) are no longer cubes, just plain
+ndarrays.  To use iris high level stuff we would have to reconstruct the cube.&lt;/p&gt;
+&lt;p&gt;Iris developers are aware of the
+&lt;a href="https://github.com/SciTools/iris/issues/1164"&gt;issue&lt;/a&gt;, and some actions
+have already been taken to allow users to load the data and take advantage of
+the cube object.&lt;/p&gt;
+&lt;p&gt;Iris &lt;code&gt;cube.regrid()&lt;/code&gt; could save us from all that, but regridding does not work
+with 2D coordinates :-(&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="rotated-grids"&gt;Rotated grids&lt;/h3&gt;
-&lt;p&gt;Like with the staggered grids, iris has no automatic &amp;quot;action&amp;quot; on &lt;code&gt;angles&lt;/code&gt; when loading the dataset. Unlike the staggered grids there is a CF convention on how to store the angle. And the convention metadata tells us what is needed to get an un-rotated grid.&lt;/p&gt;
-&lt;pre class="sourceCode xml"&gt;&lt;code class="sourceCode xml"&gt;&lt;span class="kw"&gt;&amp;lt;entry&lt;/span&gt;&lt;span class="ot"&gt; id=&lt;/span&gt;&lt;span class="st"&gt;&amp;quot;angle_of_rotation_from_east_to_x&amp;quot;&lt;/span&gt;&lt;span class="kw"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="kw"&gt;&amp;lt;canonical_units&amp;gt;&lt;/span&gt;degree&lt;span class="kw"&gt;&amp;lt;/canonical_units&amp;gt;&lt;/span&gt;
-    &lt;span class="kw"&gt;&amp;lt;grib&amp;gt;&amp;lt;/grib&amp;gt;&lt;/span&gt;
-    &lt;span class="kw"&gt;&amp;lt;amip&amp;gt;&amp;lt;/amip&amp;gt;&lt;/span&gt;
-    &lt;span class="kw"&gt;&amp;lt;description&amp;gt;&lt;/span&gt;The quantity with standard name angle_of_rotation_from_east_to_x is the angle, anticlockwise reckoned positive, between due East and (dr/di)jk, where r(i,j,k) is the vector 3D position of the point with coordinate indices (i,j,k).  It could be used for rotating vector fields between model space and latitude-longitude space.&lt;span class="kw"&gt;&amp;lt;/description&amp;gt;&lt;/span&gt;
-&lt;span class="kw"&gt;&amp;lt;/entry&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Like with the staggered grids, iris has no automatic &amp;quot;action&amp;quot; on &lt;code&gt;angles&lt;/code&gt;
+when loading the dataset.  Unlike the staggered grids there is a CF
+convention on how to store the angle.  And the convention metadata tells us
+what is needed to get an un-rotated grid.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-xml"&gt;&lt;span class="tag"&gt;&amp;lt;&lt;span class="title"&gt;entry&lt;/span&gt; &lt;span class="attribute"&gt;id&lt;/span&gt;=&lt;span class="value"&gt;"angle_of_rotation_from_east_to_x"&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="tag"&gt;&amp;lt;&lt;span class="title"&gt;canonical_units&lt;/span&gt;&amp;gt;&lt;/span&gt;degree&lt;span class="tag"&gt;&amp;lt;/&lt;span class="title"&gt;canonical_units&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="tag"&gt;&amp;lt;&lt;span class="title"&gt;grib&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="tag"&gt;&amp;lt;/&lt;span class="title"&gt;grib&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="tag"&gt;&amp;lt;&lt;span class="title"&gt;amip&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class="tag"&gt;&amp;lt;/&lt;span class="title"&gt;amip&lt;/span&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="tag"&gt;&amp;lt;&lt;span class="title"&gt;description&lt;/span&gt;&amp;gt;&lt;/span&gt;The quantity with standard name angle_of_rotation_from_east_to_x is the angle, anticlockwise reckoned positive, between due East and (dr/di)jk, where r(i,j,k) is the vector 3D position of the point with coordinate indices (i,j,k).  It could be used for rotating vector fields between model space and latitude-longitude space.&lt;span class="tag"&gt;&amp;lt;/&lt;span class="title"&gt;description&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;span class="tag"&gt;&amp;lt;/&lt;span class="title"&gt;entry&lt;/span&gt;&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Here is a workaround:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[15]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;rot2d&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ang&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;Apply the rotation.&lt;/span&gt;
 &lt;span class="sd"&gt;    https://github.com/hetland/octant/blob/b1163e5f462bf954088056aca009fd3f7cb51e86/octant/tools.py#L26&lt;/span&gt;
@@ -2239,14 +2558,16 @@ In&amp;nbsp;[15]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[16]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;8&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
                        &lt;span class="n"&gt;subplot_kw&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;projection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;ccrs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PlateCarree&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
 
@@ -2266,15 +2587,16 @@ In&amp;nbsp;[16]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeoAAAFrCAYAAAAegcpHAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3XlcVOX+wPHPsKOsgiJuuI+4oAgKprmvmaKUouaeW7ZY
 atduZd2sW5m/0tzS3FpcMs0Nd01wV0BRFHQQZFWUfYeBmTm/P0iuCyDMjLL4vF8vX8nMOc/5nsHm
@@ -3429,32 +3751,70 @@ ac+F5mpLJOoqHQVpI0+1+tbr6tVjgkWkfbFukyQp8NVo2wy+wbrS9vc3U5Kko6Q9Ht2iLdG3Vk+y
 LO8h7UdMKGk9fsOBwXyC73WxhKggCIIg5GKiRS0IgiAIuZgI1IIgCIKQi4lALQiCIAi5mAjUgiAI
 gpCLiUAtCIIgCLmYCNSCIAiCkIuJQC0IgiAIuZgI1IIgCH4G8PgAAAAJSURBVIKQi/0/rvJkfxyg
 vXUAAAAASUVORK5CYII=
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;h3 id="ocean-dimensionless-vertical-coordinates"&gt;Ocean Dimensionless Vertical Coordinates&lt;/h3&gt;
-&lt;p&gt;The last topic on this post: iris Ocean Dimensionless Vertical Coordinates (ODVC) factories. &lt;del&gt;Right now iris implements only &lt;strong&gt;Ocean Sigma over Z&lt;/strong&gt;&lt;/del&gt;. &lt;strong&gt;Ocean Sigma over Z&lt;/strong&gt; is rarely used, I have no idea why iris developers chose it to start! For a list of more common ones see &lt;a href="https://github.com/SciTools/iris/issues/762"&gt;here&lt;/a&gt;. (Those are already available via &lt;a href="https://github.com/SciTools/iris/pull/1304"&gt;#1304&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Note that the current version of iris will raise an &lt;code&gt;Exception&lt;/code&gt; when trying to create the derived coordinate with insufficient formula terms. But staggered grids do not have the formula terms defined in all grids. So... Congratulations! Two issues in one!!.&lt;/p&gt;
-&lt;p&gt;PR &lt;a href="https://github.com/SciTools/iris/pull/1485"&gt;#1485&lt;/a&gt; &lt;del&gt;will change&lt;/del&gt; changed the &lt;code&gt;Exception&lt;/code&gt; into a &lt;code&gt;warning&lt;/code&gt;. So iris loads the data failing only to construct the vertical coordinate for variables that do not have the formula terms properly specified.&lt;/p&gt;
-&lt;p&gt;Take a look at &lt;a href="http://nbviewer.ipython.org/urls/gist.githubusercontent.com/ocefpaf/18e8fe29005c148fe0e3/raw/03fc4213c76d4210f010256b35b0f2632455ef17/ocean_DVC.ipynb"&gt;this&lt;/a&gt; notebook to see side-by-side Matlab/Python examples for &lt;strong&gt;ocean sigma coordinate&lt;/strong&gt;, &lt;strong&gt;ocean s-coordinate&lt;/strong&gt;, &lt;strong&gt;ocean sigma over z coordinate&lt;/strong&gt; (all CF-1.6). The notebook also includes examples for &lt;strong&gt;ocean s coordinate g1&lt;/strong&gt; (sg1) and &lt;strong&gt;ocean s coordinate g2&lt;/strong&gt; (sg2), that will be included in &lt;a href="http://cf-trac.llnl.gov/trac/ticket/93"&gt;CF-1.7&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Before someone asks why implement sg1 and sg2, that are not in the current CF conventions yet, and why leave &lt;strong&gt;ocean double sigma coordinate&lt;/strong&gt; out, well... I could not find a single dataset with &lt;strong&gt;ocean double sigma coordinate&lt;/strong&gt;, but every modern ROMS output is either sg1 or sg2.&lt;/p&gt;
+&lt;p&gt;The last topic on this post:  iris Ocean Dimensionless Vertical Coordinates
+(ODVC) factories.  &lt;del&gt;Right now iris implements only
+&lt;strong&gt;Ocean Sigma over Z&lt;/strong&gt;&lt;/del&gt;.
+&lt;strong&gt;Ocean Sigma over Z&lt;/strong&gt; is rarely used, I have no
+idea why iris developers chose it to start!  For a list of more
+common ones see &lt;a href="https://github.com/SciTools/iris/issues/762"&gt;here&lt;/a&gt;.
+(Those are already available via &lt;a href="https://github.com/SciTools/iris/pull/1304"&gt;#1304&lt;/a&gt;)&lt;/p&gt;
+&lt;p&gt;Note that the current version of iris will raise an &lt;code&gt;Exception&lt;/code&gt; when trying to
+create the derived coordinate with insufficient formula terms.  But staggered
+grids do not have the formula terms defined in all grids.
+So... Congratulations!  Two issues in one!!.&lt;/p&gt;
+&lt;p&gt;PR &lt;a href="https://github.com/SciTools/iris/pull/1485"&gt;#1485&lt;/a&gt; &lt;del&gt;will change&lt;/del&gt; changed
+the  &lt;code&gt;Exception&lt;/code&gt; into a &lt;code&gt;warning&lt;/code&gt;.  So iris loads the data failing only to
+construct the vertical coordinate for variables that do not have the
+formula terms properly specified.&lt;/p&gt;
+&lt;p&gt;Take a look at
+&lt;a href="http://nbviewer.ipython.org/urls/gist.githubusercontent.com/ocefpaf/18e8fe29005c148fe0e3/raw/03fc4213c76d4210f010256b35b0f2632455ef17/ocean_DVC.ipynb"&gt;this&lt;/a&gt;
+notebook to see side-by-side Matlab/Python examples for
+&lt;strong&gt;ocean sigma coordinate&lt;/strong&gt;, &lt;strong&gt;ocean s-coordinate&lt;/strong&gt;,
+&lt;strong&gt;ocean sigma over z coordinate&lt;/strong&gt; (all CF-1.6).  The notebook also includes
+examples for &lt;strong&gt;ocean s coordinate g1&lt;/strong&gt; (sg1) and &lt;strong&gt;ocean s coordinate g2&lt;/strong&gt;
+(sg2), that will be included in
+&lt;a href="http://cf-trac.llnl.gov/trac/ticket/93"&gt;CF-1.7&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Before someone asks why implement sg1 and sg2, that are not in the current
+CF conventions yet, and why leave &lt;strong&gt;ocean double sigma coordinate&lt;/strong&gt; out,
+well... I could not find a single dataset with
+&lt;strong&gt;ocean double sigma coordinate&lt;/strong&gt;, but every modern ROMS output is either sg1
+or sg2.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The last workaround example show how to use iris &lt;code&gt;promote&lt;/code&gt;, to extract all the extra formula terms, need to construct the ODVC for &lt;span class="math"&gt;\(u\)&lt;/span&gt; and &lt;span class="math"&gt;\(v\)&lt;/span&gt;:&lt;/p&gt;
+&lt;p&gt;The last workaround example show how to use iris &lt;code&gt;promote&lt;/code&gt;, to extract all
+the extra formula terms, need to construct the ODVC for $u$ and $v$:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[17]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/avg_Best/&amp;#39;&lt;/span&gt;
        &lt;span class="s"&gt;&amp;#39;ESPRESSO_Real-Time_v2_Averages_Best_Available_best.ncd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
@@ -3465,13 +3825,14 @@ In&amp;nbsp;[17]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 38
 
@@ -3483,12 +3844,13 @@ In&amp;nbsp;[17]:
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[18]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;iris.fileformats.cf&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;reference_terms&lt;/span&gt;
 
 &lt;span class="n"&gt;reference_terms&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ocean_s_coordinate_g1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;s&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;eta&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;depth&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;depth_c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -3500,13 +3862,14 @@ In&amp;nbsp;[18]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 43
 
@@ -3518,12 +3881,13 @@ In&amp;nbsp;[18]:
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[19]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;t&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extract&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;sea_water_potential_temperature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;u&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extract&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eastward_sea_water_velocity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cubes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;extract&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;northward_sea_water_velocity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -3536,52 +3900,69 @@ In&amp;nbsp;[19]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;ROMS only specify &lt;code&gt;eta&lt;/code&gt; at &lt;span class="math"&gt;\(\rho\)&lt;/span&gt; points. So no derived coordinate for &lt;span class="math"&gt;\(u\)&lt;/span&gt; and &lt;span class="math"&gt;\(v\)&lt;/span&gt;.&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;ROMS only specify &lt;code&gt;eta&lt;/code&gt; at $\rho$ points.  So no derived coordinate for $u$
+and $v$.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[20]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;derived_coords&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;derived_coords&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[20]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 ((), ())
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;But things work nicely for properties at the &lt;span class="math"&gt;\(\rho\)&lt;/span&gt; points, like temperature.&lt;/p&gt;
+&lt;p&gt;But things work nicely for properties at the $\rho$ points, like temperature.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[21]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;derived_coords&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;t&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;derived_coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;{} ({})&amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;derived_coords&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;derived_coords&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
@@ -3589,13 +3970,14 @@ In&amp;nbsp;[21]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 sea_surface_height_above_reference_ellipsoid (meter)
 
@@ -3607,15 +3989,22 @@ sea_surface_height_above_reference_ellipsoid (meter)
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Now lets build &lt;code&gt;z&lt;/code&gt; for &lt;span class="math"&gt;\(u\)&lt;/span&gt; and &lt;span class="math"&gt;\(v\)&lt;/span&gt; manually:&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now lets build &lt;code&gt;z&lt;/code&gt; for $u$ and $v$ manually:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[22]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="c"&gt;# Formula terms.&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;ocean_s_coordinate_g1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;
 &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coord&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;S-coordinate stretching curves at RHO-points&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;
@@ -3627,14 +4016,16 @@ In&amp;nbsp;[22]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[23]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="c"&gt;# Remove the grid borders.&lt;/span&gt;
 &lt;span class="n"&gt;angle&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;angle&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;lon&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -3651,31 +4042,41 @@ In&amp;nbsp;[23]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[24]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;depth_c&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;depth&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;depth_c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;...&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;z&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;eta&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;S&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;depth&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;and plot the vertical profile of the velocities:&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[25]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;6&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 &lt;span class="n"&gt;l1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Norward seawater velocity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;l2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;u&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;z&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt; &lt;span class="mi"&gt;30&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Eastward seawater velocity&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -3685,15 +4086,16 @@ In&amp;nbsp;[25]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAU4AAAFxCAYAAAAcf0ERAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzs3Xd0VHX+//HnnZlMeiMFSCEJBC69SwcRRaXYe+/rutZV
 t313baur67r+1tVdG1ixl7WhCKgISJMWem4ogQQSIL1nMuX+/sgk0iHJZO6d5P04J4fkZjJ55ZJ5
@@ -4012,28 +4414,54 @@ XZIqRWt220/YnrF9FfAg8FKu04QCRpwtniaVZL5PugN2MyzcSZ8jXT/ZBKyUdG31nl22P+kj7BLZ
 7LZfr+1bQod/ANgs6cPq9W3VXd0zbD8raSfp0YBTwPO2v+8raINs9h5zjdKam/SMh+2kL9x3qssM
 j9l+tZekw0a1lf3Ae5KOkB7ws7+voA26tJWR52WUXIYQQkelTtVDCKFY0XGGEEJH0XGGEEJH0XGG
 EEJH0XGGEEJH0XGGEEJH0XGGEEJH0XGGEEJH/wLzNOFfSMKtAgAAAABJRU5ErkJggg==
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;If iris devs find an easier way to get a automagically shape-consistent cube from staggered grids we will be able to say MatlabTM+snctools goodbye forever!&lt;/p&gt;
-&lt;p&gt;Iris is evolves fast. It is worth mentioning that many of issues I raised here are under iris devs radar for the next version: &lt;a href="https://github.com/SciTools/iris/wiki/Iris-&amp;quot;2&amp;quot;"&gt;Iris-2&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If iris devs find an easier way to get a automagically shape-consistent cube from
+staggered grids we will be able to say MatlabTM+snctools goodbye forever!&lt;/p&gt;
+&lt;p&gt;Iris is evolves fast.  It is worth mentioning that many of issues I raised here
+are under iris devs radar for the next version:
+&lt;a href="https://github.com/SciTools/iris/wiki/Iris-&amp;quot;2&amp;quot;"&gt;Iris-2&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I know that there are several projects out there that, like iris, are great tools for reading and processing ocean netCDF data. Some are ocean model specific, like &lt;a href="https://github.com/hetland/octant/"&gt;octant&lt;/a&gt;, others are full CDMs like &lt;a href="https://github.com/asascience-open/paegan"&gt;paegan&lt;/a&gt;. However, I would like too see more projects like &lt;a href="https://github.com/ajdawson/gridfill"&gt;gridfill&lt;/a&gt;, &lt;a href="https://github.com/ajdawson/eofs"&gt;eofs&lt;/a&gt; and &lt;a href="https://github.com/ajdawson/windspharm"&gt;windspharm&lt;/a&gt;. These 3 projects take either a &lt;strong&gt;ndarray&lt;/strong&gt; or an iris &lt;strong&gt;cube&lt;/strong&gt; object as its input. Taking advantage of the cube rich metadata and methods, whilst avoiding re-inventing the wheel.&lt;/p&gt;
+&lt;p&gt;I know that there are several projects out there that, like iris, are great
+tools for reading and processing ocean netCDF data.  Some are ocean model
+specific, like &lt;a href="https://github.com/hetland/octant/"&gt;octant&lt;/a&gt;, others are full
+CDMs like &lt;a href="https://github.com/asascience-open/paegan"&gt;paegan&lt;/a&gt;.  However, I
+would like too see more projects like
+&lt;a href="https://github.com/ajdawson/gridfill"&gt;gridfill&lt;/a&gt;,
+&lt;a href="https://github.com/ajdawson/eofs"&gt;eofs&lt;/a&gt; and
+&lt;a href="https://github.com/ajdawson/windspharm"&gt;windspharm&lt;/a&gt;.  These 3 projects take
+either a &lt;strong&gt;ndarray&lt;/strong&gt; or an iris &lt;strong&gt;cube&lt;/strong&gt; object as its input.  Taking advantage
+of the cube rich metadata and methods, whilst avoiding re-inventing the wheel.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[26]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;IPython.core.display&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;HTML&lt;/span&gt;
 
 &lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -4041,16 +4469,16 @@ In&amp;nbsp;[26]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[26]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
-&lt;div class="output_html rendered_html"&gt;
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
 
 &lt;small&gt;
 &lt;p&gt; This post was written as an IPython notebook.  It is available for
@@ -4075,14 +4503,18 @@ rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Testing xray for ocean models output</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/22/xray/" rel="alternate"></link><updated>2014-12-22T12:56:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2014-12-22:blog/2014/12/22/xray/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;&lt;a href="http://xray.readthedocs.org/en/stable/"&gt;xray&lt;/a&gt; is an interesting package that has been under my radar for a while.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://xray.readthedocs.org/en/stable/"&gt;xray&lt;/a&gt; is an interesting package that
+has been under my radar for a while.&lt;/p&gt;
 &lt;p&gt;According to the docs xray is:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;... an open source project and Python package that aims to bring the
 labeled data power of pandas to the physical sciences, by providing
@@ -4094,15 +4526,18 @@ analytics on multi-dimensional arrays, rather than the tabular data for
 which pandas excels. Our approach adopts the Common Data Model for
 self- describing scientific data in widespread use in the Earth sciences
 (e.g., netCDF and OPeNDAP): xray.Dataset is an in-memory representation of
-a netCDF file.&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;This post is my first attempt using it for ocean models output. Because xray is under heavy development I will be using the latest git checkout.&lt;/p&gt;
+a netCDF file.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;This post is my first attempt using it for ocean models output.  Because xray is under heavy development I will be using the latest git checkout.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[2]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;xray&lt;/span&gt;
 
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;xray&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;__version__&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -4110,13 +4545,14 @@ In&amp;nbsp;[2]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 0.3.1-47-ga9f63ff
 
@@ -4128,15 +4564,22 @@ In&amp;nbsp;[2]:
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;xray uses python-netCDF4 under the hood, so it &amp;quot;speaks&amp;quot; OPeNDAP.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[3]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://tds.marine.rutgers.edu/thredds/dodsC/roms/&amp;#39;&lt;/span&gt;
        &lt;span class="s"&gt;&amp;#39;espresso/2013_da/his_Best/&amp;#39;&lt;/span&gt;
        &lt;span class="s"&gt;&amp;#39;ESPRESSO_Real-Time_v2_History_Best_Available_best.ncd&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -4146,33 +4589,42 @@ In&amp;nbsp;[3]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;It has a nice and meaniful &lt;code&gt;__repr__&lt;/code&gt; for the DataArray object.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[4]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;salt&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;salt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;salt&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[4]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 &amp;lt;xray.DataArray &amp;apos;salt&amp;apos; (time: 13932, s_rho: 36, eta_rho: 82, xi_rho: 130)&amp;gt;
 [5346544320 values with dtype=float64]
@@ -4191,36 +4643,47 @@ Attributes:
     _ChunkSize: [  1  36  82 130]
     standard_name: sea_water_salinity
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;My first impression is that, when compared to raw netCDF4 interface, the &lt;code&gt;xray.DataArray&lt;/code&gt; object is richer (more metadata). However, if compared to his older brother &lt;code&gt;iris.cube.Cube&lt;/code&gt;, it falls short. &lt;del&gt;For example: xray does not attach the 2D coordinates to the object.&lt;/del&gt; (As of the latest git checkout it does attach the coordinates.)&lt;/p&gt;
+&lt;p&gt;My first impression is that, when compared to raw netCDF4 interface, the
+&lt;code&gt;xray.DataArray&lt;/code&gt; object is richer (more metadata).  However, if compared to his older brother &lt;code&gt;iris.cube.Cube&lt;/code&gt;, it falls short.  &lt;del&gt;For example: xray
+does not attach the 2D coordinates to the object.&lt;/del&gt; (As of the latest git
+checkout it does attach the coordinates.)&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[5]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;salt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;xi_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;salt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eta_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 Coordinates:
   * xi_rho   (xi_rho) int64 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 ...
@@ -4235,25 +4698,27 @@ Coordinates:
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[6]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;salt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;lon_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;salt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;lat_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_stream output_stdout"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
 &lt;pre&gt;
 Coordinates:
   * xi_rho   (xi_rho) int64 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 ...
@@ -4272,15 +4737,22 @@ Coordinates:
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The &lt;code&gt;Dataset&lt;/code&gt; is another important xray object. Here is a small snippet on how to construct one:&lt;/p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;The &lt;code&gt;Dataset&lt;/code&gt; is another important xray object.  Here is a small snippet on how to construct one:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[7]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;ds&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;xray&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;temperature&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;temp&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]},&lt;/span&gt;
                   &lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;lon&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eta_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;xi_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;lon_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
                           &lt;span class="s"&gt;&amp;#39;lat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;eta_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;xi_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;lat_rho&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]),&lt;/span&gt;
@@ -4291,16 +4763,17 @@ In&amp;nbsp;[7]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[7]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 &amp;lt;xray.Dataset&amp;gt;
 Dimensions:      (eta_rho: 82, s_rho: 36, time: 13932, xi_rho: 130)
@@ -4318,39 +4791,48 @@ Coordinates:
 Variables:
     temperature  (time, s_rho, eta_rho, xi_rho) float64 ...
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The best feature, IMHO, is the use of Pandas &amp;quot;fuzzyness&amp;quot; when slicing with strings dates. Iris uses the cumbersome &lt;code&gt;lambda&lt;/code&gt; approach, but using strings is much easier.&lt;/p&gt;
+&lt;p&gt;The best feature, IMHO, is the use of Pandas &amp;quot;fuzzyness&amp;quot; when slicing with
+strings dates.  Iris uses the cumbersome &lt;code&gt;lambda&lt;/code&gt; approach, but using strings is much easier.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[8]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;salt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;loc&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;2014-12-02&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[8]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
 
+&lt;div class="output_text output_subarea output_pyout"&gt;
 &lt;pre&gt;
 &amp;lt;xray.DataArray &amp;apos;time&amp;apos; (time: 24)&amp;gt;
 array([&amp;apos;2014-12-01T21:00:00.000000000-0300&amp;apos;,
@@ -4385,20 +4867,21 @@ Attributes:
     standard_name: time
     _CoordinateAxisType: Time
 &lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[9]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cartopy.crs&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ccrs&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;cartopy.feature&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;cfeature&lt;/span&gt;
@@ -4424,14 +4907,16 @@ In&amp;nbsp;[9]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[10]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy.ma&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;ma&lt;/span&gt;
 &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;oceans.colormaps&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cm&lt;/span&gt;
@@ -4447,15 +4932,16 @@ In&amp;nbsp;[10]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAckAAAFdCAYAAABoyJYkAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXd8HNX19//eot1Vb5ZcJEsy7ha2McUGU2wwOKGG3h0I
 GEgC5AkhBpLQvk+AkNhA4IkxPwIkNhBavjRjejHNxmDjgiR3W8KSrd5X2j6/P1YzmhnNVqva9/16
@@ -5233,31 +5719,52 @@ CiGECADOWpP+bEWChKQQQogA0bc16e9WJEhICiGECBB9W5P+bkWCrAIihBAigJiaO1BrVXS2mYma
 EoVG79+2nISkEEKIgGKz2LB12uhsMfu1qxUkJIUQQgQYU3MHujE6v7ciQUJSCCGEcMr/MS2EEEIE
 KAlJIYQQwgkJSSGEEMIJCUkhhBDCCQlJIYQQwgkJSSGEEMKJ/we33+6pcc2QOQAAAABJRU5ErkJg
 gg==
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Note that when plotting I had to use the &lt;code&gt;.values&lt;/code&gt; method. The reason is because the DataArray object does not behave entirely like a numpy array. The &lt;code&gt;.ravel()&lt;/code&gt; method, need for pcolormesh, is missing. Also note that xray does not support masked array (yet).&lt;/p&gt;
-&lt;p&gt;One might ask: why use labeled arrays? The main argument is to write idiomatic expressions like,&lt;/p&gt;
-&lt;pre class="sourceCode python"&gt;&lt;code class="sourceCode python"&gt;s.mean(dim=&lt;span class="st"&gt;&amp;#39;time&amp;#39;&lt;/span&gt;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that when plotting I had to use the &lt;code&gt;.values&lt;/code&gt; method.  The reason is because the
+DataArray object does not behave entirely like a numpy array.  The &lt;code&gt;.ravel()&lt;/code&gt;
+method, need for pcolormesh, is missing.  Also note that xray does not support masked array (yet).&lt;/p&gt;
+&lt;p&gt;One might ask: why use labeled arrays?  The main argument is to write idiomatic expressions like,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python"&gt;s.mean(dim=&lt;span class="string"&gt;'time'&lt;/span&gt;)
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;there is no doubt on which dimension I am averaging.&lt;/p&gt;
-&lt;p&gt;Because xray is designed to behave like pandas, when dealing with time series one can take advantage of all pandas features. The same may be accomplished with &lt;code&gt;iris.pandas.as_series&lt;/code&gt;, but with xray there is no awkward conversions.&lt;/p&gt;
+&lt;p&gt;Because xray is designed to behave like pandas, when dealing with time series
+one can take advantage of all pandas features.  The same may be accomplished with
+&lt;code&gt;iris.pandas.as_series&lt;/code&gt;, but with xray there is no awkward conversions.&lt;/p&gt;
 &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Now lets try an example straight from &lt;code&gt;xray&lt;/code&gt;'s documentation. First I will reduce the data from hourly to daily observations, then compute weekly anomalies.&lt;/p&gt;
+&lt;p&gt;Now lets try an example straight from &lt;code&gt;xray&lt;/code&gt;&amp;#39;s documentation.
+First I will reduce the data from hourly to daily observations,
+then compute weekly anomalies.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[11]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;daily_aggregator&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;data_array&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;time&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;data_array&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coords&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;time&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
     &lt;span class="n"&gt;values&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;time&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_index&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_period&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_timestamp&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -5272,14 +5779,16 @@ In&amp;nbsp;[11]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[12]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;week_avg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;daily_avg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daily.week&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;mean&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daily&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;anomalies&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;daily_avg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;groupby&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;daily.week&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;week_avg&lt;/span&gt;
 
@@ -5288,15 +5797,16 @@ In&amp;nbsp;[12]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAYEAAAE5CAYAAAB2wJw8AAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzt3XlgVNXZ+PHvuQkkISsJSyAhkEDYwm5YFGSV1qqt9LWm
 Ym1r9dUWfV3oK7VaF3wpUqXgVsBWcGlta7Gt1v5qVaxlKQgSCQJhCWER2ZeQZQKBJPf8/rhJTEgm
@@ -5578,24 +6088,32 @@ cePG0aFDB3/9CkJ4TZKACFuRkZE88MADrFmzhttvv52PP/6YsWPHopTi2muv5eLFi9x+++088sgj
 TVYOteTSIaJJkyZx6NAhJk6c6M9fQQivyaEyQvjBrl27eOGFF1i6dGmwQxGiVdITEMLHampq+Mc/
 /sG0adOCHYoQbZIkIIQPHT58mB/84AeUlZXJqiDRLshwkBBChDHpCQghRBiTJCCEEGFMkoAQQoQx
 SQJCCBHGJAkIIUQYkyQghBBh7P8DKqa4voIZ/JAAAAAASUVORK5CYII=
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
-
-&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Those anomalies could very well be the GS front meandering around that point.&lt;/p&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[13]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;surface&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;temp&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;isel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s_rho&lt;/span&gt;&lt;span class="o"&gt;=-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_map&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;lon&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;min&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;lat&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;max&lt;/span&gt;&lt;span class="p"&gt;()])&lt;/span&gt;
@@ -5609,15 +6127,16 @@ In&amp;nbsp;[13]:
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_display_data"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+
+
+&lt;div class="output_png output_subarea "&gt;
 &lt;img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeEAAAFsCAYAAAD7ZAEIAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
 AAALEgAACxIB0t1+/AAAIABJREFUeJzsvXl8FfW9//+cmbPnJDlZSE42OGHfCXsAFwRxQcUqbqhV
 atXaqr31Wm+/tfdrvd5rvf3VXuut1RZbtLhbV0TckU0SiEDYAwFygOwhyUlycvaZ+f3xGWn7rVVU
@@ -7593,36 +8112,38 @@ ZSXV1NT82XnH2ledQqEQNTU1kU6nI6PRSGtra1GPkeidvmoUSaPRhL8d/R05NtJqtZSdnU0Gg4EM
 BgO1tbVFPUaiNyL6upPf7ye73U55eXnkcDgoEAhEPUaid9rf36eSkhLS6/Xkcrno9vY2pms33zua
 McYYixO+HM0YY4zFCW/CjDHGWJzwJswYY4zFCW/CjDHGWJzwJswYY4zFCW/CjDHGWJzwJswYY4zF
 CW/CjDHGWJz8B5ZbvoqJ3GpcAAAAAElFTkSuQmCC
-"&gt;
+"
+&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[14]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[14]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
-&lt;div class="output_html rendered_html"&gt;
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
 
 &lt;small&gt;
 &lt;p&gt; This post was written as an IPython notebook.  It is available for
@@ -7647,78 +8168,134 @@ rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
 &lt;/div&gt;
 
 &lt;/div&gt;
-&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Contributing to an Open Source Project with GitHub</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/15/gihub_foss/" rel="alternate"></link><updated>2014-12-15T01:09:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2014-12-15:blog/2014/12/15/gihub_foss/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I just handed &lt;a href="https://github.com/TEOS-10/python-gsw"&gt;python-gsw&lt;/a&gt; over to the &lt;a href="http://www.teos-10.org/"&gt;TEOS-10&lt;/a&gt; group. Even though that is probably my dearest project, I do not have the time to be a full time developer anymore. However, I will gladly review Pull Requests (PRs) ;-)&lt;/p&gt;
-&lt;p&gt;That is why I decide to post a small recipe to help people get started with GitHub PRs.&lt;/p&gt;
-&lt;p&gt;This post not intended to be a complete guide on how to fork, branch, and prepare a Pull Request. It is just a recipe with a few commands, like a copy-and-paste cheat sheet.&lt;/p&gt;
+&lt;p&gt;I just handed &lt;a href="https://github.com/TEOS-10/python-gsw"&gt;python-gsw&lt;/a&gt; over to the
+&lt;a href="http://www.teos-10.org/"&gt;TEOS-10&lt;/a&gt; group.  Even though that is probably my
+dearest project, I do not have the time to be a full time developer
+anymore.  However, I will gladly review Pull Requests (PRs) ;-)&lt;/p&gt;
+&lt;p&gt;That is why I decide to post a small recipe to help people get started with
+GitHub PRs.&lt;/p&gt;
+&lt;p&gt;This post not intended to be a complete guide on how to fork, branch, and
+prepare a Pull Request.  It is just a recipe with a few commands, like a
+copy-and-paste cheat sheet.&lt;/p&gt;
 &lt;h3 id="setting-the-fork-up"&gt;Setting the fork up&lt;/h3&gt;
-&lt;p&gt;The first step is to create a &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; account, and to &lt;a href="https://help.github.com/articles/fork-a-repo/"&gt;configure&lt;/a&gt; git. Then you may navigate to&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://github.com/TEOS-10/python-gsw" class="uri"&gt;https://github.com/TEOS-10/python-gsw&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The first step is to create a &lt;a href="https://github.com/"&gt;GitHub&lt;/a&gt; account, and to
+&lt;a href="https://help.github.com/articles/fork-a-repo/"&gt;configure&lt;/a&gt; git.  Then you may
+navigate to&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/TEOS-10/python-gsw"&gt;https://github.com/TEOS-10/python-gsw&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;and fork the code by clicking on the upper right &amp;quot;Fork&amp;quot; button.&lt;/p&gt;
 &lt;p&gt;After that you may clone your fork using ssh&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;git&lt;/span&gt; clone git@github.com:your_username_here/python-gsw.git&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git clone git@github.com:your_username_here/python-gsw.git
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;or https&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;git&lt;/span&gt; clone https://github.com/your_username_here/python-gsw.git&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;I like to use ssh and &lt;a href="https://help.github.com/articles/generating-ssh-keys/"&gt;here&lt;/a&gt; is how to setup it up with GitHub. Now type&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;git&lt;/span&gt; remote -v&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;You should see your forked repository as &lt;code&gt;origin&lt;/code&gt;. Before continuing you need to set an &lt;code&gt;upstream&lt;/code&gt; repository. You will be able to fetch code from &lt;code&gt;upstream&lt;/code&gt; and send PRs there. Lets set the new official repository as &lt;code&gt;upstream&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;git&lt;/span&gt; remote add upstream https://github.com/TEOS-10/python-gsw.git&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now type &lt;code&gt;git remote -v&lt;/code&gt; again and note that you should have both &lt;code&gt;upstream&lt;/code&gt; and &lt;code&gt;origin&lt;/code&gt; listed. For the upstream I like to use https instead of ssh. The main reason is to avoid pushing directly to it. Hopefully that will be clear in a moment.&lt;/p&gt;
-&lt;h3 id="pull-request-pr"&gt;Pull Request (PR)&lt;/h3&gt;
-&lt;p&gt;PRs are more than a request to incorporate your code into the &lt;code&gt;upstream&lt;/code&gt; repository, they are how developer &amp;quot;talk&amp;quot; and &amp;quot;evolve&amp;quot; ideas. Usually a PR is not merged right away. In fact a PR is the beginning of a discussion. &lt;a href="https://github.com/matplotlib/matplotlib/pull/2962"&gt;Here&lt;/a&gt; is an example of that conversation happens (that is my very first PR to matplotlib).&lt;/p&gt;
-&lt;p&gt;How to submit a PR? First create a branch on your fork and check the branch out*:&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="co"&gt;# Use meaningful branch names like &amp;quot;fix_bug_x&amp;quot; or &amp;quot;add_feature_y&amp;quot;.&lt;/span&gt;
-&lt;span class="kw"&gt;git&lt;/span&gt; branch my_awesome_code
-&lt;span class="kw"&gt;git&lt;/span&gt; checkout my_awesome_code&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now code away! Create file and add it with &lt;code&gt;git add new_file&lt;/code&gt;, modify a file and commit it with &lt;code&gt;git commit my_modified_file&lt;/code&gt;. Use &lt;code&gt;git status&lt;/code&gt; to see what was modified and &lt;code&gt;git diff my_modified_file&lt;/code&gt; to see the differences. Consider using some git &lt;a href="http://haacked.com/archive/2014/07/28/github-flow-aliases/"&gt;aliases&lt;/a&gt;** to help with your work flow.&lt;/p&gt;
-&lt;p&gt;It is good practice to make small increments when modifying a code. Send several small PRs instead of a big one, specially if the modifications are not related to each other. Once you have finished your changes it is time to push your local branch to &lt;code&gt;origin&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;git&lt;/span&gt; push --set-upstream origin my_awesome_code&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That is not the PR yet! You need to open a browser and go to your fork on GitHub, you should see a &amp;quot;Create pull request&amp;quot; &lt;a href="https://help.github.com/articles/using-pull-requests/"&gt;button&lt;/a&gt;. Click on that, write a meaningful message and lets talk code!&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git clone https://github.com/your_username_here/python-gsw.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I like to use ssh and
+&lt;a href="https://help.github.com/articles/generating-ssh-keys/"&gt;here&lt;/a&gt; is how to setup
+it up with GitHub.  Now type&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git remote -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You should see your forked repository as &lt;code&gt;origin&lt;/code&gt;.  Before continuing you need
+to set an &lt;code&gt;upstream&lt;/code&gt; repository. You will be able to fetch code from &lt;code&gt;upstream&lt;/code&gt;
+and send PRs there.  Lets set the new official repository as &lt;code&gt;upstream&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git remote add upstream https://github.com/TEOS-10/python-gsw.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now type &lt;code&gt;git remote -v&lt;/code&gt; again and note that you should have both &lt;code&gt;upstream&lt;/code&gt;
+and &lt;code&gt;origin&lt;/code&gt; listed. For the upstream I like to use https instead of ssh.  The
+main reason is to avoid pushing directly to it.  Hopefully that will be clear
+in a moment.&lt;/p&gt;
+&lt;h3 id="pull-request-pr-"&gt;Pull Request (PR)&lt;/h3&gt;
+&lt;p&gt;PRs are more than a request to incorporate your code into the &lt;code&gt;upstream&lt;/code&gt;
+repository, they are how developer &amp;quot;talk&amp;quot; and &amp;quot;evolve&amp;quot; ideas.  Usually a PR is
+not merged right away.  In fact a PR is the beginning of a discussion.
+&lt;a href="https://github.com/matplotlib/matplotlib/pull/2962"&gt;Here&lt;/a&gt; is an
+example of that conversation happens (that is my very first PR to matplotlib).&lt;/p&gt;
+&lt;p&gt;How to submit a PR?  First create a branch on your fork and check the branch
+out*:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;&lt;span class="comment"&gt;# Use meaningful branch names like "fix_bug_x" or "add_feature_y".&lt;/span&gt;
+git branch my_awesome_code
+git checkout my_awesome_code
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now code away!  Create file and add it with &lt;code&gt;git add new_file&lt;/code&gt;, modify a file
+and commit it with &lt;code&gt;git commit my_modified_file&lt;/code&gt;.  Use &lt;code&gt;git status&lt;/code&gt; to see
+what was modified and &lt;code&gt;git diff my_modified_file&lt;/code&gt; to see the differences.
+Consider using some git
+&lt;a href="http://haacked.com/archive/2014/07/28/github-flow-aliases/"&gt;aliases&lt;/a&gt;**
+to help with your work flow.&lt;/p&gt;
+&lt;p&gt;It is good practice to make small increments when modifying a code.  Send
+several small PRs instead of a big one, specially if the modifications are not
+related to each other.  Once you have finished your changes it is time to push
+your local branch to &lt;code&gt;origin&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-bash"&gt;git push --&lt;span class="keyword"&gt;set&lt;/span&gt;-upstream origin my_awesome_code
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That is not the PR yet!  You need to open a browser and go to your fork on
+GitHub, you should see a &amp;quot;Create pull request&amp;quot;
+&lt;a href="https://help.github.com/articles/using-pull-requests/"&gt;button&lt;/a&gt;.  Click on that,
+write a meaningful message and lets talk code!&lt;/p&gt;
 &lt;h3 id="last-comments"&gt;Last comments&lt;/h3&gt;
-&lt;p&gt;After the PR is merge you can delete your branch with &lt;code&gt;git branch -D my_awesome_code&lt;/code&gt; and prune remote branches with &lt;code&gt;git remote prune origin&lt;/code&gt;. Remember to keep your local copy up-to-date with &lt;code&gt;upstream&lt;/code&gt; by issuing &lt;code&gt;git fetch upstream&lt;/code&gt; and then &lt;code&gt;git merge upstream/master&lt;/code&gt;. (You may use &lt;code&gt;git pull&lt;/code&gt; instead, but I will leave as an exercise for you to find what are are the differences and why &lt;code&gt;fetch&lt;/code&gt; is preferable to &lt;code&gt;pull&lt;/code&gt;.)&lt;/p&gt;
-&lt;p&gt;That is basically it. But git+GiHub is much more than that! There are plenty of questions on &lt;a href="http://stackoverflow.com/questions/tagged/git"&gt;stackoverflow&lt;/a&gt; that might help you go a little bit further. Also, take a look at &lt;a href="http://matplotlib.org/devel/index.html"&gt;matplotlib's&lt;/a&gt; and &lt;a href="http://scitools.org.uk/iris/docs/latest/developers_guide/index.html"&gt;iris'&lt;/a&gt; developers guide.&lt;/p&gt;
+&lt;p&gt;After the PR is merge you can delete your branch with
+&lt;code&gt;git branch -D my_awesome_code&lt;/code&gt; and prune remote branches with
+&lt;code&gt;git remote prune origin&lt;/code&gt;.  Remember to keep your local copy up-to-date with
+&lt;code&gt;upstream&lt;/code&gt; by issuing &lt;code&gt;git fetch upstream&lt;/code&gt; and then &lt;code&gt;git merge upstream/master&lt;/code&gt;.
+(You may use &lt;code&gt;git pull&lt;/code&gt; instead, but I will leave as an exercise for you to
+find what are are the differences and why &lt;code&gt;fetch&lt;/code&gt; is preferable to &lt;code&gt;pull&lt;/code&gt;.)&lt;/p&gt;
+&lt;p&gt;That is basically it.  But git+GiHub is much more than that!  There are plenty
+of questions on &lt;a href="http://stackoverflow.com/questions/tagged/git"&gt;stackoverflow&lt;/a&gt;
+that might help you go a little bit further.  Also, take a look at
+&lt;a href="http://matplotlib.org/devel/index.html"&gt;matplotlib&amp;#39;s&lt;/a&gt; and
+&lt;a href="http://scitools.org.uk/iris/docs/latest/developers_guide/index.html"&gt;iris&amp;#39;&lt;/a&gt;
+developers guide.&lt;/p&gt;
 &lt;p&gt;I hope that this post got you excited to help the python-gsw project.&lt;/p&gt;
-&lt;p&gt;* Consider making your prompt git aware. If you use bash try http://bl.ocks.org/mikeric/3989635, if you use zshel try the amazing http://ohmyz.sh/&lt;/p&gt;
-&lt;p&gt;** Here are my aliases:&lt;/p&gt;
-&lt;pre class="sourceCode yaml"&gt;&lt;code class="sourceCode yaml"&gt;&lt;span class="kw"&gt;[&lt;/span&gt;alias&lt;span class="kw"&gt;]&lt;/span&gt;
+&lt;p&gt;* Consider making your prompt git aware.  If you use bash try
+&lt;a href="http://bl.ocks.org/mikeric/3989635"&gt;http://bl.ocks.org/mikeric/3989635&lt;/a&gt;, if you use zshel try the amazing
+&lt;a href="http://ohmyz.sh/"&gt;http://ohmyz.sh/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;**  Here are my aliases:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;[alias]
     pull = pull --ff-only
-    st = status -s
+    st = status -&lt;span class="keyword"&gt;s&lt;/span&gt;
     ci = commit
     co = checkout
     diff = diff --word-diff
-    &lt;span class="fu"&gt;ll = log --pretty=format:&lt;/span&gt;&lt;span class="st"&gt;&amp;quot;%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]&amp;quot;&lt;/span&gt;&lt;span class="er"&gt; --decorate --numstat&lt;/span&gt;
-    &lt;span class="fu"&gt;ls = log --pretty=format:&lt;/span&gt;&lt;span class="st"&gt;&amp;quot;%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]&amp;quot;&lt;/span&gt;&lt;span class="er"&gt; --decorate --date=relative&lt;/span&gt;
-    filelog = log -u
-    la = &lt;span class="st"&gt;&amp;quot;!git config -l | grep alias | cut -c 7-&amp;quot;&lt;/span&gt;
-    grep = grep -Ii&lt;/code&gt;&lt;/pre&gt;
+    ll = &lt;span class="keyword"&gt;log&lt;/span&gt; --pretty=&lt;span class="keyword"&gt;format&lt;/span&gt;:&lt;span class="string"&gt;"&lt;span class="variable"&gt;%C&lt;/span&gt;(yellow)&lt;span class="variable"&gt;%h&lt;/span&gt;&lt;span class="variable"&gt;%Cred&lt;/span&gt;&lt;span class="variable"&gt;%d&lt;/span&gt;\\ &lt;span class="variable"&gt;%Creset&lt;/span&gt;&lt;span class="variable"&gt;%s&lt;/span&gt;&lt;span class="variable"&gt;%Cblue&lt;/span&gt;\\ [&lt;span class="variable"&gt;%cn&lt;/span&gt;]"&lt;/span&gt; --decorate --numstat
+    ls = &lt;span class="keyword"&gt;log&lt;/span&gt; --pretty=&lt;span class="keyword"&gt;format&lt;/span&gt;:&lt;span class="string"&gt;"&lt;span class="variable"&gt;%C&lt;/span&gt;(yellow)&lt;span class="variable"&gt;%h&lt;/span&gt;\\ &lt;span class="variable"&gt;%ad&lt;/span&gt;&lt;span class="variable"&gt;%Cred&lt;/span&gt;&lt;span class="variable"&gt;%d&lt;/span&gt;\\ &lt;span class="variable"&gt;%Creset&lt;/span&gt;&lt;span class="variable"&gt;%s&lt;/span&gt;&lt;span class="variable"&gt;%Cblue&lt;/span&gt;\\ [&lt;span class="variable"&gt;%cn&lt;/span&gt;]"&lt;/span&gt; --decorate --date=relative
+    filelog = &lt;span class="keyword"&gt;log&lt;/span&gt; -u
+    la = &lt;span class="string"&gt;"!git config -l | grep alias | cut -c 7-"&lt;/span&gt;
+    &lt;span class="keyword"&gt;grep&lt;/span&gt; = &lt;span class="keyword"&gt;grep&lt;/span&gt; -Ii
+&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;
 In&amp;nbsp;[2]:
 &lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
 &lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 &lt;/div&gt;
+&lt;/div&gt;
 
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
 
 
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
     Out[2]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
 
-&lt;div class="output_html rendered_html"&gt;
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
 
 &lt;small&gt;
 &lt;p&gt; This post was written as an IPython notebook.  It is available for
@@ -7742,87 +8319,6 @@ rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
  
 &lt;/div&gt;
 
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>New website using hyde</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/08/intro_python_website/" rel="alternate"></link><updated>2014-12-08T19:43:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2014-12-08:blog/2014/12/08/intro_python_website/</id><summary type="html">&lt;p&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I am building a new website with &lt;del&gt;Jekyll&lt;/del&gt; &lt;a href="http://hyde.github.io/"&gt;hyde&lt;/a&gt;, and this post consists of some notes for my future self.&lt;/p&gt;
-&lt;p&gt;(The website source is hosted on GitHub &lt;a href="https://github.com/ocefpaf/python4oceanographers_intro_course"&gt;here&lt;/a&gt;, and the page is rendered as &lt;a href="https://pages.github.com/"&gt;gh-pages&lt;/a&gt; &lt;a href="http://ocefpaf.github.io/python4oceanographers_intro_course/"&gt;here&lt;/a&gt;.)&lt;/p&gt;
-&lt;p&gt;Hyde is a python alternative for ruby's Jekyll. The project seems to be outdated (no python 3 version, several non-attended PRs/Issues) and there is no direct integration with gh-pages like Jekyll. However, because it is written entirely in python, I could easily hack into it and modify existing plugins. The code I modified was &lt;a href="https://github.com/jakevdp"&gt;Jake Vanderplas'&lt;/a&gt; IPython notebook &lt;a href="https://github.com/jakevdp/hyde/blob/notebook_plugin/hyde/ext/plugins/notebook.py"&gt;plugin&lt;/a&gt;. My modification implements the latest IPython v4 notebook format.&lt;/p&gt;
-&lt;p&gt;(I am using v4 notebooks format for my lecture to take advantage of to the wonderful live slides feature!)&lt;/p&gt;
-&lt;p&gt;Here is the recipe for the site. First a site venv:&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;mkvirtualenv&lt;/span&gt; --python=/usr/bin/python2.7 hyde&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Then install hyde, ghp-import and ipython (for the latest development version of ipython follow &lt;a href="http://ipython.org/ipython-doc/dev/install/install.html"&gt;this&lt;/a&gt; instructions.&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;pip&lt;/span&gt; install hyde
-
-&lt;span class="kw"&gt;pip&lt;/span&gt; install ghp-import
-
-&lt;span class="kw"&gt;pip&lt;/span&gt; install ipython[all]&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The repository is divided into a &lt;strong&gt;notebook&lt;/strong&gt; folder, with the lecture slides, and a &lt;strong&gt;website&lt;/strong&gt; folder, with the webpage source code.&lt;/p&gt;
-&lt;p&gt;I had to modify the publish directive in the Makefile as follows:&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="ot"&gt;BASEDIR=$(&lt;/span&gt;&lt;span class="kw"&gt;CURDIR&lt;/span&gt;&lt;span class="ot"&gt;)&lt;/span&gt;
-&lt;span class="ot"&gt;OUTPUTDIR=$(&lt;/span&gt;&lt;span class="kw"&gt;BASEDIR&lt;/span&gt;&lt;span class="ot"&gt;)&lt;/span&gt;/deploy_production
-
-&lt;span class="kw"&gt;publish&lt;/span&gt;:
-    &lt;span class="kw"&gt;hyde&lt;/span&gt; gen -c production.yaml
-    &lt;span class="kw"&gt;ghp-import&lt;/span&gt; &lt;span class="ot"&gt;$(&lt;/span&gt;&lt;span class="kw"&gt;OUTPUTDIR&lt;/span&gt;&lt;span class="ot"&gt;)&lt;/span&gt;
-    &lt;span class="kw"&gt;git&lt;/span&gt; push origin gh-pages&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Now I can generate, serve and publish the site with&lt;/p&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;make&lt;/span&gt; gen&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;make&lt;/span&gt; serve&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class="sourceCode bash"&gt;&lt;code class="sourceCode bash"&gt;&lt;span class="kw"&gt;make&lt;/span&gt; publish&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;That's it! Here is the new website:&lt;/p&gt;
-&lt;p&gt;&lt;a href="http://ocefpaf.github.io/python4oceanographers_intro_course" class="uri"&gt;http://ocefpaf.github.io/python4oceanographers_intro_course&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell vbox"&gt;
-&lt;div class="input hbox"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[2]:
-&lt;/div&gt;
-&lt;div class="input_area box-flex1"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="vbox output_wrapper"&gt;
-&lt;div class="output vbox"&gt;
-
-
-&lt;div class="hbox output_area"&gt;&lt;div class="prompt output_prompt"&gt;
-    Out[2]:&lt;/div&gt;
-&lt;div class="box-flex1 output_subarea output_pyout"&gt;
-
-&lt;div class="output_html rendered_html"&gt;
-
-&lt;small&gt;
-&lt;p&gt; This post was written as an IPython notebook.  It is available for
-&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
-notebooks/2014-12-08-intro_python_website.ipynb"&gt;download&lt;/a&gt; or as a static
-&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
-python4oceanographers/downloads/notebooks/2014-12-08-intro_python_website.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
-xmlns:dct="http://purl.org/dc/terms/"
-property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
-xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
-property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
-licensed under a &lt;a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
-Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
-xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
-rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
- 
-&lt;/div&gt;
-
-&lt;/div&gt;
 &lt;/div&gt;
 
 &lt;/div&gt;
