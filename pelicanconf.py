@@ -97,3 +97,6 @@ FEED_MAX_ITEMS = 5
 
 # Search
 SEARCH_BOX = True
+
+# Ignore HTMLs.
+READERS = {'html': None}
