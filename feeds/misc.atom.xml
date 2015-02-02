@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/misc.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-02-02T13:33:00-02:00</updated><entry><title>Plotting shapefiles with cartopy and folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" rel="alternate"></link><updated>2015-02-02T13:33:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-02-02:blog/2015/02/02/cartopy_folium_shapefile/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/misc.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-02-02T15:00:00-02:00</updated><entry><title>Plotting shapefiles with cartopy and folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" rel="alternate"></link><updated>2015-02-02T15:00:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-02-02:blog/2015/02/02/cartopy_folium_shapefile/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -757,7 +757,6 @@ In&amp;nbsp;[6]:
                   &lt;span class="n"&gt;location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;50&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
 
 &lt;span class="n"&gt;mapa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;geo_json&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;geo_path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;states.json&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;fill_color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line_color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Orange&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;mapa&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;create_map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;states&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="n"&gt;inline_map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mapa&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -776,10 +775,10 @@ In&amp;nbsp;[6]:
 &lt;iframe srcdoc="&lt;!DOCTYPE html&gt;
 &lt;head&gt;
    &lt;meta http-equiv=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html; charset=UTF-8&amp;quot; /&gt;
-   &lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;http://cdn.leafletjs.com/leaflet-0.7/leaflet.css&amp;quot; /&gt;
-   &lt;script src=&amp;quot;http://cdn.leafletjs.com/leaflet-0.7/leaflet.js&amp;quot;&gt;&lt;/script&gt;
-   &lt;script src=&amp;quot;http://d3js.org/d3.v3.min.js&amp;quot; charset=&amp;quot;utf-8&amp;quot;&gt;&lt;/script&gt;
-   &lt;script src=&amp;quot;http://d3js.org/queue.v1.min.js&amp;quot;&gt;&lt;/script&gt;
+   &lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;//cdn.leafletjs.com/leaflet-0.7/leaflet.css&amp;quot; /&gt;
+   &lt;script src=&amp;quot;//cdn.leafletjs.com/leaflet-0.7/leaflet.js&amp;quot;&gt;&lt;/script&gt;
+   &lt;script src=&amp;quot;//d3js.org/d3.v3.min.js&amp;quot; charset=&amp;quot;utf-8&amp;quot;&gt;&lt;/script&gt;
+   &lt;script src=&amp;quot;//d3js.org/queue.v1.min.js&amp;quot;&gt;&lt;/script&gt;
 
    
    
@@ -845,6 +844,8 @@ In&amp;nbsp;[6]:
               minZoom: 1,
               attribution: 'Map data (c) &lt;a href=&amp;quot;http://openstreetmap.org&amp;quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
           }).addTo(map);
+
+          
 
           
 
