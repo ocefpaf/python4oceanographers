@@ -1842,33 +1842,31 @@ through pass the dictionary.</p>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[14]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">folium</span>
-<span class="n">radars</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">122</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">tiles</span><span class="o">=</span><span class="s">&#39;OpenStreetMap&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">inline_map</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">650</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Takes a folium instance and embed HTML.&quot;&quot;&quot;</span>
+    <span class="n">m</span><span class="o">.</span><span class="n">_build_map</span><span class="p">()</span>
+    <span class="n">srcdoc</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">HTML</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s">&#39;&amp;quot;&#39;</span><span class="p">)</span>
+    <span class="n">embed</span> <span class="o">=</span> <span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;iframe srcdoc=&quot;{}&quot; &#39;</span>
+                 <span class="s">&#39;style=&quot;width: {}px; height: {}px; &#39;</span>
+                 <span class="s">&#39;border: none&quot;&gt;&lt;/iframe&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">srcdoc</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">embed</span>
+
+
+<span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">500</span>
+<span class="n">radars</span> <span class="o">=</span> <span class="n">folium</span><span class="o">.</span><span class="n">Map</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">122</span><span class="p">],</span> <span class="n">zoom_start</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                    <span class="n">tiles</span><span class="o">=</span><span class="s">&#39;OpenStreetMap&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">location</span> <span class="ow">in</span> <span class="n">locations</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="n">radars</span><span class="o">.</span><span class="n">polygon_marker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">popup</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
-                          <span class="n">fill_color</span><span class="o">=</span><span class="s">&#39;#339933&#39;</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+    <span class="n">radars</span><span class="o">.</span><span class="n">simple_marker</span><span class="p">(</span><span class="n">location</span><span class="o">=</span><span class="n">location</span><span class="p">,</span> <span class="n">popup</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
 
-<span class="n">radars</span><span class="o">.</span><span class="n">create_map</span><span class="p">(</span><span class="s">&#39;map.txt&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s">&#39;map.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="n">inline_map</span><span class="p">(</span><span class="n">radars</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1880,22 +1878,47 @@ In&nbsp;[5]:
 
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[14]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
-<!DOCTYPE html>
+<iframe srcdoc="<!DOCTYPE html>
 <head>
-   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
-   <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+   <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
+   <link rel=&quot;stylesheet&quot; href=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css&quot; />
+   <script src=&quot;http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js&quot;></script>
 
-   <script src="https://wrobstory.github.io/leaflet-dvf/leaflet-dvf.markers.min.js"></script>
-   
-   
-   
+   <script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js&quot;></script>
 
+   <link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css&quot;>
+   <link rel=&quot;stylesheet&quot; href=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css&quot;>
+   <script src=&quot;//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js&quot;></script>
+
+   <link href=&quot;//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css&quot; rel=&quot;stylesheet&quot;>
+
+   <link rel=&quot;stylesheet&quot; href=&quot;https://rawgit.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.css&quot;>
+   <script src=&quot;https://rawgithub.com/lvoogdt/Leaflet.awesome-markers/2.0/develop/dist/leaflet.awesome-markers.js&quot;></script>
+
+
+   <link rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.Default.css&quot;>
+   <link rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/MarkerCluster.css&quot;>
+   <script src=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster-src.js&quot;></script>
+   <script src=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/0.4.0/leaflet.markercluster.js&quot;></script>
+
+   <link rel=&quot;stylesheet&quot; href=&quot;http://birdage.github.io/Leaflet.awesome-markers/dist/leaflet.awesome.rotate.css&quot;>
+
+   
+   
+   
+   
 
    <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
 
       #map {
         position:absolute;
@@ -1910,1644 +1933,1193 @@ In&nbsp;[5]:
 
 <body>
 
-   <div class="folium-map" id="folium_15fe9c5010f843579706d6e015534676" style="width: 960px; height: 500px"></div>
+   <div class=&quot;folium-map&quot; id=&quot;folium_42ed0cc80660482c856297b0d194a20c&quot; style=&quot;width: 650px; height: 500px&quot;></div>
 
    <script>
 
       
 
-      var map = L.map('folium_15fe9c5010f843579706d6e015534676').setView([40, -122], 5);
-
-      L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      var base_tile = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 18,
-          attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-      }).addTo(map);
+          minZoom: 1,
+          attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+      });
+
+      var baseLayer = {
+        &quot;Base Layer&quot;: base_tile
+      };
+
+      /*
+      addition of the wms layers
+      */
 
       
-      var polygon_1 = new L.RegularPolygonMarker(new L.LatLng(46.176417, -123.978383), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_1.bindPopup("Fort Stevens, OR (STV2)");
-      map.addLayer(polygon_1)
-      
-      var polygon_2 = new L.RegularPolygonMarker(new L.LatLng(39.198683, -74.652517), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_2.bindPopup("Strathmere, NJ (RATH)");
-      map.addLayer(polygon_2)
-      
-      var polygon_3 = new L.RegularPolygonMarker(new L.LatLng(36.93085, -76.01675), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_3.bindPopup("Cape Henry, VA, USA (CPHN)");
-      map.addLayer(polygon_3)
-      
-      var polygon_4 = new L.RegularPolygonMarker(new L.LatLng(21.261391, -157.703293), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_4.bindPopup("Koko Head, HI (KOK)");
-      map.addLayer(polygon_4)
-      
-      var polygon_5 = new L.RegularPolygonMarker(new L.LatLng(34.042433, -118.9153), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_5.bindPopup("Nicholas Canyon, CA (NIC1)");
-      map.addLayer(polygon_5)
-      
-      var polygon_6 = new L.RegularPolygonMarker(new L.LatLng(39.736183, -74.116983), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_6.bindPopup("Loveladies (LOVE)");
-      map.addLayer(polygon_6)
-      
-      var polygon_7 = new L.RegularPolygonMarker(new L.LatLng(37.49675, -122.499367), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_7.bindPopup("Pillar Point Air Force Station, CA, USA (PILR)");
-      map.addLayer(polygon_7)
-      
-      var polygon_8 = new L.RegularPolygonMarker(new L.LatLng(36.603333, -121.87195), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_8.bindPopup("Naval Postgraduate School (NPGS)");
-      map.addLayer(polygon_8)
-      
-      var polygon_9 = new L.RegularPolygonMarker(new L.LatLng(36.306233, -121.9013), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_9.bindPopup("Point Sur Long Range, CA (PSLR)");
-      map.addLayer(polygon_9)
-      
-      var polygon_10 = new L.RegularPolygonMarker(new L.LatLng(27.635833, -82.738056), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_10.bindPopup("Ft. De Soto, FL (FDS)");
-      map.addLayer(polygon_10)
-      
-      var polygon_11 = new L.RegularPolygonMarker(new L.LatLng(27.832533, -82.834383), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_11.bindPopup("Reddington, FL (RDSR)");
-      map.addLayer(polygon_11)
-      
-      var polygon_12 = new L.RegularPolygonMarker(new L.LatLng(37.252483, -122.416567), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_12.bindPopup("Pescadero, CA (PESC)");
-      map.addLayer(polygon_12)
-      
-      var polygon_13 = new L.RegularPolygonMarker(new L.LatLng(27.077583, -82.4516), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_13.bindPopup("Venice, FL (VENI)");
-      map.addLayer(polygon_13)
-      
-      var polygon_14 = new L.RegularPolygonMarker(new L.LatLng(41.152583, -71.551833), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_14.bindPopup("Block Island, RI (BISL)");
-      map.addLayer(polygon_14)
-      
-      var polygon_15 = new L.RegularPolygonMarker(new L.LatLng(45.9753, -123.9448), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_15.bindPopup("Seaside, OR (SEA1)");
-      map.addLayer(polygon_15)
-      
-      var polygon_16 = new L.RegularPolygonMarker(new L.LatLng(33.0245, -117.2861), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_16.bindPopup("San Elijo State Beach, CA (SDSE)");
-      map.addLayer(polygon_16)
-      
-      var polygon_17 = new L.RegularPolygonMarker(new L.LatLng(33.356111, -79.1525), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_17.bindPopup("Georgetown, SC (GTN)");
-      map.addLayer(polygon_17)
-      
-      var polygon_18 = new L.RegularPolygonMarker(new L.LatLng(25.7412, -80.1463), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_18.bindPopup("Virginia Key, FL (VIR)");
-      map.addLayer(polygon_18)
-      
-      var polygon_19 = new L.RegularPolygonMarker(new L.LatLng(37.7794, -122.512417), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_19.bindPopup("Land's End, CA (LEND)");
-      map.addLayer(polygon_19)
-      
-      var polygon_20 = new L.RegularPolygonMarker(new L.LatLng(32.665833, -117.239583), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_20.bindPopup("San Diego, Point Loma (SDPL)");
-      map.addLayer(polygon_20)
-      
-      var polygon_21 = new L.RegularPolygonMarker(new L.LatLng(49.215867, -123.205383), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_21.bindPopup("Iona Wastewater Treatment Plant, Vancouver (VION)");
-      map.addLayer(polygon_21)
-      
-      var polygon_22 = new L.RegularPolygonMarker(new L.LatLng(31.827033, -116.609017), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_22.bindPopup("Conalep, Mexico (CONA)");
-      map.addLayer(polygon_22)
-      
-      var polygon_23 = new L.RegularPolygonMarker(new L.LatLng(34.869717, -120.621283), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_23.bindPopup("FallBack22, Pt. Sal, CA (FBK1)");
-      map.addLayer(polygon_23)
-      
-      var polygon_24 = new L.RegularPolygonMarker(new L.LatLng(43.665833, -124.2065), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_24.bindPopup("Winchester Bay, OR (WIN1)");
-      map.addLayer(polygon_24)
-      
-      var polygon_25 = new L.RegularPolygonMarker(new L.LatLng(27.196083, -90.026517), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_25.bindPopup("Atlantis (BPAT)");
-      map.addLayer(polygon_25)
-      
-      var polygon_26 = new L.RegularPolygonMarker(new L.LatLng(40.033367, -124.078867), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_26.bindPopup("Shelter Cove, CA (SHEL)");
-      map.addLayer(polygon_26)
-      
-      var polygon_27 = new L.RegularPolygonMarker(new L.LatLng(35.202467, -120.846067), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_27.bindPopup("Diablo Canyon Standard Range, CA (DCSR)");
-      map.addLayer(polygon_27)
-      
-      var polygon_28 = new L.RegularPolygonMarker(new L.LatLng(34.096117, -119.107367), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_28.bindPopup("Point Mugu, CA (PTM1)");
-      map.addLayer(polygon_28)
-      
-      var polygon_29 = new L.RegularPolygonMarker(new L.LatLng(41.152767, -71.550867), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_29.bindPopup("Block Island (BLCK)");
-      map.addLayer(polygon_29)
-      
-      var polygon_30 = new L.RegularPolygonMarker(new L.LatLng(38.79375, -75.089033), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_30.bindPopup("Cape Henlopen, DE (HLPN)");
-      map.addLayer(polygon_30)
-      
-      var polygon_31 = new L.RegularPolygonMarker(new L.LatLng(40.44135, -74.09925), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_31.bindPopup("Port Monmouth, NJ (PORT)");
-      map.addLayer(polygon_31)
-      
-      var polygon_32 = new L.RegularPolygonMarker(new L.LatLng(34.419017, -119.596117), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_32.bindPopup("Summerland Sanitary District (SSD1)");
-      map.addLayer(polygon_32)
-      
-      var polygon_33 = new L.RegularPolygonMarker(new L.LatLng(33.811683, -118.391433), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_33.bindPopup("Torrance Beach, CA (SCTB)");
-      map.addLayer(polygon_33)
-      
-      var polygon_34 = new L.RegularPolygonMarker(new L.LatLng(38.931283, -74.960933), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_34.bindPopup("Cape May Point, NJ (CMPT)");
-      map.addLayer(polygon_34)
-      
-      var polygon_35 = new L.RegularPolygonMarker(new L.LatLng(39.4075, -74.362133), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_35.bindPopup("Brigantine, NJ (BRIG)");
-      map.addLayer(polygon_35)
-      
-      var polygon_36 = new L.RegularPolygonMarker(new L.LatLng(27.075556, -82.451111), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_36.bindPopup("Venice, FL (VEN)");
-      map.addLayer(polygon_36)
-      
-      var polygon_37 = new L.RegularPolygonMarker(new L.LatLng(33.460683, -117.706683), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_37.bindPopup("Dana Point, CA (SDDP)");
-      map.addLayer(polygon_37)
-      
-      var polygon_38 = new L.RegularPolygonMarker(new L.LatLng(36.803667, -121.787917), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_38.bindPopup("Moss Landing Marine Laboratories, CA (MLML)");
-      map.addLayer(polygon_38)
-      
-      var polygon_39 = new L.RegularPolygonMarker(new L.LatLng(21.297501, -158.083603), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_39.bindPopup("Kalaeloa, HI (KAL)");
-      map.addLayer(polygon_39)
-      
-      var polygon_40 = new L.RegularPolygonMarker(new L.LatLng(35.160117, -120.756417), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_40.bindPopup("Point San Luis, CA (LUIS)");
-      map.addLayer(polygon_40)
-      
-      var polygon_41 = new L.RegularPolygonMarker(new L.LatLng(44.6742, -124.075867), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_41.bindPopup("Yaquina Head South, OR (YHS2)");
-      map.addLayer(polygon_41)
-      
-      var polygon_42 = new L.RegularPolygonMarker(new L.LatLng(26.083, -80.1167), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_42.bindPopup("Dania Beach, FL (STF)");
-      map.addLayer(polygon_42)
-      
-      var polygon_43 = new L.RegularPolygonMarker(new L.LatLng(33.933333, -118.442417), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_43.bindPopup("Dockweiler Headquarters, CA (SCDH)");
-      map.addLayer(polygon_43)
-      
-      var polygon_44 = new L.RegularPolygonMarker(new L.LatLng(33.704867, -118.293983), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_44.bindPopup("Point Fermin, CA (SCPF)");
-      map.addLayer(polygon_44)
-      
-      var polygon_45 = new L.RegularPolygonMarker(new L.LatLng(33.218417, -117.405317), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_45.bindPopup("Camp Pendleton, CA (SDCP)");
-      map.addLayer(polygon_45)
-      
-      var polygon_46 = new L.RegularPolygonMarker(new L.LatLng(37.815483, -122.5299), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_46.bindPopup("Point Bonita, CA (PBON)");
-      map.addLayer(polygon_46)
-      
-      var polygon_47 = new L.RegularPolygonMarker(new L.LatLng(34.760083, -76.411367), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_47.bindPopup("Core Banks, NC (CORE)");
-      map.addLayer(polygon_47)
-      
-      var polygon_48 = new L.RegularPolygonMarker(new L.LatLng(44.024733, -68.860717), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_48.bindPopup("Green's Island, Maine, USA (GRNI)");
-      map.addLayer(polygon_48)
-      
-      var polygon_49 = new L.RegularPolygonMarker(new L.LatLng(34.4483, -120.4717), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_49.bindPopup("Point Conception, CA (PTC1)");
-      map.addLayer(polygon_49)
-      
-      var polygon_50 = new L.RegularPolygonMarker(new L.LatLng(37.830467, -122.37725), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_50.bindPopup("Treasure Island, CA (TRES)");
-      map.addLayer(polygon_50)
-      
-      var polygon_51 = new L.RegularPolygonMarker(new L.LatLng(32.535917, -117.122267), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_51.bindPopup("San Diego, Border Park (SDBP)");
-      map.addLayer(polygon_51)
-      
-      var polygon_52 = new L.RegularPolygonMarker(new L.LatLng(44.600617, -66.904467), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_52.bindPopup("Grand Manan, NB, CA (GMNB)");
-      map.addLayer(polygon_52)
-      
-      var polygon_53 = new L.RegularPolygonMarker(new L.LatLng(38.919833, -75.309183), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_53.bindPopup("Slaughter Beach, DE (SLTR)");
-      map.addLayer(polygon_53)
-      
-      var polygon_54 = new L.RegularPolygonMarker(new L.LatLng(38.205017, -75.1529), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_54.bindPopup("Assateague, MD (ASSA)");
-      map.addLayer(polygon_54)
-      
-      var polygon_55 = new L.RegularPolygonMarker(new L.LatLng(44.383833, -124.089667), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_55.bindPopup("Waldport, OR (WLD2)");
-      map.addLayer(polygon_55)
-      
-      var polygon_56 = new L.RegularPolygonMarker(new L.LatLng(36.43945, -121.922217), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_56.bindPopup("Granite Canyon (GCYN)");
-      map.addLayer(polygon_56)
-      
-      var polygon_57 = new L.RegularPolygonMarker(new L.LatLng(39.408233, -74.361367), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_57.bindPopup("Brigantine, NJ (BRMR)");
-      map.addLayer(polygon_57)
-      
-      var polygon_58 = new L.RegularPolygonMarker(new L.LatLng(37.089433, -122.27415), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_58.bindPopup("Big Creek (BIGC)");
-      map.addLayer(polygon_58)
-      
-      var polygon_59 = new L.RegularPolygonMarker(new L.LatLng(37.911833, -122.728167), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_59.bindPopup("Commonweal Center, Bolinas, CA (COMM)");
-      map.addLayer(polygon_59)
-      
-      var polygon_60 = new L.RegularPolygonMarker(new L.LatLng(38.928433, -123.727767), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_60.bindPopup("Point Arena Field Station (PAFS)");
-      map.addLayer(polygon_60)
-      
-      var polygon_61 = new L.RegularPolygonMarker(new L.LatLng(31.6875, -81.133611), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_61.bindPopup("St. Catherine's, GA (CAT)");
-      map.addLayer(polygon_61)
-      
-      var polygon_62 = new L.RegularPolygonMarker(new L.LatLng(31.7178, -116.6661), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_62.bindPopup("Villarino, Mexico (VIL)");
-      map.addLayer(polygon_62)
-      
-      var polygon_63 = new L.RegularPolygonMarker(new L.LatLng(38.317317, -123.072467), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_63.bindPopup("Bodega Marine Laboratory, CA (BML1)");
-      map.addLayer(polygon_63)
-      
-      var polygon_64 = new L.RegularPolygonMarker(new L.LatLng(40.586917, -73.589533), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_64.bindPopup("Hempstead, NY (HEMP)");
-      map.addLayer(polygon_64)
-      
-      var polygon_65 = new L.RegularPolygonMarker(new L.LatLng(40.98255, -73.623783), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_65.bindPopup("Great Captain Island, CT (GCAP)");
-      map.addLayer(polygon_65)
-      
-      var polygon_66 = new L.RegularPolygonMarker(new L.LatLng(32.91775, -118.4869), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_66.bindPopup("San Clemente Is, CA (SDSC)");
-      map.addLayer(polygon_66)
-      
-      var polygon_67 = new L.RegularPolygonMarker(new L.LatLng(40.4301, -73.983583), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_67.bindPopup("Sandy Hook (HOOK)");
-      map.addLayer(polygon_67)
-      
-      var polygon_68 = new L.RegularPolygonMarker(new L.LatLng(34.57695, -120.6505), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_68.bindPopup("Pt. Arguello, CA (ARG1)");
-      map.addLayer(polygon_68)
-      
-      var polygon_69 = new L.RegularPolygonMarker(new L.LatLng(38.04715, -122.989133), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_69.bindPopup("Point Reyes, CA (PREY)");
-      map.addLayer(polygon_69)
-      
-      var polygon_70 = new L.RegularPolygonMarker(new L.LatLng(34.461067, -120.076983), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_70.bindPopup("Refugio State Beach (RFG1)");
-      map.addLayer(polygon_70)
-      
-      var polygon_71 = new L.RegularPolygonMarker(new L.LatLng(40.7882, -72.7453), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_71.bindPopup("Moriches, NY (MRCH)");
-      map.addLayer(polygon_71)
-      
-      var polygon_72 = new L.RegularPolygonMarker(new L.LatLng(37.890133, -122.44615), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_72.bindPopup("Romberg Tiburon Center, CA (RTC1)");
-      map.addLayer(polygon_72)
-      
-      var polygon_73 = new L.RegularPolygonMarker(new L.LatLng(38.319483, -123.073617), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_73.bindPopup("Bodega Marine Laboratory Long Range (BMLR)");
-      map.addLayer(polygon_73)
-      
-      var polygon_74 = new L.RegularPolygonMarker(new L.LatLng(37.84395, -122.4772), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_74.bindPopup("Sausalito-Marin City Sanitary District, CA, USA (SAUS)");
-      map.addLayer(polygon_74)
-      
-      var polygon_75 = new L.RegularPolygonMarker(new L.LatLng(34.576883, -120.649083), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_75.bindPopup("Pt. Arguello, CA (AGL1)");
-      map.addLayer(polygon_75)
-      
-      var polygon_76 = new L.RegularPolygonMarker(new L.LatLng(40.90875, -73.587283), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_76.bindPopup("Stehli Beach, NY (STLI)");
-      map.addLayer(polygon_76)
-      
-      var polygon_77 = new L.RegularPolygonMarker(new L.LatLng(36.949217, -122.0661), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_77.bindPopup("Santa Cruz (SCRZ)");
-      map.addLayer(polygon_77)
-      
-      var polygon_78 = new L.RegularPolygonMarker(new L.LatLng(36.691717, -75.922633), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_78.bindPopup("Little Island Park, VA (LISL)");
-      map.addLayer(polygon_78)
-      
-      var polygon_79 = new L.RegularPolygonMarker(new L.LatLng(33.388383, -117.595683), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_79.bindPopup("Upper Trestles, San Diego, CA (SDUT)");
-      map.addLayer(polygon_79)
-      
-      var polygon_80 = new L.RegularPolygonMarker(new L.LatLng(44.08605, -66.211433), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_80.bindPopup("Cape St. Mary, NS, CA (CSTM)");
-      map.addLayer(polygon_80)
-      
-      var polygon_81 = new L.RegularPolygonMarker(new L.LatLng(41.843783, -69.947783), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_81.bindPopup("Nauset, MA (NAUS)");
-      map.addLayer(polygon_81)
-      
-      var polygon_82 = new L.RegularPolygonMarker(new L.LatLng(36.949933, -76.243183), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_82.bindPopup("Ocean View Beach, VA (VIEW)");
-      map.addLayer(polygon_82)
-      
-      var polygon_83 = new L.RegularPolygonMarker(new L.LatLng(41.249617, -69.974233), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_83.bindPopup("Nantucket Island, MA (NANT)");
-      map.addLayer(polygon_83)
-      
-      var polygon_84 = new L.RegularPolygonMarker(new L.LatLng(37.853317, -122.4192), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_84.bindPopup("Angel Island, CA (ANGL)");
-      map.addLayer(polygon_84)
-      
-      var polygon_85 = new L.RegularPolygonMarker(new L.LatLng(35.787367, -121.33625), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_85.bindPopup("Ragged Point, CA (RAGG)");
-      map.addLayer(polygon_85)
-      
-      var polygon_86 = new L.RegularPolygonMarker(new L.LatLng(49.01805, -123.171883), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_86.bindPopup("Westshore Coal Terminal, Tsawwassen (VCOL)");
-      map.addLayer(polygon_86)
-      
-      var polygon_87 = new L.RegularPolygonMarker(new L.LatLng(26.16215, -81.810533), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_87.bindPopup("Naples, FL (NAPL)");
-      map.addLayer(polygon_87)
-      
-      var polygon_88 = new L.RegularPolygonMarker(new L.LatLng(36.636767, -121.935), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_88.bindPopup("Point Pinos, Pacific Grove, CA (PPNS)");
-      map.addLayer(polygon_88)
-      
-      var polygon_89 = new L.RegularPolygonMarker(new L.LatLng(30.249583, -87.668267), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_89.bindPopup("Orange Beach State Park, AL (OBSP)");
-      map.addLayer(polygon_89)
-      
-      var polygon_90 = new L.RegularPolygonMarker(new L.LatLng(33.889167, -78.025833), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_90.bindPopup("Fort Caswell, NC (CSW)");
-      map.addLayer(polygon_90)
-      
-      var polygon_91 = new L.RegularPolygonMarker(new L.LatLng(35.45975, -120.977633), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_91.bindPopup("Point Estero, CA (ESTR)");
-      map.addLayer(polygon_91)
-      
-      var polygon_92 = new L.RegularPolygonMarker(new L.LatLng(39.615517, -74.1983), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_92.bindPopup("Brant Beach, NJ (BRNT)");
-      map.addLayer(polygon_92)
-      
-      var polygon_93 = new L.RegularPolygonMarker(new L.LatLng(41.073567, -124.157783), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_93.bindPopup("Trinidad, CA (TRIN)");
-      map.addLayer(polygon_93)
-      
-      var polygon_94 = new L.RegularPolygonMarker(new L.LatLng(42.836667, -124.5655), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_94.bindPopup("Cape Blanco, OR (CBL1)");
-      map.addLayer(polygon_94)
-      
-      var polygon_95 = new L.RegularPolygonMarker(new L.LatLng(18.291883, -67.19835), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_95.bindPopup("Anasco, Puerto Rico (FURA)");
-      map.addLayer(polygon_95)
-      
-      var polygon_96 = new L.RegularPolygonMarker(new L.LatLng(37.80635, -122.466), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_96.bindPopup("Crissy Field, CA (CRIS)");
-      map.addLayer(polygon_96)
-      
-      var polygon_97 = new L.RegularPolygonMarker(new L.LatLng(19.732, -155.048294), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_97.bindPopup("Keaukaha, HI (KKH)");
-      map.addLayer(polygon_97)
-      
-      var polygon_98 = new L.RegularPolygonMarker(new L.LatLng(41.070967, -71.856733), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_98.bindPopup("Montauk, NY (MNTK)");
-      map.addLayer(polygon_98)
-      
-      var polygon_99 = new L.RegularPolygonMarker(new L.LatLng(41.322933, -71.804217), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_99.bindPopup("Misquamicut, RI (MISQ)");
-      map.addLayer(polygon_99)
-      
-      var polygon_100 = new L.RegularPolygonMarker(new L.LatLng(32.679917, -117.247417), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_100.bindPopup("Point Loma Waste Water Treatment Plant, CA (SDWW)");
-      map.addLayer(polygon_100)
-      
-      var polygon_101 = new L.RegularPolygonMarker(new L.LatLng(44.1615, -124.1175), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_101.bindPopup("Washburne, OR (WSH1)");
-      map.addLayer(polygon_101)
-      
-      var polygon_102 = new L.RegularPolygonMarker(new L.LatLng(37.802167, -122.396433), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_102.bindPopup("The Exploratorium Museum, CA (EXPL)");
-      map.addLayer(polygon_102)
-      
-      var polygon_103 = new L.RegularPolygonMarker(new L.LatLng(37.1379, -75.972133), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_103.bindPopup("Sunset Beach Resort, Cape Charles, VA (SUNS)");
-      map.addLayer(polygon_103)
-      
-      var polygon_104 = new L.RegularPolygonMarker(new L.LatLng(35.257267, -75.52005), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_104.bindPopup("Cape Hatteras, NC (HATY)");
-      map.addLayer(polygon_104)
-      
-      var polygon_105 = new L.RegularPolygonMarker(new L.LatLng(38.990633, -74.799767), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_105.bindPopup("North Wildwood, NJ (WOOD)");
-      map.addLayer(polygon_105)
-      
-      var polygon_106 = new L.RegularPolygonMarker(new L.LatLng(33.994833, -119.631167), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_106.bindPopup("Santa Cruz Island, CA (SCI1)");
-      map.addLayer(polygon_106)
-      
-      var polygon_107 = new L.RegularPolygonMarker(new L.LatLng(37.8725, -122.597583), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_107.bindPopup("Slide Ranch, CA (SLID)");
-      map.addLayer(polygon_107)
-      
-      var polygon_108 = new L.RegularPolygonMarker(new L.LatLng(38.942167, -74.886133), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_108.bindPopup("Wildwood (WILD)");
-      map.addLayer(polygon_108)
-      
-      var polygon_109 = new L.RegularPolygonMarker(new L.LatLng(37.533717, -122.519217), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_109.bindPopup("Montara Sanitary District, Montara, CA (MONT)");
-      map.addLayer(polygon_109)
-      
-      var polygon_110 = new L.RegularPolygonMarker(new L.LatLng(41.7845, -124.254817), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_110.bindPopup("Point St. George, CA (PSG1)");
-      map.addLayer(polygon_110)
-      
-      var polygon_111 = new L.RegularPolygonMarker(new L.LatLng(44.676167, -124.077167), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_111.bindPopup("Yaquina Head Long, OR (YHL1)");
-      map.addLayer(polygon_111)
-      
-      var polygon_112 = new L.RegularPolygonMarker(new L.LatLng(34.407833, -119.878333), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_112.bindPopup("Coal Oil Pt. (COP1)");
-      map.addLayer(polygon_112)
-      
-      var polygon_113 = new L.RegularPolygonMarker(new L.LatLng(31.8617, -116.667801), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_113.bindPopup("Quinta, Mexico (QTA)");
-      map.addLayer(polygon_113)
-      
-      var polygon_114 = new L.RegularPolygonMarker(new L.LatLng(32.870583, -117.252533), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_114.bindPopup("San Diego, Scripps Long-range (SDSL)");
-      map.addLayer(polygon_114)
-      
-      var polygon_115 = new L.RegularPolygonMarker(new L.LatLng(36.180317, -75.75015), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_115.bindPopup("Duck, NC (DUCK)");
-      map.addLayer(polygon_115)
-      
-      var polygon_116 = new L.RegularPolygonMarker(new L.LatLng(39.438017, -123.816117), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_116.bindPopup("Fort Bragg, CA (BRAG)");
-      map.addLayer(polygon_116)
-      
-      var polygon_117 = new L.RegularPolygonMarker(new L.LatLng(37.672917, -75.592267), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_117.bindPopup("Cedar Island, VA (CEDR)");
-      map.addLayer(polygon_117)
-      
-      var polygon_118 = new L.RegularPolygonMarker(new L.LatLng(45.640317, -123.9418), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_118.bindPopup("Manhattan Beach, OR (MAN1)");
-      map.addLayer(polygon_118)
-      
-      var polygon_119 = new L.RegularPolygonMarker(new L.LatLng(34.204883, -119.251633), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_119.bindPopup("Mandalay Generating Station (MGS1)");
-      map.addLayer(polygon_119)
-      
-      var polygon_120 = new L.RegularPolygonMarker(new L.LatLng(41.349783, -70.526767), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_120.bindPopup("Martha's Vineyard, MA (MVCO)");
-      map.addLayer(polygon_120)
-      
-      var polygon_121 = new L.RegularPolygonMarker(new L.LatLng(40.543733, -74.124567), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_121.bindPopup("Staten Island, NY (SILD)");
-      map.addLayer(polygon_121)
-      
-      var polygon_122 = new L.RegularPolygonMarker(new L.LatLng(33.2805, -119.52245), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_122.bindPopup("San Nicolas Island, CA (SNI1)");
-      map.addLayer(polygon_122)
-      
-      var polygon_123 = new L.RegularPolygonMarker(new L.LatLng(31.097778, -81.402778), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_123.bindPopup("Jekyll Island, GA, USA (JEK)");
-      map.addLayer(polygon_123)
-      
-      var polygon_124 = new L.RegularPolygonMarker(new L.LatLng(30.383033, -86.4327), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_124.bindPopup("Henderson Beach State Park, FL (HBSP)");
-      map.addLayer(polygon_124)
-      
-      var polygon_125 = new L.RegularPolygonMarker(new L.LatLng(18.09995, -67.190467), {
-    color: 'black',
-    opacity: 1,
-    weight: 2,
-    fillColor: '#339933',
-    fillOpacity: 1,
-    numberOfSides: 4,
-    rotation: 0,
-    radius: 8
-});
-      polygon_125.bindPopup("Cabo Rojo, Puerto Rico (CDDO)");
-      map.addLayer(polygon_125)
+
+      /*
+      addition of the tile layers
+      */
+      
+
+      /*
+      list of layers to be added
+      */
+      var layer_list = {
+      
+      };
+
+      /*
+      Bounding box.
+      */
+      var southWest = L.latLng(-90, -180),
+          northEast = L.latLng(90, 180),
+          bounds = L.latLngBounds(southWest, northEast);
+
+      /*
+      Creates the map and adds the selected layers
+      */
+      var map = L.map('folium_42ed0cc80660482c856297b0d194a20c', {
+                                       center:[40, -122],
+                                       zoom: 5,
+                                       maxBounds: bounds,
+                                       layers: [base_tile]
+                                     });
+
+      L.control.layers(baseLayer, layer_list).addTo(map);
+
+      //cluster group
+      var clusteredmarkers = L.markerClusterGroup();
+      //section for adding clustered markers
+      
+      //add the clustered markers to the group anyway
+      map.addLayer(clusteredmarkers);
+
+      
+      var marker_1_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_1 = L.marker([46.176417, 
+							-123.978383],
+							{'icon':marker_1_icon}
+							);
+      marker_1.bindPopup(&quot;Fort Stevens, OR (STV2)&quot;);
+      marker_1._popup.options.maxWidth = 300;
+      map.addLayer(marker_1)
+      
+      var marker_2_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_2 = L.marker([39.198683, 
+							-74.652517],
+							{'icon':marker_2_icon}
+							);
+      marker_2.bindPopup(&quot;Strathmere, NJ (RATH)&quot;);
+      marker_2._popup.options.maxWidth = 300;
+      map.addLayer(marker_2)
+      
+      var marker_3_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_3 = L.marker([36.93085, 
+							-76.01675],
+							{'icon':marker_3_icon}
+							);
+      marker_3.bindPopup(&quot;Cape Henry, VA, USA (CPHN)&quot;);
+      marker_3._popup.options.maxWidth = 300;
+      map.addLayer(marker_3)
+      
+      var marker_4_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_4 = L.marker([21.261391, 
+							-157.703293],
+							{'icon':marker_4_icon}
+							);
+      marker_4.bindPopup(&quot;Koko Head, HI (KOK)&quot;);
+      marker_4._popup.options.maxWidth = 300;
+      map.addLayer(marker_4)
+      
+      var marker_5_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_5 = L.marker([34.042433, 
+							-118.9153],
+							{'icon':marker_5_icon}
+							);
+      marker_5.bindPopup(&quot;Nicholas Canyon, CA (NIC1)&quot;);
+      marker_5._popup.options.maxWidth = 300;
+      map.addLayer(marker_5)
+      
+      var marker_6_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_6 = L.marker([39.736183, 
+							-74.116983],
+							{'icon':marker_6_icon}
+							);
+      marker_6.bindPopup(&quot;Loveladies (LOVE)&quot;);
+      marker_6._popup.options.maxWidth = 300;
+      map.addLayer(marker_6)
+      
+      var marker_7_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_7 = L.marker([37.49675, 
+							-122.499367],
+							{'icon':marker_7_icon}
+							);
+      marker_7.bindPopup(&quot;Pillar Point Air Force Station, CA, USA (PILR)&quot;);
+      marker_7._popup.options.maxWidth = 300;
+      map.addLayer(marker_7)
+      
+      var marker_8_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_8 = L.marker([36.603333, 
+							-121.87195],
+							{'icon':marker_8_icon}
+							);
+      marker_8.bindPopup(&quot;Naval Postgraduate School (NPGS)&quot;);
+      marker_8._popup.options.maxWidth = 300;
+      map.addLayer(marker_8)
+      
+      var marker_9_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_9 = L.marker([36.306233, 
+							-121.9013],
+							{'icon':marker_9_icon}
+							);
+      marker_9.bindPopup(&quot;Point Sur Long Range, CA (PSLR)&quot;);
+      marker_9._popup.options.maxWidth = 300;
+      map.addLayer(marker_9)
+      
+      var marker_10_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_10 = L.marker([27.635833, 
+							-82.738056],
+							{'icon':marker_10_icon}
+							);
+      marker_10.bindPopup(&quot;Ft. De Soto, FL (FDS)&quot;);
+      marker_10._popup.options.maxWidth = 300;
+      map.addLayer(marker_10)
+      
+      var marker_11_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_11 = L.marker([27.832533, 
+							-82.834383],
+							{'icon':marker_11_icon}
+							);
+      marker_11.bindPopup(&quot;Reddington, FL (RDSR)&quot;);
+      marker_11._popup.options.maxWidth = 300;
+      map.addLayer(marker_11)
+      
+      var marker_12_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_12 = L.marker([37.252483, 
+							-122.416567],
+							{'icon':marker_12_icon}
+							);
+      marker_12.bindPopup(&quot;Pescadero, CA (PESC)&quot;);
+      marker_12._popup.options.maxWidth = 300;
+      map.addLayer(marker_12)
+      
+      var marker_13_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_13 = L.marker([27.077583, 
+							-82.4516],
+							{'icon':marker_13_icon}
+							);
+      marker_13.bindPopup(&quot;Venice, FL (VENI)&quot;);
+      marker_13._popup.options.maxWidth = 300;
+      map.addLayer(marker_13)
+      
+      var marker_14_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_14 = L.marker([41.152583, 
+							-71.551833],
+							{'icon':marker_14_icon}
+							);
+      marker_14.bindPopup(&quot;Block Island, RI (BISL)&quot;);
+      marker_14._popup.options.maxWidth = 300;
+      map.addLayer(marker_14)
+      
+      var marker_15_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_15 = L.marker([45.9753, 
+							-123.9448],
+							{'icon':marker_15_icon}
+							);
+      marker_15.bindPopup(&quot;Seaside, OR (SEA1)&quot;);
+      marker_15._popup.options.maxWidth = 300;
+      map.addLayer(marker_15)
+      
+      var marker_16_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_16 = L.marker([33.0245, 
+							-117.2861],
+							{'icon':marker_16_icon}
+							);
+      marker_16.bindPopup(&quot;San Elijo State Beach, CA (SDSE)&quot;);
+      marker_16._popup.options.maxWidth = 300;
+      map.addLayer(marker_16)
+      
+      var marker_17_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_17 = L.marker([33.356111, 
+							-79.1525],
+							{'icon':marker_17_icon}
+							);
+      marker_17.bindPopup(&quot;Georgetown, SC (GTN)&quot;);
+      marker_17._popup.options.maxWidth = 300;
+      map.addLayer(marker_17)
+      
+      var marker_18_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_18 = L.marker([25.7412, 
+							-80.1463],
+							{'icon':marker_18_icon}
+							);
+      marker_18.bindPopup(&quot;Virginia Key, FL (VIR)&quot;);
+      marker_18._popup.options.maxWidth = 300;
+      map.addLayer(marker_18)
+      
+      var marker_19_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_19 = L.marker([37.7794, 
+							-122.512417],
+							{'icon':marker_19_icon}
+							);
+      marker_19.bindPopup(&quot;Land's End, CA (LEND)&quot;);
+      marker_19._popup.options.maxWidth = 300;
+      map.addLayer(marker_19)
+      
+      var marker_20_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_20 = L.marker([32.665833, 
+							-117.239583],
+							{'icon':marker_20_icon}
+							);
+      marker_20.bindPopup(&quot;San Diego, Point Loma (SDPL)&quot;);
+      marker_20._popup.options.maxWidth = 300;
+      map.addLayer(marker_20)
+      
+      var marker_21_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_21 = L.marker([49.215867, 
+							-123.205383],
+							{'icon':marker_21_icon}
+							);
+      marker_21.bindPopup(&quot;Iona Wastewater Treatment Plant, Vancouver (VION)&quot;);
+      marker_21._popup.options.maxWidth = 300;
+      map.addLayer(marker_21)
+      
+      var marker_22_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_22 = L.marker([31.827033, 
+							-116.609017],
+							{'icon':marker_22_icon}
+							);
+      marker_22.bindPopup(&quot;Conalep, Mexico (CONA)&quot;);
+      marker_22._popup.options.maxWidth = 300;
+      map.addLayer(marker_22)
+      
+      var marker_23_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_23 = L.marker([34.869717, 
+							-120.621283],
+							{'icon':marker_23_icon}
+							);
+      marker_23.bindPopup(&quot;FallBack22, Pt. Sal, CA (FBK1)&quot;);
+      marker_23._popup.options.maxWidth = 300;
+      map.addLayer(marker_23)
+      
+      var marker_24_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_24 = L.marker([43.665833, 
+							-124.2065],
+							{'icon':marker_24_icon}
+							);
+      marker_24.bindPopup(&quot;Winchester Bay, OR (WIN1)&quot;);
+      marker_24._popup.options.maxWidth = 300;
+      map.addLayer(marker_24)
+      
+      var marker_25_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_25 = L.marker([27.196083, 
+							-90.026517],
+							{'icon':marker_25_icon}
+							);
+      marker_25.bindPopup(&quot;Atlantis (BPAT)&quot;);
+      marker_25._popup.options.maxWidth = 300;
+      map.addLayer(marker_25)
+      
+      var marker_26_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_26 = L.marker([40.033367, 
+							-124.078867],
+							{'icon':marker_26_icon}
+							);
+      marker_26.bindPopup(&quot;Shelter Cove, CA (SHEL)&quot;);
+      marker_26._popup.options.maxWidth = 300;
+      map.addLayer(marker_26)
+      
+      var marker_27_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_27 = L.marker([35.202467, 
+							-120.846067],
+							{'icon':marker_27_icon}
+							);
+      marker_27.bindPopup(&quot;Diablo Canyon Standard Range, CA (DCSR)&quot;);
+      marker_27._popup.options.maxWidth = 300;
+      map.addLayer(marker_27)
+      
+      var marker_28_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_28 = L.marker([34.096117, 
+							-119.107367],
+							{'icon':marker_28_icon}
+							);
+      marker_28.bindPopup(&quot;Point Mugu, CA (PTM1)&quot;);
+      marker_28._popup.options.maxWidth = 300;
+      map.addLayer(marker_28)
+      
+      var marker_29_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_29 = L.marker([41.152767, 
+							-71.550867],
+							{'icon':marker_29_icon}
+							);
+      marker_29.bindPopup(&quot;Block Island (BLCK)&quot;);
+      marker_29._popup.options.maxWidth = 300;
+      map.addLayer(marker_29)
+      
+      var marker_30_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_30 = L.marker([38.79375, 
+							-75.089033],
+							{'icon':marker_30_icon}
+							);
+      marker_30.bindPopup(&quot;Cape Henlopen, DE (HLPN)&quot;);
+      marker_30._popup.options.maxWidth = 300;
+      map.addLayer(marker_30)
+      
+      var marker_31_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_31 = L.marker([40.44135, 
+							-74.09925],
+							{'icon':marker_31_icon}
+							);
+      marker_31.bindPopup(&quot;Port Monmouth, NJ (PORT)&quot;);
+      marker_31._popup.options.maxWidth = 300;
+      map.addLayer(marker_31)
+      
+      var marker_32_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_32 = L.marker([34.419017, 
+							-119.596117],
+							{'icon':marker_32_icon}
+							);
+      marker_32.bindPopup(&quot;Summerland Sanitary District (SSD1)&quot;);
+      marker_32._popup.options.maxWidth = 300;
+      map.addLayer(marker_32)
+      
+      var marker_33_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_33 = L.marker([33.811683, 
+							-118.391433],
+							{'icon':marker_33_icon}
+							);
+      marker_33.bindPopup(&quot;Torrance Beach, CA (SCTB)&quot;);
+      marker_33._popup.options.maxWidth = 300;
+      map.addLayer(marker_33)
+      
+      var marker_34_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_34 = L.marker([38.931283, 
+							-74.960933],
+							{'icon':marker_34_icon}
+							);
+      marker_34.bindPopup(&quot;Cape May Point, NJ (CMPT)&quot;);
+      marker_34._popup.options.maxWidth = 300;
+      map.addLayer(marker_34)
+      
+      var marker_35_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_35 = L.marker([39.4075, 
+							-74.362133],
+							{'icon':marker_35_icon}
+							);
+      marker_35.bindPopup(&quot;Brigantine, NJ (BRIG)&quot;);
+      marker_35._popup.options.maxWidth = 300;
+      map.addLayer(marker_35)
+      
+      var marker_36_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_36 = L.marker([27.075556, 
+							-82.451111],
+							{'icon':marker_36_icon}
+							);
+      marker_36.bindPopup(&quot;Venice, FL (VEN)&quot;);
+      marker_36._popup.options.maxWidth = 300;
+      map.addLayer(marker_36)
+      
+      var marker_37_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_37 = L.marker([33.460683, 
+							-117.706683],
+							{'icon':marker_37_icon}
+							);
+      marker_37.bindPopup(&quot;Dana Point, CA (SDDP)&quot;);
+      marker_37._popup.options.maxWidth = 300;
+      map.addLayer(marker_37)
+      
+      var marker_38_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_38 = L.marker([36.803667, 
+							-121.787917],
+							{'icon':marker_38_icon}
+							);
+      marker_38.bindPopup(&quot;Moss Landing Marine Laboratories, CA (MLML)&quot;);
+      marker_38._popup.options.maxWidth = 300;
+      map.addLayer(marker_38)
+      
+      var marker_39_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_39 = L.marker([21.297501, 
+							-158.083603],
+							{'icon':marker_39_icon}
+							);
+      marker_39.bindPopup(&quot;Kalaeloa, HI (KAL)&quot;);
+      marker_39._popup.options.maxWidth = 300;
+      map.addLayer(marker_39)
+      
+      var marker_40_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_40 = L.marker([35.160117, 
+							-120.756417],
+							{'icon':marker_40_icon}
+							);
+      marker_40.bindPopup(&quot;Point San Luis, CA (LUIS)&quot;);
+      marker_40._popup.options.maxWidth = 300;
+      map.addLayer(marker_40)
+      
+      var marker_41_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_41 = L.marker([44.6742, 
+							-124.075867],
+							{'icon':marker_41_icon}
+							);
+      marker_41.bindPopup(&quot;Yaquina Head South, OR (YHS2)&quot;);
+      marker_41._popup.options.maxWidth = 300;
+      map.addLayer(marker_41)
+      
+      var marker_42_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_42 = L.marker([26.083, 
+							-80.1167],
+							{'icon':marker_42_icon}
+							);
+      marker_42.bindPopup(&quot;Dania Beach, FL (STF)&quot;);
+      marker_42._popup.options.maxWidth = 300;
+      map.addLayer(marker_42)
+      
+      var marker_43_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_43 = L.marker([33.933333, 
+							-118.442417],
+							{'icon':marker_43_icon}
+							);
+      marker_43.bindPopup(&quot;Dockweiler Headquarters, CA (SCDH)&quot;);
+      marker_43._popup.options.maxWidth = 300;
+      map.addLayer(marker_43)
+      
+      var marker_44_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_44 = L.marker([33.704867, 
+							-118.293983],
+							{'icon':marker_44_icon}
+							);
+      marker_44.bindPopup(&quot;Point Fermin, CA (SCPF)&quot;);
+      marker_44._popup.options.maxWidth = 300;
+      map.addLayer(marker_44)
+      
+      var marker_45_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_45 = L.marker([33.218417, 
+							-117.405317],
+							{'icon':marker_45_icon}
+							);
+      marker_45.bindPopup(&quot;Camp Pendleton, CA (SDCP)&quot;);
+      marker_45._popup.options.maxWidth = 300;
+      map.addLayer(marker_45)
+      
+      var marker_46_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_46 = L.marker([37.815483, 
+							-122.5299],
+							{'icon':marker_46_icon}
+							);
+      marker_46.bindPopup(&quot;Point Bonita, CA (PBON)&quot;);
+      marker_46._popup.options.maxWidth = 300;
+      map.addLayer(marker_46)
+      
+      var marker_47_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_47 = L.marker([34.760083, 
+							-76.411367],
+							{'icon':marker_47_icon}
+							);
+      marker_47.bindPopup(&quot;Core Banks, NC (CORE)&quot;);
+      marker_47._popup.options.maxWidth = 300;
+      map.addLayer(marker_47)
+      
+      var marker_48_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_48 = L.marker([44.024733, 
+							-68.860717],
+							{'icon':marker_48_icon}
+							);
+      marker_48.bindPopup(&quot;Green's Island, Maine, USA (GRNI)&quot;);
+      marker_48._popup.options.maxWidth = 300;
+      map.addLayer(marker_48)
+      
+      var marker_49_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_49 = L.marker([34.4483, 
+							-120.4717],
+							{'icon':marker_49_icon}
+							);
+      marker_49.bindPopup(&quot;Point Conception, CA (PTC1)&quot;);
+      marker_49._popup.options.maxWidth = 300;
+      map.addLayer(marker_49)
+      
+      var marker_50_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_50 = L.marker([37.830467, 
+							-122.37725],
+							{'icon':marker_50_icon}
+							);
+      marker_50.bindPopup(&quot;Treasure Island, CA (TRES)&quot;);
+      marker_50._popup.options.maxWidth = 300;
+      map.addLayer(marker_50)
+      
+      var marker_51_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_51 = L.marker([32.535917, 
+							-117.122267],
+							{'icon':marker_51_icon}
+							);
+      marker_51.bindPopup(&quot;San Diego, Border Park (SDBP)&quot;);
+      marker_51._popup.options.maxWidth = 300;
+      map.addLayer(marker_51)
+      
+      var marker_52_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_52 = L.marker([44.600617, 
+							-66.904467],
+							{'icon':marker_52_icon}
+							);
+      marker_52.bindPopup(&quot;Grand Manan, NB, CA (GMNB)&quot;);
+      marker_52._popup.options.maxWidth = 300;
+      map.addLayer(marker_52)
+      
+      var marker_53_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_53 = L.marker([38.919833, 
+							-75.309183],
+							{'icon':marker_53_icon}
+							);
+      marker_53.bindPopup(&quot;Slaughter Beach, DE (SLTR)&quot;);
+      marker_53._popup.options.maxWidth = 300;
+      map.addLayer(marker_53)
+      
+      var marker_54_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_54 = L.marker([38.205017, 
+							-75.1529],
+							{'icon':marker_54_icon}
+							);
+      marker_54.bindPopup(&quot;Assateague, MD (ASSA)&quot;);
+      marker_54._popup.options.maxWidth = 300;
+      map.addLayer(marker_54)
+      
+      var marker_55_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_55 = L.marker([44.383833, 
+							-124.089667],
+							{'icon':marker_55_icon}
+							);
+      marker_55.bindPopup(&quot;Waldport, OR (WLD2)&quot;);
+      marker_55._popup.options.maxWidth = 300;
+      map.addLayer(marker_55)
+      
+      var marker_56_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_56 = L.marker([36.43945, 
+							-121.922217],
+							{'icon':marker_56_icon}
+							);
+      marker_56.bindPopup(&quot;Granite Canyon (GCYN)&quot;);
+      marker_56._popup.options.maxWidth = 300;
+      map.addLayer(marker_56)
+      
+      var marker_57_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_57 = L.marker([39.408233, 
+							-74.361367],
+							{'icon':marker_57_icon}
+							);
+      marker_57.bindPopup(&quot;Brigantine, NJ (BRMR)&quot;);
+      marker_57._popup.options.maxWidth = 300;
+      map.addLayer(marker_57)
+      
+      var marker_58_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_58 = L.marker([37.089433, 
+							-122.27415],
+							{'icon':marker_58_icon}
+							);
+      marker_58.bindPopup(&quot;Big Creek (BIGC)&quot;);
+      marker_58._popup.options.maxWidth = 300;
+      map.addLayer(marker_58)
+      
+      var marker_59_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_59 = L.marker([37.911833, 
+							-122.728167],
+							{'icon':marker_59_icon}
+							);
+      marker_59.bindPopup(&quot;Commonweal Center, Bolinas, CA (COMM)&quot;);
+      marker_59._popup.options.maxWidth = 300;
+      map.addLayer(marker_59)
+      
+      var marker_60_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_60 = L.marker([38.928433, 
+							-123.727767],
+							{'icon':marker_60_icon}
+							);
+      marker_60.bindPopup(&quot;Point Arena Field Station (PAFS)&quot;);
+      marker_60._popup.options.maxWidth = 300;
+      map.addLayer(marker_60)
+      
+      var marker_61_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_61 = L.marker([31.6875, 
+							-81.133611],
+							{'icon':marker_61_icon}
+							);
+      marker_61.bindPopup(&quot;St. Catherine's, GA (CAT)&quot;);
+      marker_61._popup.options.maxWidth = 300;
+      map.addLayer(marker_61)
+      
+      var marker_62_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_62 = L.marker([31.7178, 
+							-116.6661],
+							{'icon':marker_62_icon}
+							);
+      marker_62.bindPopup(&quot;Villarino, Mexico (VIL)&quot;);
+      marker_62._popup.options.maxWidth = 300;
+      map.addLayer(marker_62)
+      
+      var marker_63_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_63 = L.marker([38.317317, 
+							-123.072467],
+							{'icon':marker_63_icon}
+							);
+      marker_63.bindPopup(&quot;Bodega Marine Laboratory, CA (BML1)&quot;);
+      marker_63._popup.options.maxWidth = 300;
+      map.addLayer(marker_63)
+      
+      var marker_64_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_64 = L.marker([40.586917, 
+							-73.589533],
+							{'icon':marker_64_icon}
+							);
+      marker_64.bindPopup(&quot;Hempstead, NY (HEMP)&quot;);
+      marker_64._popup.options.maxWidth = 300;
+      map.addLayer(marker_64)
+      
+      var marker_65_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_65 = L.marker([40.98255, 
+							-73.623783],
+							{'icon':marker_65_icon}
+							);
+      marker_65.bindPopup(&quot;Great Captain Island, CT (GCAP)&quot;);
+      marker_65._popup.options.maxWidth = 300;
+      map.addLayer(marker_65)
+      
+      var marker_66_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_66 = L.marker([32.91775, 
+							-118.4869],
+							{'icon':marker_66_icon}
+							);
+      marker_66.bindPopup(&quot;San Clemente Is, CA (SDSC)&quot;);
+      marker_66._popup.options.maxWidth = 300;
+      map.addLayer(marker_66)
+      
+      var marker_67_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_67 = L.marker([40.4301, 
+							-73.983583],
+							{'icon':marker_67_icon}
+							);
+      marker_67.bindPopup(&quot;Sandy Hook (HOOK)&quot;);
+      marker_67._popup.options.maxWidth = 300;
+      map.addLayer(marker_67)
+      
+      var marker_68_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_68 = L.marker([34.57695, 
+							-120.6505],
+							{'icon':marker_68_icon}
+							);
+      marker_68.bindPopup(&quot;Pt. Arguello, CA (ARG1)&quot;);
+      marker_68._popup.options.maxWidth = 300;
+      map.addLayer(marker_68)
+      
+      var marker_69_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_69 = L.marker([38.04715, 
+							-122.989133],
+							{'icon':marker_69_icon}
+							);
+      marker_69.bindPopup(&quot;Point Reyes, CA (PREY)&quot;);
+      marker_69._popup.options.maxWidth = 300;
+      map.addLayer(marker_69)
+      
+      var marker_70_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_70 = L.marker([34.461067, 
+							-120.076983],
+							{'icon':marker_70_icon}
+							);
+      marker_70.bindPopup(&quot;Refugio State Beach (RFG1)&quot;);
+      marker_70._popup.options.maxWidth = 300;
+      map.addLayer(marker_70)
+      
+      var marker_71_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_71 = L.marker([40.7882, 
+							-72.7453],
+							{'icon':marker_71_icon}
+							);
+      marker_71.bindPopup(&quot;Moriches, NY (MRCH)&quot;);
+      marker_71._popup.options.maxWidth = 300;
+      map.addLayer(marker_71)
+      
+      var marker_72_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_72 = L.marker([37.890133, 
+							-122.44615],
+							{'icon':marker_72_icon}
+							);
+      marker_72.bindPopup(&quot;Romberg Tiburon Center, CA (RTC1)&quot;);
+      marker_72._popup.options.maxWidth = 300;
+      map.addLayer(marker_72)
+      
+      var marker_73_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_73 = L.marker([38.319483, 
+							-123.073617],
+							{'icon':marker_73_icon}
+							);
+      marker_73.bindPopup(&quot;Bodega Marine Laboratory Long Range (BMLR)&quot;);
+      marker_73._popup.options.maxWidth = 300;
+      map.addLayer(marker_73)
+      
+      var marker_74_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_74 = L.marker([37.84395, 
+							-122.4772],
+							{'icon':marker_74_icon}
+							);
+      marker_74.bindPopup(&quot;Sausalito-Marin City Sanitary District, CA, USA (SAUS)&quot;);
+      marker_74._popup.options.maxWidth = 300;
+      map.addLayer(marker_74)
+      
+      var marker_75_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_75 = L.marker([34.576883, 
+							-120.649083],
+							{'icon':marker_75_icon}
+							);
+      marker_75.bindPopup(&quot;Pt. Arguello, CA (AGL1)&quot;);
+      marker_75._popup.options.maxWidth = 300;
+      map.addLayer(marker_75)
+      
+      var marker_76_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_76 = L.marker([40.90875, 
+							-73.587283],
+							{'icon':marker_76_icon}
+							);
+      marker_76.bindPopup(&quot;Stehli Beach, NY (STLI)&quot;);
+      marker_76._popup.options.maxWidth = 300;
+      map.addLayer(marker_76)
+      
+      var marker_77_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_77 = L.marker([36.949217, 
+							-122.0661],
+							{'icon':marker_77_icon}
+							);
+      marker_77.bindPopup(&quot;Santa Cruz (SCRZ)&quot;);
+      marker_77._popup.options.maxWidth = 300;
+      map.addLayer(marker_77)
+      
+      var marker_78_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_78 = L.marker([36.691717, 
+							-75.922633],
+							{'icon':marker_78_icon}
+							);
+      marker_78.bindPopup(&quot;Little Island Park, VA (LISL)&quot;);
+      marker_78._popup.options.maxWidth = 300;
+      map.addLayer(marker_78)
+      
+      var marker_79_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_79 = L.marker([33.388383, 
+							-117.595683],
+							{'icon':marker_79_icon}
+							);
+      marker_79.bindPopup(&quot;Upper Trestles, San Diego, CA (SDUT)&quot;);
+      marker_79._popup.options.maxWidth = 300;
+      map.addLayer(marker_79)
+      
+      var marker_80_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_80 = L.marker([44.08605, 
+							-66.211433],
+							{'icon':marker_80_icon}
+							);
+      marker_80.bindPopup(&quot;Cape St. Mary, NS, CA (CSTM)&quot;);
+      marker_80._popup.options.maxWidth = 300;
+      map.addLayer(marker_80)
+      
+      var marker_81_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_81 = L.marker([41.843783, 
+							-69.947783],
+							{'icon':marker_81_icon}
+							);
+      marker_81.bindPopup(&quot;Nauset, MA (NAUS)&quot;);
+      marker_81._popup.options.maxWidth = 300;
+      map.addLayer(marker_81)
+      
+      var marker_82_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_82 = L.marker([36.949933, 
+							-76.243183],
+							{'icon':marker_82_icon}
+							);
+      marker_82.bindPopup(&quot;Ocean View Beach, VA (VIEW)&quot;);
+      marker_82._popup.options.maxWidth = 300;
+      map.addLayer(marker_82)
+      
+      var marker_83_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_83 = L.marker([41.249617, 
+							-69.974233],
+							{'icon':marker_83_icon}
+							);
+      marker_83.bindPopup(&quot;Nantucket Island, MA (NANT)&quot;);
+      marker_83._popup.options.maxWidth = 300;
+      map.addLayer(marker_83)
+      
+      var marker_84_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_84 = L.marker([37.853317, 
+							-122.4192],
+							{'icon':marker_84_icon}
+							);
+      marker_84.bindPopup(&quot;Angel Island, CA (ANGL)&quot;);
+      marker_84._popup.options.maxWidth = 300;
+      map.addLayer(marker_84)
+      
+      var marker_85_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_85 = L.marker([35.787367, 
+							-121.33625],
+							{'icon':marker_85_icon}
+							);
+      marker_85.bindPopup(&quot;Ragged Point, CA (RAGG)&quot;);
+      marker_85._popup.options.maxWidth = 300;
+      map.addLayer(marker_85)
+      
+      var marker_86_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_86 = L.marker([49.01805, 
+							-123.171883],
+							{'icon':marker_86_icon}
+							);
+      marker_86.bindPopup(&quot;Westshore Coal Terminal, Tsawwassen (VCOL)&quot;);
+      marker_86._popup.options.maxWidth = 300;
+      map.addLayer(marker_86)
+      
+      var marker_87_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_87 = L.marker([26.16215, 
+							-81.810533],
+							{'icon':marker_87_icon}
+							);
+      marker_87.bindPopup(&quot;Naples, FL (NAPL)&quot;);
+      marker_87._popup.options.maxWidth = 300;
+      map.addLayer(marker_87)
+      
+      var marker_88_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_88 = L.marker([36.636767, 
+							-121.935],
+							{'icon':marker_88_icon}
+							);
+      marker_88.bindPopup(&quot;Point Pinos, Pacific Grove, CA (PPNS)&quot;);
+      marker_88._popup.options.maxWidth = 300;
+      map.addLayer(marker_88)
+      
+      var marker_89_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_89 = L.marker([30.249583, 
+							-87.668267],
+							{'icon':marker_89_icon}
+							);
+      marker_89.bindPopup(&quot;Orange Beach State Park, AL (OBSP)&quot;);
+      marker_89._popup.options.maxWidth = 300;
+      map.addLayer(marker_89)
+      
+      var marker_90_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_90 = L.marker([33.889167, 
+							-78.025833],
+							{'icon':marker_90_icon}
+							);
+      marker_90.bindPopup(&quot;Fort Caswell, NC (CSW)&quot;);
+      marker_90._popup.options.maxWidth = 300;
+      map.addLayer(marker_90)
+      
+      var marker_91_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_91 = L.marker([35.45975, 
+							-120.977633],
+							{'icon':marker_91_icon}
+							);
+      marker_91.bindPopup(&quot;Point Estero, CA (ESTR)&quot;);
+      marker_91._popup.options.maxWidth = 300;
+      map.addLayer(marker_91)
+      
+      var marker_92_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_92 = L.marker([39.615517, 
+							-74.1983],
+							{'icon':marker_92_icon}
+							);
+      marker_92.bindPopup(&quot;Brant Beach, NJ (BRNT)&quot;);
+      marker_92._popup.options.maxWidth = 300;
+      map.addLayer(marker_92)
+      
+      var marker_93_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_93 = L.marker([41.073567, 
+							-124.157783],
+							{'icon':marker_93_icon}
+							);
+      marker_93.bindPopup(&quot;Trinidad, CA (TRIN)&quot;);
+      marker_93._popup.options.maxWidth = 300;
+      map.addLayer(marker_93)
+      
+      var marker_94_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_94 = L.marker([42.836667, 
+							-124.5655],
+							{'icon':marker_94_icon}
+							);
+      marker_94.bindPopup(&quot;Cape Blanco, OR (CBL1)&quot;);
+      marker_94._popup.options.maxWidth = 300;
+      map.addLayer(marker_94)
+      
+      var marker_95_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_95 = L.marker([18.291883, 
+							-67.19835],
+							{'icon':marker_95_icon}
+							);
+      marker_95.bindPopup(&quot;Anasco, Puerto Rico (FURA)&quot;);
+      marker_95._popup.options.maxWidth = 300;
+      map.addLayer(marker_95)
+      
+      var marker_96_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_96 = L.marker([37.80635, 
+							-122.466],
+							{'icon':marker_96_icon}
+							);
+      marker_96.bindPopup(&quot;Crissy Field, CA (CRIS)&quot;);
+      marker_96._popup.options.maxWidth = 300;
+      map.addLayer(marker_96)
+      
+      var marker_97_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_97 = L.marker([19.732, 
+							-155.048294],
+							{'icon':marker_97_icon}
+							);
+      marker_97.bindPopup(&quot;Keaukaha, HI (KKH)&quot;);
+      marker_97._popup.options.maxWidth = 300;
+      map.addLayer(marker_97)
+      
+      var marker_98_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_98 = L.marker([41.070967, 
+							-71.856733],
+							{'icon':marker_98_icon}
+							);
+      marker_98.bindPopup(&quot;Montauk, NY (MNTK)&quot;);
+      marker_98._popup.options.maxWidth = 300;
+      map.addLayer(marker_98)
+      
+      var marker_99_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_99 = L.marker([41.322933, 
+							-71.804217],
+							{'icon':marker_99_icon}
+							);
+      marker_99.bindPopup(&quot;Misquamicut, RI (MISQ)&quot;);
+      marker_99._popup.options.maxWidth = 300;
+      map.addLayer(marker_99)
+      
+      var marker_100_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_100 = L.marker([32.679917, 
+							-117.247417],
+							{'icon':marker_100_icon}
+							);
+      marker_100.bindPopup(&quot;Point Loma Waste Water Treatment Plant, CA (SDWW)&quot;);
+      marker_100._popup.options.maxWidth = 300;
+      map.addLayer(marker_100)
+      
+      var marker_101_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_101 = L.marker([44.1615, 
+							-124.1175],
+							{'icon':marker_101_icon}
+							);
+      marker_101.bindPopup(&quot;Washburne, OR (WSH1)&quot;);
+      marker_101._popup.options.maxWidth = 300;
+      map.addLayer(marker_101)
+      
+      var marker_102_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_102 = L.marker([37.802167, 
+							-122.396433],
+							{'icon':marker_102_icon}
+							);
+      marker_102.bindPopup(&quot;The Exploratorium Museum, CA (EXPL)&quot;);
+      marker_102._popup.options.maxWidth = 300;
+      map.addLayer(marker_102)
+      
+      var marker_103_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_103 = L.marker([37.1379, 
+							-75.972133],
+							{'icon':marker_103_icon}
+							);
+      marker_103.bindPopup(&quot;Sunset Beach Resort, Cape Charles, VA (SUNS)&quot;);
+      marker_103._popup.options.maxWidth = 300;
+      map.addLayer(marker_103)
+      
+      var marker_104_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_104 = L.marker([35.257267, 
+							-75.52005],
+							{'icon':marker_104_icon}
+							);
+      marker_104.bindPopup(&quot;Cape Hatteras, NC (HATY)&quot;);
+      marker_104._popup.options.maxWidth = 300;
+      map.addLayer(marker_104)
+      
+      var marker_105_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_105 = L.marker([38.990633, 
+							-74.799767],
+							{'icon':marker_105_icon}
+							);
+      marker_105.bindPopup(&quot;North Wildwood, NJ (WOOD)&quot;);
+      marker_105._popup.options.maxWidth = 300;
+      map.addLayer(marker_105)
+      
+      var marker_106_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_106 = L.marker([33.994833, 
+							-119.631167],
+							{'icon':marker_106_icon}
+							);
+      marker_106.bindPopup(&quot;Santa Cruz Island, CA (SCI1)&quot;);
+      marker_106._popup.options.maxWidth = 300;
+      map.addLayer(marker_106)
+      
+      var marker_107_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_107 = L.marker([37.8725, 
+							-122.597583],
+							{'icon':marker_107_icon}
+							);
+      marker_107.bindPopup(&quot;Slide Ranch, CA (SLID)&quot;);
+      marker_107._popup.options.maxWidth = 300;
+      map.addLayer(marker_107)
+      
+      var marker_108_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_108 = L.marker([38.942167, 
+							-74.886133],
+							{'icon':marker_108_icon}
+							);
+      marker_108.bindPopup(&quot;Wildwood (WILD)&quot;);
+      marker_108._popup.options.maxWidth = 300;
+      map.addLayer(marker_108)
+      
+      var marker_109_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_109 = L.marker([37.533717, 
+							-122.519217],
+							{'icon':marker_109_icon}
+							);
+      marker_109.bindPopup(&quot;Montara Sanitary District, Montara, CA (MONT)&quot;);
+      marker_109._popup.options.maxWidth = 300;
+      map.addLayer(marker_109)
+      
+      var marker_110_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_110 = L.marker([41.7845, 
+							-124.254817],
+							{'icon':marker_110_icon}
+							);
+      marker_110.bindPopup(&quot;Point St. George, CA (PSG1)&quot;);
+      marker_110._popup.options.maxWidth = 300;
+      map.addLayer(marker_110)
+      
+      var marker_111_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_111 = L.marker([44.676167, 
+							-124.077167],
+							{'icon':marker_111_icon}
+							);
+      marker_111.bindPopup(&quot;Yaquina Head Long, OR (YHL1)&quot;);
+      marker_111._popup.options.maxWidth = 300;
+      map.addLayer(marker_111)
+      
+      var marker_112_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_112 = L.marker([34.407833, 
+							-119.878333],
+							{'icon':marker_112_icon}
+							);
+      marker_112.bindPopup(&quot;Coal Oil Pt. (COP1)&quot;);
+      marker_112._popup.options.maxWidth = 300;
+      map.addLayer(marker_112)
+      
+      var marker_113_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_113 = L.marker([31.8617, 
+							-116.667801],
+							{'icon':marker_113_icon}
+							);
+      marker_113.bindPopup(&quot;Quinta, Mexico (QTA)&quot;);
+      marker_113._popup.options.maxWidth = 300;
+      map.addLayer(marker_113)
+      
+      var marker_114_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_114 = L.marker([32.870583, 
+							-117.252533],
+							{'icon':marker_114_icon}
+							);
+      marker_114.bindPopup(&quot;San Diego, Scripps Long-range (SDSL)&quot;);
+      marker_114._popup.options.maxWidth = 300;
+      map.addLayer(marker_114)
+      
+      var marker_115_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_115 = L.marker([36.180317, 
+							-75.75015],
+							{'icon':marker_115_icon}
+							);
+      marker_115.bindPopup(&quot;Duck, NC (DUCK)&quot;);
+      marker_115._popup.options.maxWidth = 300;
+      map.addLayer(marker_115)
+      
+      var marker_116_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_116 = L.marker([39.438017, 
+							-123.816117],
+							{'icon':marker_116_icon}
+							);
+      marker_116.bindPopup(&quot;Fort Bragg, CA (BRAG)&quot;);
+      marker_116._popup.options.maxWidth = 300;
+      map.addLayer(marker_116)
+      
+      var marker_117_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_117 = L.marker([37.672917, 
+							-75.592267],
+							{'icon':marker_117_icon}
+							);
+      marker_117.bindPopup(&quot;Cedar Island, VA (CEDR)&quot;);
+      marker_117._popup.options.maxWidth = 300;
+      map.addLayer(marker_117)
+      
+      var marker_118_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_118 = L.marker([45.640317, 
+							-123.9418],
+							{'icon':marker_118_icon}
+							);
+      marker_118.bindPopup(&quot;Manhattan Beach, OR (MAN1)&quot;);
+      marker_118._popup.options.maxWidth = 300;
+      map.addLayer(marker_118)
+      
+      var marker_119_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_119 = L.marker([34.204883, 
+							-119.251633],
+							{'icon':marker_119_icon}
+							);
+      marker_119.bindPopup(&quot;Mandalay Generating Station (MGS1)&quot;);
+      marker_119._popup.options.maxWidth = 300;
+      map.addLayer(marker_119)
+      
+      var marker_120_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_120 = L.marker([41.349783, 
+							-70.526767],
+							{'icon':marker_120_icon}
+							);
+      marker_120.bindPopup(&quot;Martha's Vineyard, MA (MVCO)&quot;);
+      marker_120._popup.options.maxWidth = 300;
+      map.addLayer(marker_120)
+      
+      var marker_121_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_121 = L.marker([40.543733, 
+							-74.124567],
+							{'icon':marker_121_icon}
+							);
+      marker_121.bindPopup(&quot;Staten Island, NY (SILD)&quot;);
+      marker_121._popup.options.maxWidth = 300;
+      map.addLayer(marker_121)
+      
+      var marker_122_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_122 = L.marker([33.2805, 
+							-119.52245],
+							{'icon':marker_122_icon}
+							);
+      marker_122.bindPopup(&quot;San Nicolas Island, CA (SNI1)&quot;);
+      marker_122._popup.options.maxWidth = 300;
+      map.addLayer(marker_122)
+      
+      var marker_123_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_123 = L.marker([31.097778, 
+							-81.402778],
+							{'icon':marker_123_icon}
+							);
+      marker_123.bindPopup(&quot;Jekyll Island, GA, USA (JEK)&quot;);
+      marker_123._popup.options.maxWidth = 300;
+      map.addLayer(marker_123)
+      
+      var marker_124_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_124 = L.marker([30.383033, 
+							-86.4327],
+							{'icon':marker_124_icon}
+							);
+      marker_124.bindPopup(&quot;Henderson Beach State Park, FL (HBSP)&quot;);
+      marker_124._popup.options.maxWidth = 300;
+      map.addLayer(marker_124)
+      
+      var marker_125_icon = L.AwesomeMarkers.icon({ icon: 'info-sign',markerColor: 'blue',prefix: 'glyphicon',extraClasses: 'fa-rotate-0'});
+      var marker_125 = L.marker([18.09995, 
+							-67.190467],
+							{'icon':marker_125_icon}
+							);
+      marker_125.bindPopup(&quot;Cabo Rojo, Puerto Rico (CDDO)&quot;);
+      marker_125._popup.options.maxWidth = 300;
+      map.addLayer(marker_125)
+      
+
       
 
       
@@ -3558,7 +3130,7 @@ In&nbsp;[5]:
 
    </script>
 
-</body>
+</body>" style="width: 650px; height: 500px; border: none"></iframe>
 </div>
 
 </div>
@@ -3660,6 +3232,9 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/">Plotting shapefiles with cartopy and folium</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/26/fortran/">Calling Fortran from python</a>
       </li>
       <li class="post">
@@ -3670,9 +3245,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/05/pcolor/">To Pcolor or not to Pcolor</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/29/iris_ocean_models/">How well does iris "speak" Ocean Models?</a>
       </li>
     </ul>
   </section>

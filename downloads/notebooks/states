@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css" />
+   <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   <script src="http://d3js.org/queue.v1.min.js"></script>
+
+   
+   
+   
+   
+
+   <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .legend {
+          padding: 0px 0px;
+          font: 10px sans-serif;
+          background: white;
+          background: rgba(255,255,255,0.8);
+          box-shadow: 0 0 15px rgba(0,0,0,0.2);
+          border-radius: 5px;
+      }
+
+      .key path {
+        display: none;
+      }
+
+   </style>
+</head>
+
+<body>
+
+   <div id="map" style="width: 650px; height: 500px"></div>
+
+   <script>
+
+      queue()
+          .defer(d3.json, 'states.json')
+          .await(makeMap)
+
+      function makeMap(error, gjson_1) {
+
+          
+
+          
+
+          function matchKey(datapoint, key_variable){
+              if (typeof key_variable[0][datapoint] === 'undefined') {
+                  return null;
+              }
+              else {
+                  return parseFloat(key_variable[0][datapoint]);
+              };
+          };
+
+          
+
+          var map = L.map('map').setView([-15, -50], 4);
+
+          L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 18,
+              minZoom: 1,
+              attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          }).addTo(map);
+
+          
+
+          
+
+          
+
+          
+
+          
+          function style_1(feature) {
+    return {
+        fillColor: 'none',
+        weight: 1,
+        opacity: 1,
+        color: 'Orange',
+        fillOpacity: 0.6
+    };
+}
+          
+
+          
+          gJson_layer_1 = L.geoJson(gjson_1, {style: style_1}).addTo(map)
+          
+
+          
+
+      };
+
+   </script>
+</body>
