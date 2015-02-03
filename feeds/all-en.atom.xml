@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/all-en.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-02-02T17:21:00-02:00</updated><entry><title>Plotting shapefiles with cartopy and folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" rel="alternate"></link><updated>2015-02-02T17:21:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-02-02:blog/2015/02/02/cartopy_folium_shapefile/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/all-en.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-02-02T15:52:00-02:00</updated><entry><title>Plotting shapefiles with cartopy and folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" rel="alternate"></link><updated>2015-02-02T15:52:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-02-02:blog/2015/02/02/cartopy_folium_shapefile/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -839,10 +839,10 @@ In&amp;nbsp;[6]:
 
           var map = L.map('map').setView([-15, -50], 4);
 
-          L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               maxZoom: 18,
               minZoom: 1,
-              attribution: 'Map data (c) &lt;a href=&amp;quot;http://openstreetmap.org&amp;quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
+              attribution: 'Map data (c) &lt;a href=&amp;quot;//openstreetmap.org&amp;quot;&gt;OpenStreetMap&lt;/a&gt; contributors'
           }).addTo(map);
 
           
