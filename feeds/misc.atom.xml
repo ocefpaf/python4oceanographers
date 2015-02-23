@@ -84,7 +84,7 @@ Service ( Proposicoes ) tns=&amp;quot;http://www.camara.gov.br/SitCamaraWS/Propo
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;Nunca havia usado o suds antes, mas o objeto &lt;code&gt;suds&lt;/code&gt; parece bem simples
-e fácil de uasr.  Para facilitar a exploração dos dados vamos colocar os
+e fácil de usar.  Para facilitar a exploração dos dados vamos colocar os
 anos de 2011--2014 em um único dataframe do pandas.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
