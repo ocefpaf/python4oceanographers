@@ -1758,7 +1758,7 @@ jQuery(document).ready(function($) {
   <article class="hentry" role="article">
 <header>
       <h1 class="entry-title">Plotting shapefiles with cartopy and folium</h1>
-      <p class="meta"><time datetime="2015-02-02T17:21:00" pubdate>Feb 02, 2015</time></p>
+      <p class="meta"><time datetime="2015-02-02T17:22:00" pubdate>Feb 02, 2015</time></p>
 </header>
 
   <div class="entry-content"><p>
@@ -2537,10 +2537,10 @@ In&nbsp;[6]:
 <iframe srcdoc="<!DOCTYPE html>
 <head>
    <meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=UTF-8&quot; />
-   <link rel=&quot;stylesheet&quot; href=&quot;//cdn.leafletjs.com/leaflet-0.7/leaflet.css&quot; />
-   <script src=&quot;//cdn.leafletjs.com/leaflet-0.7/leaflet.js&quot;></script>
-   <script src=&quot;//d3js.org/d3.v3.min.js&quot; charset=&quot;utf-8&quot;></script>
-   <script src=&quot;//d3js.org/queue.v1.min.js&quot;></script>
+   <link rel=&quot;stylesheet&quot; href=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css&quot; />
+   <script src=&quot;//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js&quot;></script>
+   <script src=&quot;//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js&quot; charset=&quot;utf-8&quot;></script>
+   <script src=&quot;//cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js&quot;></script>
 
    
    
@@ -2601,10 +2601,10 @@ In&nbsp;[6]:
 
           var map = L.map('map').setView([-15, -50], 4);
 
-          L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
               maxZoom: 18,
               minZoom: 1,
-              attribution: 'Map data (c) <a href=&quot;//openstreetmap.org&quot;>OpenStreetMap</a> contributors'
+              attribution: 'Map data (c) <a href=&quot;http://openstreetmap.org&quot;>OpenStreetMap</a> contributors'
           }).addTo(map);
 
           
@@ -2714,7 +2714,7 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
   <span class="byline author vcard">
     Posted by <span class="fn">Filipe Fernandes</span>
   </span>
-<time datetime="2015-02-02T17:21:00" pubdate>Feb 02, 2015</time></p><div class="sharing">
+<time datetime="2015-02-02T17:22:00" pubdate>Feb 02, 2015</time></p><div class="sharing">
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" data-via="ocefpaf" data-counturl="ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
