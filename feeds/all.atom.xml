@@ -8,7 +8,7 @@
 &lt;p&gt;According to Google Analytics, my post
 &lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes"&gt;&amp;quot;Dealing with spiky data&amp;quot;&lt;/a&gt;,
 is by far the most visited on the blog.  I think that the reasons are: it is
-one the oldest post, and it is a real problem that people have to deal everyday.&lt;/p&gt;
+one of the oldest posts, and it is a real problem that people have to deal everyday.&lt;/p&gt;
 &lt;p&gt;Recently I found an amazing series of post writing by Bugra on how to perform
 outlier detection using
 &lt;a href="http://bugra.github.io/work/notes/2014-03-31/outlier-detection-in-time-series-signals-fft-median-filtering/"&gt;FFT, median filtering&lt;/a&gt;,
