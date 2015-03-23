@@ -1,4 +1,4 @@
-Title: Adding WMS layers to you folium maps
+Title: Adding WMS layers to your folium maps
 date:  2015-03-23 11:42
 comments: true
 slug: wms_layers
