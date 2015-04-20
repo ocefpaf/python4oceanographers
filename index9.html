@@ -1758,6 +1758,54 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/10/07/brewer2mpl/">Better colormaps with brewer2mpl</a>
+      </h1>
+      <p class="meta"><time datetime="2013-10-07T01:15:00" pubdate>Oct 07, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We already used the <a href="https://github.com/jiffyclub/brewer2mpl">brewer2mpl</a>
+module in previous posts.  However, we did not showed it in detail.  This post
+is just to draw attention to this interesting module that can access the
+<a href="http://colorbrewer2.org/">Colorbrewer2.0</a> website and convert <code>colormaps</code>
+directly to matplotlib format.</p>
+<p>Let&#39;s start importing by <code>cartopy</code>, <code>iris</code>, <code>pyplot ...</code></p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/10/07/brewer2mpl/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/09/30/natural_earth/">Cartopy and the Natural Earth Dataset</a>
+      </h1>
+      <p class="meta"><time datetime="2013-09-30T01:15:00" pubdate>Sep 30, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Alternative dataset to plot the Brazilian political boundaries.</p>
+<p>We already saw some of the advantages of cartopy over other mapping tools.
+However, as a Brazilian,  I really miss a more up-to-date political boundary
+than those present in tools like <code>GMT</code>, <code>m_map</code>, and <code>basemap</code>.</p>
+<p>Luckily cartopy can
+<a href="http://scitools ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/09/30/natural_earth/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/09/23/cartopy/">Cartopy as an alternative to basemap</a>
       </h1>
       <p class="meta"><time datetime="2013-09-23T11:19:00" pubdate>Sep 23, 2013</time></p>
@@ -1974,98 +2022,6 @@ I have see so far.</p>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/08/05/custom-binaries/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">CTD-processing</a>
-      </h1>
-      <p class="meta"><time datetime="2013-07-29T03:43:00" pubdate>Jul 29, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>I&#39;m re-factoring the
-<a href="http://code.google.com/p/python-oceans/source/checkout/">python-oceans</a>
-module.  The first step was to create another module just for the CTD tools
-(<a href="https://github.com/ocefpaf/python-ctd">python-ctd</a>)</p>
-<p>The new module is already at <code>PyPI</code> and the API will remain the same as before.
-To install it type:</p>
-<pre><code class="language-{.bash}"><span class="title">pip</span> install ctd
-</code></pre>
-<p>Now we can import the module:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In ...</div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/map_inset/">Basemap inset</a>
-      </h1>
-      <p class="meta"><time datetime="2013-07-22T13:43:00" pubdate>Jul 22, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This example is a modified version of the inset example from the
-<a href="http://www.geophysique.be/2010/05/05/matplotlib-basemap-tutorial-part-03-masked-arrays-zoom/">geophysique</a> blog.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="kn">as</span> <span class="nn">ma</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">oceans.datasets</span> <span class="kn">import</span> <span class="n">etopo_subset</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We need to import <code>Basemap</code>, <code>Polygon</code> and <code>inset_axes</code>:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap ...</span></pre></div></div></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/map_inset/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index10.html">&larr; Older</a>
 
@@ -2077,6 +2033,12 @@ In&nbsp;[3]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/20/arctic_sea_ice_concentration/">Arctic Sea Ice Concentration</a>
+      </li>
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/13/profiles/">Open figures</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/06/bathymetry/">Using iris trajectory class to extract a bathymetric profile</a>
       </li>
       <li class="post">
@@ -2084,12 +2046,6 @@ In&nbsp;[3]:
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/23/wms_layers/">Adding WMS layers to your folium maps</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/16/outlier_detection/">3 ways to remove outliers from your data</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/09/olive_bread/">Olive Bread</a>
       </li>
     </ul>
   </section>
