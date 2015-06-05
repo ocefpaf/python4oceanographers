@@ -1,0 +1,22 @@
+Name: nt_20150326_f17_nrt_n.bin
+Grid Name: Polar Stereo Northern 25km
+NSIDC GPD File Name: ftp://sidads.colorado.edu/pub/tools/mapx/nsidc_maps/N3B.gpd
+Data Offset: 300
+Data Type: UNSIGNED_INTEGER
+Bytes Per Pixel:1
+Byte Order: n/a
+Image Width: 304
+Image Height: 448
+Proj.4 Projection: +proj=stere +lat_0=90 +lat_ts=70 +lon_0=-45 +k=1 +x_0=0 +y_0=0 +a=6378273 +b=6356889.449 +units=m +no_defs
+Missing Data Value: 255
+Upper Left Corner X Coordinate: -3850000.0
+Upper Left Corner Y Coordinate: 5850000.0
+Lower Right Corner X Coordinate: 3750000.0
+Lower Right Corner Y Coordinate: -5350000.0
+Subset Parent Grid Cell Start Row: 0.0
+Subset Parent Grid Cell End Row: 448.0
+Subset Parent Grid Cell Start Column: 0.0
+Subset Parent Grid Cell End Column: 304.0
+Minimum Value: 0.0
+Maximum Value: 255.0
+History: 
