@@ -1,5 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-06-08T16:31:00-03:00</updated><entry><title>Iris load, loads, and load_raw</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/08/iris_load/" rel="alternate"></link><updated>2015-06-08T16:31:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-06-08:blog/2015/06/08/iris_load/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-06-15T20:59:00-03:00</updated><entry><title>Building a site with mkdocs</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/15/mkdocs/" rel="alternate"></link><updated>2015-06-15T20:59:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-06-15:blog/2015/06/15/mkdocs/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I already wrote about how to build this blog using
+&lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/12/23/blog/"&gt;pelican&lt;/a&gt;,
+how to create sites with
+&lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/07/28/secoora_website/"&gt;Jekyll&lt;/a&gt;,
+and &lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/08/intro_python_website/"&gt;Hyde&lt;/a&gt;.
+In the past I also tried &lt;a href="https://getnikola.com/blog/"&gt;Nikola&lt;/a&gt; and even raw
+&lt;a href="http://ocefpaf.github.io/homepage/"&gt;HTML&lt;/a&gt;.  However, since I found out about
+&lt;a href="http://www.mkdocs.org/"&gt;mkdocs&lt;/a&gt;, I gave up all others.  Particularly when
+building quick sites for classes, courses and (obviously) docs.&lt;/p&gt;
+&lt;p&gt;Mkdocs is extremely simple.  All you need is to &lt;code&gt;pip install mkdocs&lt;/code&gt; and then&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-python"&gt;  new        Create a new MkDocs project
+  build      Build the MkDocs documentation
+  serve      Run the built-&lt;span class="keyword"&gt;in&lt;/span&gt; development server
+  gh-deploy  Deploy your documentation to GitHub Pages
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In that order!  Well, you need to flesh a configuration file out after &lt;code&gt;new&lt;/code&gt;, and
+&lt;code&gt;gh-deploy&lt;/code&gt; works only if you are hosting your page as a GitHub project page ;-)&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/ocefpaf/python4oceanographers_intro_course/blob/master/mkdocs.yml"&gt;Here&lt;/a&gt; is a config file example:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="language-yaml"&gt;&lt;span class="method"&gt;site_name:&lt;/span&gt; &lt;span class="class"&gt;My&lt;/span&gt; &lt;span class="class"&gt;Awesome&lt;/span&gt; &lt;span class="class"&gt;Site&lt;/span&gt;
+&lt;span class="method"&gt;pages:&lt;/span&gt;
+  - &lt;span class="class"&gt;Home&lt;/span&gt;: index.md
+  - &lt;span class="class"&gt;About&lt;/span&gt;: about.md
+
+&lt;span class="method"&gt;theme_dir:&lt;/span&gt; custom
+
+&lt;span class="method"&gt;site_description:&lt;/span&gt; &lt;span class="class"&gt;My&lt;/span&gt; awesome site
+&lt;span class="method"&gt;site_url:&lt;/span&gt; &lt;span class="method"&gt;https:&lt;/span&gt;//username.github.io/awesome_site
+&lt;span class="method"&gt;repo_url:&lt;/span&gt; &lt;span class="method"&gt;https:&lt;/span&gt;//github.com/username/awesome_site
+&lt;span class="method"&gt;site_author:&lt;/span&gt; &lt;span class="class"&gt;Your&lt;/span&gt; &lt;span class="class"&gt;Name&lt;/span&gt; &lt;span class="class"&gt;Here&lt;/span&gt;
+&lt;span class="method"&gt;site_favicon:&lt;/span&gt; favicon.png
+&lt;span class="method"&gt;docs_dir:&lt;/span&gt; src
+&lt;span class="method"&gt;site_dir:&lt;/span&gt; _site
+&lt;span class="method"&gt;copyright:&lt;/span&gt; &lt;span class="class"&gt;Preferably&lt;/span&gt; a copyleft ;-)
+&lt;span class="method"&gt;markdown_extensions:&lt;/span&gt;
+    - &lt;span class="method"&gt;toc:&lt;/span&gt;
+        &lt;span class="method"&gt;permalink:&lt;/span&gt; &lt;span class="comment"&gt;""&lt;/span&gt;
+    - extra
+    - smarty
+    - math
+    - markdown_checklist.extension
+&lt;span class="method"&gt;extra_javascript:&lt;/span&gt; [&lt;span class="string"&gt;'https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML'&lt;/span&gt;,&lt;span class="string"&gt;'js/mathjaxhelper.js'&lt;/span&gt;]
+&lt;span class="method"&gt;google_analytics:&lt;/span&gt; [&lt;span class="string"&gt;'UA-xxxxxx-xx'&lt;/span&gt;, &lt;span class="string"&gt;'username.github.io'&lt;/span&gt;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The file is mostly self explanatory.  You need to fill in the information 
+about your site while choosing themes, markdown extensions, etc.  Check mkdocs 
+&lt;a href="http://www.mkdocs.org/"&gt;documentation&lt;/a&gt; for more information.&lt;/p&gt;
+&lt;p&gt;The actual pages are in fact just Markdown files.  Easy to write, easy to
+deploy!  Once you get the basic config going you can always type
+&lt;code&gt;mkdocs serve&lt;/code&gt;, before editing, your files and the changes will be re-rendered as you type.&lt;/p&gt;
+&lt;p&gt;Click &lt;a href="http://ocefpaf.github.io/python4oceanographers_intro_course/"&gt;here&lt;/a&gt; to see a rendered example of the results.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;
+In&amp;nbsp;[3]:
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
+    Out[3]:&lt;/div&gt;
+
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
+
+&lt;small&gt;
+&lt;p&gt; This post was written as an IPython notebook.  It is available for
+&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2015-06-15-mkdocs.ipynb"&gt;download&lt;/a&gt; or as a static
+&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2015-06-15-mkdocs.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
+licensed under a &lt;a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
+Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
+ 
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Iris load, loads, and load_raw</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/08/iris_load/" rel="alternate"></link><updated>2015-06-08T16:31:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-06-08:blog/2015/06/08/iris_load/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -1420,6 +1529,7 @@ contribution.&lt;/li&gt;
 complex, write better docs.  Why not go the extra mile and write a
 &lt;a href="http://scitools.org.uk/iris/docs/latest/developers_guide/index.html"&gt;developers guide&lt;/a&gt;
 documentation?&lt;/li&gt;
+&lt;li&gt;Start any public development at early stages.  Avoid code dumps!&lt;/li&gt;
 &lt;li&gt;Do not be afraid of reaching out to others.
 Be the first (or the second ;-) guy on the hill **!&lt;/li&gt;
 &lt;/ul&gt;
@@ -2394,184 +2504,6 @@ In&amp;nbsp;[8]:
 notebooks/2015-05-18-utide_ellipse.ipynb"&gt;download&lt;/a&gt; or as a static
 &lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
 python4oceanographers/downloads/notebooks/2015-05-18-utide_ellipse.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
-xmlns:dct="http://purl.org/dc/terms/"
-property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
-xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
-property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
-licensed under a &lt;a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
-Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
-xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
-rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
- 
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Notes on using docker (to build IOOS binstar channel)</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/11/docker/" rel="alternate"></link><updated>2015-05-11T20:58:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-05-11:blog/2015/05/11/docker/</id><summary type="html">&lt;p&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;This post contains my notes on how to use docker.  The goal is to use a
-docker image to speedup Linux32 and Linus64 builds for the IOOS channel.&lt;/p&gt;
-&lt;h2 id="install"&gt;Install&lt;/h2&gt;
-&lt;p&gt;&lt;a href="https://docs.docker.com/installation/SUSE/"&gt;OpenSUSE&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;sudo systemctl start docker
-sudo systemctl enable docker
-sudo /usr/sbin/usermod -a -G docker &lt;span class="variable"&gt;$USER&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="http://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo"&gt;No sudo&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;sudo groupadd docker
-sudo gpasswd -a &lt;span class="variable"&gt;${USER}&lt;/span&gt; docker
-sudo service docker restart
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;a href="https://registry.hub.docker.com/"&gt;Login (docker-hub)&lt;/a&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker login
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="manage-images"&gt;Manage images&lt;/h2&gt;
-&lt;p&gt;Using &lt;a href="https://registry.hub.docker.com/u/pelson/conda64_obvious_ci/"&gt;pelson&amp;#39;s Centos image&lt;/a&gt;  with conda+obvious-ci&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker pull pelson/conda64_obvious_ci
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;List your images&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker images
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Remove an image&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker rmi &amp;lt;image&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="using-the-image"&gt;Using the image&lt;/h2&gt;
-&lt;p&gt;Run something once&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker run pelson/conda64_obvious_ci /bin/&lt;span class="keyword"&gt;echo&lt;/span&gt; &lt;span class="string"&gt;'Hello world'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Open a terminal inside the container&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker run -i -t pelson/conda64_obvious_ci /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Start terminal and mout a directory at image&amp;#39;s /home&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;docker run -it --rm -v $(pwd):/home/ pelson/conda64_obvious_ci /bin/bash
-cd home
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;code&gt;--rm&lt;/code&gt; does not save the container state.  All changes will be deleted once you leave the image!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="inside-the-container"&gt;Inside the container&lt;/h2&gt;
-&lt;p&gt;To build all packages at &lt;a href="https://conda.binstar.org/ioos"&gt;IOOS&lt;/a&gt; we need:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;yum install -y patch
-yum install -y file
-
-&lt;span class="comment"&gt;# Qt, matplotlib deps, vispy&lt;/span&gt;
-yum install -y libXext
-yum install -y libSM
-yum install -y libXrender
-yum install -y fontconfig
-yum install -y mesa-libGL
-
-&lt;span class="comment"&gt;# octant&lt;/span&gt;
-yum install -y gcc-gfortran
-
-&lt;span class="comment"&gt;# udunits2&lt;/span&gt;
-yum install -y expat-devel
-
-&lt;span class="comment"&gt;# rasterio&lt;/span&gt;
-yum install -y compat-expat1.i686
-
-&lt;span class="comment"&gt;# nco&lt;/span&gt;
-yum install -y bison
-yum install -y byacc
-yum install -y flex
-yum install -y gsl-devel
-yum install -y antlr
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h2 id="updating-and-configuring-conda"&gt;Updating and configuring conda&lt;/h2&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;conda update --all
-conda config --add channels ioos
-
-BINSTAR_TOKEN=&amp;lt;your-token-here&amp;gt;
-export BINSTAR_TOKEN
-
-binstar login
-conda config --&lt;span class="keyword"&gt;set&lt;/span&gt; binstar_upload yes
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h1 id="firing-up-obvious-ci"&gt;Firing up obvious-ci&lt;/h1&gt;
-&lt;pre&gt;&lt;code class="language-bash"&gt;obvci_conda_build_dir.py ./ ioos --channel main
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;
-In&amp;nbsp;[2]:
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;
-    Out[2]:&lt;/div&gt;
-
-&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
-
-&lt;small&gt;
-&lt;p&gt; This post was written as an IPython notebook.  It is available for
-&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
-notebooks/2015-05-11-docker.ipynb"&gt;download&lt;/a&gt; or as a static
-&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
-python4oceanographers/downloads/notebooks/2015-05-11-docker.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
 alt="Creative Commons License" style="border-width:0"
