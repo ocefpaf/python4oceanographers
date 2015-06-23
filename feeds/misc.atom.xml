@@ -11,7 +11,7 @@ Requests like that are always troublesome!  It is hard to find high resolution
 datasets for the coastline for South America.  They do exist, but are rarely
 online and, if you find someone that owns such data they usually won&amp;#39;t share it.&lt;/p&gt;
 &lt;p&gt;The alternative are the global datasets.  This post compare some of the
-available options.  First lets define a plotting function:&lt;/p&gt;
+available options.  First let&amp;#39;s define a plotting function:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -4811,7 +4811,7 @@ oQWMRqPRaDSaPYcWMBqNRqPRaPYcWsBoNBqNRqPZc/z/JD/+/xUZLYwAAAAASUVORK5CYII=
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
 &lt;p&gt;We would like to plot a Bay contour that looks like that, with all the major
 rivers and islands, but without all the clutter.&lt;/p&gt;
-&lt;p&gt;First lets try the
+&lt;p&gt;First let&amp;#39;s try the
 &lt;a href="http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html"&gt;Global Self-consistent, Hierarchical, High-resolution Geography Database (GSHHS)&lt;/a&gt;.
 The GSHHS is quite popular among oceanographers.  It was used in the MatlabTM
 toolbox &lt;a href="http://www.eos.ubc.ca/~rich/map.html"&gt;m_map&lt;/a&gt; and it is the default
