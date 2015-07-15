@@ -50,7 +50,7 @@
 
 <body>
 
-   <div class="folium-map" id="folium_182a6691fa7b4d759deacd415459888d" style="width: 650px; height: 500px"></div>
+   <div class="folium-map" id="folium_fa96efeac52141fb8a80dd506d47affc" style="width: 650px; height: 500px"></div>
 
    <script>
 
@@ -94,7 +94,7 @@
       /*
       Creates the map and adds the selected layers
       */
-      var map = L.map('folium_182a6691fa7b4d759deacd415459888d', {
+      var map = L.map('folium_fa96efeac52141fb8a80dd506d47affc', {
                                        center:[-47.5638611111, -91.9407805556],
                                        zoom: 15,
                                        maxBounds: bounds,
@@ -110,7 +110,7 @@
       //add the clustered markers to the group anyway
       map.addLayer(clusteredmarkers);
 
-var imageUrl = 'data/itaguare_cropped.jpg',
+var imageUrl = 'https://raw.githubusercontent.com/ocefpaf/python4oceanographers/master/content/downloads/notebooks/data/itaguare_cropped.jpg',
 imageBounds = [[-23.785458333333334, -45.975630555555554], [-23.778402777777778, -45.96515]];
 L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
