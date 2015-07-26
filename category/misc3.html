@@ -1758,6 +1758,30 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/02/geotiff/">Plotting geotiff with cartopy</a>
+      </h1>
+      <p class="meta"><time datetime="2015-03-02T17:35:00" pubdate>Mar 02, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post is a quick example on how to read geotiff images with GDAL and
+plot them with Cartopy.</p>
+<p>The image, and most of the code, is from Kelsey Jordahl
+<a href="http://nbviewer.ipython.org/github/mqlaql/geospatial-data/blob/master/Geospatial-Data-with-Python.ipynb">original notebook</a>.
+The main difference is that I compressed the geotiff with:</p>
+<p><code>gdal_translate -co &quot;TILED=YES&quot; -co &quot;COMPRESS=JPEG&quot; manhattan ...</code></p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/02/geotiff/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/23/open_data_day/">Para um futuro melhor</a>
       </h1>
       <p class="meta"><time datetime="2015-02-23T20:41:00" pubdate>Feb 23, 2015</time></p>
@@ -2016,30 +2040,6 @@ the ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/29/iris_ocean_models/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/22/xray/">Testing xray for ocean models output</a>
-      </h1>
-      <p class="meta"><time datetime="2014-12-22T12:56:00" pubdate>Dec 22, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://xray.readthedocs.org/en/stable/">xray</a> is an interesting package that
-has been under my radar for a while.</p>
-<p>According to the docs xray is:</p>
-<pre><code>... an open source project and Python package that aims to bring the
-labeled data power of pandas to the physical sciences, by providing
-N-dimensional variants of the core pandas data ...</code></pre></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/22/xray/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc4.html">&larr; Older</a>
 
@@ -2051,6 +2051,9 @@ N-dimensional variants of the core pandas data ...</code></pre></div></div></div
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">SciPy Sprint on pyugrid</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/13/interactive_geo/">Plotting an static image over an interactive map</a>
       </li>
       <li class="post">
@@ -2061,9 +2064,6 @@ N-dimensional variants of the core pandas data ...</code></pre></div></div></div
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/22/osm/">High resolution coastline</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/15/mkdocs/">Building a site with mkdocs</a>
       </li>
     </ul>
   </section>

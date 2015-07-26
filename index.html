@@ -1758,6 +1758,31 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">SciPy Sprint on pyugrid</a>
+      </h1>
+      <p class="meta"><time datetime="2015-07-20T18:33:00" pubdate>Jul 20, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Last week, at the SciPy conference, I had chance to sprint on the
+<a href="https://github.com/pyugrid/pyugrid">pyugrid</a>.  The pyugrid module aims to be a
+Python API to utilize data written using the netCDF unstructured grid
+<a href="https://github.com/ugrid-conventions/ugrid-conventions">conventions</a>.  Right
+now it support only triangular meshes, but the conventions cover any type of
+unstructured grids.</p>
+<p>Lets ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/13/interactive_geo/">Plotting an static image over an interactive map</a>
       </h1>
       <p class="meta"><time datetime="2015-07-13T00:34:00" pubdate>Jul 13, 2015</time></p>
@@ -1995,34 +2020,6 @@ In&nbsp;[2]:
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/18/utide_ellipse/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/11/docker/">Notes on using docker (to build IOOS binstar channel)</a>
-      </h1>
-      <p class="meta"><time datetime="2015-05-11T20:58:00" pubdate>May 11, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This post contains my notes on how to use docker.  The goal is to use a
-docker image to speedup Linux32 and Linus64 builds for the IOOS channel.</p>
-<h2 id="install">Install</h2>
-<p><a href="https://docs.docker.com/installation/SUSE/">OpenSUSE</a></p>
-<pre><code class="language-bash">sudo systemctl start docker
-sudo systemctl enable docker
-sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
-</code></pre>
-<p><a href="http://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo">No sudo</a></p>
-<pre><code class="language-bash">sudo groupadd ...</code></pre></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/11/docker/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index2.html">&larr; Older</a>
 
@@ -2032,6 +2029,9 @@ sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">SciPy Sprint on pyugrid</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/13/interactive_geo/">Plotting an static image over an interactive map</a>
       </li>
@@ -2043,9 +2043,6 @@ sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/22/osm/">High resolution coastline</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/15/mkdocs/">Building a site with mkdocs</a>
       </li>
     </ul>
   </section>
