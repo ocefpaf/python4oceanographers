@@ -1758,6 +1758,83 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
+      </h1>
+      <p class="meta"><time datetime="2015-08-03T16:19:00" pubdate>Aug 03, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In a
+<a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/30/geo_pandas/">previous post</a> 
+I said I would try to build a GPX loader for GeoPandas.  If you try to load a 
+GPX file right now this is what you get.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s">&#39;./data/2014_08_05_farol.gpx&#39;</span>
+
+<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">gdf</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[3]:</div>
+
+<div class="output_html rendered_html output_subarea output_pyout">
+<div style="max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ouch!  Not ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/27/least_squares/">Simple least squares fit to study residuals</a>
       </h1>
       <p class="meta"><time datetime="2015-07-27T14:12:00" pubdate>Jul 27, 2015</time></p>
@@ -1982,32 +2059,6 @@ In&nbsp;[2]:
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/01/cf_units/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/25/open_source/">Is there a "Right Way" to Open Source a project?</a>
-      </h1>
-      <p class="meta"><time datetime="2015-05-25T10:51:00" pubdate>May 25, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>While listening to Kenneth Reitz on
-<a href="http://www.talkpythontome.com/episodes/show/6/requests-pycon-and-python-s-future">this</a>
-<a href="http://www.talkpythontome.com">Talk Python to me</a> episode and I realized that
-<strong>the most</strong> popular Python module, which is
-<a href="http://docs.python-requests.org/en/latest/">requests</a>,
-could have failed due to a bad name choice!  Instead of
-&quot;Requests: HTTP for Humans&quot; Kenneth Reitz almost named it
-&quot;Requests: HTTP for python that doesn ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/25/open_source/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc2.html">&larr; Older</a>
 
@@ -2017,6 +2068,9 @@ could have failed due to a bad name choice!  Instead of
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/27/least_squares/">Simple least squares fit to study residuals</a>
       </li>
@@ -2028,9 +2082,6 @@ could have failed due to a bad name choice!  Instead of
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/06/podcasts/">Web scraping 101 (or how to get ready for a long trip)</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/29/tardis/">Packaging all my iris workarounds</a>
       </li>
     </ul>
   </section>
