@@ -1758,6 +1758,46 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/23/wms_layers/">Adding WMS layers to your folium maps</a>
+      </h1>
+      <p class="meta"><time datetime="2015-03-23T11:42:00" pubdate>Mar 23, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since <a href="https://github.com/python-visualization/folium/pull/48">PR #48</a>
+<a href="https://github.com/python-visualization/folium">folium</a> can show
+<a href="http://en.wikipedia.org/wiki/Web_Map_Service">WMS</a> on top its interactive maps.</p>
+<p>In this post I will show two quick examples using oceanographic themed layers.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">folium.folium</span> <span class="kn">import</span> <span class="n">Map</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+
+
+<span class="k">def</span> <span class="nf">inline_map</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">Map</span><span class="p">):</span>
+        <span class="n">m</span><span class="o">.</span><span class="n">_build_map</span><span class="p">()</span>
+        <span class="n">srcdoc</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">HTML</span><span class="o">.</span><span class="n">replace ...</span></pre></div></div></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/23/wms_layers/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/16/outlier_detection/">3 ways to remove outliers from your data</a>
       </h1>
       <p class="meta"><time datetime="2015-03-16T14:49:00" pubdate>Mar 16, 2015</time></p>
@@ -2015,30 +2055,6 @@ need to wrap the matlab code with oct2py! Now we have a full python version:
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/19/ttide_py/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/12/SEAPY/">SEAPY is dead, long live SEAPY!</a>
-      </h1>
-      <p class="meta"><time datetime="2015-01-12T12:30:00" pubdate>Jan 12, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Some time ago I started a website called
-<a href="https://code.google.com/p/sea-py/wiki/SEAPY">SEAPY</a> <del>shameless copied from</del>
-based on WHOI&#39;s <a href="http://woodshole.er.usgs.gov/operations/sea-mat">SEAMAT</a>.
-However, as any site that contains list of links, it suffered (and badly) from
-<a href="http://en.wikipedia.org/wiki/Link_rot">link rot</a>.  So here it is, SEAPY is
-dead, long live SEAPY.  I am closing the old google code ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/12/SEAPY/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index4.html">&larr; Older</a>
 
@@ -2050,6 +2066,9 @@ dead, long live SEAPY.  I am closing the old google code ...</p></div></div></di
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/10/cf_units_and_time/">Loading non-standard dates with cf_units</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
       </li>
       <li class="post">
@@ -2060,9 +2079,6 @@ dead, long live SEAPY.  I am closing the old google code ...</p></div></div></di
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/13/interactive_geo/">Plotting an static image over an interactive map</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/06/podcasts/">Web scraping 101 (or how to get ready for a long trip)</a>
       </li>
     </ul>
   </section>
