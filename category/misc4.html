@@ -1758,6 +1758,59 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/">Plotting shapefiles with cartopy and folium</a>
+      </h1>
+      <p class="meta"><time datetime="2015-02-02T17:21:00" pubdate>Feb 02, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First we will use cartopy&#39;s
+<a href="http://scitools.org.uk/cartopy/docs/latest/tutorials/using_the_shapereader.html">shapereader</a> 
+to download (and cache) states shapefile with 50 meters resolution from the 
+<a href="http://www.naturalearthdata.com/">NaturalEarth</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">shapereader</span>
+
+
+<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s">&#39;50m&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&#39;cultural&#39;</span><span class="p">,</span>
+          <span class="n">name</span><span class="o">=</span><span class="s">&#39;admin_1_states_provinces&#39;</span><span class="p">)</span>
+
+<span class="n">states_shp</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+<span class="n">shp</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">states_shp</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let&#39;s create a list of ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/01/26/fortran/">Calling Fortran from python</a>
       </h1>
       <p class="meta"><time datetime="2015-01-26T00:51:00" pubdate>Jan 26, 2015</time></p>
@@ -1985,41 +2038,6 @@ comum dado ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/01/PCA/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Filtering out tides with pandas, iris and numpy</a>
-      </h1>
-      <p class="meta"><time datetime="2014-11-24T16:23:00" pubdate>Nov 24, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a short post on how to filter out tides from a time-series using
-<code>pandas</code>, <code>iris</code>, and <code>numpy.convolve</code>.</p>
-<p>Our data consists of hourly measurements of currents, temperature and salinity as follows:</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_table</span>
-
-<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://raw.githubusercontent.com/ocefpaf/python4oceanographers ...</span></pre></div></div></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc5.html">&larr; Older</a>
 
@@ -2031,6 +2049,9 @@ In&nbsp;[2]:
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
       <li class="post">
@@ -2041,9 +2062,6 @@ In&nbsp;[2]:
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/27/least_squares/">Simple least squares fit to study residuals</a>
       </li>
     </ul>
   </section>
