@@ -1758,6 +1758,43 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/07/iris_outline/">Iris "hidden" feature</a>
+      </h1>
+      <p class="meta"><time datetime="2015-09-07T09:30:00" pubdate>Sep 07, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I had to create a figure showing the available data used to create the World
+Ocean Atlas (WOA).  WOA has that information in each file already, so that part
+was easy.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[3]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">iris</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;http://data.nodc.noaa.gov/thredds/dodsC/woa/WOA09/NetCDFdata/&#39;</span>
+       <span class="s">&#39;silicate_annual_5deg.nc&#39;</span><span class="p">)</span>
+
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris ...</span></pre></div></div></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/07/iris_outline/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
       </h1>
       <p class="meta"><time datetime="2015-08-31T17:50:00" pubdate>Aug 31, 2015</time></p>
@@ -2039,31 +2076,6 @@ It is a nice way to use my extra &quot;airport time&quot; to study a little bit.
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/06/podcasts/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/29/tardis/">Packaging all my iris workarounds</a>
-      </h1>
-      <p class="meta"><time datetime="2015-06-29T18:49:00" pubdate>Jun 29, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>After copying-and-pasting so many of my iris code snippets I decided to
-package everything in a new module:
-<a href="https://github.com/pyoceans/tardis">TARDIS</a>.</p>
-<p>Tardis is nothing more than a hackish wrapper around iris that expands some of
-the iris methods to work with 2D-Coords and to facilitate some of its methods
-calls.</p>
-<p>Virtually everything ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/06/29/tardis/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index2.html">&larr; Older</a>
 
@@ -2073,6 +2085,9 @@ calls.</p>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/07/iris_outline/">Iris "hidden" feature</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
       </li>
@@ -2084,9 +2099,6 @@ calls.</p>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/10/cf_units_and_time/">Loading non-standard dates with cf_units</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
       </li>
     </ul>
   </section>
