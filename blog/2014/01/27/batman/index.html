@@ -1350,7 +1350,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1781,9 +1781,7 @@ automagically rendered by the IPython notebook.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sympy.interactive</span> <span class="kn">import</span> <span class="n">printing</span>
@@ -1813,9 +1811,7 @@ any number expression.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">Function</span><span class="p">,</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">S</span>
@@ -1840,9 +1836,7 @@ identify them later in the plot.)</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[4]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">red</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;(x / 7) ** 2 * sqrt(abs(abs(x) - 3) / (abs(x) - 3)) + (y / 3) ** 2 * sqrt(abs(y + 3 / 7 * sqrt(33)) / (y + 3 / 7 * sqrt(33))) - 1&quot;</span><span class="p">)</span>
@@ -1857,8 +1851,7 @@ In&nbsp;[4]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -1873,9 +1866,7 @@ $$\frac{x^{2}}{49} \sqrt{\frac{\operatorname{abs}{\left (\operatorname{abs}{\lef
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">orange</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;abs(x / 2) - ((3 * sqrt(33) - 7) / 112) * x ** 2 - 3 + sqrt(1 - (abs(abs(x) - 2) - 1) ** 2) - y&quot;</span><span class="p">)</span>
@@ -1890,8 +1881,7 @@ In&nbsp;[5]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -1906,9 +1896,7 @@ $$- x^{2} \left(- \frac{1}{16} + \frac{3 \sqrt{33}}{112}\right) - y + \sqrt{- \l
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">green</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;9 * sqrt(abs((abs(x) - 1) * (abs(x) - 0.75)) / ((1 - abs(x)) * (abs(x) - 0.75))) - 8 * abs(x) - y&quot;</span><span class="p">)</span>
@@ -1923,8 +1911,7 @@ In&nbsp;[6]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[6]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -1939,9 +1926,7 @@ $$- y + 9 \sqrt{\frac{\operatorname{abs}{\left (\left(\operatorname{abs}{\left (
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[7]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">blue</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;3 * abs(x) + 0.75 * sqrt(abs((abs(x) - 0.75) * (abs(x) - 0.5)) / ((0.75 - abs(x)) * (abs(x) - 0.5))) - y&quot;</span><span class="p">)</span>
@@ -1956,8 +1941,7 @@ In&nbsp;[7]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[7]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -1972,9 +1956,7 @@ $$- y + 0.75 \sqrt{\frac{\operatorname{abs}{\left (\left(\operatorname{abs}{\lef
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">pink</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;2.25 * sqrt(abs((x - 0.5) * (x + 0.5)) / ((0.5 - x) * (0.5 + x))) - y&quot;</span><span class="p">)</span>
@@ -1989,8 +1971,7 @@ In&nbsp;[8]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[8]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -2005,9 +1986,7 @@ $$- y + 2.25 \sqrt{\frac{\operatorname{abs}{\left (\left(x - 0.5\right) \left(x 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">brown</span> <span class="o">=</span> <span class="n">S</span><span class="p">(</span><span class="s">&quot;6 * sqrt(10) / 7 + (1.5 - 0.5 * abs(x)) * sqrt(abs(abs(x) - 1) / (abs(x) - 1)) - (6 * sqrt(10) / 14) * sqrt(4 - (abs(x) - 1) ** 2) - y&quot;</span><span class="p">)</span>
@@ -2022,8 +2001,7 @@ In&nbsp;[9]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[9]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
 
 
 <div class="output_latex output_subarea output_pyout">
@@ -2051,9 +2029,7 @@ expressions as numpy functions.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">lambdify</span>
@@ -2081,9 +2057,7 @@ In&nbsp;[10]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -2116,9 +2090,7 @@ In&nbsp;[11]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -7916,9 +7888,7 @@ But we did not find any bat in the caves we visit during our vacation time... Bu
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
@@ -7933,8 +7903,7 @@ In&nbsp;[13]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
 
 
 <div class="output_jpeg output_subarea output_pyout">
@@ -9798,9 +9767,7 @@ N5uf/9k=
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[14]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="n">HTML</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
@@ -9814,8 +9781,7 @@ In&nbsp;[14]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[14]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 
@@ -9869,6 +9835,9 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </li>
       <li class="post">
@@ -9879,9 +9848,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
     </ul>
   </section>

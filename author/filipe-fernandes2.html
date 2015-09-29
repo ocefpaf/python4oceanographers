@@ -1350,7 +1350,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1758,6 +1758,31 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">SciPy 2015 sprint: pyugrid</a>
+      </h1>
+      <p class="meta"><time datetime="2015-07-20T18:33:00" pubdate>Jul 20, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Last week, at the SciPy conference, I had chance to sprint on the
+<a href="https://github.com/pyugrid/pyugrid">pyugrid</a>.  The pyugrid module aims to be a
+Python API to utilize data written using the netCDF unstructured grid
+<a href="https://github.com/ugrid-conventions/ugrid-conventions">conventions</a>.  Right
+now it support only triangular meshes, but the conventions cover any type of
+unstructured grids.</p>
+<p>Let ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/13/interactive_geo/">Plotting an static image over an interactive map</a>
       </h1>
       <p class="meta"><time datetime="2015-07-13T00:34:00" pubdate>Jul 13, 2015</time></p>
@@ -1922,9 +1947,7 @@ and our first external use: the IOOS
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">YouTubeVideo</span>
@@ -1981,9 +2004,7 @@ to compute them in Python.  We will be using the same data from previous posts.<
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
@@ -1993,34 +2014,6 @@ In&nbsp;[2]:
 <span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;j&#39;</span><span class="p">,</span> <span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;v&#39;</span><span class="p">,</span> <span class="s">&#39;temp&#39;</span><span class="p">,</span> <span class="s">&#39;sal&#39;</span><span class="p">,</span> <span class="s">&#39;y ...</span></pre></div></div></div></div></div></p></div>
   <footer>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/18/utide_ellipse/">Read On &crarr;</a>
-  </footer>
-  		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/11/docker/">Notes on using docker (to build IOOS binstar channel)</a>
-      </h1>
-      <p class="meta"><time datetime="2015-05-11T20:58:00" pubdate>May 11, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This post contains my notes on how to use docker.  The goal is to use a
-docker image to speedup Linux32 and Linus64 builds for the IOOS channel.</p>
-<h2 id="install">Install</h2>
-<p><a href="https://docs.docker.com/installation/SUSE/">OpenSUSE</a></p>
-<pre><code class="language-bash">sudo systemctl start docker
-sudo systemctl enable docker
-sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
-</code></pre>
-<p><a href="http://askubuntu.com/questions/477551/how-can-i-use-docker-without-sudo">No sudo</a></p>
-<pre><code class="language-bash">sudo groupadd ...</code></pre></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/05/11/docker/">Read On &crarr;</a>
   </footer>
   		</article>
 <div class="pagination">
@@ -2034,6 +2027,9 @@ sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </li>
       <li class="post">
@@ -2044,9 +2040,6 @@ sudo /usr/sbin/usermod -a -G docker <span class="variable">$USER</span>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
     </ul>
   </section>

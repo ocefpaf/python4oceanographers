@@ -1350,7 +1350,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1758,6 +1758,30 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/02/geotiff/">Plotting geotiff with cartopy</a>
+      </h1>
+      <p class="meta"><time datetime="2015-03-02T17:35:00" pubdate>Mar 02, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post is a quick example on how to read geotiff images with GDAL and
+plot them with Cartopy.</p>
+<p>The image, and most of the code, is from Kelsey Jordahl
+<a href="http://nbviewer.ipython.org/github/mqlaql/geospatial-data/blob/master/Geospatial-Data-with-Python.ipynb">original notebook</a>.
+The main difference is that I compressed the geotiff with:</p>
+<p><code>gdal_translate -co &quot;TILED=YES&quot; -co &quot;COMPRESS=JPEG&quot; manhattan ...</code></p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/02/geotiff/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/23/open_data_day/">Para um futuro melhor</a>
       </h1>
       <p class="meta"><time datetime="2015-02-23T20:41:00" pubdate>Feb 23, 2015</time></p>
@@ -1853,9 +1877,7 @@ to download (and cache) states shapefile with 50 meters resolution from the
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">shapereader</span>
@@ -1979,9 +2001,7 @@ confusion.  In fact, matplotlib&#39;s pcolor is an improved way to &quot;pcolor&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -2016,30 +2036,6 @@ the ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/29/iris_ocean_models/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/22/xray/">Testing xray for ocean models output</a>
-      </h1>
-      <p class="meta"><time datetime="2014-12-22T12:56:00" pubdate>Dec 22, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://xray.readthedocs.org/en/stable/">xray</a> is an interesting package that
-has been under my radar for a while.</p>
-<p>According to the docs xray is:</p>
-<pre><code>... an open source project and Python package that aims to bring the
-labeled data power of pandas to the physical sciences, by providing
-N-dimensional variants of the core pandas data ...</code></pre></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/12/22/xray/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc5.html">&larr; Older</a>
 
@@ -2051,6 +2047,9 @@ N-dimensional variants of the core pandas data ...</code></pre></div></div></div
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </li>
       <li class="post">
@@ -2061,9 +2060,6 @@ N-dimensional variants of the core pandas data ...</code></pre></div></div></div
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
     </ul>
   </section>

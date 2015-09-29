@@ -1350,7 +1350,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1758,6 +1758,29 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/08/20/brazil-states-map2/">Creating a correct map of Brazilian states with basemap Part 2</a>
+      </h1>
+      <p class="meta"><time datetime="2013-08-20T23:45:00" pubdate>Aug 20, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several people brought to my attention that the current <code>shapefiles</code> hosted at
+<a href="http://www.gadm.org/">GADM</a> are not up-to-date as the one I plotted.  Well,
+they where in the past (just look at their front figure).</p>
+<p>Apparently they updated to the same bad boundaries that are present in GMT
+and basemap.  Unfortunately I ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/08/20/brazil-states-map2/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/08/12/brazil-states-map/">Creating a correct map of Brazilian states with basemap</a>
       </h1>
       <p class="meta"><time datetime="2013-08-12T12:45:00" pubdate>Aug 12, 2013</time></p>
@@ -1821,8 +1844,7 @@ To install it type:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In ...</div></div></div></p></div>
+<div class="prompt input_prompt">In ...</div></div></div></p></div>
   <footer>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">Read On &crarr;</a>
   </footer>
@@ -1848,9 +1870,7 @@ In ...</div></div></div></p></div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1875,9 +1895,7 @@ In&nbsp;[2]:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">mpl_toolkits.basemap</span> <span class="kn">import</span> <span class="n">Basemap ...</span></pre></div></div></div></div></div></p></div>
@@ -1907,9 +1925,7 @@ Now it is easy to produce plots with the <code>XKCD</code> style with just the f
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[2]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -1924,8 +1940,7 @@ In&nbsp;[2]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -2056,24 +2071,6 @@ post was written in Portuguese.)</p>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/06/17/teaching/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/06/10/ctd_spikes_2/">Removing spikes from CTD data — Part 2</a>
-      </h1>
-      <p class="meta"><time datetime="2013-06-10T04:03:00" pubdate>Jun 10, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>There are two different types of spikes that may happen in CTD data:</p>
-<ol>
-<li>Bad data from electrical failures.  Usually it manifest in all the
-    measured variables (Temperature, Conductivity, Oxygen, etc);</li>
-<li>Salinity spikes due to a wrong temperature value used when computing it
-    from conductivity.  This can happen due to a ...</li></ol></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/06/10/ctd_spikes_2/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index13.html">&larr; Older</a>
 
@@ -2085,6 +2082,9 @@ post was written in Portuguese.)</p>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </li>
       <li class="post">
@@ -2095,9 +2095,6 @@ post was written in Portuguese.)</p>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
     </ul>
   </section>

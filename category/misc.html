@@ -1350,7 +1350,7 @@ input.engine_num_input{width:60px}
 .ansiblack{color:#000}
 .ansired{color:#8b0000}
 .ansigreen{color:#006400}
-.ansiyellow{color:#a52a2a}
+.ansiyellow{color:#c4a000}
 .ansiblue{color:#00008b}
 .ansipurple{color:#9400d3}
 .ansicyan{color:#4682b4}
@@ -1758,6 +1758,25 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </h1>
+      <p class="meta"><time datetime="2015-09-28T18:24:00" pubdate>Sep 28, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In my last post I showed the new <code>get_variables_by_attributes</code> method that will be available in netCDF4-python <code>1.2.0</code>.  But what if you want to use that now?  You can just copy the <a href="(https://github.com/ocefpaf/netcdf4-python/blob/ef69cd01915aacfec7949a2e61884f2ccad0c2d5/netCDF4/_netCDF4.pyx#L2275-L2315">method</a> as a local function and change the <code>self</code> argument to take the the <code>netCDF4.Dataset</code> (<code>nc ...</code></p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </h1>
       <p class="meta"><time datetime="2015-09-21T14:41:00" pubdate>Sep 21, 2015</time></p>
@@ -1825,9 +1844,7 @@ so that part was easy.  Let&#39;s check the metadata:</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">iris</span>
@@ -1975,9 +1992,7 @@ GPX file right now this is what you get.</p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[3]:
-</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
@@ -1996,8 +2011,7 @@ In&nbsp;[3]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_pyout">
 <div style="max-width:1500px;overflow:auto;">
@@ -2052,31 +2066,6 @@ added ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/27/least_squares/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">SciPy 2015 sprint: pyugrid</a>
-      </h1>
-      <p class="meta"><time datetime="2015-07-20T18:33:00" pubdate>Jul 20, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Last week, at the SciPy conference, I had chance to sprint on the
-<a href="https://github.com/pyugrid/pyugrid">pyugrid</a>.  The pyugrid module aims to be a
-Python API to utilize data written using the netCDF unstructured grid
-<a href="https://github.com/ugrid-conventions/ugrid-conventions">conventions</a>.  Right
-now it support only triangular meshes, but the conventions cover any type of
-unstructured grids.</p>
-<p>Let ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/07/20/pyugrid/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc2.html">&larr; Older</a>
 
@@ -2086,6 +2075,9 @@ unstructured grids.</p>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/28/xray_get_attr/">Using get_variables_by_attributes with xray</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/21/netcdf4/">netCDF4 python and the get_variables_by_attributes</a>
       </li>
@@ -2097,9 +2089,6 @@ unstructured grids.</p>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/31/bolo_cerveja/">Beer Cake</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/24/choropleth/">Three ways to make a choropleth</a>
       </li>
     </ul>
   </section>
