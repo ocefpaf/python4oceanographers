@@ -490,11 +490,12 @@ It was based on an old Matlab script to do zslices.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="inner_cell"&gt;
 &lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;h3 id="Sure-it-is-not-as-good-as-the-compiled-trio-(Numba,-Fortran,-and-Cython),-but-not-bad-either.--Also,-unlike-the-other-options,-numpy-is-easy-to-install-and-ship-any-where.-(Including-my-old-n900.)--Summarize-the-result-in-one-graph:"&gt;Sure it is not as good as the compiled trio (Numba, Fortran, and Cython), but not bad either.  Also, unlike the other options, numpy is easy to install and ship any where. (Including my old &lt;a href="https://en.wikipedia.org/wiki/Nokia_N900"&gt;n900&lt;/a&gt;.)  Summarize the result in one graph:&lt;a class="anchor-link" href="#Sure-it-is-not-as-good-as-the-compiled-trio-(Numba,-Fortran,-and-Cython),-but-not-bad-either.--Also,-unlike-the-other-options,-numpy-is-easy-to-install-and-ship-any-where.-(Including-my-old-n900.)--Summarize-the-result-in-one-graph:"&gt;&amp;#182;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Sure it is not as good as the compiled trio (Numba, Fortran, and Cython),
+but not bad either.  Also, unlike the other options, numpy is easy to install and ship any where. (Including my old &lt;a href="https://en.wikipedia.org/wiki/Nokia_N900"&gt;n900&lt;/a&gt;.)&lt;/p&gt;
+&lt;p&gt;Summarize the result in one graph:&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-
 &lt;div class="cell border-box-sizing code_cell rendered"&gt;
 &lt;div class="input"&gt;
 &lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[16]:&lt;/div&gt;
