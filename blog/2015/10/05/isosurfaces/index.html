@@ -2015,9 +2015,9 @@ Windows is way easier than Fortran.</p>
 <span class="nd">@cython.boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="nd">@cython.wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cython_zslice</span><span class="p">(</span><span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">q</span><span class="p">,</span>
-                    <span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">p</span><span class="p">,</span>
-                    <span class="n">double</span> <span class="n">p0</span><span class="p">,</span>
-                    <span class="n">mask_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">):</span>
+                  <span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">p</span><span class="p">,</span>
+                  <span class="n">double</span> <span class="n">p0</span><span class="p">,</span>
+                  <span class="n">mask_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">):</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">M</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
