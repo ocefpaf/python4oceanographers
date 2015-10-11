@@ -1758,6 +1758,29 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
+      </h1>
+      <p class="meta"><time datetime="2015-10-12T16:55:00" pubdate>Oct 12, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This post is an update on of the previous iso-surface <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">post</a>.</p>
+<p>After reading a little bit more on cython I found out that,
+when using memory views,
+we can release the <a href="https://wiki.python.org/moin/GlobalInterpreterLock">GIL</a> using the <a href="http://docs.cython.org/src/userguide/memoryviews.html">nogil</a> annotation.
+I wonder if releasing the can get the cython performance closer to numba&#39;s ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">Optimizing code for iso-surfaces using Fortran, Cython, and Numba</a>
       </h1>
       <p class="meta"><time datetime="2015-10-05T20:32:00" pubdate>Oct 05, 2015</time></p>
@@ -1992,80 +2015,6 @@ Let&#39;s try to read it ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/10/cf_units_and_time/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Reading GPX files directly with fiona</a>
-      </h1>
-      <p class="meta"><time datetime="2015-08-03T16:19:00" pubdate>Aug 03, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>In a
-<a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/03/30/geo_pandas/">previous post</a> 
-I said I would try to build a GPX loader for GeoPandas.  If you try to load a 
-GPX file right now this is what you get.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">geopandas</span> <span class="kn">as</span> <span class="nn">gpd</span>
-
-<span class="n">fname</span> <span class="o">=</span> <span class="s">&#39;./data/2014_08_05_farol.gpx&#39;</span>
-
-<span class="n">gdf</span> <span class="o">=</span> <span class="n">gpd</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
-<span class="n">gdf</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
-
-<div class="output_html rendered_html output_subarea output_pyout">
-<div style="max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Ouch!  Not ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/08/03/fiona_gpx/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/index2.html">&larr; Older</a>
 
@@ -2075,6 +2024,9 @@ GPX file right now this is what you get.</p>
   <section>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
+      <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
+      </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">Optimizing code for iso-surfaces using Fortran, Cython, and Numba</a>
       </li>
@@ -2086,9 +2038,6 @@ GPX file right now this is what you get.</p>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/14/SWC/">An open source story: from the classroom to a bug fix</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/07/iris_outline/">Iris "hidden" feature</a>
       </li>
     </ul>
   </section>

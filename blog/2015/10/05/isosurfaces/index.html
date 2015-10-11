@@ -1980,8 +1980,8 @@ IPython.config.cell_magic_highlight['magic_fortran'] = {'reg':[/^%%fortran/]};})
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>An impressive speedup.
-Way to go good old <a href="https://www.youtube.com/watch?v=0-hmzurm4SE">Fortran</a>!
+<p>An impressive speedup!
+Way to go good old <a href="https://www.youtube.com/watch?v=0-hmzurm4SE">Fortran</a>.
 However, it is not easy to ship Python wrapped Fortran code on Windows :-(</p>
 <p>We can be more Windows friendly and try Cython.
 Note that cython also needs a compilation step, but compiling cython code on
@@ -2015,9 +2015,9 @@ Windows is way easier than Fortran.</p>
 <span class="nd">@cython.boundscheck</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="nd">@cython.wraparound</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cython_zslice</span><span class="p">(</span><span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">q</span><span class="p">,</span>
-                  <span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">p</span><span class="p">,</span>
-                  <span class="n">double</span> <span class="n">p0</span><span class="p">,</span>
-                  <span class="n">mask_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">):</span>
+                    <span class="n">double</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">::</span><span class="mi">1</span><span class="p">]</span> <span class="n">p</span><span class="p">,</span>
+                    <span class="n">double</span> <span class="n">p0</span><span class="p">,</span>
+                    <span class="n">mask_val</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">NaN</span><span class="p">):</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">L</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">M</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">cdef</span> <span class="nb">int</span> <span class="n">N</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -2078,23 +2078,25 @@ Windows is way easier than Fortran.</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Slightly better than Fortran ;-)</p>
-<p>Bare in minde that I am not a cython expert.
+<p>Slightly better than Fortran ;-)
+I am not a cython expert.
 All I did was follow to follow a few blog posts
 (see <a href="https://jakevdp.github.io/blog/2012/08/08/memoryview-benchmarks/">1</a>
 and
 <a href="https://jakevdp.github.io/blog/2012/08/16/memoryview-benchmarks-2/">2</a>).
 I am pretty sure someone might come up with a way to make this faster.</p>
-<p>Another possibility I wanted to try is the new kid on the block:
+<p>Another possibility I wanted to try is the new kid on the block,
 <a href="http://numba.pydata.org/">numba</a>.</p>
 <p>I remember meeting Travis Oliphant during the AMS Meeting in 2012.
-At that time all he could talk about was <code>llvm</code> and some crazy ideas on how to use it to speed numpy up.</p>
+At that time all he could talk about was <code>llvm</code> and some crazy ideas on how to use it.</p>
 <p>A few months later those ideas became numba and, since then,
 numba has evolved a lot.
-Numba is still hard to install by yourself. One can use conda to get it easily though.  (Also available on Windows too BTW.)</p>
-<p>The easiest way to use numba is to import the just-in-time compiler decorator and decorate your function.</p>
-<p>Note that numba is &quot;kind-of&quot; like the Julia language and pypy. It can optimize dumb loops, but if your code use some smart vectorization you won&#39;t get much out of it.</p>
-<p>Below is a copy the <code>naive_zslice</code> from above decorated with numba.</p>
+One one side numba is still hard to install by yourself,
+but conda takes that pain away.  (Available on Windows too BTW.)</p>
+<p>The easiest way to use numba is to import the just-in-time compiler decorator and decorate your function.
+Note that numba is &quot;kind-of&quot; like the Julia language and pypy:
+it can optimize dumb loops, but if your code use some smart vectorization you won&#39;t get much out of it.</p>
+<p>Here is a copy the <code>naive_zslice</code> from above decorated with numba.</p>
 </div>
 </div>
 </div>
@@ -2163,8 +2165,9 @@ Numba is still hard to install by yourself. One can use conda to get it easily t
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A fantastic speedup with literally zero effort.
-I spent a few hours reading about cython on the web and I spoke with some people with
-more experience to get the results above. While with numba all I did was to add the <code>@jit</code> decorator!</p>
+I spent a few hours reading about cython and spoke with some people with
+more experience to get the results above.
+In numba all I did was to add the <code>@jit</code> decorator!</p>
 <p>Just for the sake of completeness let&#39;s try using a few numpy tricks and
 make a non-naive Python version.</p>
 <p>Note that this function was in fact one of my very first Python functions!
@@ -2251,7 +2254,7 @@ It was based on an old Matlab script to do zslices.</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Sure it is not as good as the compiled trio (Numba, Fortran, and Cython),
 but not bad either.  Also, unlike the other options, numpy is easy to install and ship any where. (Including my old <a href="https://en.wikipedia.org/wiki/Nokia_N900">n900</a>.)</p>
-<p>Before we put them to a field test let&#39;s summarize the result in one graph.</p>
+<p>Summarize the result in one graph:</p>
 </div>
 </div>
 </div>
@@ -2442,7 +2445,7 @@ fRsrHyC1AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And now for something completely different. Let&#39;s try iso-slices with some real data.</p>
+<p>And to close this post up let&#39;s try iso-slices with some real data.</p>
 </div>
 </div>
 </div>
@@ -3690,6 +3693,9 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">Optimizing code for iso-surfaces using Fortran, Cython, and Numba</a>
       </li>
       <li class="post">
@@ -3700,9 +3706,6 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/14/SWC/">An open source story: from the classroom to a bug fix</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/07/iris_outline/">Iris "hidden" feature</a>
       </li>
     </ul>
   </section>
