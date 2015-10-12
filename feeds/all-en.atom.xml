@@ -9,8 +9,8 @@
 &lt;p&gt;After reading a little bit more on cython I found out that,
 when using memory views,
 we can release the &lt;a href="https://wiki.python.org/moin/GlobalInterpreterLock"&gt;GIL&lt;/a&gt; using the &lt;a href="http://docs.cython.org/src/userguide/memoryviews.html"&gt;nogil&lt;/a&gt; annotation.
-I wonder if releasing the can get the cython performance closer to numba&amp;#39;s.&lt;/p&gt;
-&lt;p&gt;First let&amp;#39;s use set the same data as before up to run some tests.&lt;/p&gt;
+I wonder if releasing the GIL can get the cython performance closer to numba&amp;#39;s.&lt;/p&gt;
+&lt;p&gt;First let&amp;#39;s set the same data as before up to run some tests.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
