@@ -1,5 +1,506 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/all-en.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-10-12T16:55:00-03:00</updated><entry><title>Update on optimizing code for iso-surfaces using cython</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/" rel="alternate"></link><updated>2015-10-12T16:55:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-10-12:blog/2015/10/12/cython_nogil/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//feeds/all-en.atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-10-19T17:04:00-02:00</updated><entry><title>xml is OK (if you don't have to write or read it)</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/19/xml/" rel="alternate"></link><updated>2015-10-19T17:04:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-10-19:blog/2015/10/19/xml/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;DISCLAIMER: most of the code below was stolen from the old,
+but still awesome and very useful &lt;a href="https://pypi.python.org/pypi/cfchecker/2.0.9"&gt;cfchecker&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I am writing a library that needs to &amp;quot;understand&amp;quot; the CF-conventions standard names &lt;a href="http://cfconventions.org/Data/cf-standard-names/29/src/cf-standard-name-table.xml"&gt;table&lt;/a&gt;.  More specifically I need to know the variable &lt;code&gt;standard_name&lt;/code&gt; and its corresponding &lt;code&gt;units&lt;/code&gt;.
+The format of choice for the standard names table is the &lt;a href="https://en.wikipedia.org/wiki/XML"&gt;Extensible Markup Language&lt;/a&gt; (XML).&lt;/p&gt;
+&lt;p&gt;I don&amp;#39;t like XML and avoid it as much as I can,
+but in a case like this there is no way around.  Or is there?&lt;/p&gt;
+&lt;p&gt;This post is just a few notes for my future self on how to parse the CF standard names table using Python.&lt;/p&gt;
+&lt;p&gt;Let&amp;#39;s start with a boilerplate class to parse the table and construct a dictionary with the &lt;code&gt;standard_name&lt;/code&gt;s as keys and &lt;code&gt;units&lt;/code&gt; as values.&lt;/p&gt;
+&lt;p&gt;(PS: I am sure there are better ways to do this.  So if you are a XML expert feel free to post a better way in the comments section.)&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentHandler&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Remove redundant whitespace from a string.&lt;/span&gt;
+&lt;span class="sd"&gt;    &lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+
+
+&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ConstructDict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ContentHandler&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+&lt;span class="sd"&gt;    Parse the xml standard_name table, reading all entries&lt;/span&gt;
+&lt;span class="sd"&gt;    into a dictionary and storing the `standard_name` and the `units`.&lt;/span&gt;
+&lt;span class="sd"&gt;    &lt;/span&gt;
+&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+        
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;startElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# If it&amp;#39;s an entry element, save the id&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;
+
+        &lt;span class="c"&gt;# If it&amp;#39;s the start of a canonical_units element&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;canonical_units&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;alias&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;version_number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;last_modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;characters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
+
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
+
+    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;endElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# If it&amp;#39;s the end of the canonical_units element, save the units&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;canonical_units&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;
+            
+        &lt;span class="c"&gt;# If it&amp;#39;s the end of the entry_id element, find the units for the self.alias&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+        &lt;span class="c"&gt;# If it&amp;#39;s the end of the version_number element, save it&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;version_number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+        &lt;span class="c"&gt;# If it&amp;#39;s the end of the last_modified element, save the last modified date&lt;/span&gt;
+        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;last_modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;In the cell below we initiate the parser and feed it with the a
+&lt;code&gt;ConstructDict&lt;/code&gt; instance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_parser&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax.handler&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;feature_namespaces&lt;/span&gt;
+
+&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_parser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setFeature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;feature_namespaces&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;std_name_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ConstructDict&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setContentHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;standard_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;./data/cf-standard-name-table.xml&amp;#39;&lt;/span&gt;
+&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;standard_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now we can access the table as a python dictionary.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sea_water_potential_temperature&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+u&amp;apos;K&amp;apos;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sea_water_salinity&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+u&amp;apos;1e-3&amp;apos;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Cool we have a &lt;code&gt;{standard_name: units}&lt;/code&gt; dictionary!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;I also need some way to parse and validate the CF &lt;code&gt;formula_terms&lt;/code&gt;.
+To do that I need to steal a little bit more from &lt;code&gt;cfchecker&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;In the cells below there are some snippets to,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;identify a coordinate variable,&lt;/li&gt;
+&lt;li&gt;check for valid &lt;code&gt;formula_terms&lt;/code&gt;,&lt;/li&gt;
+&lt;li&gt;and check is all &lt;code&gt;formula_terms&lt;/code&gt; variables are presented.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;netCDF4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;
+
+&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/avg/&amp;#39;&lt;/span&gt;
+       &lt;span class="s"&gt;&amp;#39;ESPRESSO_Real-Time_v2_Averages_Best&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="n"&gt;nc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+
+&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_variables_by_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;formula_terms&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;
+&lt;span class="n"&gt;formula_terms&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
+
+
+&lt;div class="output_text output_subarea output_pyout"&gt;
+&lt;pre&gt;
+u&amp;apos;s: s_rho C: Cs_r eta: zeta depth: h depth_c: hc&amp;apos;
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dimensions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hurray I am a coordinate variable!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+Hurray I am a coordinate variable!
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
+
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^([a-zA-Z0-9_]+: +[a-zA-Z0-9_]+( +)?)*$&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;And I have a valid `formula_terms`!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+And I have a valid &amp;#96;formula_terms&amp;#96;!
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^[a-zA-Z0-9_]+:$&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+            &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{} is present in the file!&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+s_rho is present in the file!
+Cs_r is present in the file!
+zeta is present in the file!
+h is present in the file!
+hc is present in the file!
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;Now I have all the pieces I need to build a CF-convention &lt;code&gt;formula_terms&lt;/code&gt; parser.&lt;/p&gt;
+&lt;p&gt;With that information I can improve &lt;a href="https://github.com/ioos/odvc"&gt;odvc&lt;/a&gt; to automatically find which formula should be used and correctly determine the derived &lt;code&gt;z&lt;/code&gt; variable units. All while avoiding dealing with this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;!&lt;/span&gt;head -20 ./data/cf-standard-name-table.xml
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
+&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
+&lt;pre&gt;
+&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;
+&amp;lt;standard_name_table xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:noNamespaceSchemaLocation=&amp;quot;cf-standard-name-table-1.1.xsd&amp;quot;&amp;gt;
+   &amp;lt;version_number&amp;gt;27&amp;lt;/version_number&amp;gt;
+   &amp;lt;last_modified&amp;gt;2013-11-28T05:25:32Z&amp;lt;/last_modified&amp;gt;
+   &amp;lt;institution&amp;gt;Program for Climate Model Diagnosis and Intercomparison&amp;lt;/institution&amp;gt;
+   &amp;lt;contact&amp;gt;webmaster@pcmdi.llnl.gov&amp;lt;/contact&amp;gt;
+
+  
+   &amp;lt;entry id=&amp;quot;age_of_sea_ice&amp;quot;&amp;gt;
+      &amp;lt;canonical_units&amp;gt;year&amp;lt;/canonical_units&amp;gt;
+      &amp;lt;grib&amp;gt;&amp;lt;/grib&amp;gt;
+      &amp;lt;amip&amp;gt;&amp;lt;/amip&amp;gt;
+      &amp;lt;description&amp;gt;&amp;amp;quot;Age of sea ice&amp;amp;quot; means the length of time elapsed since the ice formed.&amp;lt;/description&amp;gt;
+   &amp;lt;/entry&amp;gt;
+  
+   &amp;lt;entry id=&amp;quot;age_of_stratospheric_air&amp;quot;&amp;gt;
+      &amp;lt;canonical_units&amp;gt;s&amp;lt;/canonical_units&amp;gt;
+      &amp;lt;grib&amp;gt;&amp;lt;/grib&amp;gt;
+      &amp;lt;amip&amp;gt;&amp;lt;/amip&amp;gt;
+      &amp;lt;description&amp;gt;&amp;amp;quot;Age of stratospheric air&amp;amp;quot; means an estimate of the time since a parcel of stratospheric air was last in contact with the troposphere.&amp;lt;/description&amp;gt;
+
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
+
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
+
+&lt;small&gt;
+&lt;p&gt; This post was written as an IPython notebook.  It is available for
+&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2015-10-19-xml.ipynb"&gt;download&lt;/a&gt; or as a static
+&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2015-10-19-xml.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
+licensed under a &lt;a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
+Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
+ 
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Update on optimizing code for iso-surfaces using cython</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/" rel="alternate"></link><updated>2015-10-12T16:55:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-10-12:blog/2015/10/12/cython_nogil/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -5825,1006 +6326,6 @@ IoGhwUZEREQCQ4ONiIiIBIYGGxEREQkMDTYiIiISGG+n9gLuDB1p1AAAAABJRU5ErkJggg==
 notebooks/2015-09-21-netcdf4.ipynb"&gt;download&lt;/a&gt; or as a static
 &lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
 python4oceanographers/downloads/notebooks/2015-09-21-netcdf4.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
-xmlns:dct="http://purl.org/dc/terms/"
-property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
-xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
-property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
-licensed under a &lt;a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
-Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
-xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
-rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
- 
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>An open source story: from the classroom to a bug fix</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/09/14/SWC/" rel="alternate"></link><updated>2015-09-14T14:15:00-03:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-09-14:blog/2015/09/14/SWC/</id><summary type="html">&lt;p&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Last week I had the pleasure of teaching my first
-&lt;a href="https://software-carpentry.org/"&gt;Software Carpentry&lt;/a&gt;
-&lt;a href="http://ocefpaf.github.io/2015-08-31-UFBA/"&gt;Workshop&lt;/a&gt; at
-&lt;a href="https://www.ufba.br/"&gt;UFBA&lt;/a&gt;.  After the 2-day workshop we had another 3 extra days
-of &lt;a href="http://ocefpaf.github.io/python4oceanographers_intro_course/"&gt;python training for oceanographers&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We did not had internet connection for the workshop, nor a room with enough
-power outlets.  That was a bummer, but we manage by providing copies of all the
-software we used in flashdrives, and bringing extension cords and power strips.
-Only a few examples that demanded some downloading had to be left out.  Besides that
-the workshop went smoothly.&lt;/p&gt;
-&lt;p&gt;I will write more about the workshop in another post for SWC. Here I want to
-tell a story of what happened in the workshop.&lt;/p&gt;
-&lt;p&gt;At the last day, during an exercise, a student decided to mix a cartopy plot of
-an OpenStreetMaps image with another cartopy example using quiver.
-Surprisingly we found a bug in cartopy that, when transforming coordinates to
-plot a quiver, it raise a &lt;code&gt;ValueError&lt;/code&gt; for 1D data.&lt;/p&gt;
-&lt;p&gt;What follows next is a nice example of how the Open Source (OS) world works.
-We opened an issue on &lt;a href="https://github.com/SciTools/cartopy/issues/672"&gt;GitHub&lt;/a&gt;
-and sent our own hackish fix as a &lt;a href="https://github.com/SciTools/cartopy/pull/674"&gt;PR&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;After a typical OS conversation on the issue tracker and on the PR page one of
-cartopy&amp;#39;s core developers, Phil Elson, started a
-&lt;a href="https://github.com/SciTools/cartopy/pull/677"&gt;proper PR&lt;/a&gt; with unit tests and
-everything to fix the bug.  Phil Elson, as the polite British lord he is, even used
-part of our original commit is his PR.&lt;/p&gt;
-&lt;p&gt;Long story short: we may now pass 1D data with cartopy when transforming
-between coordinates.&lt;/p&gt;
-&lt;p&gt;This story might be your everyday bread-and-butter if you are already in the
-OS world.  But for students that are just starting with programming, or coming
-from closed source software like Matlab, it means a lot to see that they can
-make a difference.  I hope that next time they open issue themselves, maybe
-even send the PR on thier own.&lt;/p&gt;
-&lt;p&gt;To finish my post I will add a SWC Instructors/Attendees graph.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Let&amp;#39;s load the data with pandas.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;read_csv&lt;/span&gt;
-
-
-&lt;span class="n"&gt;df&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read_csv&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;./data/per-capita.csv&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;index_col&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="mf"&gt;1e6&lt;/span&gt;
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
-&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; 
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The cell below creates a simple CSS for the table.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;table&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="s"&gt;table&lt;/span&gt;
-&lt;span class="s"&gt;{&lt;/span&gt;
-&lt;span class="s"&gt;  border-collapse: collapse;&lt;/span&gt;
-&lt;span class="s"&gt;}&lt;/span&gt;
-&lt;span class="s"&gt;th&lt;/span&gt;
-&lt;span class="s"&gt;{&lt;/span&gt;
-&lt;span class="s"&gt;  color: #ffffff;&lt;/span&gt;
-&lt;span class="s"&gt;  background-color: #000000;&lt;/span&gt;
-&lt;span class="s"&gt;}&lt;/span&gt;
-&lt;span class="s"&gt;td&lt;/span&gt;
-&lt;span class="s"&gt;{&lt;/span&gt;
-&lt;span class="s"&gt;  background-color: #cccccc;&lt;/span&gt;
-&lt;span class="s"&gt;}&lt;/span&gt;
-&lt;span class="s"&gt;table, th, td&lt;/span&gt;
-&lt;span class="s"&gt;{&lt;/span&gt;
-&lt;span class="s"&gt;  font-family:Arial, Helvetica, sans-serif;&lt;/span&gt;
-&lt;span class="s"&gt;  border: 1px solid black;&lt;/span&gt;
-&lt;span class="s"&gt;  text-align: right;&lt;/span&gt;
-&lt;span class="s"&gt;}&lt;/span&gt;
-&lt;span class="s"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;The we will plot it using an interactive figure created with mpld3.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;numpy&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;np&lt;/span&gt;
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-
-&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;mpld3&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;mpld3&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;plugins&lt;/span&gt;
-
-&lt;span class="o"&gt;%&lt;/span&gt;&lt;span class="k"&gt;matplotlib&lt;/span&gt; &lt;span class="n"&gt;inline&lt;/span&gt;
-
-&lt;span class="n"&gt;mpld3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;enable_notebook&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-
-
-&lt;span class="n"&gt;labels&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;k&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;ix&lt;/span&gt;&lt;span class="p"&gt;[[&lt;/span&gt;&lt;span class="n"&gt;k&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;:]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;T&lt;/span&gt;
-    &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;append&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;str&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;to_html&lt;/span&gt;&lt;span class="p"&gt;()))&lt;/span&gt;
-
-&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.3&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;kw&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;marker&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;o&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;color&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;markeredgecolor&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;k&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;markersize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-          &lt;span class="n"&gt;markeredgewidth&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;alpha&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mf"&gt;0.6&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;linestyle&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;none&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;points&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;kw&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees per million pop&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors per million pop&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;axis&lt;/span&gt;&lt;span class="p"&gt;([&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.5&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;35&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mf"&gt;0.1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mf"&gt;1.4&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
-
-&lt;span class="n"&gt;tooltip&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;PointHTMLTooltip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;points&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;labels&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                                   &lt;span class="n"&gt;voffset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;hoffset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;css&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;table&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;plugins&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;connect&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tooltip&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-&lt;div class="output_html rendered_html output_subarea "&gt;
-
-
-&lt;style&gt;
-
-table
-{
-  border-collapse: collapse;
-}
-th
-{
-  color: #ffffff;
-  background-color: #000000;
-}
-td
-{
-  background-color: #cccccc;
-}
-table, th, td
-{
-  font-family:Arial, Helvetica, sans-serif;
-  border: 1px solid black;
-  text-align: right;
-}
-
-&lt;/style&gt;
-
-&lt;div id="fig_el238101404334069716008325058188"&gt;&lt;/div&gt;
-&lt;script&gt;
-function mpld3_load_lib(url, callback){
-  var s = document.createElement('script');
-  s.src = url;
-  s.async = true;
-  s.onreadystatechange = s.onload = callback;
-  s.onerror = function(){console.warn("failed to load library " + url);};
-  document.getElementsByTagName("head")[0].appendChild(s);
-}
-
-if(typeof(mpld3) !== "undefined" &amp;&amp; mpld3._mpld3IsLoaded){
-   // already loaded: just create the figure
-   !function(mpld3){
-       
-    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
-    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
-    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
-    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
-    HtmlTooltipPlugin.prototype.defaultProps = {labels:null, hoffset:0, voffset:10};
-    function HtmlTooltipPlugin(fig, props){
-        mpld3.Plugin.call(this, fig, props);
-    };
-
-    HtmlTooltipPlugin.prototype.draw = function(){
-       var obj = mpld3.get_element(this.props.id);
-       var labels = this.props.labels;
-       var tooltip = d3.select("body").append("div")
-                    .attr("class", "mpld3-tooltip")
-                    .style("position", "absolute")
-                    .style("z-index", "10")
-                    .style("visibility", "hidden");
-
-       obj.elements()
-           .on("mouseover", function(d, i){
-                              tooltip.html(labels[i])
-                                     .style("visibility", "visible");})
-           .on("mousemove", function(d, i){
-                    tooltip
-                      .style("top", d3.event.pageY + this.props.voffset + "px")
-                      .style("left",d3.event.pageX + this.props.hoffset + "px");
-                 }.bind(this))
-           .on("mouseout",  function(d, i){
-                           tooltip.style("visibility", "hidden");});
-    };
-    
-       mpld3.draw_figure("fig_el238101404334069716008325058188", {"axes": [{"xlim": [-0.5, 35.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#262626", "text": "Attendees per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [0.5, -0.094086021505376358], "rotation": -0.0, "id": "el23810140434179400464"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#262626", "text": "Instructors per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [-0.07515681003584232, 0.5], "rotation": -90.0, "id": "el23810140433393559568"}], "zoomable": true, "images": [], "xdomain": [-0.5, 35.0], "ylim": [-0.10000000000000001, 1.3999999999999999], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 2.5], [0.66300775, 2.5], [1.2989496769621336, 2.2365842289706044], [1.7677669529663689, 1.7677669529663689], [2.2365842289706044, 1.2989496769621336], [2.5, 0.66300775], [2.5, 0.0], [2.5, -0.66300775], [2.2365842289706044, -1.2989496769621336], [1.7677669529663689, -1.7677669529663689], [1.2989496769621336, -2.2365842289706044], [0.66300775, -2.5], [0.0, -2.5], [-0.66300775, -2.5], [-1.2989496769621336, -2.2365842289706044], [-1.7677669529663689, -1.7677669529663689], [-2.2365842289706044, -1.2989496769621336], [-2.5, -0.66300775], [-2.5, 0.0], [-2.5, 0.66300775], [-2.2365842289706044, 1.2989496769621336], [-1.7677669529663689, 1.7677669529663689], [-1.2989496769621336, 2.2365842289706044], [-0.66300775, 2.5], [0.0, 2.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el23810140433314383952pts"}], "id": "el23810140433314555152", "ydomain": [-0.10000000000000001, 1.3999999999999999], "collections": [], "xscale": "linear", "bbox": [0.125, 0.125, 0.77500000000000002, 0.77500000000000002]}], "height": 320.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Australia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;23.737000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;24.939967&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.463412&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Brazil&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;203.850000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.569046&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.004906&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Canada&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;35.675000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;34.057463&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;1.289418&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;China&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1368.090000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.017543&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000731&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Cyprus&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;0.858000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;29.137529&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Denmark&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.655000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;3.536693&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.176835&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;France&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;66.092000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.089391&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.060522&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Germany&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;80.767000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.265777&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.074288&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ghana&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;27.043000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.887476&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;India&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1266.58000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.00079&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ireland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.609000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.216967&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Israel&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.29600&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.12054&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Italy&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;60.782000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.332631&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.016452&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Japan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;127.020000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.007873&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Jordan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;6.688000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.083732&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Lebanon&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.104000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;6.091618&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Netherlands&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;16.888000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.309332&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;New Zealand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.560000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;4.166667&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.219298&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Norway&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.156000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;17.455392&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.387898&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Poland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;38.496000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.558603&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.129884&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Saudi Arabia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;31.521000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.634498&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Singapore&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.469000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.182849&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;South Africa&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;54.002000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.666605&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.037036&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Spain&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;46.464000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.043044&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Sweden&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;9.743000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.542441&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.307913&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Switzerland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.211000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;7.672634&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Thailand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.871000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.015415&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United Kingdom&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.105000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;19.202870&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.748772&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United States&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;320.354000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;16.397485&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.518177&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;"], "type": "htmltooltip", "id": "el23810140433314383952pts", "hoffset": 10}], "data": {"data01": [[24.939967139908163, 0.4634115515861314], [0.5690458670591121, 0.0049055678194751045], [34.05746320953049, 1.289418360196216], [0.017542705523759403, 0.0007309460634899751], [29.13752913752914, 0.0], [3.5366931918656057, 0.17683465959328026], [1.0893905465109242, 0.060521697028384676], [2.2657768643133953, 0.07428776604306214], [0.8874755019783308, 0.0], [0.0, 0.0007895277045271519], [0.0, 0.21696680407897592], [0.0, 0.1205400192864031], [1.3326313711296107, 0.01645223914974828], [0.0, 0.007872775940796726], [5.0837320574162685, 0.0], [6.091617933723197, 0.0], [2.309332070108953, 0.0], [4.166666666666667, 0.2192982456140351], [17.455391776570988, 0.3878975950349108], [1.5586034912718203, 0.1298836242726517], [0.6344976364963041, 0.0], [0.0, 0.18284878405558602], [1.666604940557757, 0.037035665345727935], [0.0, 0.04304407713498623], [5.5424407266755615, 0.30791337370419786], [7.672634271099744, 0.0], [0.0, 0.015415208644849009], [19.202870290928942, 0.748771546681226], [16.397485281906892, 0.5181767669515599]]}, "id": "el23810140433406971600"});
-   }(mpld3);
-}else if(typeof define === "function" &amp;&amp; define.amd){
-   // require.js is available: use it to load d3/mpld3
-   require.config({paths: {d3: "https://mpld3.github.io/js/d3.v3.min"}});
-   require(["d3"], function(d3){
-      window.d3 = d3;
-      mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.2.js", function(){
-         
-    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
-    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
-    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
-    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
-    HtmlTooltipPlugin.prototype.defaultProps = {labels:null, hoffset:0, voffset:10};
-    function HtmlTooltipPlugin(fig, props){
-        mpld3.Plugin.call(this, fig, props);
-    };
-
-    HtmlTooltipPlugin.prototype.draw = function(){
-       var obj = mpld3.get_element(this.props.id);
-       var labels = this.props.labels;
-       var tooltip = d3.select("body").append("div")
-                    .attr("class", "mpld3-tooltip")
-                    .style("position", "absolute")
-                    .style("z-index", "10")
-                    .style("visibility", "hidden");
-
-       obj.elements()
-           .on("mouseover", function(d, i){
-                              tooltip.html(labels[i])
-                                     .style("visibility", "visible");})
-           .on("mousemove", function(d, i){
-                    tooltip
-                      .style("top", d3.event.pageY + this.props.voffset + "px")
-                      .style("left",d3.event.pageX + this.props.hoffset + "px");
-                 }.bind(this))
-           .on("mouseout",  function(d, i){
-                           tooltip.style("visibility", "hidden");});
-    };
-    
-         mpld3.draw_figure("fig_el238101404334069716008325058188", {"axes": [{"xlim": [-0.5, 35.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#262626", "text": "Attendees per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [0.5, -0.094086021505376358], "rotation": -0.0, "id": "el23810140434179400464"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#262626", "text": "Instructors per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [-0.07515681003584232, 0.5], "rotation": -90.0, "id": "el23810140433393559568"}], "zoomable": true, "images": [], "xdomain": [-0.5, 35.0], "ylim": [-0.10000000000000001, 1.3999999999999999], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 2.5], [0.66300775, 2.5], [1.2989496769621336, 2.2365842289706044], [1.7677669529663689, 1.7677669529663689], [2.2365842289706044, 1.2989496769621336], [2.5, 0.66300775], [2.5, 0.0], [2.5, -0.66300775], [2.2365842289706044, -1.2989496769621336], [1.7677669529663689, -1.7677669529663689], [1.2989496769621336, -2.2365842289706044], [0.66300775, -2.5], [0.0, -2.5], [-0.66300775, -2.5], [-1.2989496769621336, -2.2365842289706044], [-1.7677669529663689, -1.7677669529663689], [-2.2365842289706044, -1.2989496769621336], [-2.5, -0.66300775], [-2.5, 0.0], [-2.5, 0.66300775], [-2.2365842289706044, 1.2989496769621336], [-1.7677669529663689, 1.7677669529663689], [-1.2989496769621336, 2.2365842289706044], [-0.66300775, 2.5], [0.0, 2.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el23810140433314383952pts"}], "id": "el23810140433314555152", "ydomain": [-0.10000000000000001, 1.3999999999999999], "collections": [], "xscale": "linear", "bbox": [0.125, 0.125, 0.77500000000000002, 0.77500000000000002]}], "height": 320.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Australia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;23.737000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;24.939967&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.463412&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Brazil&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;203.850000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.569046&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.004906&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Canada&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;35.675000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;34.057463&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;1.289418&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;China&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1368.090000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.017543&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000731&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Cyprus&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;0.858000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;29.137529&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Denmark&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.655000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;3.536693&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.176835&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;France&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;66.092000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.089391&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.060522&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Germany&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;80.767000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.265777&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.074288&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ghana&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;27.043000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.887476&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;India&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1266.58000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.00079&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ireland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.609000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.216967&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Israel&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.29600&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.12054&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Italy&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;60.782000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.332631&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.016452&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Japan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;127.020000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.007873&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Jordan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;6.688000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.083732&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Lebanon&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.104000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;6.091618&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Netherlands&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;16.888000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.309332&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;New Zealand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.560000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;4.166667&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.219298&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Norway&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.156000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;17.455392&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.387898&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Poland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;38.496000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.558603&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.129884&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Saudi Arabia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;31.521000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.634498&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Singapore&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.469000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.182849&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;South Africa&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;54.002000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.666605&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.037036&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Spain&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;46.464000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.043044&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Sweden&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;9.743000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.542441&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.307913&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Switzerland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.211000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;7.672634&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Thailand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.871000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.015415&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United Kingdom&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.105000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;19.202870&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.748772&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United States&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;320.354000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;16.397485&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.518177&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;"], "type": "htmltooltip", "id": "el23810140433314383952pts", "hoffset": 10}], "data": {"data01": [[24.939967139908163, 0.4634115515861314], [0.5690458670591121, 0.0049055678194751045], [34.05746320953049, 1.289418360196216], [0.017542705523759403, 0.0007309460634899751], [29.13752913752914, 0.0], [3.5366931918656057, 0.17683465959328026], [1.0893905465109242, 0.060521697028384676], [2.2657768643133953, 0.07428776604306214], [0.8874755019783308, 0.0], [0.0, 0.0007895277045271519], [0.0, 0.21696680407897592], [0.0, 0.1205400192864031], [1.3326313711296107, 0.01645223914974828], [0.0, 0.007872775940796726], [5.0837320574162685, 0.0], [6.091617933723197, 0.0], [2.309332070108953, 0.0], [4.166666666666667, 0.2192982456140351], [17.455391776570988, 0.3878975950349108], [1.5586034912718203, 0.1298836242726517], [0.6344976364963041, 0.0], [0.0, 0.18284878405558602], [1.666604940557757, 0.037035665345727935], [0.0, 0.04304407713498623], [5.5424407266755615, 0.30791337370419786], [7.672634271099744, 0.0], [0.0, 0.015415208644849009], [19.202870290928942, 0.748771546681226], [16.397485281906892, 0.5181767669515599]]}, "id": "el23810140433406971600"});
-      });
-    });
-}else{
-    // require.js not available: dynamically load d3 &amp; mpld3
-    mpld3_load_lib("https://mpld3.github.io/js/d3.v3.min.js", function(){
-         mpld3_load_lib("https://mpld3.github.io/js/mpld3.v0.2.js", function(){
-                 
-    mpld3.register_plugin("htmltooltip", HtmlTooltipPlugin);
-    HtmlTooltipPlugin.prototype = Object.create(mpld3.Plugin.prototype);
-    HtmlTooltipPlugin.prototype.constructor = HtmlTooltipPlugin;
-    HtmlTooltipPlugin.prototype.requiredProps = ["id"];
-    HtmlTooltipPlugin.prototype.defaultProps = {labels:null, hoffset:0, voffset:10};
-    function HtmlTooltipPlugin(fig, props){
-        mpld3.Plugin.call(this, fig, props);
-    };
-
-    HtmlTooltipPlugin.prototype.draw = function(){
-       var obj = mpld3.get_element(this.props.id);
-       var labels = this.props.labels;
-       var tooltip = d3.select("body").append("div")
-                    .attr("class", "mpld3-tooltip")
-                    .style("position", "absolute")
-                    .style("z-index", "10")
-                    .style("visibility", "hidden");
-
-       obj.elements()
-           .on("mouseover", function(d, i){
-                              tooltip.html(labels[i])
-                                     .style("visibility", "visible");})
-           .on("mousemove", function(d, i){
-                    tooltip
-                      .style("top", d3.event.pageY + this.props.voffset + "px")
-                      .style("left",d3.event.pageX + this.props.hoffset + "px");
-                 }.bind(this))
-           .on("mouseout",  function(d, i){
-                           tooltip.style("visibility", "hidden");});
-    };
-    
-                 mpld3.draw_figure("fig_el238101404334069716008325058188", {"axes": [{"xlim": [-0.5, 35.0], "yscale": "linear", "axesbg": "#EAEAF2", "texts": [{"v_baseline": "hanging", "h_anchor": "middle", "color": "#262626", "text": "Attendees per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [0.5, -0.094086021505376358], "rotation": -0.0, "id": "el23810140434179400464"}, {"v_baseline": "auto", "h_anchor": "middle", "color": "#262626", "text": "Instructors per million pop", "coordinates": "axes", "zorder": 3, "alpha": 1, "fontsize": 11.0, "position": [-0.07515681003584232, 0.5], "rotation": -90.0, "id": "el23810140433393559568"}], "zoomable": true, "images": [], "xdomain": [-0.5, 35.0], "ylim": [-0.10000000000000001, 1.3999999999999999], "paths": [], "sharey": [], "sharex": [], "axesbgalpha": null, "axes": [{"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "bottom", "nticks": 9, "tickvalues": null}, {"scale": "linear", "tickformat": null, "grid": {"color": "#FFFFFF", "alpha": 0.3, "dasharray": "10,0", "gridOn": true}, "fontsize": 10.0, "position": "left", "nticks": 9, "tickvalues": null}], "lines": [], "markers": [{"edgecolor": "#000000", "facecolor": "#0000FF", "edgewidth": 1, "yindex": 1, "coordinates": "data", "zorder": 2, "markerpath": [[[0.0, 2.5], [0.66300775, 2.5], [1.2989496769621336, 2.2365842289706044], [1.7677669529663689, 1.7677669529663689], [2.2365842289706044, 1.2989496769621336], [2.5, 0.66300775], [2.5, 0.0], [2.5, -0.66300775], [2.2365842289706044, -1.2989496769621336], [1.7677669529663689, -1.7677669529663689], [1.2989496769621336, -2.2365842289706044], [0.66300775, -2.5], [0.0, -2.5], [-0.66300775, -2.5], [-1.2989496769621336, -2.2365842289706044], [-1.7677669529663689, -1.7677669529663689], [-2.2365842289706044, -1.2989496769621336], [-2.5, -0.66300775], [-2.5, 0.0], [-2.5, 0.66300775], [-2.2365842289706044, 1.2989496769621336], [-1.7677669529663689, 1.7677669529663689], [-1.2989496769621336, 2.2365842289706044], [-0.66300775, 2.5], [0.0, 2.5]], ["M", "C", "C", "C", "C", "C", "C", "C", "C", "Z"]], "alpha": 0.6, "xindex": 0, "data": "data01", "id": "el23810140433314383952pts"}], "id": "el23810140433314555152", "ydomain": [-0.10000000000000001, 1.3999999999999999], "collections": [], "xscale": "linear", "bbox": [0.125, 0.125, 0.77500000000000002, 0.77500000000000002]}], "height": 320.0, "width": 480.0, "plugins": [{"type": "reset"}, {"enabled": false, "button": true, "type": "zoom"}, {"enabled": false, "button": true, "type": "boxzoom"}, {"voffset": 10, "labels": ["&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Australia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;23.737000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;24.939967&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.463412&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Brazil&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;203.850000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.569046&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.004906&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Canada&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;35.675000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;34.057463&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;1.289418&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;China&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1368.090000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.017543&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000731&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Cyprus&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;0.858000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;29.137529&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Denmark&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.655000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;3.536693&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.176835&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;France&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;66.092000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.089391&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.060522&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Germany&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;80.767000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.265777&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.074288&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ghana&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;27.043000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.887476&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;India&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;1266.58000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.00079&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Ireland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.609000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.216967&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Israel&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.29600&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.00000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.12054&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Italy&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;60.782000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.332631&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.016452&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Japan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;127.020000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.007873&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Jordan&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;6.688000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.083732&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Lebanon&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.104000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;6.091618&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Netherlands&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;16.888000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;2.309332&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;New Zealand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;4.560000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;4.166667&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.219298&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Norway&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.156000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;17.455392&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.387898&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Poland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;38.496000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.558603&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.129884&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Saudi Arabia&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;31.521000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.634498&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Singapore&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;5.469000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.182849&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;South Africa&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;54.002000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;1.666605&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.037036&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Spain&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;46.464000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.043044&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Sweden&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;9.743000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;5.542441&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.307913&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Switzerland&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;8.211000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;7.672634&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;Thailand&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.871000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;0.000000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.015415&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United Kingdom&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;64.105000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;19.202870&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.748772&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;", "&lt;table border=\"1\" class=\"dataframe\"&gt;\n  &lt;thead&gt;\n    &lt;tr style=\"text-align: right;\"&gt;\n      &lt;th&gt;Country&lt;/th&gt;\n      &lt;th&gt;United States&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Population&lt;/th&gt;\n      &lt;td&gt;320.354000&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Attendees&lt;/th&gt;\n      &lt;td&gt;16.397485&lt;/td&gt;\n    &lt;/tr&gt;\n    &lt;tr&gt;\n      &lt;th&gt;Instructors&lt;/th&gt;\n      &lt;td&gt;0.518177&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;"], "type": "htmltooltip", "id": "el23810140433314383952pts", "hoffset": 10}], "data": {"data01": [[24.939967139908163, 0.4634115515861314], [0.5690458670591121, 0.0049055678194751045], [34.05746320953049, 1.289418360196216], [0.017542705523759403, 0.0007309460634899751], [29.13752913752914, 0.0], [3.5366931918656057, 0.17683465959328026], [1.0893905465109242, 0.060521697028384676], [2.2657768643133953, 0.07428776604306214], [0.8874755019783308, 0.0], [0.0, 0.0007895277045271519], [0.0, 0.21696680407897592], [0.0, 0.1205400192864031], [1.3326313711296107, 0.01645223914974828], [0.0, 0.007872775940796726], [5.0837320574162685, 0.0], [6.091617933723197, 0.0], [2.309332070108953, 0.0], [4.166666666666667, 0.2192982456140351], [17.455391776570988, 0.3878975950349108], [1.5586034912718203, 0.1298836242726517], [0.6344976364963041, 0.0], [0.0, 0.18284878405558602], [1.666604940557757, 0.037035665345727935], [0.0, 0.04304407713498623], [5.5424407266755615, 0.30791337370419786], [7.672634271099744, 0.0], [0.0, 0.015415208644849009], [19.202870290928942, 0.748771546681226], [16.397485281906892, 0.5181767669515599]]}, "id": "el23810140433406971600"});
-            })
-         });
-}
-&lt;/script&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;mpld3&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;disable_notebook&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;That is nice, but let&amp;#39;s get fancy with matplotlib and add some flags.&lt;/p&gt;
-&lt;p&gt;(You have to download  the flags from &lt;a href="http://vathanx.deviantart.com/art/World-Flag-Icons-PNG-108083900"&gt;http://vathanx.deviantart.com/art/World-Flag-Icons-PNG-108083900&lt;/a&gt; first.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;glob&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;
-&lt;span class="n"&gt;flags&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;./data/flags/*.png&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;split_flag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;][&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;()[&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;:])&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class="kn"&gt;as&lt;/span&gt; &lt;span class="nn"&gt;plt&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib._png&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;read_png&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;matplotlib.offsetbox&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AnnotationBbox&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;OffsetImage&lt;/span&gt;
-
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;make_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;scatter&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
-
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;label&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]):&lt;/span&gt;
-        &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;flags&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="n"&gt;flag_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;split_flag&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;label&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;flag_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-                &lt;span class="n"&gt;png&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;read_png&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="n"&gt;imagebox&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;OffsetImage&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;png&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;zoom&lt;/span&gt;&lt;span class="o"&gt;=.&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="n"&gt;ab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AnnotationBbox&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;imagebox&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;xy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;y&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="n"&gt;frameon&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;False&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                                    &lt;span class="n"&gt;xycoords&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-                                    &lt;span class="n"&gt;boxcoords&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;data&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="n"&gt;ab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_alpha&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-                &lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add_artist&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ab&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;fig&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ax&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;plt&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;subplots&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;figsize&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;7&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_xlabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Attendees per million pop&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;set_ylabel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;Instructors per million pop&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="n"&gt;make_plot&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ax&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-
-
-&lt;div class="output_png output_subarea "&gt;
-&lt;img src="data:image/png;base64,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
-vkEQTHQp64Xuin4REZFXoDAUEZGupzAUEZGupzAUEZGupzAUEZGuN2GjSY0xewBfCsPwwOW2nwSc
-CyTAw8D7wjC0r/AWIiIia8WEtAyNMR8BLgHyy20vAp8D3hiG4b7AVODN675CERHpJhPVTToPOB5Y
-/kJ3dWCvMAzrrcc+UFuXhYmISPeZkDAMw/Aamt2gy2+3YRguBDDGnAOUwjD8zbquT0REust6dwUa
-Y4wLfBnYCjihndcMDPSNa01rUyfVCp1VbyfVCp1Vr2odP51UbyfVuqrWuzAEvkuzu/S4dgfOLFw4
-Mr4VrSUDA30dUyt0Vr2dVCt0Vr2qdfx0Ur2dVCusenBPdBhaGBtB2gvcD5wB/C9wmzEG4BthGF43
-YRWKiMikN2FhGIbh08DerftXLbOrO9YLERGR9YYm3YuISNdTGIqISNdTGIqISNdTGIqISNdTGIqI
-SNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdT
-GIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqI
-SNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdT
-GIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNdTGIqISNebsDA0xuxhjLn9
-FbYfbYy5zxjzO2PMWRNRm4iIdJcJCUNjzEeAS4D8ctsD4GvAocABwLuNMbPWfYUiItJNJqplOA84
-HnCW274dMC8Mw6EwDGPgLmD/dV2ciIh0lwkJwzAMrwGSV9g1BRha5vEIMHWdFCUiIl3Ln+gCljME
-9C3zuA9YurIXDQz0rewp641OqhU6q95OqhU6q17VOn46qd5OqnVVrW9h+BiwtTGmH6jQ7CL9yspe
-tHDhyHjXtVYMDPR1TK3QWfV2Uq3QWfWq1vHTSfV2Uq2w6sE90WFoAYwxJwG9YRheYoz5V+BXNLtw
-Lw3D8IWJLFBERCa/CQvDMAyfBvZu3b9qme03ADdMUFkiItKFNOleRES6nsJQRES6nsJQRES6nsJQ
-RES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6
-nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQ
-RES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6nsJQRES6
-nr+yJxhj+oFPAwcBCXAT8PkwDGvjW5qIiMi60U7L8EdADJwMnA70At8fz6JERETWpZW2DIHNwjA8
-apnH5xpj/m+8ChIREVnX2mkZPmmM2Xv0gTFmB+DJ8StJRERk3WqnZbgJ8FtjzMM0zxnuBLxkjHkU
-sGEYvnY8CxQRERlv7YTh8a2vtvXVGadaREREJkQ7YfgMcDZwcOv5twEXhmGYjWdhIiIi60o7Yfhl
-YCvgMprnGE8HtgA+OI51iYiIrDPthOGbgF3CMEwBjDE3AI+Ma1UiIiLrUDth6LWely7zmmR1D2iM
-cYGLaA7EaQBnhWH45DL7jwM+TvMc5WVhGF68uscSERFpRzth+GPgDmPMT2gOnjkJuGoNjnkskAvD
-cG9jzB7ABa1to74G7AJUgL8YY64Kw3BoDY4nIiKyQiudZxiG4fnA54BNgc1oXortC2twzH2AX7be
-+15g9+X2x8A0oEgzfC0iIiLjqN0LdeeBQuv50RoecwowvMzjtNV1OuoC4AGa5yXnhmG47HNFRETW
-OsfaFTe8jDEXAHsC/03z/OHbgOtbLcZV1nq/34dh+LPW42fDMNykdX9T4EZgL6BK87qo14Rh+PMV
-vKVajiKrwVrL8j//juPgOJpKLJPCKv1Hbuec4THA9mEYRgDGmIuBPwGrFYbA3cDRwM+MMXsCDy2z
-r0BzoE4jDMPMGPMSzS7TFVq4cGQ1S1m3Bgb6OqZW6Kx6O6lWmLh6rbWkacrQ0BBzb7yZ0079J2qz
-5gBQWPACV1x5NUcfdQRTp07F8zwcx+mo720n1QqdVW8n1QrNeldFO2G4AOgDFi/zmsWv/vSVuhY4
-1Bhzd+vx6caYk4DeMAwvMcZcAfzOGFMH5gGXr8GxRKQlyzLmz3+OA99xM75dSO+sHTnzdI/UnU5C
-RgH4xtU+X778CiKmcvsVh7LRRhtPdNki60Q7YfgS8CdjzM9pttqOBhYaY75D89qk71uVA4ZhaIH3
-Lrf58WX2/xfwX6vyniKyYlEUsct+p9JwN6Vv+tZM3+RAcnnwPI9c31RyWPL5PDNnD1CfNpXK4hc5
-/Mxf4wzdwrOPXTfR5YuMu3bC8PrWbfTkwiOt+xrpKdIBGo0Gm+3yfqZvuA/9fTOYPmdDglyG67p4
-nkehdyrWWnzfZ8rMKRRrDYo9OQYXvEjNO5yejd/O03/8Dvl8fqI/isi4WWkYhmF4+TqoQ0TGQZqm
-/PCH3+PR332Jw8/4NdM32JB8IcAPcuQKBXzfJ/Y9AIIgYMq0KTRydTzPJZs+DWfJIFdd+hGuuPAC
-zvzQR/E8b4I/kcj4aKdlKCIdyFrLvHlPcMwxx9BTDHjg+hM54gO/I1/Ikyv0kC8Vm92kuRxYcF2X
-0rReXM8DB6Io4Y7LD+P5GVuwoR1m3tHHs802RqNNZVJqd56hiHSYKIqI4zLDO+7Ooq1ei+M43HbJ
-gdx84d4USj3kCgVc18V1A1zXx3Ecktij0Ffghgtez83+dQxuuRsDv/8Nmz/3LHFcJorWdJqxyPqp
-rZahMWYKMJVl5m2EYfjMeBUlImvu+efnc+TJF3LMu77JRSduw8jWb2D67dfhmq352We35a6HlwDg
-un//NVBreFz/71tQ2/YAbDrEwLMPEccx/3PNA5z36Su57ep/ZYsttpyojyQyblYahsaYjwPnAUt4
-+YCZLcarKBFZM1mWceutv+bJB75FPp/H8zymP/0gQRCMPWf/183EcRxczwenOeF+7uc3w1pL4dE7
-yFtLHMc4jsM/H/M6jjroNfz0p1dz+unvwnXVqSSTSzstw7OA14RhuHC8ixGRtSPLMpyPf4SFH/84
-hdwU/J4eioUC+VwB383hBQGe6+O6Pq5fBAvxjgeRJSlZFpOkEZnjUK9WqEUVquUK5WiEgITsnWcq
-DGXSaed/9N+ApeNdiIisPWmakgeW4IDjAS42c7H4WDys9bEEWBuQJRlZlra2eVg8sD5ZnOLg4eCD
-6+LhNS8RlaYrObpI52mnZTgPuMsYcxvN9QehOdn+s+NXloisKdu6pWR4NiOzKTZNwfWwWUrmuDgu
-rfCzYDNs6zmZtWQ2a1671FqsBQericUyabUThvNbt9GfA42rFlnPua5L1XHJAo9KzuL1uKQFn6wY
-kAU5nMDH+jky14eF1eYVNGb1kCUuWeqSxRFZlJHEGWnNI8tccHyqjURdpDIptTPp/tPGmFnAHq3n
-/y4MwwXjXpmIrDbP86h97N/Z6B1vo6+vj3y+QD6fIwgCHGtxXLd5cxxqZn8AirfPHVvJwra6QqMk
-IUkSSo0GcRxT/v4PNPFeJqWV/olnjDkMeBA4HTgVeNgYc/R4FyYiq89xHPbdd3+23+ssvnnJbVib
-kaYpL278Wha/ZhcscMi778ZaS5JGpGmEtZYDzvxds2vUdUmyjBc22Y75m21BpVJny90+xF577atJ
-9zIptdNNej6wbxiGTwEYY7akufLE3PEsTERWn+M4GLMtP73kg+y88848c9DBBH99gU0euJvcJhux
-3z9fR9BTaoZh3JxIb62FaIT93vYLfvWDw/FcmPnXh5i/9348u/Vr+J+rf44x2yoMZVJqJwz90SAE
-CMPwr8YY/TSIrOdKpV5GRho8sM02TMdhx+fns+Nh/0mpb4BcYSpxVCdNU6KsOS4uTVPq5SXEjQp7
-v+ViGtVBfn/jB5n665thaIinH3iYUql3gj+VyPhoJwyfNcZ8ELiU5uCZM2lOtxCR9Zjruhx88KFc
-+olPMGujXTlu13fR09uPQ0ISlfFyJZIkodFohmGSJFSHXyCNa0RRlag2zGt2ew8H7fM6dnuty2mn
-na3BMzJptROGZwIXAp+geY7xNuDd41mUiKwdxWKRE9/2Tnbc8UCc3g2xWUwcV8kX6/hBmTiOqcU1
-HJrXMh0ZfAabWaJGhdrIAuq1MnP/5wrOf/gWisXiRH8ckXHTzmjSBcCJ66AWEVnLHMdhYGAWDz10
-G/vu/2aGhxrEjV6i2hC5Qj9RFFGrVYBmy7Cy9DniuEYSW+LaIqYW6/xl/u/wvJLOFcqk9qphaIy5
-MQzDo4wxT/OPi/jaMAx1tV6RDuC6LrNnz+FPf7yTuXOv49xzv0yS66XuDzI4OMhwVgWgXC4zMvgC
-NokgGuEbX/83jj76WDbYYA6LFpUn+FOIjK8VtQzPan194yvs04UoRDqI4zj09vZy4oknccghh3Hv
-vfdw/dwbePrpp3mh9ZzG44/zljdtxTFHv5k99tiL6dOn43meWoTSFVYUhm8yxrxS6Dk0w/CH41OS
-iIwXz/MYGBjgyCPfzGGHHUGj0WCrx5vj4Xw/4Nvf2hPP8zRQRrrOisLwQF65BagwFOlwzUV93Zct
-6STSzV41DMMwPG0d1iEiIjJhVjSA5qlX24cG0IiIyCSysm7SV6MBNCIiMmmsKAx3CMPwBmPMO3l5
-+OmcoYiITCorCsPXAzfwjwNpFIYiIjKprGgAzadaX09bZ9WIiIhMgJVejs0Y81bgY0D/Mps1gEZE
-RCaNdi7UfQHwDuCZca5FRERkQrQThvOAu8IwzMa7GBERkYnQThh+FbjDGHMHkLa22TAMPztuVYmI
-iKxD7VyA8HyarcN0mW26cq+IiEwa7bQM/TAMzxj3SkRERCZIO2F4gzHmHOBmIBrdGIahBtSIiMik
-0E4Yvo3mJPt/XW77Fmu/HBERkXVvpWEYhuHm66AOERGRCaMVPEVEpOspDEVEpOutNAyNMUeti0JE
-REQmSjstw6+MexUiIiITqJ3RpE8aYy4D7gXqrW02DMPVWsLJGOMCFwE7AQ3grDAMn1xm/+tpXg/V
-AeYDp4ZhGL3Se4mIiKwN7bQMF7eetyfwxtbtwDU45rFALgzDvYHzaAYfAMYYB/gecFoYhvsBt6Ip
-HCIiMs7amVpxGoAxZnoYhkvWwjH3AX7Zeu97jTG7L7NvG5rh+6/GmB2AG8MwDNfCMUVERF5VOwNo
-djbGPAb82RiziTHmSWPMbmtwzCnA8DKP01bXKcBMYG/gQuAQ4GBjzJq0QkVERFaqnXOGFwLHAz8O
-w/BZY8zZwHeAN6zmMYeBvmUeu8ssD7UYmDfaGjTG/BLYHbh9RW84MNC3ot3rlU6qFTqr3k6qFTqr
-XtU6fjqp3k6qdVW1E4Y9YRj+xRgDQBiGtxhjvroGx7wbOBr4mTFmT+ChZfb9Feg1xrymNahmP+D7
-K3vDhQtH1qCcdWdgoK9jaoXOqreTaoXOqle1jp9OqreTaoVVD+52wnCxMWbn0QfGmLcDa3Lu8Frg
-UGPM3a3HpxtjTgJ6wzC8xBhzJvCT1mCau8MwvHkNjiUiIrJS7YTh+4ArgO2NMUPAE8DbV/eAYRha
-4L3LbX58mf23A3us7vuLiIisqnZGk84D9jHGbAR4WrpJREQmm5WGYauL9ApgY8A1xvwFeGcrJEVE
-RDpeO5PuLwM+EYbhjDAM+4GvAj8Y37JERETWnbZWrQjD8IZl7l8L9I5bRSIiIutYOwNobjfGnEdz
-bmFKc/DMX4wxswDCMHxpHOsTEREZd+2E4QmABd6z3PZ7W9u3XNtFiQhYa8duAI7jjN1EZO1qZzTp
-5uugDhGhGYBxHLNgwYscccZ3mP2GU7jpPzbCcRyKxSJz585lxx13Z/bsOQRBoGAUWUvaaRmKyDqQ
-JAl33fVbPnHZYnp6A153zMk4XsqiTXYgxmLJ2I6MBTR4iZTyf1/DPvu/Ed/Xj7HImtJPkcgEs9ZS
-qVTY753X0VuynHr863jgJYet5hT5WyWmQIECkGLJSJiDyxARPW87gfux7PDX5ymVSmoliqwBhaHI
-BLLWUi6PsO9JVzBny9dSKHn8ebHD9JLPc8MJhVzAZtWnxp6fZRlZlmGtpdFokKYpixYtwtqM3t4+
-BaLIampn0v0ewL7At4C5wK7A2WEY/nycaxOZ9OI45vXHXcy2u7wer+Az5zX9HPu6fm5/qs7UIE+u
-N2Cwp3l1QpeAlJSIBhExMXUGqRBR4SliDntuEblcboI/kUhnaqdl+E3gIzRHldZohuE1gMJQZA1k
-WcbV11zDp849gKvuLDOl18dah9ueqvPmHWdy74sJ5AJKbz0KnGYrMrMZuTQjTiKipA61YepJhc3j
-EW6cex1vOe6fcN22pg+LyDLaCUM3DMM7jTE/Bq4Ow/AZY4w33oWJTHbVapUq/Vx1wxJcp4IzUKRU
-9DlxtwFueybm/QfM5NL7q5Su+vzYa0anWox2lU5rdZXW63VKzz5LtVqlt1fXxBBZVe2EYdUY8/+A
-g4FzjDHnAp2zqJXIeshay2OP/YVvXv4gP7/kTD5z5eNMm9WH6/r86q9VPn/MpvzXXYMUSnka/hsB
-yMhISYhJSLE0iBihyjBVKpR5iQpLbvoNu+32ep07FFlF7YTh24EzgePDMFxijJkDnDy+ZYlMbtZa
-jjn1Mzxx/1Wc/Kn7KfQGgEM+5/GGjQv85+0L+djBc/j6vSMU0jtf9rplbzPimCRJiKKIarXKZZdd
-xq677q4wFFlF7YTh9WEY7jr6IAzDj41jPSJdIUkSLrngbA465aec9vY9ufv/lpLGKdXI8ofnG5x/
-zGZ87Z6luN6rn5Gw1r7sijS+77PTTjuRJIkG0oisonbCcIExZn/g3jAMG+NdkEg3sNZy9keu5a6b
-P8sHvvIITt6n2BvTNz0jyOAzt7zAJw/ZgK89METV2xeADEtKSkxMTEpERIOUMlWWUqZKmQfI2OPZ
-hRP86UQ6TzthuDtwB4AxZnSbDcNQg2hE1sAP/ut4ZkwrcN3X9qNQKBAEAZ7n4bruWIvvI2+YhpP8
-FmDsGqXLdpOmaUqSJNTrdeI4Jvrd7ybyI4l0rHauTTqwLgoR6Sae5/HQQw+x2267USgUyLKMNE3x
-PI8sy8amRziOMxaC8I/nDNM0HRtZaq3lkUceYd99D5mojzUhlr2Y+ehFCXRBc1lV7Uy6LwGfojma
-1AduA/49DMPKONcmMml5nsd2272OG41hBgHTKTKFAiVy9JAjT4CHh4eLS/OXetb61+wiTaiRUKVB
-RMRSynjEvOaKq/BWcJ5xshj9Q2BoaIj/ve0Wjnr/uRQWPcvsPX5Ckjl8/ORhjj7qCKZOnYrneQpG
-Wal2ukm/BVSA02kuBvwu4GLglHGsS2RScxyHXXfdneduvpmtt96anp4ecrkcQRDguu7YL/Dlf4mP
-toDSNCVNU+I4Jk1TqtUqzz//PFtNmTXpf/FnWcb8+c/RP72PpdvtxFsevo9g8XPsefIdTOlzyLB8
-42qfL19+BRFTuf2KQ9loo411MQJZoXbCcLcwDHda5vH7jTGPjldBIt1ixowZ/OQnP2TJ+V9iWtBL
-X66HYq5Iwc8ReD6Bn8NzXBgNN2vJyIiS1nSKLKLWqFOPqgwmFR7Yex8+cM6HJvZDjbMoithlv1O5
-85KPUN7tYF47+CxJknHYe++hf0YRKJImKUnUS33aVCqLX+TwM3+NM3QLf/ztlRplK6+qnTB0jDH9
-YRguBTDG9APx+JYlMvn5vs+pp57B17/4OQwwHY8e8pQIyBNQwMfFYbQ9Y2muXBGTEJFSJ6JCnRFS
-HgHed/Glk3o5p0ajwbx5j3D/Vz5Avm8ahcGQ+QtGcF2XH39pV/KBz7u/+gRpkhI1Ioq1BsWeHIML
-XqTmHc411/+S444+jHw+P9EfRdZD7fzkfA24zxhzPeAAxwBfHNeqRLpEf38/J91xD+XyYjbffHN6
-e3vHukuXX9l+9DJsjuOMTbQvl8s899xzmFwf/f39E/xpxk+apnxjB8PJQyl1+nDoJyXHDHxccnh4
-OLj4H/4KpSk+US2ikavjeS7Z9Gk4Swb53MV/4zPnn8gjf7imK86ryqppZzTpD4wx9wMH0AzD48Mw
-fGjcKxPpAq7rsu222/HYY4/yjR12YHNgKlAA+vBxcfFwcHDIyCiTAQkZ8ELrdsId97DttttN2nNi
-1lrmzXuCg4fKRPQyhQIeOXxy+OTxCXBarehiXx9ZklKalmtesMCBLEtJ6lWSuMhgYXvmzXuCbbYx
-k/7cqqyadkaTXh2G4QnAw8tsuzUMw4PHtTKRLjEaiB/8vye59KILGf721+kFlpLQD2PdpA6wEIiA
-MhC9/4Oc/b5zmDFjxqQNQmieJxz+4gVMI8/sj55HYeYAPa/ZDLdYxC+WcPN58AMczyX4tUeWpiRR
-RKGvQJampHFCLV+gUKhTLExh/2M/xzN/ukzdpfIyrxqGxphrgZ2BDY0xTy2zyweeGe/CRLqJ67rM
-nDmTD38q+WO+AAAgAElEQVT8kzx/2hncccdtJEmNbfbZhyAIgObahy/efTd5v8hhbzyIDTfcCN/3
-J30L5/nn57PJlz5B/aZb6f/Yu/E8D8/zaPQcQ65xI6de8AJBPocf+OR7IIlTHBwalZR8T5643iBX
-6KFRL+PlCvQU+3n++flsscWWE/3RZD2yopbhaUA/zfUMzwFGf+JiYMH4liXSfRzHIQgCNt10M045
-5bTWlWVqNBoRAPl8jlNOee1YAE72EITmNIorfvRTPnHeBxghj7WWN73nDu74wZsoRTfRyB3Mjx77
-EWfd4uHnmutBAtjExQ18onIDPxfgBwGu5xEEefxcnh/++H/45Mc/Mqlb1LJqXvV/QhiGQ2EYPg28
-F3h/674DfAmYsU6qE+lCjuPgui65XI4pU6YyMDDAwMAAU6ZMJZfLjV2urRtkWcZF37upNeDFxXVd
-rLUc9cH7OOa8/6MQ34az1UZ895xz+MrJvbiuxXEB18FmcOaR0/jsmZvhei6e15zD6XoB3/7eLWRZ
-NtEfT9Yj7fxZ9GPgr637zwP/C1w5bhWJiLSkaQq4VKtVoDWiNo6al6wj48TPzQPAT35CceqJRHFC
-GqekSYrjZBy134ZsMDOPbb4Ymzaaf0g4Xuu9RZramVoxPQzDiwFaq1ZcYox53/iWJSLSYjN2OuCj
-zNjjvfQc/2OKvf1kSULWCr6Tzn+aIB/gfuVb2FpElqSkUUwWJSxaUuHkj/0Rm6bYLMVmCdZmYJOJ
-/lSynmmnZVgzxhw5+sAYcwjNwWwiIuPKdV1Ia2RJTGPkGdKoQhrXSRoN4kaDpN4gqjVo1Bo0qq37
-9Yi4HhFFdU751CMkjTr1yghJHJMmddIsg6Sq84XyMu38b3gP8BVjzGJjzGLgqzTPI4qIjCvP8zj1
-1DeRJBXu//W/06gPEjdq1CvDNOp1omqVRrVGo1KnUa5RH6nRKFeJajUalRpxrU5Ur9KoDhHXyyRR
-mTSq8c5TDtHEe3mZlYZhGIZ/CsNwe2AbYIswDHcOw/CR8S9NRLqd4zi87a3HEkcV4jgmbgzz3fMP
-olEZplEeol6tUK+UqY+UqY2UaVTLNCplGpURGpVKMzRrQ8S1YaL6Uuq1Ieq1Mv/81mO6ZhCStKed
-Sfe3L/cYmov7HjReRYmIQDMMjdmWn17yQeI45g+//Bh7vfkCCqVZWAs2SQh6SiRegNNq6dksI4ki
-kkaVRr1MVBukURukVl1KVB8iHXwCY7ZVGMrLtDOA5jPL3A+AtwBLx6ccEZGXK5V6GRlpMDg4iOd5
-VEcWNRf0zRJs2iCO6ni5HK7TCkObkSYRcaNCEo3QqA1Rrw1SGVrAr3/2SZ54PKRU6p3gTyXrm3au
-TXrHcptuMcbcB3xyXCoSkbYtu8r7qMk2Id91XQ4++FAuvfTbXPfLvzE8uADIyNKIJCrj5Up4fgHX
-bV6px9qELI1J4xpRVCWqDVMeWUC9Msitv7mR0047W4Nn5B+000266TIPHWAHYPq4VSQiK7TsKu+/
-/e0dHHvsUbw0axYOkANu+dLXOPAtx02qVd6LxSInnngKfVN+xUc/80Mqw5Y4rpIv1vGDMp6Xx3U9
-cBzSpEGaNrCZJWpUqI0soF4rY0fmc8IJJ1MsFif648h6qJ1u0juXuW+BRTQvzyYi69joKu9v/8JT
-2Ppz/PbyE/A8j5gpRGSA5XXnfYynzvswA1jcBx6ZFKu8O47DwMAsDj/sTXz+C99keKhB3Oglqg2R
-K/TjeDk8txn8WZaRNIaI4xpJbIlri5harPPbh37NwMCsSfHHgax97YThOWEY3jDulYjICkVRxM9/
-/iO+dnWNgU22ZNM9dhlbuT3HFPJASkZGQp6YERp4u+3I+f3T+cjDYcev8u66LrNnz+FPf7yTuXOv
-49xzv0yS66XuD+L6OVy/2eLLspQsrmCTCKIRvvH1f+Poo4+lVCopCOVVtROGXwYUhiITqNFo8KtN
-Bnjr/Pn8+MEH2Hir6eTdbOw6pSX6sFgsGQkpPjEBOYbxeOvSQa7deCbHPruw45ctchyH3t5eTjzx
-JA455DDuvfcerp97A9ddexepkwMcsA2OPW5fjjn6zeyxx15Mnz5dcwplpdoJwyeNMZcB9wL11jYb
-huEPV+eAxhgXuAjYCWgAZ4Vh+OQrPO97wOIwDD+2OscRmSzSNOXTO2zDiTjkcjnmbDmdnl6fXC4Y
-W8HCp/nL3sUjJcMnJsKjB4cqDttR5rM7Gj776JOTIhg8z2NgYIAjj3wzhx12BF+7oEGSxMyc2cfg
-YJ18Po/neR3fPSzrTjv/UxbTHDizJ/DG1u3ANTjmsUAuDMO9gfOAC5Z/gjHmPTQH6tjl94l0k9FV
-3vccWkqFHJ7nUSi4FAs5SqUiQRA0t5EnTx4fjzy51r88RQoE5PEocNjgEubNe+IfRp92Mtd1CYKA
-3t5epk3rp7+/n97eXoIgUBDKKmmnZfiTMAx/vewGY8wJa3DMfYBfAoRheK8xZvfl3ntv4A3Ad4Ft
-1+A4Ih0viiLu3+8NbIxPkTyO45DLBeTyAcVSs8vTdV2CVsswA1JSAgLAkpEREBORUCTiwf3ewOaT
-oLtUZG1b0Ur3bwPywGeMMf+xzK4A+Dhw9WoecwowvMzj1BjjhmGYGWM2AP4DOA7459V8f5FJ4/nn
-55MDcvjMoNjsFnU9coUcudzfV7l3yeFgcUiBjIwUjwCPlDwBDQICckwl0SrvIq9gRS3DKcDeQB8v
-7xZNaIbh6hpuvecoNwzD0VU2/wmYCdwEzAF6jDGPruz85MBA34p2r1c6qVborHo7qVZYeb1ZlvGT
-n9zBW+fPHzsH1mwZ+viBh+c3uwEdx6En/fsMqNGJ+KO3OI7HbluVy1x//fXsvvuOq9SN2Enf206q
-FTqr3k6qdVW9ahiGYfg94HvGmIPDMLx1dLsxZmoYhkNrcMy7gaOBnxlj9gQeWuaYFwIXto7zTmDb
-dgbqLFw4sgblrDsDA30dUyt0Vr2dVCu0V2+SJPzlbxEPPbGUYj5PLufTWyrgOJA54LgwUonwPA/P
-bbYQM2tJ04w4TmnEKWlqKVfqDJfrjJSrLBks8/j8jAULhvD9ds6SdNb3tpNqhc6qt5NqhVUP7nZ+
-GnqMMf8JfB64D5hljPlUGIbfWo36AK4FDjXG3N16fLox5iSgNwzDS5Z77uQ50y+yitI05Yqf3MfN
-d1fYeJud6J2ao296HzM26semGWlmueiBYYp5H781QjROM2qNhHo9olyuU1lcpVqts2T+UhbNf4nB
-RSM8+9gDfOxfTmk7DEW6QTs/DZ8C3kHzHN59wPtpXpVmtcIwDEPLP66H+PgrPO+K1Xl/kcnE2gyb
-ZiRxTBI7xFFCEqXEUUacpfhpipOA3xohmiYZcZIQpylJIyVOUrI4JUtSsiTDWgdsOsGfSmT909af
-hmEYPmaM+SLw4zAMy8aYYJzrEul6ruty8ZfezH777UepVKJQKBAEAWdc+H/4eR/Pd/n84Ru/4mtH
-zxdmWUaSJKRpSr1eJ45jbr+9V9MORJbTzk/EAmPMt4DXA780xlwAPDO+ZYmI53nMm/c0SZKQZRlp
-mpJlGdWlFeojEbWRBlmW/cOAmSzLxm7A2P3R/U888ddJMfFeZG1qp2V4Es2J8l9vtQqfAD49rlWJ
-CI7jsO+++3P9dtsxgEs/PRyw5BmqI1VygUdms7EJ9AvyuwBgsaRYElIaJNSJqdCgQYMlVMiTstdN
-v9E1OkWW007LsAYsAfZqjfCs0ZwHKCLjaHSV92eAKhlVmi3E6nCZkaUjDC8sj7X26sTL3CLqJNSI
-qLW2Nb+m3A1a5V3kFbR1BRpgU+BRXj66c7WuTSoi7SuVetn10itZcOYpeNSJoojq0kE8a0mjZKwr
-tEYM/L1lGBETkVEnokbECDVqwPaX/UirvIu8gnbCcEdgu9YoUBFZh0ZXef9QscRetQr1ep2RpUux
-WUK+XiKOYxzHoUwDgKx1CbaYjJiEOhGD1KgCtxd7+OpBh2jwjMgraOen4lFgg/EuREReWbFY5LP3
-PcjDwMjICOXBxQwvXsTIkqGxK8uUqVOmwTB1llKjSo0KNV6kyjCWB4FP3fcnrfIu8iraaRmWgNAY
-8wgvX8LpoPErS9Yny45UdBxn7Cbrxugq7//2UMh///cVDC9+gbjeR608TBRFrZZhDWh2kw6TUieh
-ACwE/lyawqfu+YNWeRdZgXbC8Pxxr0LWO9ZaGo0Gf/vb0xx2zg/Y8sh3k9YW4ZUGePbmb3HD19/N
-nDkbkMvl9At2HRhd5f2ssz7A7NnXce6/30iuMJXFixfj+z5LW3+nWpprrjVojnrb8hsX8RWt8i6y
-Us4kWNvMdsr18jrh2n7WWpIk4fbbbmSH2afi+/DuP/+eKX7UvPpJJSbNLMPPvUgjdvjogTkOO/RN
-Y4vMTpRO+N4ua03qTdOUJUuWcO+993D33XdywgnHcceRR+IAQ0D5LSdw0FuOW2urvHfS97aTaoXO
-qreTagUYGOhbpV9IrxqGxpjsFXc02TAM15dZuwrDtcRaS6VSZvCZjcglMGVmQL6U46y77qTkNgdq
-ZFnzItC1csqSZ18iTn2WLqhy6/kHUir1Tlggru/f2+WtjXpHJ+I3Gs1V3gF8P1jrq7x30ve2k2qF
-zqq3k2qFVQ/DFa1aoSFnXWQ0CPc9+0f89vPg+UVyPUVwfDzr0lsoUCrmSNKMKEmoFWKKvRuy6OnF
-+N4UDvzwXG6/4OgJDcRu47ru2ErvIrJmFHgCQBzHvP7t32bWltsQBEWKvSV8r0AuyDNlSg+9pRKu
-n6O/r0R/X4npfSWmlorM3nwmxSL0bziTPd55EXEcT/RHERFZZQpDwVrLTb+8iSkzZtLT6+F5BVwv
-wAt8/FyOKb1FenuL9PUWwA/AC+gtFegrFSgWcxR78xQLDv0bbs5NN9/EJDgPLSJdRmEo1Go1zvvu
-g/i+JakM4edyeJ6PF3h4QUC+kKOnmKNQKNBTzFMs5kkcl0IhR08xT2lKgUIxoFjK8+8/+iu1Wm2i
-P5KIyCpRGHY5ay3z5j1OoaeXGZtvzfRNZuG5zcEXrh/guBDkfQr5gGIhIF/wyed98rkcvu+Ty3n0
-TS3iBx65gk+hp8QTT4RqHYpIR1EYdjlrLYe+/XP4A7tQTwMqDR8n8HA9DxcHXIcl+CzBZ8gNGMJn
-Kc2vCxoeVadAxRZoOAUaWYHMncLhp35RYSgiHaWtxX1l8krTlEvOvoX9DryFQl+JICji2AI4YB1w
-HLhwh/1xPR9cC7Y5pN/GCVmSkkQRaZxR36VKbbhKrVLhgT8031fXwBSRTqHfVl0uSRLyAVSWABnN
-sLPN0LPWQuaAtVibYTOLzSxkFktzG4DNMhzXgVZ45nPN9xUR6RRqGQqZBZuBTZthZ+MUm7PYLCVL
-XXAcXCcBmvMHbZY1bzZrvi5LmwGZWRxn7GkiIh1DYdjlPM+jXoMsg9pIhuOk+LmALE1xUgfrpNjU
-ktlmKEIrDNOULLFkaUoSZaRps+WIhUqFNb4EmIjIuqQw7HKe53H2xXsw8Jr9mTZnNtPmzOK6cz5M
-GiXNrk8cPvjHXzGtAK7jktqMNE6JGjHVSoPy4iojLw1TL9dY/OxCRoYynv3Dlcx/l8JQRDqHzhl2
-Odd1ufKb/0qjWqFRrtAoV0lqMUmUkEYpaRxTHqpTLtcoV2pUKnXKlTrl4TrlJTUqSyvUhsrUhmvU
-RyrUKg1++I1zNXhGRDqKWoZdznEcdt319VSHfk6+p0RusEjcSHA8B2stQZajsriKV6e5LbUkcUJc
-iakNVakNVagNVamWa1SHRxhZMJ9ddz1G1ycVkY6iMBT6+/v50Du24zvXLsAPfKJyBDiQgc0s5ReH
-cUqA60KWkcQZUbVOo1KnXq5SHakwsniYyuAg//JPG9Df3z/RH0lEZJUoDAXP8zjz9DP48vfejeu5
-1GsRGZClGX7sM/LiUtIeB8d1wWakcUIcxcS1BvVyjcpQmcqSxQwveJwzTvu2Bs+ISMdRGAoA06b1
-c+e1n+XAt36RoUUwZUaEtRlZkjCyaIikaHFdF2shrtew1qFRi6gOD1Ne/DyVocXc8fNPMm2aWoUi
-0nkUhgI0zx0asy23XPVvhDf/gs0jmDItodCTUF40TFywrfOADlFlCUkUEydQHXqR6tBCbv3pRzFm
-W50rFJGOpDCUMa7rsv32OzBr1uN877sX8MYNv0upF5bMf4J8sQfXdcmsJY3KJFGFqFbljLfM4V8+
-cB4DA7M0glREOpbCcB2w1mKtJU1TsizDcZwJa0GN1jJ6G61l9Oa6LrNmzeaj532BcvlDXHvtXGrz
-f06tZzaO62OzBOrP8cVPnsQBBxzEpptuRhAEahGKSEdTGI4Tay1RFPHiiy/w+OMPc9RRR7F06VKK
-xRy/+MUv2G67nZkzZwNyudw6CZIsy6jVajz44APse/yJxM88xle+/0euvP5ZUn8G3z+vj912251i
-sYjruuRyObbZZhtOP/1dvOMdp9Fo1EnTFM/zyOcLYwGoEBSRyUD9WmuZtZY4jrnlll9Rrw8yMDCF
-I444gjRNcRyHRqPB4YcfzqxZU2k0hvjNb35FHMfjtuSRtZZarcbO+7+XpDHMVsefjrf4WX566wJu
-uqfOtOnTmd6X8v4vPMTuR1/GzvufRa1WG2s1uq5LPp9nypSp9PdPZ8qUqeTzeVzXVRCKyKShluFa
-ZK2lUimz5U1n8rejv0tPT88rdiFaa/E8jyiKOPDAfSnfZPAP+jOlUu9aDRhrLS+99BKnnvsjbn78
-JvruPYGBwSc4/Jz7gIwZG0wny1LSKKE0tURteIRqpY8dDv0G91xzBgMDfWutFhGR9ZnCcC0ZC8LL
-3wY7bk1PT89YF+iy5+NGz9W5rjsWiP39M1k093Vw9NoLRGstCxa8SP1//5e5P3wXhcI5BEGA67r8
-5jt747ou/3PbC/z3bYtIGhH1ap1CIYfzUoTrbkx9hx14Yf6T+P7aDWgRkfWRwnAtieOYLb95NOy1
-PQRTyOfzYwG4bJei4zQvc5ZlGWmaks/nSSgyfdY0Hr3IsNUHnyaXy61xPZVKhad22patmUH1A1/A
-Mo2IHD45PHxcfNJDTsbdZRf6phfJ5fPUggqOMwdnwYv0Tt+Op08/kw0uvoze3t41rkdEZH2mc4Zr
-gbWWG391IwxMB68Xgt6xlp/v+3ieN3YbDcfRfa7r4ueLeE6RLbeYyi2/mrvG5w+zLOOSHbdnI3rx
-KBJQxCdPjjwBeQKKBBQo5nsp9vZibUBxSg/F3hLFUg/5ngJH7nAWxzy3C7vv9w6yLFtL3ykRkfWT
-WoZrQa1W4z1/+BpsvAEsrUL/lmOtwmW7SUc5jkOWZc0g9H2SYhG3EZHLF9n+iX+hVjuCnp6e1a5n
-cHApx9/xa+LXH0bfNZfQd+g+Y6EMjM0HLN5XpnBXhcSLadRqFHoLJElMaeo0kkaNXKGHpYMbMDQ0
-SH//9DX7JomIrMfUMlxD1lrmzXscSkXYdhOYszF4/j90j452jb7S/D6vVMLzA/wgYEapyBNPhKvd
-OrTWcuedtzNz5kym00Ou2MPTzw3iOA613ME4Sco7v/4i7/r2Em74U4pfCPDyAX6QI6pbgnxALl/A
-9wPyQYF8sZdbb/3NuI12FRFZHygM15C1lkP+4wR47RzAA2vBz41No3jqqac4Pwh4Lgh4NJfj+SDg
-80HA008/TaPRaLYgvQDH93Fcn1xPwP2fO3C1wyfLMt7zLxdSLBZx8ACH957/MMf+vwcpRrdC4PP9
-//chZg64OIGHH3h4vsvln34vP/7yB3FcH9/z8P0A1/dxvRzv+/Al6ioVkUlNYbiG0jSFWQVoJGCb
-qzqQJNxwzTXc0dfHE9tsw3HAEJDg8AJwBPDE1lvz274+brj6auI0A9fBsQ6e77HThm7zfVdDkiTg
-BURRhAUcx5JZyCy89VMhmbUEyVV87uSzOW53vxlymcX7yw/wT9yDqNwgw+K4HtgE13HBD5rvKyIy
-Semc4RpKkqS5zt9zw9CfQFLjYW9LSjtsxkKg189DLofnQg6HPJYss+SiBoNJQunkk7kPeO21+5LH
-4rqQDxySJCEIglWupxmilje99Wtss8NJ5K98EmtnkKUJaZxy0vlPYZ08r/vRt1jyuzJJlJHECSdd
-VSfZ9CTSkRGyOMVmKdiMZi+vo5ahiExq6zwMjTEucBGwE9AAzgrD8Mll9p8EnAskwMPA+8IwXL9P
-WGUZJDGMVPnj7mczdMjBlAdH6C2VmHP//SzcZ79m16PXXAIpTVOSXIAfxwzX63hpwn3H3cXOF21H
-zqbYdPW7SOfPfw7SmPnPP095xub0zR+hZ2qBfLFEEkV4dQ+/4PDYMxZcB5s1V67P4pgkikjjBrWR
-IdI0IU0apGkMSWMtf8NERNYvE9FNeiyQC8Nwb+A84ILRHcaYIvA54I1hGO4LTAXePAE1ts3zPKhH
-0Ii5Y5uz2GCDDfCGy/TvuC1BoYf87FkU87n/396dx8lVlAsf/529e3pmMjPJJIEJAQKkgiEQCFtk
-CTuIIMiiV0AFRQG9vOi96nW7IqBeXxV3US6IyEW9orKvIkF4xRj2LUJBIJiQPZmtt7Of949zuumZ
-TEJiQmaGqS+fJr2d7uqaPv2cqlP1FDnLwjRMcraDk3PI5fI4uTxtuQKaYdMK3PWJFwjChGol2uIF
-cn3f55t77sbiQ/aHsEwUuoR+kTAoEfkugeviV13ciotfcvEqLn45Xa3eK7mEbhXfdfGrVUK3SuBW
-CP0yURRCUMI0VSeCoihvX8MRDA8B7gWQUi4E9m94zAXmSind7LYJVLdv8baMYRiwqoK1uIcpU6bw
-6o5TMB2HKY/8DdMJ6Jm1D05byKR/LMGxLAxdx9YNbMvCcWysvIPt2Oi6wRTgvieLPP16skXB0PM8
-7p0ygff0rGcaJldcdi6BX8L3SnjVPjy3SKW/F79Swq+UqVYqVPtLuMUybqmMXylRLZVwyyW8ahG/
-WsR3+/G9PgK/zOVf+ZBavV5RlLe14TjcbwX6G25HQghdShln3aFrAYQQFwMFKeWfhqGMm03XdX5+
-8U/YYfU/ME2Tkm2yg2myctfdcexmbMPGdB1KM/bE1g0SYqLYQIsjEt0gthIc28KPExy3THJjka6f
-37DZawNGUcRX95rO+4AcNq008Z6TT+I/v3EznlPAspswLQdNN9C19BynZXsEhoWm6yQkRGFA5Ln4
-bhmv0odXWY9XLeKVe6kW+zn++BPUWoWKorytDUcw7AcaM0DrUsr66IzsnOK3gN2B0zfnBYczoXSS
-JOy884688tEPccDHLmTnD36A6JY7ab/1dxT2EHg3/YrmCy+mevqJaH9/jSQ2wIhJNB1TgzA2cEyb
-ihVheDqFJGbi1B3o7Gx505ygSZLwwgsvcHBfD2V0Osihk2PKzjvTmvOpVPswTRsjC2RJHGD5HpaT
-T6dz6DpJHJNEIYHvEnglfLcXt9pDub+barWbVmMVs2fvuU1SxL3VRlti8dFUXlXWt85oKu9oKuuW
-Go5g+AhwMvA7IcTBwLODHr+atLv0vZs7cGbt2uK2LeEWiOOYq485hotIW4k7XPkDVt1+D+X3v4+w
-A6z+ApUf/BRD09F1k5iYJI7RNZ0wiTFNAyPWMXwN3TTJBT7XHnsss1b1vmlrzPM8/jhzJlOAPA4B
-BiYWjuPw6F9/x4y9TqWq62iaTpxERJGL7ZUIrAK6aaNpacswDn2i0CP0i3jVIr+79mM4H7uQlfQx
-8bc30tvromkjexBNZ2fLsH4PttRoKq8q61tnNJV3NJUVtjxwD0cwvAU4VgjxSHb7vGwEaTPwOPAR
-4GFgvhAC4AdSyluHoZybJYoidiYdFvviDjuy18qVTFnyKmv33AF6xqNlNZzECYmegAZoWjoClYQo
-jtESMHQDdB2TtEkcRdGbBsMVK5ZjAzY643HIYaOjYRgGu+yyC3fddiXvPvVzJHFEHEfEgU/gVLCs
-HIZpg54mCQiDMnEMgVfBq/ZxxImf5Jfr/0L7vfcyderOatUKRVHe9rZ7MMxaexcNuvulhuujaqRG
-GIaYpCc6mzUNudtutJgWTfY4EiMmSXTipDb5PSEhJknSRDWk8ZA4iUHT0jgJONnrbmqeYRzH3H3d
-tbwTKGADGiYGRvYn1XWdY445ht8HZc7oDwgDD7+pFccZh2HnMQwLTdMhSQiCInGk4bs9eG6VuNJN
-8uvfccwxx9DdXXmLa1BRFGX4qfHy28A7b7+dWbNm0dLSgmmaWJZVX6FicJLumlqO0iRJ0nmHYYjn
-efi+j/3cc2/6nnEcs9shB7LPZavq79mYjLuWKPyU4GWel5J3Hn4m/T0lPKsH3XIwzDy6rhPHSbbA
-b5EkqFLIh9z9wPUIsacaQaooypihguFWMgwD13VJkoQgCDAMY0Cg25jG59QSeNeyvFQqlSxQDcz6
-0hhYoygin89TqVQYN27cRt9P0zRmzJjBymWP8/TTT3Pzzbdw5ZW/JdId0LL0cbHPJz7xHk444Tiq
-1Sq77rqbGj2qKMqYooLhVjIMg2effZZ99tmHXC5XD2xAfZmmoTQGw8EB8dlnn2XNmh5OO+3keusy
-DENuu+0uDjvsyHrwqwXLOI4HtOJqq2LU/gVwHIcDDzyQOXPmcOmlX6FSqeC6LoZhYFlWvYX66KOP
-qnOEiqKMOSoYbiVd15kxYxbVapV8Pp+uT5gltTZNc6Otw8FdpFEU1a93dXXxnvecVA9wtaB38snv
-wvM84rjCypXrWPmXBfSUfYKWFpoKLTj5PHa+idzsGfVAGL70OqClJyPjhCSOMOKIQhCQC3xC38f3
-XaqlEoHrseqxv6EfNG97VJ2iKMqIoYLhVtI0jf32O4DXXnuR5ubm+ur1uq4ThiGGYWxw3rAxEMZx
-XA+Evu+zdOlSjjzySBzHqb9+bZs4jrFtG9/36eqaQGVSJ//vIx9kEibt5GjFoYDD9OorxHGMpmn0
-vBJvZtUAACAASURBVOPYepqhGIiJCYgIiHEJKePj4dFDFQh59exz1blCRVHGHHViaBtob29nwYLH
-KJVK+L5PEAT11l4YhsRxvMGldn/teb7vU6lU+POf/0xHRwe6rte7MGuDY2rX8/k8lmVx3kc/wox7
-76WfkCohLiEuwYDuV58QjxCPuH7dJ8qeW7tEVAmJgaPOPkd1kyqKMuaoYLgNGIbBOed8mEWLFlEu
-l/F9H9/3CcOQMAzrwXFTt6vVKosWLeLcc8/FcRxM0xzQymwcLWoYBrZtYxgGe+21Fys/9zlKBFSy
-IBdFUT0YegRZwPNx69dDqgRUs9tVfFzSbAhCzFDBUFGUMUcFw22kra2drq5pLFmyhGKxWJ8mUQt8
-jf8GQUAURQRBgOu69Pb28tprrzF16lQmTJhQbxHWAl9tmkYtQBqGUb9umiZnnX8+LxNRxKXIG0E4
-jmMqWavxjUtEmSC7HlDFy1qWMPO6GykUmoe7KhVFUbY7FQy3oba2Nn77p1eRUtLT00O5XMZ13XpL
-0fO8egAslUpUKhW6u7tZsmQJuVyOmTNn1gMfMGCeYq21VmspNgbIpqYmjpg/n25CSngDWpxFfErZ
-Jb3uUcanQkAFj14CisD8fBNHHXWMmlKhKMqYpH75tpFyucy1d7/I8cceQU80kSt/eC0rV65k/fr1
-dHd314NfqVSiVCrR09PD8uXLufbaa9ljjz3YZ599BgTCWvBrDIS1f2uDcmrP13WdyZMn8xrQT1gP
-wEEQUMKrX/rx6MGlgkeZKqsI6AeeAi599Gny+fz2rzhFUZQRQI0m3QbiOObmm3/D5845k6amJgxj
-J04/9mssW7aM+fPn43keBx98MJZlEQQBCxYsYOHChXzqU5/iS1/6Erlcrt4d2qjx3F1t3iCkI0sb
-W42maZLL5Xhi9z1oWvwyxWIRx3HI5XKUcNHJRqSS0E+CS0yONIXcM4VWLl3wGJ2dE9W5QkVRxiwV
-DLeB3t4e5s07HEgDVe1cnhCC6dOnE0URruuyvs9l/Lgcs2fPZvLkyUyfPr1+brBxkvzmBqVayjVI
-W4vnX34Zq1atZ+nSpYwfPx7HcXidqL5eVgKsJ00q3g1M+8FVfPvkUykUCioQKooypqlguJWSJOGh
-hx7kuOOOzFqFxoDzfLXzem5oMG1qGwCe51IoFKhWq9i2vdFUao0ZZAY/Pvi2YRjk83lOO+1MyuUy
-Cxcu4JFHHsIiXU1ZA/qA0imncdQpp3HGQXPp6OhQcwoVRVFQwXCrxXFMU1M6968W/GqBcMmqCk2O
-iWPpWKZB1YuI4oRSOeCRM8+kiMauVgt2Lk+T7dBi5XFMG1s3MHUTXTfRswZbQkIUR4RhgJ/E+JGP
-F4aUvCo9lRJuWOJvxOy/bC2dnZ2ceOJJHH/8u/C+dBlhGABgmulah43nJhVFURQVDLdaGIa0tLTg
-+z6WZQ3o5tx1chOrun3iBFoLb1S1bThUgJCE9XHIhDgijGOiOCaMw2xUk4ZO0nC+L3ucmDAKCKIY
-PwoI44goSXPLlGDASNTa/ERFURRl01TzYCvFcYxlWRusMFHrxmzJG0wYZw8Y/NJdChn/0fPxgSCK
-ccOIII5w44AgCgmTkCAOCeOIMA4J45Agux5EAWGcECQBbhQSRBF+HJEA+XNUKjVFUZR/hgqG24Dv
-+8RxTBAE9dUnape1fT6vr00XyK0FxM5xDnPe8y+UgSo+1TjADUPcMMCLQrwwIggD/NDDC3280McP
-025RP4xwYx83CHGjADf2qSY+MTDv/R8YvkpQFEUZxVQ36VYyTZPe3t4BSzDVlm567pV+HEcnSQz+
-saqCpqUr3EdRzJSdd+dBoECME4RYRoCh6em5QWIc3cSIdaidM0zS+8M4wQ193CgNnq4f4BLxOHDl
-ycfzxBPP09U1RZ0TVBRF2QIqGG4lwzBYvnwNvu+Ty+WIoqh+vm7mrs31c4gvv14m7xjsNDFPkiRM
-6bQ55Ne/5rWzzsLAxfA10jODDnESE5oxJvqA0aQRCX4Y4EcxbuhT9X2KSZUqcGVWnjlz9qK9vZ3n
-nnsZ27aHq1oURVFGFdV82Eq6rnPsscezbt26AatVNCbLTpKE3buaWNfn1VuQmqZx3HHH8VhTgSLQ
-H7uUfI9i4FIMfYqeRzHwKPledr9HyXMphwGVwKPie/TGVYrAnYPK1NPTw5QpE/A8bxhqRFEUZfRR
-wXAb6Oqawvz5D1KtVgesVtEYGOM4Zu9pLfVu1CiKsCyLrz/+GM8B3ST0xy49nkvZdSl5VUp+lVLg
-Ugo8+n2XHq9KxatS9qqsiiv0k/AUcPdGyjVr1h5EUbQda0JRFGV0Ut2k24BlWZx44ql88psP0DVl
-FzontNLWnGNcS45C3iRnm5iGQS3JSxDGBEFExQsoV1w6vnkbD136AQ72KjTjU4582iMTMzDQG7pJ
-+7Mlmmqp1B5B4z42nKxf09vby+LFLzN9ulAZZhRFUTZBBcNtQNM0pk7dmQtO7OLnf1qVtv6SNqI4
-xvVscraBaRoYOiRoVN0ASHD9iH43YG0faOf9iLXmU/T8+Me0kSbcdghpyWLd4FRqP6jfu2mHHXYg
-y5atxXGct+bDK4qivA2oYLiN6LrOvHlHEsd/YuLEApMmdVAoFLAsqz6ys3auMI5jNE3D931c12XN
-moDu7oijj/46z7zvffz28MN5DZOdCAekUivTwbF0cA5tXIGDAcRERIRERMRouLiUqGSXEqupsGLF
-cnbdddow1o6iKMrIpoLhNmQYBkcddSyLF7/MzTffzOGHH87il17ipAsuYBUGHjoOCZ2E3Pvf/81u
-e+zBww8/zCmnnMLcuXNJkoS//P4WTgLy5EnIY5Mjj0MBm2Ys8lhY2Bj1PDUaGgkxCSE+YJGgE6GT
-jkeFu6+7josuu1xNt1AURdkIFQy3MU3TmDJlJwrf/xHRpVewj5aj5HRS0HVsEohiepOYPS/4d7TE
-xexoY5dLLqmvWrH8h99jP6AEPIXH2azJUrdBBbiTXTiOiYzHwSCh1lWahsT0/zo6RhYmTXSKV/+Q
-+NKvqmCoKIqyESoYbkNJkrBmzRpemzWdQ2liXK4dJ9+Cbhmga9hoJEAUBNhhhOdXOKHH5Zm2dnZf
-/jotLS24pKtMrKbE8TgUaSZGJ80xk7AXK3mBf9BJQoE57IhFQpK1DSEgyEqjE2W5TR0giiJMU/25
-FUVRhqJ+HbeRJElYvXoVL+09g8l6geam5jQQ2ga6bmLoBqbhpAm3o4go9DB9m9go0uoavNa1Ew9c
-/lWOAKrkmE4ejRwJGqCnAY2YmBCHgCIeVZ7kakw+zyx0ImISYmLiengk60JVFEVRNkUFw22kXC6z
-aG/BDK0Fs7mZplwLZs7GNCxMw0IzjDQXGzqWnSMILDTDo1nXKGsaTjlmv698hXe8+iodHR0sb5sF
-aNkZQrse3kIiTAIsbPoxOIMKv+dJ3s1MNCICYnyC+pCawatZKIqiKBtSv5DbQBzHXLXvO5hCDjOf
-x7JymDkby7SxbAfTtDEMC9Ny0sCYxFiOg2072Lk8luWg53O0kuN7+8xC0zR2Kb/IlFcfJkcOEwML
-kxx58jSRpwmHJpooAAX2ROcbSDxiAgJcQgIifLLVLM5Wq1koiqJsimoZbgO9vT2c/N1eOiebNLV5
-FMabmLmEWHNYta7ITXNe5kNAP9AGXAf8y1O7s8NEm3zkUvBC3P4Qrxxx9nKXox//Tx44+Gs07dRF
-zn+K4l7vIn6pl4QEExMty94dkxAQERJyAhVepMyOgEuAh08VHwc46uxz1KR7RVGUTVDBcCslScKf
-/3w/h0+B1sk2umHzp+c/jb/yO7Rd/Bo6Ju+lQB86EbCSmHeRsGTf11hCSPG/uzj6CAtN09ENm5bm
-gOrjSzljp59hOQVu77qAcX+/D4CieRARYGFBdn7QIsAnJI/PKyznoKc/jhEX8b0+Kv1reeb5ZQgx
-QwVDRVGUTVDBcCvFcYyx5OM0zYIk0ahWoOOMz+Jh0EkzzTQBJgY6NuCQTpS38ejFo/Dx1TxDyLSF
-nRiahmXCZ0q3cpN+OJZl8f6eX9Nn+Nw37jxawoXAG+sihmHIpDAkCAJc12XX3l6WLv4sXZ3glXso
-V/optn+HQqF52OpHURRlNFDBcCuFYUghD9X18Go1YsX717IzFs3ZOT0NCx0DEwMTMx1NSkyIjUme
-fooYuDx70Fqm/7EFU9doaU5IEh3DsNB1hwnmOM6p3MWX9f3pxMGLfNzIx48Ceit9rK/00lcpsqJv
-Fd1/Xs1HjtPw3CK33NPPR754zBYPnqmttFFLMF5bhmrw440GP2dTr7ul2ynKaNO4Yk3tO66+5yOb
-CoZbKY5jLBPcCuiT7+XolQLLsrBtG03T6msb1naE2uT62soVcRzj+z5BEPDiiy8y2T0aywAtidNZ
-gpqOnmiAxuX+X/GDMp5XwnP7SPyEYt9KSj3r6F+/nv61ayi++g/OLE7g+efXcubFj5HP5zfrcyRJ
-gu/7rFq1kgMO2HuDxx999Bk6OydSrVb58+23csLn/40Kaao4G7j/m9/lyFPey7hx4zAMY+A6jFFE
-X18fD952Cyd8/jNUMLPtIu7/5reH3E5RRpvGfeill57jpJNOIghCbNvmtttuY8aMfZg8eYf6b4My
-smiDj9RHoWTt2uKwvXm1WuXhayax3rM46YIXaGtrwzCMek7S2g/8UC2rOI4Js27OMAypVCrcdf0e
-TLADfn76lTS1tGFaTZiGTQKEsU8YVAn8Eq5bxKsU8StlSj1r6V+zmmJfN/2P/IPPNjdxzqfnM2nS
-5DdtFSZJQhiG3HPPnZx//oc3+dy/AqvR6MLBwRyQDCAkpA+fThL0J56nq2sKAMuXv443ZxarydFF
-U7adgU+YbRfRh0cnFfQnnqOra8o/NQ2ks7OF4fwebKnRVF5V1k2r7UMPPvgAc+fOwbIsWlrS5dqA
-+hqmrusShiELFjzOEUccjWmaTJzYqur2LdLZ2bJFRxyqZbiVTNNkXQ/Mef8DmKZJHMcDWoVDdZHU
-knXruo5pmkRRVA+g+7/rLzz664OIiQhjH0KdJEmn0cdxSBh5hJFPEvrEYUASR+klikl0II456voV
-NP9n82Z1W5bLJaZN69rk8z6MxnEkm50MwJgziyva2rEwOKC3j8m0M51mNOxsOyPbLsq28yjiYMw5
-kG+0F/jccy9g2/bW/mkU5S1X24d8v8i8eXPJ5/NYlgUwYDpTHMeYponv+xx11GEUi+sxzQJJ0jJc
-RVcGUcFwK+m6zsvxJ/j2p+9j6jsOpK3TobWzhbbxzYxrK5Av5GhyLGzLQtM14ijBC0KqbkAU+pSK
-Ffp7yyxfvIbeNX2sXracZLf92T2s4AdpcDUiH7SEOIoII5fIdwlCl8Cv4lWKhL5PFAREcQjVkDwW
-z+82hVmvLqdQGDoobm4gvBaYho5DnlaaAYs3SwawDp19e7uZRgGHcbTSmm1nYmFg42RZVdNpIel2
-Hv30c2aPyy1TJnCqWnZKGeFq+1Bf3xq6urrqB7S1g9/GHo5aT5BhGARBQFtbG+vWraNUaqmfV1SG
-lwqGW0nTNK65aRG7HXQRhpmmP7NtE8sy0U0dy9AxTBPT1rEMkzCKibWEIIpwfcjlTMqWieWYGJaB
-ncux9J5xTP20C7pGYvpEukFCwuebj2cHs4Ug8nFDn1J7hb5qP1XPZfWO63FjWHLlZRj00EqZe6d1
-8Z7X1w3ZygqCgD9O6+JhDM4mYtkQn+0MNHYCcjTRSgsGTjYQyMJAR8/mO+oYRMSYBFTRuZH1/AtN
-5CjQShsGNiYWJiaTqw8POH+6xjkKEw8fnSYSKmjsScTls2Zw+QuLVbIAZcQKgoDXX38FIQSmadYD
-Ya1HqBYMG8cJ1AakBUFAR0cHTzzxBHvsMUv1hIwAKhhupTAMMXKTScIqhpZDS4AkIdFA0zUSAzQ9
-RtPMdF0JLUHXQNPTx0v9EQa1LpUEQzexcl34pR7iJMC0HEqJy9/EfwEDR2SGYUjYEhKGIa7r4nke
-T7we4uAQkzCFIvfddQcnnXraBucs77vrDtrQMGniZvK00MIMXhnw2S597lna2tooFAqYpolpmvXz
-oEMdzUZRxKJFi3jnnAMpY9JBHh0bC6fekhw8SMYhj4YO6A1JBCKO7+1j8eKXmT5dqKNmZcRJkoT7
-77+XefPeiWmaGIZRHyxXuzQaPIDOMAziOGbatGncf/+9nHjiyep7PsxUMNxKQRBgYOAVlxHFrURx
-QhQlECVESUycJIRJghFHQEwYQ5jEWVLtdDRpEMTpgksJgI5mWLi9fVgkPHjA14F05zvv+88S+AF+
-1cctVqgWy5T7ipT7K/StX8XaZYt4kiY0dAIiHGyiC86jevy7aGpqqpe5Wq3Sd8F5FLAoYrADOQwM
-lrIXU3kegPnz59PS0lI/2m3c2SHtHj5j/Q0kJPy24xwMdMIw5OE5c5hCE3kcAnTM+hxLGwtrgx8J
-nQQLm/TMYw4LH58ceXyeOuxAdlHdpcoIVK1W2WOPXTBNkyRJBrQGG0ePN9J1vd5VWvvXti1mzpxO
-tVodsI8q2992D4ZCCB24Ctgb8IDzpZSvNDx+MvCfpEv4XSelvHZ7l3FLBEFAnKTTJEI/JPID3JKH
-39qE40UETohhamgaBLpGnEAQhXhhSOBHhEGEWw7S7tMwSnN5JxF/mP11ujomE0UR53/zccpeTBLH
-WTB08asu1XIaEEs9PZT7S/z6px9gj5NPrg/x9n2fXfv6ePllyd57z64flS5e/BItwE44OOSzWZA6
-Jjpr2Z/XjX6MCROwLItcLldvzTV2+5zUfR0tVisacHbfTRwaT+Fd3TtgZ23B8RTI4aBjpC1CdHTe
-2B7SAG+gE+Nj4GAQ4WDhYWBhMA6DFSuWs+uu04bnj6soQ6jtQzvtNIlCoTCge1TXdaLyEszmaRv0
-xtSe4/c8SeT3EYQWZsvedHR0DNhHleExHIm6TwVsKeU7gc8DV9YeEEJYwHeBY4F5wMeFEBOHoYyb
-LQ2CLnEYUu5eg1txCapp682rBFSrIVUvoBoEVP0gve4FeG6AVw3wKwHlvgpBNSDwA6IoIfCqtFoF
-Xli8jhMuupsVr6+nb10vvWt7KHb3UuotUuwtUuot0rd+DcW+brTKUxx//PGYpjngBL5t2yxc+P/q
-XatJknD1MYezW/anT0jz4xhZuAKN+6d0MH78eBzHqe/Eg8/dtRjj0E0Hw2pCNxzObprFH666mt2x
-GE8O0LNzixZaFmoNrA1G1eqYaFhAhJklKNAxMLDIY3D3ddfVh6grykiQJAkLFjxEW1sbWrZAWtT/
-DFF5MQCabhJ7a0j8bpKwSBL0EHtriSrLCPpfxGmbRa5zHvkJB6BpGrZt89hjj2yQkELZvoajm/QQ
-4F4AKeVCIcT+DY/tCSyWUvYBCCH+AhwO/H67l3IzxXFE6K4k8HbHd92s1eZR7q2iGwYJGnEY4+ci
-dF0jihIiP8Iv+7hFn0rRxat4+JV029BLCCpLOex9vyKXz6ObJoZhgq4R+h5REBBHOp7rUuxdQbXi
-UlorWfrCjeTz+foOVWvFGYbB3nvvTRRF6VFrFLEz4Mw5iBn33I5hGqzqOBCywTAJCZOv+EQ9+NW6
-fGpB8aSVV/G9jtO5rvkkLnAfADR21Zr5WP/t7PTD76GTJ+38hMQO2aH/zwOmmAxWCO+gqSFbh3vo
-WRiPPYOWdbEWr/4h8aVfVUtQKSNGFEXstddeJElC0P93AvdV7MJkMHSC4ovoRhMa6YGmliTZlXRb
-e9ye6cFdFNX3CcMwmDVrVn0fVYbHcATDVtIFHGoiIYQupYyzx/oaHisC47Zn4bZUFEX8x78eyU9/
-24dXKeOVK1RyOXTDQDcNojghDEIMy0DXtfQcoh/hV0MqfVXKfWWq/SXcio9brlCtauRy4+hZvYxc
-80Qs20LX0z9TnMT4lfUEXpUgsqj2rabJeJ2lL9zApEmT6kGrprF1GIYhlmURhiEm8MoTjzLD0NFN
-M1v+N04n9hORz+epVCqMGzdugxRqd+34Sc5cewOm1QSGwYHGjiwMl+H5HhawnIRpJCRAlEQb1Ffj
-wJvBR8JJktRX5IhIuy2crI5NU53eVkaGMAzJ5XL4vk+heXei6mKI09MYWpIAMUkSoiV6uickSToX
-OAk32D9r+2gul6vvo8rwGI5fmH6gcaZpLRBCGggbH2sBet7sBTs7h3Piqovv+/zmJyczffp0mpqa
-sG17szLQ1NKxBUFAFEVUKhWWLl3KvBPvJkzWUCn1YVo2htmabRcRuL0EgYdf7eXa772XM844g0Kh
-UH/dRo23OztbyOfzVKvpn7xtn/3qw719vPoI1JhkQOaMxu7RI166jAenf4Xvt57Ep4p3YyQ2fwtf
-I45Dkigg+xkgIiHKcrDWytHYumws1+Ayx0mUzVxMp+fHWdk3ZxDN8H4PttxoKq8q6xuqVbO+j2hG
-njj2icMKid1MkgQksYWmmSQEoGlpyzAOSOJwg4PLxtMXtX10JBtN34MtNRzB8BHgZOB3QoiDgWcb
-HnsR2EMI0Q6USbtIv/1mLzicKYKKxQDDMLj//vvZcccdB5yzq01BGDydoBYIa2mcoijC930qlQoX
-3v5NDrh1Ot2PvkL3A0vp+dtOaEYBtIQkrHDmyRM58/RTOOSQQxg/fnw9WDUmBq6lf6rtsJVKhe7u
-CrYdpu8DrH3mcdw16yjsMIkomycYEgAm5XKZKIrSkbLZZ0iShJumXsyJr34Lwylw644X8bWee3ks
-fB071okjlwppy3I9HhOwCBOdqLcPzTRJTBNN19HzuQH1F7tumj0nioiCAL9cJCQkIgIiSsD69WUs
-y9/k32EUpooaNeVVZR3I932q1WraTRoE5Hc6i2D1HSSRRxJZJBjEgJZYoGmYTTsDoDcEwsZ5hzBw
-Hx2pRtP3ALY8cA9HMLwFOFYI8Uh2+zwhxAeAZinlNUKIfwPuI+0l+7mUcuUwlHGzOY5DGIbMnTuX
-RYsWMXv2GyPCaq3DWuq1mtpOUAuGQRBQrVZZtGgR404R4CQ0H7gDxh45Ws4qUVz9KqWoyAfWHcGP
-v/Z9bNuuv17jzrWxgPjss88yd+6RQHoOcQkwg4RH3rEvHTQxjhwePho2JgkvXfYj5t47t55M3DAM
-Tnv8i9y8/ze4aaeLOX3p9zlp6fewdAuNBDeOcIMif3vvvux9y9MExLiE2KHF4slHkCePkw2Kmej/
-eUD9rWs5joCIgAAXjzIuAWGWuzQgf/Z5auK9MqIYhsEzzzzD7NmzcRyHOI7J7Xhqmm5t/V+w2/ff
-4OC39u9Ql9o+etBB84brIykMQzCUUibARYPufqnh8TuBO7drobZCei7L4JFHHuHwww/n2pkz6QIm
-oJHPZtfZ2fhILTut7hGhkRAQUsFlNQnrgbtu+jCO1UxQqeBXyoSeSxD7BKFHoPl85LQP1YdxD9Ul
-Wmtx1lqbteu7777ngPmB77/xt6w+5/24hGnQIkBPZzqSYHDM1z5HuVwml8thWRZRFHHT7MtJkoQm
-3eHeXT+Ppmkc+9IVoMFh+T358rTTWHjJcSy85Qia8MhhYWdTNvRsjQqLeINye/iExHj4uAS4BHgE
-VPFxiDnq7LPVcHNlRNF1HSH2olqtksvlME2TfW49nb+feTvOhMMGLN0EsKqyjkn58fXtB++jQRAw
-bZpQg2eGmRqVsJV0Xef009/PoR89igMOOIDDbr6ZP552Gj4JbXgU8MllkxdqI8xKWZekScIKYA3g
-//7rzJ5q8nxRsqp3BXHJxawmeOUifsmFv6/jiuXraPnjozgFG9M260Ex9CMC16fan03ELxapFKv0
-rF5Nz5rlPHH/FwZkwNhvvwO4HsgT4OBjZgErAc564Bj06H6+8KpBa2trmmHHMIiidDBMrZV20FP/
-yl/2+T7HPvcF7i/9lS/veBozZszgd0CBAAcPK5uwkZAOiHEwNgiGLh4hMW5DMHTxcPF5HPiEmKGC
-oTKi1PahpUtfqs8zfPqU3+OFPgvWPs9hO6S9Q0EU8vUlN3B8YX8m5cfXD1YbL0EQsGzZMvbb7wD1
-PR9mKhhuA7vssiuHTtyXc751CXd8/Xo+8NBD/Pra6+j/n19SIMEmoIMAnVowfONy43tm0HLWTIzC
-8yRrIgLX5YkjrsdIdN5xwwlUu4v4xSLT1n4Ety1Aow+v4mDZZprTLUkIwwi/4uJVXdxyhUqxTLG3
-j3Kxl//zwR1pb28fUN729nasz3yB8nf+K5virlEpGHz26tmYfb1Yts1nn/sRV944iY62dpqbW8k3
-NePkm5i/5jHevdsx3G0cTPFvN3Ez+5LECesevgHfrTLjzA/S/7v/wcDDyOYypgNzYkLSFToaR5NW
-8fEJ8Ilw8aniUqRClYiZ191IodC8Hf+SirJ52tvb+c1vFtLV1VUfJ7DG6+EPi+9hdvseNDtNaAkc
-mpvFgRNnDli/tDEQVioV7r//QS666OLh/khjnlrPcBtZsuRVDjr9IBjfyh++8jOmTp3KypUrOePi
-93HsP1xmkK7b4JOOEvrbOYLCvhNxdmgGQ4c4Tlel8ANC18OtVKmu7qNaLGE8WmaX3BcotE3Aacpj
-53IY2YAUkoQoCAiCkMD1cMtVyv1FSr3r6F71Ai8+9hPa2zs2KG9PTzdXil2YAXzhy7tRyBXItRYw
-mxzMnA2xjjj/Txzph7Sh0YpDEzYOJjZmvTUJbwS7gJgiAb+gxKFEtGFn2zk4Wbep2ZCJJs7+S88Z
-Rri49OJSwePBfIHvvPDKZqeoGo0n90dLeVVZh9bT080TT/yV/fbbj+bmZizLqo8T+OXi2/jojNPr
-z60NmKu1DoMgoFwu8/TTTzNr1v5D7qMjzWj6HsCWr2eoguE2Escx99xzF+dd8TFoa6bg2dx91a+o
-VquccOm7YOdxmOOayBXyOBOaMJocDNvCsEzQIPYCwiAk0eI01dqKIn61Aot7KSz+AC0du1Bo0+x5
-JAAAEEZJREFUbsXOO1iOg26a6IZOEicErkuChuf6VIr9lHpWUO5fz/xb/p0ZM/bc6BJOL774AvO+
-cTja5FaciS3kWvOY+RymY6IbJkkp4pjPLWQm0AE42LRkeWXeCGoaYRbQdGI8Al7BZxFk2xk45GjB
-ytataNwuqm/nE7AWF5+Q54BLnnuJiRMnbXbX0SjcUUdNeVVZh1bbh8rlbnbdddd6QDQMo57Lt6YW
-DOM4xvd9isUiK1asYOLEiUycOHVUdJGOpu8BqGA4rMIw5I47buOCyz8O41vBsaES8eX3fpzv3/cj
-SrtE6IU8ZpODPSGPblsYhg4aaYLv7ipB2Se0QuKVZYwlAVEeePIwmsZ1kWtqI1doxXIKGGa6PiJo
-+JX1hH5AEGpUiquo9K/jgVv/g5kz99rkSfk4jlm06HmOvuIImFzAaMtjjctjFWx0y0JLICkFHPjt
-xRwaRDQDeaC9nn77jaw1/US4hOSApcCj+WZMYE61lG1n0o49oEX5xnYBOUJeB54pjOPSBY8yceKk
-LRpQMAp31FFTXlXWjavtQ/39a9ltt90oFAo4jjNgilXjwLYkSejr62PZsmXkcuM44oi5rF9f3m7l
-3Rqj6XsAKhgOuzAMefHFv3PJv32S5/pfhkIOTAMcE9a7sEsJWm2wLbScid6cZZeJE5IeH/wA+jzo
-0aEl4rsnf493vvNQrr3uOn5x03KsXAHTtDGdceiaQZwkRGGZ0C/ju2U+cuaO/J+LL6azc+JmBZM4
-jlm7dg0/+On3uPYf10GzA5aJ3paOWo3jmKQYwosVPvWoSxuQI80MU5vFkwDrSbOudwPTfnAVJ510
-CpoGd9xxG0su+cRmb3fyyadSKBS2+Eh5FO6oo6a8qqybVtuHrrnmZ7zvfafR3NyM4zg4jlOfWlWb
-PlUqlbjppj/wsY9dRGfnRCZNGqfq9i2iguEIEMcxlUqFhQsX8Otf/w93PHIHtKQTcAli6AuYPGEy
-q3ZeDfm0ZUglQVsGSS7mXeJETn/3+5g79xA6OjrQdZ0gCFi69B889NB8vnDpb8DqQjNMkiiE4HX+
-67KzmDfvKKZO3bk+/WJz1SYP11//15+FySaYGgQJrAr5+gf+L/vssx8rVizn4TvvoPn2P9BKWvQ+
-oHTK6Rx1yns56KC5dHR01EedRlFEd3c3CxcuYP5tt9B82+Ztt6VG4Y46asqryvrmBu9DlqVx8MEH
-Y5omYRiyYMECwpAN9lFVt28dFQxHkNrk+kqlQrHYR0uLQ7HoUSik6cV838P3A3zfA8C2bRwnRz6f
-3+CcA7wxlzAIAjzPrU+Id5xcfefamnMPg1+/vb2Jnp7KgNevdfl4nkcYBgCYpoXjOEOWubEu/pnt
-Ntco3FFHTXlVWTfflu6jw13eLTGaygpbHgzV1Iq3UG19s9bWVlpbWzf4Mm1pHsLajlTrgtnWBr9+
-R0cLUWRt8Bxd17c4oXCtLlQiYuXt7K3eR5W3jkp5oCiKoox5KhgqiqIoY54KhoqiKMqYp4KhoiiK
-MuapYKgoiqKMeSoYKoqiKGOeCoaKoijKmKeCoaIoijLmqWCoKIqijHkqGCqKoihjngqGiqIoypin
-gqGiKIoy5qlgqCiKoox5KhgqiqIoY54KhoqiKMqYp4KhoiiKMuapYKgoiqKMeSoYKoqiKGOeCoaK
-oijKmKeCoaIoijLmqWCoKIqijHkqGCqKoihjngqGiqIoypingqGiKIoy5qlgqCiKoox5KhgqiqIo
-Y54KhoqiKMqYp4KhoiiKMuapYKgoiqKMeSoYKoqiKGOeCoaKoijKmKeCoaIoijLmmdvzzYQQeeBG
-oBMoAh+WUq4b9JxPA+/Pbt4tpbx8e5ZRURRFGXu2d8vwIuAZKeXhwA3AlxsfFEJMA84C5kopDwaO
-E0LM2s5lVBRFUcaY7R0MDwHuza7fCxwz6PGlwPFSyiS7bQHV7VQ2RVEUZYx6y7pJhRAfBT416O7V
-QH92vQiMa3xQShkC3UIIDfg28KSUcvFbVUZFURRFAdCSJHnzZ20jQog/AN+UUj4mhBgH/EVKOWvQ
-c3LAdUAf8ImGVqKiKIqivCW26wAa4BHgROAx4F3Aw40PZi3C24AHpJTf2s5lUxRFUcao7d0yzAO/
-BHYAPOAsKeWabATpYsAAfgMsALRssy9IKf+23QqpKIqijDnbNRgqiqIoykikJt0riqIoY54Khoqi
-KMqYp4KhoiiKMuZt79Gk21w2AvV14KXsrgVSyi8OY5E2IITQgauAvUkHDp0vpXxleEu1cUKIJ0mn
-tgC8KqX86HCWZyhCiINIp+kcKYTYHbgeiIHngU+OtCk5g8q7L3AH8HL28E+llDcNX+neIISwSKc2
-7Qw4wNeAFxiB9buRsr4O3MkbvwcjqW4N4BpgOpAAF5L+HlzPyKvbocpqM0LrFkAIMRF4AjiatD6v
-ZwvqddQHQ2A34Akp5XuGuyCbcCpgSynfmf0oXpndN+Jk8zyRUh453GXZGCHE54BzgFJ213eBL0op
-HxZC/BQ4Bbh1uMo32BDlnQN8V0r53eEr1UadDayVUn5QCNEOPAM8xcis36HKehlw5Qit25OAWEp5
-qBBiHvCN7P6RWLeDy/p10gO4EVm32YHR1UCZdCbCFv8mvB26SecAXUKI+UKIu4QQ04e7QEOop6GT
-Ui4E9h/e4mzSPkCTEOI+IcQDWfAeaRYDp/HG9Jv9pJS1Oav3sGGav+E2uLxzgHcLIR4SQlwrhGge
-vqJt4HfAV7LrOhAwcut3qLKO2LqVUt4GXJDd3AXoAeaMxLodoqy9jOC6Jc1Y9lNgZXZ7i7+zoyoY
-CiE+KoR4rvECrAC+IaU8ivRI68bhLeWQWnkjDR1AlHWdjkRl4NtSyuNJu0Z+NdLKKqW8GQgb7tIa
-rpcYlOZvuA1R3oXAZ6SU84BXgUuHpWBDkFKWpZQlIUQLabD5MgN/J0ZM/Q5R1i8BjzJC6xZAShkJ
-Ia4HfgD8ihH83R2irCOyboUQ55L2EPwxu0vjn6jXEfUj92aklD+XUs5qvACPA7dnjz8C7DishRxa
-P9DScFuXUsbDVZg38RLpFx8p5cvAetIkCSNZY122kB7FjmS3SCmfyq7fCuw7nIUZTAixEzAfuEFK
-+RtGcP0OKuv/MsLrFkBKeS4ggGuBXMNDI6puYUBZrwH+OELr9jzgWCHEg8Bs0sQunQ2Pb1a9jqpg
-uBFfIUsILoTYh3Tli5GmloYOIcTBwLPDW5xNOo/0nCZCiB1JW7UrN7nF8HsqO68BQ6T5G4HuFUIc
-kF0/mvSAbkQQQkwC/gh8Tkp5fXb3iKzfjZR1JNftB4UQX8huVoEIeHyE1u3gssbAzSOxbqWU86SU
-R2TjHJ4GPkT6Pdiien07DKD5JnCjEOJE0q6oc4e3OEO6hfTI5ZHs9nnDWZg38XPgF0KI2pfnvBHc
-iq2NDvt34BohhA38Hfj98BVpk2rlvRD4iRAiID3Q+PjwFWkDXyTtUvqKEKJ2Pu4S4IcjsH6HKuun
-gO+N0Lr9PXC9EOIh0uXpLgFeZGR+d4cq61JG7ve2UcI/8Zug0rEpiqIoY97boZtUURRFUbaKCoaK
-oijKmKeCoaIoijLmqWCoKIqijHkqGCqKoihjngqGiqIoypingqHytiaE2EsIEQshTmu47zIhxKHZ
-9Y8LIf5lG73XnQ0TfUc1IcTJQoivZtdfE0LsLIQ4Vwjxi+y+u4QQk4e1kIqyDb0dJt0ryqacRzrh
-9kLg5uy+w0lTeAG8E3hwG71XwhsT60c1KeUdpKsUwBufKWl4/N3bvVCK8hZSwVB52xJCmKTL/BwG
-/FUIMQ04lHTVkGuEED8ETgaOFEKsIE2TdzUwhTT91BeklA9kLaQuYHfStfOulVJ+QwjhAP8NHEia
-nWN8w3t/HjgTMID7pJT/kd3/IdJsHjrp2mufzN7rOmBmtvlVUsprB32W6wGfNB9kK3CFlPLGbOWA
-n2TbGsD/lVL+b5a8+MNZmW6XUn550GuVsrpoI83a8kHSFUtulVJ+Jtt+npSyMVuS1vAar5EeVLwO
-fB84ijRY/o+U8ltCiCNIM8SUgT2B54CzpJRBw2vsQnqAsox0KbZ/AOdIKXuEECcBV2T19CpwgZRy
-Tfa+fwBqS4x9REr5NIqylVQ3qfJ29m7gtSzh+K2kP6g3kOZUPF9K+WPSJO//KaW8nzQ7/8+llPuT
-rn92dcMyNbOAY4GDgM8LIcYB/woYUso9SZe7mQ4ghDgB2A84IPt3ihDibCHETOB8YK6Ucl9gLfAZ
-YC7QLqXcj3SpmUOG+CwJaRL6g0gDz3ey3JxfBh7PyjwP+JIQYtdsmy5gdmMgbHitHaSUs0lz+/4i
-K/9s4GNCiNaG521MQhocL8zeZxbpQcHpWWpEss/1SdJgOBU4fojX2Yc0gO9FuojwV7NFWn8GnCKl
-3Ic0t++PG953bVZXXyFNyqwoW00FQ+Xt7Dzgf7PrNwHnZouAbswxwOVCiKeAu0l7TnYj/QGeL6UM
-pZRrgW7SnJhH1F5fSvkaaderlr3OQaQtvydIA+I7sufvASzM3uM9pCsCPA8IIcS9pIsA/8dGyneN
-lDKWUi4nDRCHkiZMvjB7vYeAJtJWYgI8uYm8svdk/y4FnpdSrpNSlrLP1p49pg255UBHAtdLKRMp
-ZZV0xZOjs/d/Xkq5Ilth/AWgY4jtn5NS/jW7/kvSQH8A8KiUspZ0/5rsNWt+CiClvJP0QGOo11WU
-LaK6SZW3pax1cSIwRwhxCekPextw+iY204EjpZS92Wt0kSYkPhXwGp5XaxUlDDygDBte5/tSyu9l
-r9NOuvDsR4CbpJSXZPc3A6aUsjdrNR6blflJIcRMKWXfoPJFg8oaknaNnl3rKswGtawHziJdbWBj
-gobr4Uaf9eZ0BgZNnTd+V9yG+xOGDq6N721ktwcfpGsM/K0aXA8RirKVVMtQebs6B7hfSrmTlHJX
-KeUupIs/X0j6g1trITZen0/arUcWnJ4hbWltrIV0P/BBIYQmhNiBtOWXZK/zQSFEITtveTPpSvd/
-Bt4rhOgUQmikLZxLhBDvBm6UUt5Fej6xRHrespEGfCAr286kLc+Hs/f6RHb/DsBTwE6bKPO2Nh/4
-sBBCF0I0kQbhWgt5c+wthNgru34eaYt8IXBw9jkhXR1hfsM2ZwMIId4L/H2IgwZF2WIqGCpvV+cC
-Vw267yrSLrgHgZ8JIeYCfwK+mE29uJj0R/gZ4DekLa4SQ48STUiD2TrSLsAbydapzLrv/kD6o/4c
-8JSU8gYp5bPAZaQ/7M9nr/NfwH1ARQixKNvmD1LKRUO8X7MQ4nHgTuBjUsqe7PXyQojngAdI1/Z7
-dSNlHvx6DPG8ZNBlqPsb77uadBDNM8CTwG1SytsGvcfg92y0BvhG9tknAF+TUq4hDYC3CCGeJx2o
-c2HDNodn3cL/RjpISFG2mlrCSVFGgWx+3z1SypuGuyzbSjaa9J5sANLmbrMEOCgLmIqyzaiWoaIo
-w2lLj8bV0bvyllAtQ0VRFGXMUy1DRVEUZcxTwVBRFEUZ81QwVBRFUcY8FQwVRVGUMU8FQ0VRFGXM
-U8FQURRFGfP+P520hwwkbJyiAAAAAElFTkSuQmCC
-"
-&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;If you could not find Brazil in any of those graphs, or if you did find it and
-saw the numbers, you now understand the need for more workshops!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[10]:&lt;/div&gt;
-
-&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
-
-&lt;small&gt;
-&lt;p&gt; This post was written as an IPython notebook.  It is available for
-&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
-notebooks/2015-09-14-SWC.ipynb"&gt;download&lt;/a&gt; or as a static
-&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
-python4oceanographers/downloads/notebooks/2015-09-14-SWC.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
 alt="Creative Commons License" style="border-width:0"
