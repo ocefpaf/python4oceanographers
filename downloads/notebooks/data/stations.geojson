@@ -1,0 +1,380 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          -82.78,
+          27.2
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-green.png",
+        "name": "USFCMS C11 Bottom Mount",
+        "popupContent": "Less than 20 miles west off the coast of Osprey Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.64,
+          27.3
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-green.png",
+        "name": "USF CMS C15 Bottom Mount",
+        "popupContent": "About 4 miles west off the coast of South Lido County Park Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.3,
+          33.9
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-orange.png",
+        "name": "Onslow Bay 27B",
+        "popupContent": "OB27B30M"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.36,
+          34.11
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-orange.png",
+        "name": "Onslow Bay 200-200 Ledge",
+        "popupContent": "OB200-200Ledge"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.76,
+          34.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-orange.png",
+        "name": "Carolina Beach Ledge",
+        "popupContent": "CBLedge"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.87,
+          33.96
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/tri-orange.png",
+        "name": "Fort Fisher Ledge",
+        "popupContent": "FortFishLedge"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.8702,
+          31.4027
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/circ-green.png",
+        "name": "UGA Seafloor pH sensor",
+        "popupContent": "UGA Seafloor pH sensor"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.76,
+          27.601
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-yellow.png",
+        "name": "Egmont Key",
+        "popupContent": "Tampa Bay"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -81.881,
+          26.40448333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "Big Carlos Pass Station",
+        "popupContent": "Big Carlos Pass Bridge between the cities of Fort Meyers Beach and Bonita Springs, Fl"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.69173333,
+          27.73608333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "Clam Bayou Station",
+        "popupContent": "South Clam Bayou. Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.80115,
+          28.15325
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "Fred Howard Park Station",
+        "popupContent": "Fred Howard Park Coastal Station;Howard Park Causeway Lift Bridge Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -81.09573333,
+          25.08435
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "Northwest Florida Bay Station",
+        "popupContent": "SSW of Cape Sable, Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -84.2905,
+          30.06011667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "Shellpoint Water Level Station",
+        "popupContent": "Shell Point Beach Park"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.76993333,
+          27.6775
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-green.png",
+        "name": "USFCMS C21 Coastal Station",
+        "popupContent": "About 2 miles west off the coast of Pass A Grille Historic District Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.9,
+          32.783
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/shore_station-orange.png",
+        "name": "Charleston Harbor",
+        "popupContent": "Charleston Harbor"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.71,
+          34.13
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Onslow Bay 18M",
+        "popupContent": "ILM2"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.35,
+          33.98
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Onslow Bay 30M",
+        "popupContent": "ILM3"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -78.489,
+          33.848
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Sunset Beach Bouy 2",
+        "popupContent": "Nearshore Sunset, NC"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.62,
+          32.8
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Capers Island Buoy 2",
+        "popupContent": "Nearshore Charleston/Capers Island"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.41,
+          32.28
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Fripp Island Bouy 2",
+        "popupContent": "Nearshore Beaufort/Fripp Island, SC"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -76.9525,
+          34.21083333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "Lejune Buoy 3",
+        "popupContent": "Offshore Camp Lejune, NC"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.92616667,
+          27.16916667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "USF CMS C10 Mooring",
+        "popupContent": "Less than 30 miles west off the coast of Osprey Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.72166667,
+          27.49833333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "USFCMS C12 Mooring",
+        "popupContent": "About 70 miles west off the coast of Bradenton Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.07991667,
+          26.05191667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "USFCMS C13 Mooring",
+        "popupContent": "About 70 miles west off the coast of Naples Florida"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.86,
+          31.4
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "icon": "https://raw.githubusercontent.com/ocefpaf/secoora_assets_map/gh-pages/secoora_icons/buoy-green.png",
+        "name": "NOAA OA Gray's Reef Mooring",
+        "popupContent": "NDBC Grays Reef OA Buoy"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}
