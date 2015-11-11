@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-11-09T17:14:00-02:00</updated><entry><title>Converting Excel data to valid GeoJSON</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/" rel="alternate"></link><updated>2015-11-09T17:14:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-11-09:blog/2015/11/09/xml2geojson/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-11-09T18:35:00-02:00</updated><entry><title>Converting Excel data to valid GeoJSON</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/" rel="alternate"></link><updated>2015-11-09T18:35:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-11-09:blog/2015/11/09/xml2geojson/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -8,14 +8,14 @@
 &lt;p&gt;In the previous post we created an interactive map using two &lt;a href="http://geojson.org/"&gt;GeoJSON&lt;/a&gt; files.
 In this post we will show how to create those files.&lt;/p&gt;
 &lt;p&gt;First we had to read the original Excel tables.  We known that &lt;code&gt;pandas&lt;/code&gt;+&lt;code&gt;xlrd&lt;/code&gt; can take care of that easily.
-The next challenge was to create a GeoJSON Polygon, for the HF-radar range radius, based on the angle and range information.
-The range radius looks like a wedge, so we used the matplolib&amp;#39;s &lt;a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge"&gt;Wedge&lt;/a&gt; path and
-exported the points as a polygon using the &lt;a href="https://pypi.python.org/pypi/geojson/"&gt;geojson&lt;/a&gt; module.  Piece of cake.&lt;/p&gt;
-&lt;p&gt;The last two problems we need to solve were: (1) we needed to ensure that people on Windows and Linux could run the script using the Anaconda distribution and obtain the same results; (2) we make use of &lt;a href="https://pypi.python.org/pypi/Fiona"&gt;fiona&lt;/a&gt; to save shapefiles, but the fiona module shipped in the default channel is broken.
+The next challenge was to create a GeoJSON &lt;code&gt;Polygon&lt;/code&gt;, for the HF-radar range radius, based on the angle and range information.
+The range radius looks like a wedge, so we used the matplolib&amp;#39;s &lt;a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge"&gt;Wedge&lt;/a&gt; patch and
+exported the points as a polygon using the &lt;a href="https://pypi.python.org/pypi/geojson/"&gt;geojson&lt;/a&gt; module.  Piece of cake ;-)&lt;/p&gt;
+&lt;p&gt;The last two problems we need to solve were: (1) we needed to ensure that people on Windows and Linux could run the script using the Anaconda distribution and obtain the same results; (2) use &lt;a href="https://pypi.python.org/pypi/Fiona"&gt;fiona&lt;/a&gt; to save shapefiles.  The problem is that the fiona module shipped in the default channel is broken.
 They ship it with gdal 2.0.0 and fiona does not work with gdal 2.0 &lt;a href="https://github.com/Toblerity/Fiona/issues/239"&gt;yet&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;We solved both problems with one tool: &lt;a href="https://github.com/pelson/conda-execute"&gt;conda-execute&lt;/a&gt;!
-With conda-execute we can ensure that anyone executing the script will end up with the exact same environment we originally planned.  And we can specify the gdal version for that environment &amp;quot;hard-coding&amp;quot; the fiona work-around in the script itself.&lt;/p&gt;
-&lt;p&gt;Take a look at the final script below, see the GeoJSONs files &lt;a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/hfradar.geojson"&gt;hfradar.geojson&lt;/a&gt; and &lt;a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/stations.geojson"&gt;stations.geojson&lt;/a&gt; rendered on GitHub, and check the final result in the &lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/"&gt;previous blog post&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We solved both problems with one tool: &lt;a href="https://github.com/pelson/conda-execute"&gt;conda-execute&lt;/a&gt;.
+With conda-execute we can ensure that anyone running the script will end up with the exact same environment we originally planned.  And we can specify the gdal version for that environment &amp;quot;hard-coding&amp;quot; the fiona work-around in the script itself.&lt;/p&gt;
+&lt;p&gt;Take a look at the final script below.  You can also see the GeoJSONs files &lt;a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/hfradar.geojson"&gt;hfradar.geojson&lt;/a&gt; and &lt;a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/stations.geojson"&gt;stations.geojson&lt;/a&gt; rendered on GitHub, and check the final result out in the &lt;a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/"&gt;previous blog post&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;PS: Be sure to read the &lt;a href="https://pelson.github.io/2015/conda_execute/"&gt;conda_execute&lt;/a&gt; blog post.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
@@ -74,13 +74,10 @@ platforms_icons = dict({&lt;span class="string"&gt;"Fixed Surface Buoy"&lt;/span
                         &lt;span class="string"&gt;"HFRadar"&lt;/span&gt;: &lt;span class="string"&gt;"hfradar"&lt;/span&gt;})
 
 icon = (url + &lt;span class="string"&gt;"{platform}-{status}.png"&lt;/span&gt;).format
-&lt;span class="comment"&gt;# The values are from a GMT script @vembus provided.&lt;/span&gt;
-&lt;span class="comment"&gt;# The comments values were used by @kwilcox in&lt;/span&gt;
-&lt;span class="comment"&gt;# https://github.com/SECOORA/static_assets/blob/master/hfradar/hfradar_csv_to_gis.py&lt;/span&gt;
-ranges = dict({&lt;span class="number"&gt;5&lt;/span&gt;: &lt;span class="number"&gt;190&lt;/span&gt;,  &lt;span class="comment"&gt;# 225&lt;/span&gt;
-               &lt;span class="number"&gt;8&lt;/span&gt;: &lt;span class="number"&gt;160&lt;/span&gt;,  &lt;span class="comment"&gt;# 175&lt;/span&gt;
-               &lt;span class="number"&gt;12&lt;/span&gt;: &lt;span class="number"&gt;130&lt;/span&gt;,  &lt;span class="comment"&gt;# 124&lt;/span&gt;
-               &lt;span class="number"&gt;16&lt;/span&gt;: &lt;span class="number"&gt;100&lt;/span&gt;})  &lt;span class="comment"&gt;# 100&lt;/span&gt;
+ranges = dict({&lt;span class="number"&gt;5&lt;/span&gt;: &lt;span class="number"&gt;190&lt;/span&gt;,
+               &lt;span class="number"&gt;8&lt;/span&gt;: &lt;span class="number"&gt;160&lt;/span&gt;,
+               &lt;span class="number"&gt;12&lt;/span&gt;: &lt;span class="number"&gt;130&lt;/span&gt;,
+               &lt;span class="number"&gt;16&lt;/span&gt;: &lt;span class="number"&gt;100&lt;/span&gt;})
 
 
 &lt;span class="function"&gt;&lt;span class="keyword"&gt;def&lt;/span&gt; &lt;span class="title"&gt;wedge&lt;/span&gt;&lt;span class="params"&gt;(radar)&lt;/span&gt;:&lt;/span&gt;
@@ -119,6 +116,7 @@ ranges = dict({&lt;span class="number"&gt;5&lt;/span&gt;: &lt;span class="number
     - SpreadAngle
 
     """&lt;/span&gt;
+    &lt;span class="comment"&gt;# https://github.com/mapbox/simplestyle-spec/&lt;/span&gt;
     defaults = dict(stroke=&lt;span class="string"&gt;"#aeccae"&lt;/span&gt;,
                     stroke_width=&lt;span class="number"&gt;1&lt;/span&gt;,
                     stroke_opacity=&lt;span class="number"&gt;0.5&lt;/span&gt;,

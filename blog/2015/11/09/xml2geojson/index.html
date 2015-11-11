@@ -1758,7 +1758,7 @@ jQuery(document).ready(function($) {
   <article class="hentry" role="article">
 <header>
       <h1 class="entry-title">Converting Excel data to valid GeoJSON</h1>
-      <p class="meta"><time datetime="2015-11-09T17:14:00" pubdate>Nov 09, 2015</time></p>
+      <p class="meta"><time datetime="2015-11-09T18:35:00" pubdate>Nov 09, 2015</time></p>
 </header>
 
   <div class="entry-content"><p>
@@ -1770,14 +1770,14 @@ jQuery(document).ready(function($) {
 <p>In the previous post we created an interactive map using two <a href="http://geojson.org/">GeoJSON</a> files.
 In this post we will show how to create those files.</p>
 <p>First we had to read the original Excel tables.  We known that <code>pandas</code>+<code>xlrd</code> can take care of that easily.
-The next challenge was to create a GeoJSON Polygon, for the HF-radar range radius, based on the angle and range information.
-The range radius looks like a wedge, so we used the matplolib&#39;s <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge">Wedge</a> path and
-exported the points as a polygon using the <a href="https://pypi.python.org/pypi/geojson/">geojson</a> module.  Piece of cake.</p>
-<p>The last two problems we need to solve were: (1) we needed to ensure that people on Windows and Linux could run the script using the Anaconda distribution and obtain the same results; (2) we make use of <a href="https://pypi.python.org/pypi/Fiona">fiona</a> to save shapefiles, but the fiona module shipped in the default channel is broken.
+The next challenge was to create a GeoJSON <code>Polygon</code>, for the HF-radar range radius, based on the angle and range information.
+The range radius looks like a wedge, so we used the matplolib&#39;s <a href="http://matplotlib.org/api/patches_api.html#matplotlib.patches.Wedge">Wedge</a> patch and
+exported the points as a polygon using the <a href="https://pypi.python.org/pypi/geojson/">geojson</a> module.  Piece of cake ;-)</p>
+<p>The last two problems we need to solve were: (1) we needed to ensure that people on Windows and Linux could run the script using the Anaconda distribution and obtain the same results; (2) use <a href="https://pypi.python.org/pypi/Fiona">fiona</a> to save shapefiles.  The problem is that the fiona module shipped in the default channel is broken.
 They ship it with gdal 2.0.0 and fiona does not work with gdal 2.0 <a href="https://github.com/Toblerity/Fiona/issues/239">yet</a>.</p>
-<p>We solved both problems with one tool: <a href="https://github.com/pelson/conda-execute">conda-execute</a>!
-With conda-execute we can ensure that anyone executing the script will end up with the exact same environment we originally planned.  And we can specify the gdal version for that environment &quot;hard-coding&quot; the fiona work-around in the script itself.</p>
-<p>Take a look at the final script below, see the GeoJSONs files <a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/hfradar.geojson">hfradar.geojson</a> and <a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/stations.geojson">stations.geojson</a> rendered on GitHub, and check the final result in the <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/">previous blog post</a>.</p>
+<p>We solved both problems with one tool: <a href="https://github.com/pelson/conda-execute">conda-execute</a>.
+With conda-execute we can ensure that anyone running the script will end up with the exact same environment we originally planned.  And we can specify the gdal version for that environment &quot;hard-coding&quot; the fiona work-around in the script itself.</p>
+<p>Take a look at the final script below.  You can also see the GeoJSONs files <a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/hfradar.geojson">hfradar.geojson</a> and <a href="https://github.com/ocefpaf/secoora_assets_map/blob/gh-pages/data/stations.geojson">stations.geojson</a> rendered on GitHub, and check the final result out in the <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/">previous blog post</a>.</p>
 <p>PS: Be sure to read the <a href="https://pelson.github.io/2015/conda_execute/">conda_execute</a> blog post.</p>
 </div>
 </div>
@@ -1836,13 +1836,10 @@ platforms_icons = dict({<span class="string">"Fixed Surface Buoy"</span>: <span 
                         <span class="string">"HFRadar"</span>: <span class="string">"hfradar"</span>})
 
 icon = (url + <span class="string">"{platform}-{status}.png"</span>).format
-<span class="comment"># The values are from a GMT script @vembus provided.</span>
-<span class="comment"># The comments values were used by @kwilcox in</span>
-<span class="comment"># https://github.com/SECOORA/static_assets/blob/master/hfradar/hfradar_csv_to_gis.py</span>
-ranges = dict({<span class="number">5</span>: <span class="number">190</span>,  <span class="comment"># 225</span>
-               <span class="number">8</span>: <span class="number">160</span>,  <span class="comment"># 175</span>
-               <span class="number">12</span>: <span class="number">130</span>,  <span class="comment"># 124</span>
-               <span class="number">16</span>: <span class="number">100</span>})  <span class="comment"># 100</span>
+ranges = dict({<span class="number">5</span>: <span class="number">190</span>,
+               <span class="number">8</span>: <span class="number">160</span>,
+               <span class="number">12</span>: <span class="number">130</span>,
+               <span class="number">16</span>: <span class="number">100</span>})
 
 
 <span class="function"><span class="keyword">def</span> <span class="title">wedge</span><span class="params">(radar)</span>:</span>
@@ -1881,6 +1878,7 @@ ranges = dict({<span class="number">5</span>: <span class="number">190</span>,  
     - SpreadAngle
 
     """</span>
+    <span class="comment"># https://github.com/mapbox/simplestyle-spec/</span>
     defaults = dict(stroke=<span class="string">"#aeccae"</span>,
                     stroke_width=<span class="number">1</span>,
                     stroke_opacity=<span class="number">0.5</span>,
@@ -2048,7 +2046,7 @@ rel="dct:source">http://ocefpaf.github.io/</a>.
   <span class="byline author vcard">
     Posted by <span class="fn">Filipe Fernandes</span>
   </span>
-<time datetime="2015-11-09T17:14:00" pubdate>Nov 09, 2015</time></p><div class="sharing">
+<time datetime="2015-11-09T18:35:00" pubdate>Nov 09, 2015</time></p><div class="sharing">
   <a href="http://twitter.com/share" class="twitter-share-button" data-url="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/" data-via="ocefpaf" data-counturl="ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/" >Tweet</a>
   <div class="g-plusone" data-size="medium"></div>
     <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
