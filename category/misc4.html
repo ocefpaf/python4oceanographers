@@ -1758,6 +1758,33 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/13/profiles/">Open figures</a>
+      </h1>
+      <p class="meta"><time datetime="2015-04-13T12:56:00" pubdate>Apr 13, 2015</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Warning:</strong> This post is written in Portuguese!</p>
+<p>Recentemente tive que re-encontrar e re-fazer algumas figuras que fiz quando
+ensinava
+<a href="http://ocefpaf.github.io/descriptive_oceanography/">Introdução à Oceanografia Física Descritiva</a>,
+para evitar esse problema no futuro resolvi seguir meu
+<a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/01/20/cc_figures/">próprio exemplo</a>
+e colocar mais algumas das figuras que fiz online e sob licença
+<a href="http://www.creativecommons.org.br/">Creative Commons</a></p>
+<p>A ...</p></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/13/profiles/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/04/06/bathymetry/">Using iris trajectory class to extract a bathymetric profile</a>
       </h1>
       <p class="meta"><time datetime="2015-04-06T20:34:00" pubdate>Apr 06, 2015</time></p>
@@ -2003,57 +2030,6 @@ so versatile that we can build a compass like function very quickly.</p>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/09/compass/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/">Plotting shapefiles with cartopy and folium</a>
-      </h1>
-      <p class="meta"><time datetime="2015-02-02T17:21:00" pubdate>Feb 02, 2015</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>First we will use cartopy&#39;s
-<a href="http://scitools.org.uk/cartopy/docs/latest/tutorials/using_the_shapereader.html">shapereader</a> 
-to download (and cache) states shapefile with 50 meters resolution from the 
-<a href="http://www.naturalearthdata.com/">NaturalEarth</a>.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">shapereader</span>
-
-
-<span class="n">kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s">&#39;50m&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="s">&#39;cultural&#39;</span><span class="p">,</span>
-          <span class="n">name</span><span class="o">=</span><span class="s">&#39;admin_1_states_provinces&#39;</span><span class="p">)</span>
-
-<span class="n">states_shp</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
-<span class="n">shp</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">states_shp</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now let&#39;s create a list of ...</p></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2015/02/02/cartopy_folium_shapefile/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc5.html">&larr; Older</a>
 
@@ -2065,6 +2041,9 @@ to download (and cache) states shapefile with 50 meters resolution from the
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/">Converting Excel data to valid GeoJSON</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/">Custom icons in folium</a>
       </li>
       <li class="post">
@@ -2075,9 +2054,6 @@ to download (and cache) states shapefile with 50 meters resolution from the
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">Optimizing code for iso-surfaces using Fortran, Cython, and Numba</a>
       </li>
     </ul>
   </section>

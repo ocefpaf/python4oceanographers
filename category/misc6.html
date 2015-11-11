@@ -1758,6 +1758,39 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Filtering out tides with pandas, iris and numpy</a>
+      </h1>
+      <p class="meta"><time datetime="2014-11-24T16:23:00" pubdate>Nov 24, 2014</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a short post on how to filter out tides from a time-series using
+<code>pandas</code>, <code>iris</code>, and <code>numpy.convolve</code>.</p>
+<p>Our data consists of hourly measurements of currents, temperature and salinity as follows:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">read_table</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">&#39;https://raw.githubusercontent.com/ocefpaf/python4oceanographers ...</span></pre></div></div></div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/24/filter/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/11/17/networkX/">Analyzing software dependencies with networkX</a>
       </h1>
       <p class="meta"><time datetime="2014-11-17T18:54:00" pubdate>Nov 17, 2014</time></p>
@@ -1977,32 +2010,6 @@ an Sea Surface Temperature (SST) to see if we can obtain something useful.</p>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/22/edge_detection/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Stick Plots with matplotlib</a>
-      </h1>
-      <p class="meta"><time datetime="2014-09-15T13:51:00" pubdate>Sep 15, 2014</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This short post consists of some notes on how to plot a stick plot with
-matplotlib.  The function I used below is mostly based on
-<a href="https://www.mail-archive.com/matplotlib-users@lists.sourceforge.net/msg18051.html">this</a> message from the mailing list.</p>
-<p>The main differences are:</p>
-<ul>
-<li><p>Plot customization via <code>**kw</code>.</p>
-</li>
-<li><p>Ensure that the user does not change the <code>angles</code> option to ...</p></li></ul></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2014/09/15/stick_plot/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/category/misc7.html">&larr; Older</a>
 
@@ -2014,6 +2021,9 @@ matplotlib.  The function I used below is mostly based on
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/">Converting Excel data to valid GeoJSON</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/02/icons/">Custom icons in folium</a>
       </li>
       <li class="post">
@@ -2024,9 +2034,6 @@ matplotlib.  The function I used below is mostly based on
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/05/isosurfaces/">Optimizing code for iso-surfaces using Fortran, Cython, and Numba</a>
       </li>
     </ul>
   </section>
