@@ -1,4 +1,4 @@
-Title: Displaying a field of arrows in folium
+Title: Displaying a field of arrows with folium
 date:  2015-11-16 12:36
 comments: true
 slug: folium_quiver
