@@ -1758,6 +1758,39 @@ jQuery(document).ready(function($) {
   		<article>
 <header>
       <h1 class="entry-title">
+        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">CTD-processing</a>
+      </h1>
+      <p class="meta"><time datetime="2013-07-29T03:43:00" pubdate>Jul 29, 2013</time></p>
+</header>
+
+  <div class="entry-content"><p>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>I&#39;m re-factoring the
+<a href="http://code.google.com/p/python-oceans/source/checkout/">python-oceans</a>
+module.  The first step was to create another module just for the CTD tools
+(<a href="https://github.com/ocefpaf/python-ctd">python-ctd</a>)</p>
+<p>The new module is already at <code>PyPI</code> and the API will remain the same as before.
+To install it type:</p>
+<pre><code class="language-{.bash}"><span class="title">pip</span> install ctd
+</code></pre>
+<p>Now we can import the module:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In ...</div></div></div></p></div>
+  <footer>
+    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/29/python-ctd/">Read On &crarr;</a>
+  </footer>
+  		</article>
+  		<article>
+<header>
+      <h1 class="entry-title">
         <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/07/22/map_inset/">Basemap inset</a>
       </h1>
       <p class="meta"><time datetime="2013-07-22T13:43:00" pubdate>Jul 22, 2013</time></p>
@@ -2037,37 +2070,6 @@ to read CTD (also ...</p></div></div></div></p></div>
     <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/05/27/CTD2DataFrame/">Read On &crarr;</a>
   </footer>
   		</article>
-  		<article>
-<header>
-      <h1 class="entry-title">
-        <a href="https://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/">Dealing with spiky data</a>
-      </h1>
-      <p class="meta"><time datetime="2013-05-20T22:58:00" pubdate>May 20, 2013</time></p>
-</header>
-
-  <div class="entry-content"><p>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The first steps to clean a data-set is to remove outliers (or spikes).  Some
-spikes are easy to spot with a simple histogram of the data.  Let&#39;s take a look
-at a velocity time-series with some bad data.</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight-ipynb"><pre class="ipynb"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt ...</span></pre></div></div></div></div></div></p></div>
-  <footer>
-    <a rel="full-article" href="https://ocefpaf.github.io/python4oceanographers/blog/2013/05/20/spikes/">Read On &crarr;</a>
-  </footer>
-  		</article>
 <div class="pagination">
     <a class="prev" href="https://ocefpaf.github.io/python4oceanographers/author/filipe-fernandes14.html">&larr; Older</a>
 
@@ -2079,6 +2081,9 @@ at a velocity time-series with some bad data.</p>
     <h1>Recent Posts</h1>
     <ul id="recent_posts">
       <li class="post">
+          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/16/folium_quiver/">Displaying a field of arrows in folium</a>
+      </li>
+      <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/09/xml2geojson/">Converting Excel data to valid GeoJSON</a>
       </li>
       <li class="post">
@@ -2089,9 +2094,6 @@ at a velocity time-series with some bad data.</p>
       </li>
       <li class="post">
           <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/19/xml/">xml is OK (if you don't have to write or read it)</a>
-      </li>
-      <li class="post">
-          <a href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/12/cython_nogil/">Update on optimizing code for iso-surfaces using cython</a>
       </li>
     </ul>
   </section>
