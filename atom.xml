@@ -1,5 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-11-16T12:36:00-02:00</updated><entry><title>Displaying a field of arrows with folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/16/folium_quiver/" rel="alternate"></link><updated>2015-11-16T12:36:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-11-16:blog/2015/11/16/folium_quiver/</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>python4oceanographers</title><link href="https://ocefpaf.github.io/python4oceanographers/" rel="alternate"></link><link href="http://ocefpaf.github.io/python4oceanographers//atom.xml" rel="self"></link><id>https://ocefpaf.github.io/python4oceanographers/</id><updated>2015-11-23T13:11:00-02:00</updated><entry><title>Desabafo de um Pesquisador</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/23/FAP/" rel="alternate"></link><updated>2015-11-23T13:11:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-11-23:blog/2015/11/23/FAP/</id><summary type="html">&lt;p&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;&lt;em&gt;This guest post was written by Juliana Leonel. She is a Chemical Oceanographer, professor at &lt;a href="https://www.ufba.br/"&gt;UFBA&lt;/a&gt;,
+and Pythonista. The post is about the eternal struggle between Brazilian researchers useless bureaucracy.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;PS: Make sure to check out her &lt;a href="http://www.kickante.com.br/campanhas/por-um-oceano-mais-organico"&gt;crowd-funding&lt;/a&gt; campaign to study Persistent Organic Pollutant.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing text_cell rendered"&gt;
+&lt;div class="prompt input_prompt"&gt;
+&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
+&lt;p&gt;A razão pela qual escrevo é muito simples e, com certeza,
+muitos são os colegas que compartilham do mesmo sentimento: frustração.&lt;/p&gt;
+&lt;p&gt;Como professores/pesquisadores lutamos todos os dia para manter nossas linhas de pesquisa ativas e nossos laboratórios em funcionamento.
+Para isso, no entanto, competir por recursos aplicando para editais das agências de fomento.
+Devemos escrever projetos, reunir o grupo de trabalho,
+fazer parcerias nacionais e internacionais,
+preencher formulários e atender infinitas solicitações de tais agências.&lt;/p&gt;
+&lt;p&gt;E é exatamente aí uma das nossas maiores fontes de frustrações e dores de cabeça:
+todos aqueles que passaram por esse processo sabem o desespero que dá na hora que o sistema online simplesmente começa a apresentar problemas.
+Pior ainda quando você conversa com o serviço de atendimento e eles também não fazem ideia do que está acontecendo!
+Para exemplificar melhor, vou contar uma história que aconteceu comigo recentemente.&lt;/p&gt;
+&lt;p&gt;Durante o processo de preparo/submissão de um projeto para uma agência estadual,
+a FAPESB (Fundação de Amparo à Pesquisa do Estado da Bahia),
+precisei incluir um pesquisador de uma instituição internacional com a qual venho desenvolvendo projetos de pesquisa há algum tempo.
+(Viva! Consegui a tal parceria internacional tanto exigida pelas agências!)
+Para incluí-lo, é mandatório que meu colaborador faça um currículo na plataforma Lattes!!! E depois que fizesse a seu cadastro junto a essa FAPESB.&lt;/p&gt;
+&lt;p&gt;E foi aí que o pesadelo começou...
+Sobre o Lattes (vou citar apenas um dos casos mais curiosos do processo):
+tirando o fato de ser um processo fatídico e demorado mesmo para Brasileiros,
+o sistema Lattes exige informações obrigatórios que parecem não ter explicação de existir.
+Por exemplo, no endereço profissional, além da cidade, país,
+rua e CEP é obrigatório o preenchimento de informações como &lt;strong&gt;bairro&lt;/strong&gt; e &lt;strong&gt;estado&lt;/strong&gt;.
+Apesar de estado ser campo obrigatório o número máximo de caracteres permitido não permite inserir essa informação quando não se mora no Brasil.
+(Seria porque quem montou o sistema foi inocente o suficiente para imaginar que todos os lugares do mundo teriam um
+sistema de abreviação de apenas duas letras?)&lt;/p&gt;
+&lt;p&gt;Mês passado, esse mesmo pesquisador submeteu um projeto, do qual faço parte,
+a uma agência de fomenta do seu país e o único documento que precisou foi meu CV em PDF.
+Porque não podemos simplesmente fazer o mesmo aqui?
+Além de respeito e reciprocidade isso reduziria a perda de tempo que o pesquisador Brasileiro perde em burocracia.&lt;/p&gt;
+&lt;p&gt;Continuando, passamos para o cadastro junto a FAPESB.
+Esse logo de cara já se mostrou um problema:
+apesar de permitir o cadastro de pesquisadores estrangeiros,
+a página só existe em &lt;strong&gt;Português&lt;/strong&gt; - será que só podemos trabalhar com pesquisadores que dominam nossa língua mãe?
+Já tive que preencher o Lattes do meu colaborador, agora tenho que preencher um formulário em nome dele e torcer para ele não se importar de não entender nada.
+Continuando no processo, depois de preencher todo os dados solicitados,
+o sistema responde como se tivesse tudo OK.&lt;/p&gt;
+&lt;p&gt;Satisfeita que depois de mais de 8 horas em função disso conseguiria incluir o pesquisador no meu projeto sou surpreendida com outra incongruência:
+assim que digitei o número de passaporte dele no formulário do projeto recebei uma mensagem que ele estava com pendências no formulário de cadastro com a FAPESB.
+Momento de desespero: como assim se o cadastro foi finalizado sem maiores problemas?
+Entrei no sistema, chequei as informações e achei no menu uma listagem de pendências que devem ser resolvidas para que o cadastro seja finalizado.
+Aí fica mais uma pergunta: por que essa lista não apareceu durante o processo de cadastramento?&lt;/p&gt;
+&lt;p&gt;Mais um tempo despendido tentando arrumar essas pendências (entre elas, cadastrar instituição de pesquisa do pesquisador,
+inserir telefone de contato, o nome do meio não pode ser abreviado - por quê????)
+Quando terminei descobri que o sistema não esta aceitando as novas informações.
+Para tudo e vamos ligar para a FAPESB!
+Na primeira ligação recebemos a promessa que o problema seria resolvido logo.
+Como não aconteceu, ligamos novamente algumas horas depois e ouvimos algumas coisas que merecem destaque:
+a) &amp;quot;ao invés do telefone profissional dele (pesquisador internacional) vamos colocar o seu aqui do Brasil que pode ser que funcione;
+e aí eu volto a perguntar &amp;quot;Por que é exigido um cadastro se o próprio órgão me recomenda a mentir sobre os dados na ficha de cadastro das pessoa?
+b) &amp;quot;realmente, o sistema parece que não esta gravando as informações, mas não sei explicar o porquê, continue tentando.
+Depois dessa resposta fui obrigada a deixar parte da educação de lado.
+Depois da explosão recebi a resposta foi &amp;quot;Vamos averiguar o que está acontecendo.&amp;quot;
+Encerrei a ligação com a certeza que o problema não seria resolvido em breve.
+Para minha surpresa (e alívio) se resolver minutos depois.
+Novamente: por que a atendente só se prontificou em resolver o problema apenas depois que eu, digamos, não fui muito educada com ela?
+Temos mesmo que gritar para conseguir preencher um simples formulário?&lt;/p&gt;
+&lt;p&gt;Uma das definições de burocracia é &amp;quot;algo muito complexo,
+ineficiente e inflexível.&amp;quot;
+Será que não passou da hora de termos isso em mente quando vamos criar sistemas e produtos?
+Já temos tantos atribuições em nossa vida profissional:
+aula, pesquisa, orientações, publicações, comissões etc.
+Que tal se o sistema, ao invés de um entrave, fosse uma ferramenta de auxílio?*&lt;/p&gt;
+&lt;p&gt;* Leia-se auxílio ao professor/pesquisador e não a burocratas e acumuladores de dados para sem fins claros.&lt;/p&gt;
+&lt;p&gt;&amp;ndash; &lt;a href="http://juoceano.github.io/personalpage/"&gt;Juliana Leonel&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="cell border-box-sizing code_cell rendered"&gt;
+&lt;div class="input"&gt;
+&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
+&lt;div class="inner_cell"&gt;
+    &lt;div class="input_area"&gt;
+&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="output_wrapper"&gt;
+&lt;div class="output"&gt;
+
+
+&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[3]:&lt;/div&gt;
+
+&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
+
+&lt;small&gt;
+&lt;p&gt; This post was written as an IPython notebook.  It is available for
+&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
+notebooks/2015-11-23-FAP.ipynb"&gt;download&lt;/a&gt; or as a static
+&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
+python4oceanographers/downloads/notebooks/2015-11-23-FAP.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
+alt="Creative Commons License" style="border-width:0"
+src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
+xmlns:dct="http://purl.org/dc/terms/"
+property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
+xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
+property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
+licensed under a &lt;a rel="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
+Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
+xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
+rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
+ 
+&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>Displaying a field of arrows with folium</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/11/16/folium_quiver/" rel="alternate"></link><updated>2015-11-16T12:36:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-11-16:blog/2015/11/16/folium_quiver/</id><summary type="html">&lt;p&gt;
 &lt;div class="cell border-box-sizing text_cell rendered"&gt;
 &lt;div class="prompt input_prompt"&gt;
 &lt;/div&gt;
@@ -2483,507 +2614,6 @@ On the other hand 139 mentions of Russia sounds about right ;-)&lt;/p&gt;
 notebooks/2015-10-26-007.ipynb"&gt;download&lt;/a&gt; or as a static
 &lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
 python4oceanographers/downloads/notebooks/2015-10-26-007.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
-alt="Creative Commons License" style="border-width:0"
-src="http://i.creativecommons.org/l/by-sa/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;&lt;span
-xmlns:dct="http://purl.org/dc/terms/"
-property="dct:title"&gt;python4oceanographers&lt;/span&gt; by &lt;a
-xmlns:cc="http://creativecommons.org/ns#" href="http://ocefpaf.github.io/"
-property="cc:attributionName" rel="cc:attributionURL"&gt;Filipe Fernandes&lt;/a&gt; is
-licensed under a &lt;a rel="license"
-href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;Creative Commons
-Attribution-ShareAlike 4.0 International License&lt;/a&gt;.&lt;br /&gt;Based on a work at &lt;a
-xmlns:dct="http://purl.org/dc/terms/" href="http://ocefpaf.github.io/"
-rel="dct:source"&gt;http://ocefpaf.github.io/&lt;/a&gt;.
- 
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;&lt;/p&gt;</summary></entry><entry><title>xml is OK (if you don't have to write or read it)</title><link href="https://ocefpaf.github.io/python4oceanographers/blog/2015/10/19/xml/" rel="alternate"></link><updated>2015-10-19T17:04:00-02:00</updated><author><name>Filipe Fernandes</name></author><id>tag:https://ocefpaf.github.io/python4oceanographers,2015-10-19:blog/2015/10/19/xml/</id><summary type="html">&lt;p&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;DISCLAIMER: most of the code below was stolen from the old,
-but still awesome and very useful &lt;a href="https://pypi.python.org/pypi/cfchecker/2.0.9"&gt;cfchecker&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I am writing a library that needs to &amp;quot;understand&amp;quot; the CF-conventions standard names &lt;a href="http://cfconventions.org/Data/cf-standard-names/29/src/cf-standard-name-table.xml"&gt;table&lt;/a&gt;.  More specifically I need to know the variable &lt;code&gt;standard_name&lt;/code&gt; and its corresponding &lt;code&gt;units&lt;/code&gt;.
-The format of choice for the standard names table is the &lt;a href="https://en.wikipedia.org/wiki/XML"&gt;Extensible Markup Language&lt;/a&gt; (XML).&lt;/p&gt;
-&lt;p&gt;I don&amp;#39;t like XML and avoid it as much as I can,
-but in a case like this there is no way around.  Or is there?&lt;/p&gt;
-&lt;p&gt;This post is just a few notes for my future self on how to parse the CF standard names table using Python.&lt;/p&gt;
-&lt;p&gt;Let&amp;#39;s start with a boilerplate class to parse the table and construct a dictionary with the &lt;code&gt;standard_name&lt;/code&gt;s as keys and &lt;code&gt;units&lt;/code&gt; as values.&lt;/p&gt;
-&lt;p&gt;(PS: I am sure there are better ways to do this.  So if you are a XML expert feel free to post a better way in the comments section.)&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[3]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;ContentHandler&lt;/span&gt;
-
-&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Remove redundant whitespace from a string.&lt;/span&gt;
-&lt;span class="sd"&gt;    &lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="s"&gt;&amp;#39; &amp;#39;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
-
-
-&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;ConstructDict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ContentHandler&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="sd"&gt;&amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-&lt;span class="sd"&gt;    Parse the xml standard_name table, reading all entries&lt;/span&gt;
-&lt;span class="sd"&gt;    into a dictionary and storing the `standard_name` and the `units`.&lt;/span&gt;
-&lt;span class="sd"&gt;    &lt;/span&gt;
-&lt;span class="sd"&gt;    &amp;quot;&amp;quot;&amp;quot;&lt;/span&gt;
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;__init__&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-        &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-        
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;startElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="c"&gt;# If it&amp;#39;s an entry element, save the id&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;
-
-        &lt;span class="c"&gt;# If it&amp;#39;s the start of a canonical_units element&lt;/span&gt;
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;canonical_units&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;alias&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="nb"&gt;id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;attrs&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;id&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;version_number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;last_modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;&amp;quot;&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;characters&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
-
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;ch&lt;/span&gt;
-
-    &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;endElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="c"&gt;# If it&amp;#39;s the end of the canonical_units element, save the units&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;canonical_units&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inUnitsContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;units&lt;/span&gt;
-            
-        &lt;span class="c"&gt;# If it&amp;#39;s the end of the entry_id element, find the units for the self.alias&lt;/span&gt;
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;entry_id&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inEntryIdContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;this_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;entry_id&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-        &lt;span class="c"&gt;# If it&amp;#39;s the end of the version_number element, save it&lt;/span&gt;
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;version_number&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inVersionNoContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;version_number&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-        &lt;span class="c"&gt;# If it&amp;#39;s the end of the last_modified element, save the last modified date&lt;/span&gt;
-        &lt;span class="k"&gt;elif&lt;/span&gt; &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;last_modified&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;inLastModifiedContent&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
-            &lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;normalize_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="bp"&gt;self&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;last_modified&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;In the cell below we initiate the parser and feed it with the a
-&lt;code&gt;ConstructDict&lt;/code&gt; instance.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[4]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;make_parser&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;xml.sax.handler&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;feature_namespaces&lt;/span&gt;
-
-&lt;span class="n"&gt;parser&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;make_parser&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setFeature&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;feature_namespaces&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;std_name_dict&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;ConstructDict&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setContentHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;standard_name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;./data/cf-standard-name-table.xml&amp;#39;&lt;/span&gt;
-&lt;span class="n"&gt;parser&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;parse&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;standard_name&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Now we can access the table as a python dictionary.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[5]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sea_water_potential_temperature&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[5]:&lt;/div&gt;
-
-
-&lt;div class="output_text output_subarea output_pyout"&gt;
-&lt;pre&gt;
-u&amp;apos;K&amp;apos;
-&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[6]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;std_name_dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dict&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;sea_water_salinity&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[6]:&lt;/div&gt;
-
-
-&lt;div class="output_text output_subarea output_pyout"&gt;
-&lt;pre&gt;
-u&amp;apos;1e-3&amp;apos;
-&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Cool we have a &lt;code&gt;{standard_name: units}&lt;/code&gt; dictionary!&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;I also need some way to parse and validate the CF &lt;code&gt;formula_terms&lt;/code&gt;.
-To do that I need to steal a little bit more from &lt;code&gt;cfchecker&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;In the cells below there are some snippets to,&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;identify a coordinate variable,&lt;/li&gt;
-&lt;li&gt;check for valid &lt;code&gt;formula_terms&lt;/code&gt;,&lt;/li&gt;
-&lt;li&gt;and check is all &lt;code&gt;formula_terms&lt;/code&gt; variables are presented.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[7]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;netCDF4&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;
-
-&lt;span class="n"&gt;url&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;http://tds.marine.rutgers.edu/thredds/dodsC/roms/espresso/2013_da/avg/&amp;#39;&lt;/span&gt;
-       &lt;span class="s"&gt;&amp;#39;ESPRESSO_Real-Time_v2_Averages_Best&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-
-&lt;span class="n"&gt;nc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Dataset&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[8]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;v&lt;/span&gt; &lt;span class="ow"&gt;is&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
-
-&lt;span class="n"&gt;var&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get_variables_by_attributes&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-
-&lt;span class="n"&gt;formula_terms&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;formula_terms&lt;/span&gt;
-&lt;span class="n"&gt;formula_terms&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[8]:&lt;/div&gt;
-
-
-&lt;div class="output_text output_subarea output_pyout"&gt;
-&lt;pre&gt;
-u&amp;apos;s: s_rho C: Cs_r eta: zeta depth: h depth_c: hc&amp;apos;
-&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[9]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;dimensions&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;var&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Hurray I am a coordinate variable!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;
-Hurray I am a coordinate variable!
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[10]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;re&lt;/span&gt;
-
-&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^([a-zA-Z0-9_]+: +[a-zA-Z0-9_]+( +)?)*$&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;And I have a valid `formula_terms`!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;
-And I have a valid &amp;#96;formula_terms&amp;#96;!
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[11]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;formula_terms&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;re&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;^[a-zA-Z0-9_]+:$&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-        &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;x&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;nc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;variables&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-            &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;{} is present in the file!&amp;quot;&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;x&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;
-s_rho is present in the file!
-Cs_r is present in the file!
-zeta is present in the file!
-h is present in the file!
-hc is present in the file!
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing text_cell rendered"&gt;
-&lt;div class="prompt input_prompt"&gt;
-&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-&lt;div class="text_cell_render border-box-sizing rendered_html"&gt;
-&lt;p&gt;Now I have all the pieces I need to build a CF-convention &lt;code&gt;formula_terms&lt;/code&gt; parser.&lt;/p&gt;
-&lt;p&gt;With that information I can improve &lt;a href="https://github.com/ioos/odvc"&gt;odvc&lt;/a&gt; to automatically find which formula should be used and correctly determine the derived &lt;code&gt;z&lt;/code&gt; variable units. All while avoiding dealing with this:&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[12]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="o"&gt;!&lt;/span&gt;head -20 ./data/cf-standard-name-table.xml
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt"&gt;&lt;/div&gt;
-&lt;div class="output_subarea output_stream output_stdout output_text"&gt;
-&lt;pre&gt;
-&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;
-&amp;lt;standard_name_table xmlns:xsi=&amp;quot;http://www.w3.org/2001/XMLSchema-instance&amp;quot; xsi:noNamespaceSchemaLocation=&amp;quot;cf-standard-name-table-1.1.xsd&amp;quot;&amp;gt;
-   &amp;lt;version_number&amp;gt;27&amp;lt;/version_number&amp;gt;
-   &amp;lt;last_modified&amp;gt;2013-11-28T05:25:32Z&amp;lt;/last_modified&amp;gt;
-   &amp;lt;institution&amp;gt;Program for Climate Model Diagnosis and Intercomparison&amp;lt;/institution&amp;gt;
-   &amp;lt;contact&amp;gt;webmaster@pcmdi.llnl.gov&amp;lt;/contact&amp;gt;
-
-  
-   &amp;lt;entry id=&amp;quot;age_of_sea_ice&amp;quot;&amp;gt;
-      &amp;lt;canonical_units&amp;gt;year&amp;lt;/canonical_units&amp;gt;
-      &amp;lt;grib&amp;gt;&amp;lt;/grib&amp;gt;
-      &amp;lt;amip&amp;gt;&amp;lt;/amip&amp;gt;
-      &amp;lt;description&amp;gt;&amp;amp;quot;Age of sea ice&amp;amp;quot; means the length of time elapsed since the ice formed.&amp;lt;/description&amp;gt;
-   &amp;lt;/entry&amp;gt;
-  
-   &amp;lt;entry id=&amp;quot;age_of_stratospheric_air&amp;quot;&amp;gt;
-      &amp;lt;canonical_units&amp;gt;s&amp;lt;/canonical_units&amp;gt;
-      &amp;lt;grib&amp;gt;&amp;lt;/grib&amp;gt;
-      &amp;lt;amip&amp;gt;&amp;lt;/amip&amp;gt;
-      &amp;lt;description&amp;gt;&amp;amp;quot;Age of stratospheric air&amp;amp;quot; means an estimate of the time since a parcel of stratospheric air was last in contact with the troposphere.&amp;lt;/description&amp;gt;
-
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class="cell border-box-sizing code_cell rendered"&gt;
-&lt;div class="input"&gt;
-&lt;div class="prompt input_prompt"&gt;In&amp;nbsp;[13]:&lt;/div&gt;
-&lt;div class="inner_cell"&gt;
-    &lt;div class="input_area"&gt;
-&lt;div class="highlight-ipynb"&gt;&lt;pre class="ipynb"&gt;&lt;span class="n"&gt;HTML&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class="output_wrapper"&gt;
-&lt;div class="output"&gt;
-
-
-&lt;div class="output_area"&gt;&lt;div class="prompt output_prompt"&gt;Out[13]:&lt;/div&gt;
-
-&lt;div class="output_html rendered_html output_subarea output_pyout"&gt;
-
-&lt;small&gt;
-&lt;p&gt; This post was written as an IPython notebook.  It is available for
-&lt;a href="http://ocefpaf.github.com/python4oceanographers/downloads/
-notebooks/2015-10-19-xml.ipynb"&gt;download&lt;/a&gt; or as a static
-&lt;a href="http://nbviewer.ipython.org/url/ocefpaf.github.com/
-python4oceanographers/downloads/notebooks/2015-10-19-xml.ipynb"&gt;html&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;/p&gt;
 &lt;a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"&gt;&lt;img
 alt="Creative Commons License" style="border-width:0"
