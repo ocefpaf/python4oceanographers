@@ -1,0 +1,21 @@
+name: Blog
+channels:
+    - ioos
+dependencies:
+    - python=2.7
+    - pelican=3.3
+    - markdown=2.3.1
+    - ipython-notebook=2.4.1
+    - ghp-import
+    - jinja2
+    - markupsafe
+    - pyyaml
+    - pygments
+    - unidecode
+    - blinker
+    - docutils
+    - feedgenerator
+    - pytz
+    - pyzmq
+    - six
+    - tornado
