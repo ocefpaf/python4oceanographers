@@ -19,3 +19,25 @@ dependencies:
     - pyzmq
     - six
     - tornado
+    # Non-blog specific packages.
+    - sympy
+    - numpy
+    - matplotlib
+    - pandas
+    - xlrd
+    - gsw
+    - ctd
+    - oceans
+    - ephem
+    - statsmodels
+    - jsanimation
+    - folium
+    - windspharm
+    - palettable
+    - simplekml
+    - xarray
+    - mplleaflet
+    - geopandas
+    - mpld3
+    - bokeh
+    - numba
