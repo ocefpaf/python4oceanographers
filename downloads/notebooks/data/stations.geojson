@@ -1,0 +1,629 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          -77.71,
+          34.13
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "ILM2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 34.13,
+        "locationdescription": "ILM2",
+        "longitude": -77.71,
+        "name": "Onslow Bay 18M",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "ILM2",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.35,
+          33.98
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "ILM3",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 33.98,
+        "locationdescription": "ILM3",
+        "longitude": -77.35,
+        "name": "Onslow Bay 30M",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "ILM3",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -78.48899999999999,
+          33.848
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "SUN2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 33.848,
+        "locationdescription": "Nearshore Sunset, NC",
+        "longitude": -78.48899999999999,
+        "name": "Sunset Beach Bouy 2",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "Nearshore Sunset, NC",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.62,
+          32.8
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "CAP2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 32.8,
+        "locationdescription": "Nearshore Charleston/Capers Island",
+        "longitude": -79.62,
+        "name": "Capers Island Buoy 2",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "Nearshore Charleston/Capers Island",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.41,
+          32.28
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "FRP2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 32.28,
+        "locationdescription": "Nearshore Beaufort/Fripp Island, SC",
+        "longitude": -80.41,
+        "name": "Fripp Island Bouy 2",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "Nearshore Beaufort/Fripp Island, SC",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -76.9525,
+          34.21083333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "LEJ3",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 34.21083333,
+        "locationdescription": "Offshore Camp Lejune, NC",
+        "longitude": -76.9525,
+        "name": "Lejune Buoy 3",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "Offshore Camp Lejune, NC",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.3,
+          33.9
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "OBL2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-orange.png",
+        "latitude": 33.9,
+        "locationdescription": "OB27B30M",
+        "longitude": -77.3,
+        "name": "Onslow Bay 27B",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "OB27B30M",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Planned",
+        "status_color": "orange"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.36,
+          34.11
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "LED2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-orange.png",
+        "latitude": 34.11,
+        "locationdescription": "OB200-200Ledge",
+        "longitude": -77.36,
+        "name": "Onslow Bay 200-200 Ledge",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "OB200-200Ledge",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Planned",
+        "status_color": "orange"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.76,
+          34.0
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "CBL2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-orange.png",
+        "latitude": 34.0,
+        "locationdescription": "CBLedge",
+        "longitude": -77.76,
+        "name": "Carolina Beach Ledge",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "CBLedge",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Planned",
+        "status_color": "orange"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -77.87,
+          33.96
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "FFL2",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-orange.png",
+        "latitude": 33.96,
+        "locationdescription": "FortFishLedge",
+        "longitude": -77.87,
+        "name": "Fort Fisher Ledge",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "FortFishLedge",
+        "responsibleparty": "UNC-Wilmington",
+        "status": "Planned",
+        "status_color": "orange"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -81.881,
+          26.40448333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "BCP",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 26.40448333,
+        "locationdescription": "Big Carlos Pass Bridge between the cities of Fort Meyers Beach and Bonita Springs, Fl",
+        "longitude": -81.881,
+        "name": "Big Carlos Pass Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "Big Carlos Pass Bridge between the cities of Fort Meyers Beach and Bonita Springs, Fl",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.76,
+          27.601
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "EGK",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-yellow.png",
+        "latitude": 27.601,
+        "locationdescription": "Tampa Bay",
+        "longitude": -82.76,
+        "name": "Egmont Key",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "Tampa Bay",
+        "responsibleparty": "USF-CMS",
+        "status": "Construction",
+        "status_color": "yellow"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.69173333,
+          27.73608333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "CLB",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 27.73608333,
+        "locationdescription": "South Clam Bayou. Florida",
+        "longitude": -82.69173333,
+        "name": "Clam Bayou Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "South Clam Bayou. Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.80115,
+          28.15325
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "FHP",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 28.15325,
+        "locationdescription": "Fred Howard Park Coastal Station;Howard Park Causeway Lift Bridge Florida",
+        "longitude": -82.80115,
+        "name": "Fred Howard Park Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "Fred Howard Park Coastal Station;Howard Park Causeway Lift Bridge Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -81.09573333,
+          25.08435
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "NFB",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 25.08435,
+        "locationdescription": "SSW of Cape Sable, Florida",
+        "longitude": -81.09573333,
+        "name": "Northwest Florida Bay Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "SSW of Cape Sable, Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -84.2905,
+          30.06011667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "SHP",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 30.06011667,
+        "locationdescription": "Shell Point Beach Park",
+        "longitude": -84.2905,
+        "name": "Shellpoint Water Level Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "Shell Point Beach Park",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.92616667,
+          27.16916667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C10",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 27.16916667,
+        "locationdescription": "Less than 30 miles west off the coast of Osprey Florida",
+        "longitude": -82.92616667,
+        "name": "USF CMS C10 Mooring",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "Less than 30 miles west off the coast of Osprey Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.72166667,
+          27.49833333
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C12",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 27.49833333,
+        "locationdescription": "About 70 miles west off the coast of Bradenton Florida",
+        "longitude": -83.72166667,
+        "name": "USFCMS C12 Mooring",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "About 70 miles west off the coast of Bradenton Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.07991667,
+          26.05191667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C13",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 26.05191667,
+        "locationdescription": "About 70 miles west off the coast of Naples Florida",
+        "longitude": -83.07991667,
+        "name": "USFCMS C13 Mooring",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "About 70 miles west off the coast of Naples Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.76993333,
+          27.6775
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C21",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-green.png",
+        "latitude": 27.6775,
+        "locationdescription": "About 2 miles west off the coast of Pass A Grille Historic District Florida",
+        "longitude": -82.76993333,
+        "name": "USFCMS C21 Coastal Station",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "About 2 miles west off the coast of Pass A Grille Historic District Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.78,
+          27.2
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C11",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-green.png",
+        "latitude": 27.2,
+        "locationdescription": "Less than 20 miles west off the coast of Osprey Florida",
+        "longitude": -82.78,
+        "name": "USFCMS C11 Bottom Mount",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "Less than 20 miles west off the coast of Osprey Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.64,
+          27.3
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C15",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/tri-green.png",
+        "latitude": 27.3,
+        "locationdescription": "About 4 miles west off the coast of South Lido County Park Florida",
+        "longitude": -82.64,
+        "name": "USF CMS C15 Bottom Mount",
+        "platform_icon": "tri",
+        "platformtype": "Fixed Bottom Mount Mooring",
+        "popupcontent": "About 4 miles west off the coast of South Lido County Park Florida",
+        "responsibleparty": "USF-CMS",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.86,
+          31.4
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "Gray's Reef ",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/buoy-green.png",
+        "latitude": 31.4,
+        "locationdescription": "NDBC Grays Reef OA Buoy",
+        "longitude": -80.86,
+        "name": "NOAA OA Gray's Reef Mooring",
+        "platform_icon": "buoy",
+        "platformtype": "Fixed Surface Buoy",
+        "popupcontent": "NDBC Grays Reef OA Buoy",
+        "responsibleparty": "UGA",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.8702,
+          31.4027
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "UGApH",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/circ-green.png",
+        "latitude": 31.4027,
+        "locationdescription": "UGA Seafloor pH sensor",
+        "longitude": -80.8702,
+        "name": "UGA Seafloor pH sensor",
+        "platform_icon": "circ",
+        "platformtype": "Fixed Bottom Station",
+        "popupcontent": "UGA Seafloor pH sensor",
+        "responsibleparty": "UGA",
+        "status": "Operational",
+        "status_color": "green"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.9,
+          32.783
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "Charleston Harbor",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/shore_station-orange.png",
+        "latitude": 32.783,
+        "locationdescription": "Charleston Harbor",
+        "longitude": -79.9,
+        "name": "Charleston Harbor",
+        "platform_icon": "shore_station",
+        "platformtype": "Fixed Coastal Station",
+        "popupcontent": "Charleston Harbor",
+        "responsibleparty": "SCDNR",
+        "status": "Planned",
+        "status_color": "orange"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.71,
+          25.000999999999998
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "displaytitle": "C18",
+        "icon": "https://raw.githubusercontent.com/secoora/static_assets/master/icons/circ-red.png",
+        "latitude": 25.000999999999998,
+        "locationdescription": "FL 82 m Depth",
+        "longitude": -83.71,
+        "name": "USF CMS C18 Bottom Mount",
+        "platform_icon": "circ",
+        "platformtype": "Fixed Bottom Station",
+        "popupcontent": "FL 82 m Depth",
+        "responsibleparty": "USF-CMS",
+        "status": "Decommissioned",
+        "status_color": "red"
+      },
+      "type": "Feature"
+    }
+  ],
+  "type": "FeatureCollection"
+}
